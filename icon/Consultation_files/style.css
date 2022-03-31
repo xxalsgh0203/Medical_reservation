@@ -9,8 +9,6 @@
 
 .navbar-brand {
   color: rgb(9, 31, 31);
-  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  font: bold;
 }
 
 .navbar-brand:hover {
@@ -332,7 +330,13 @@ select {
 	width:768px;
 
 }
-
+.main-container .main-wrap .sel-lang-wrap .lang-select
+{
+	width: 96px;
+	height: 30px;
+	color: var(--font-color);
+	border: solid 1px var(--border-gray-color);
+}
 .main-container .main-wrap .logo-wrap{
 	padding-top:55px;
 }
@@ -342,7 +346,10 @@ select {
 	height: 44px;
 }
 
-
+.main-container .main-wrap header .sel-lang-wrap{
+	display:flex;
+	justify-content:flex-end;
+}
 
 .main-container .main-wrap header .logo-wrap{
 	display:flex;	
@@ -354,7 +361,6 @@ select {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-  background-color: #8e8e8e;
 }
 
 .login-input-wrap{
@@ -422,17 +428,8 @@ select {
   margin-right: 10px;
 }
 
-#signup-header{
-  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  font: bold;
+.signup-header{
+  align-items:center;
   font-size: 20px;
-  margin-bottom: 25px;
-}
-
-#login-header{
-  margin-top: 10%;
-  margin-bottom: 20px;
-  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  font: bold;
-  font-size: 50px;
+  margin-bottom: 10px;
 }
