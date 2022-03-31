@@ -186,7 +186,7 @@ body {
 
 
 
-/* 입력폼 */
+/* input form */
 
 
 h3 {
@@ -293,7 +293,7 @@ select {
   font-family: Dotum,'돋움',Helvetica,sans-serif;
 }
 
-/* 에러메세지 */
+/* error message */
 
 .error_next_box {
   margin-top: 9px;
@@ -311,7 +311,7 @@ select {
   display: none;
 }
 
-/* 버튼 */
+/* button */
 
 .btn_area {
   margin: 30px 0 91px;
