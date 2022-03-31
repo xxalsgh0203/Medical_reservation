@@ -39,21 +39,21 @@
 
             <div class="text-center" id="login-header">Sign in</div>
 
-            <section class="login-input-section-wrap">
+            <form action="../php/login.php/" method="POST" class="login-input-section-wrap">
                 <div class="login-input-wrap">	
-                    <input placeholder="Username" type="text"></input>
+                    <input placeholder="Username" type="text" name="username"></input>
                 </div>
                 <div class="login-input-wrap password-wrap">	
-                    <input placeholder="Password" type="password"></input>
+                    <input placeholder="Password" type="password" name="password"></input>
                 </div>
                 <div class="login-button-wrap">
-                    <button>Sign in</button>
+                    <input type="submit" value="Sign in">
                 </div>
                 <div class="login-stay-sign-in">
                     <i class="far fa-check-circle"></i>
                     <span>Stay Signed in</span>
                 </div>
-            </section>
+              </form>
             <footer>
                 <div class="copyright-wrap">
                 </div>

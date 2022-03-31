@@ -14,6 +14,9 @@ CREATE TABLE OFFICE (
     PRIMARY KEY  (Office_id)
 );
 
+INSERT INTO OFFICE
+VALUES (1, '123 Main st.', 'Houston', 'Texas', 1234567890, '9:00', '17:00');
+
 CREATE TABLE ADMIN (
 	Admin_id             INT AUTO_INCREMENT,
     Office_id            INT,
@@ -36,6 +39,9 @@ CREATE TABLE DOCTOR (
     FOREIGN KEY (Office_id) REFERENCES OFFICE(Office_id)
 );
 
+INSERT INTO DOCTOR
+VALUES (1, 1, 'Monday', null, "Alice", 1234567890);
+
 CREATE TABLE PATIENT (
 	Patient_id           INT AUTO_INCREMENT,
     Primary_physician_id INT,
@@ -48,6 +54,9 @@ CREATE TABLE PATIENT (
     PRIMARY KEY (Patient_id),
     FOREIGN KEY (Primary_physician_id) REFERENCES DOCTOR(Doctor_id)
 );
+
+INSERT INTO PATIENT
+VALUES (1, 1, false, "Bob", 1234567890, "bob@hotmail.com", 20, false);
 
 CREATE TABLE APPOINTMENT (
 	Appointment_id        INT AUTO_INCREMENT,

@@ -2,13 +2,14 @@
 $servername = "34.133.173.227";
 $username = "root";
 $password = "rootPassword";
+$database = "medical_clinic";
 
 // Create connection
-$conn = new mysqli($servername, $username, $password);
+$db = mysqli_connect($servername, $username, $password, $database);
 
 // Check connection
-if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
+if ($db->connect_error) {
+  die("Connection failed: " . $db->connect_error);
 }
 echo "Connected successfully";
 ?>
