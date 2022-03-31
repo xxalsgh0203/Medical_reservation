@@ -1,6 +1,3 @@
-body {
-  font-family: 'Roboto', sans-serif;
-}
 
 /*--------------------------------------------------------------
   # Navigation Menu
@@ -29,8 +26,6 @@ body {
 .navbar-toggler {
   outline: none !important;
 }
-
-
 
 /*--------------------------------------------------------------
   # Hero Section
@@ -111,13 +106,11 @@ body {
 }
 
 .form-group .btn-form {
-  background: #11dbcf;
-  border: 2px solid #11dbcf;
+  background: #a6e3a2;
+  border: 2px solid #a6e3a2;
   text-decoration: none;
   color: #000;
 }
-
-
 
 
 
@@ -146,7 +139,7 @@ html {
 body {
   margin: 0;
   height: 100%;
-  background: #f5f6f7;
+  background: #abadaf;
   font-family: Dotum,'돋움',Helvetica,sans-serif;
 }
 #logo {
@@ -374,7 +367,7 @@ select {
 	width: 465px;
 	height :48px;
 	border: solid 1px var(	--border-gray-color );
-	background: rgb(148, 141, 141);
+	background: rgb(255, 255, 255);
 }
 .password-wrap{
 	margin-top: 13px;
@@ -388,14 +381,16 @@ select {
 	height:30px;
 }
 .login-button-wrap {
+  margin-top: 50px;
 	padding-top: 13px;
+  background-color: #a6e3a2;
 }
 .login-button-wrap button{
 	width: 465px;
 	height :48px;
 	font-size: 18px;
 	background: var(--naver-green-color);
-	color: rgb(153, 144, 144);
+	color: rgb(255, 255, 255);
 	border: solid 1px var(--naver-green-border-color);
 }
 .login-stay-sign-in{
@@ -404,14 +399,14 @@ select {
 	
 	display: flex;
 	font-size: 15px;
-	color: #4e4e4e;
+	color: #ffffff;
 	align-items: center;
 	justify-content: flex-start;
 	border-bottom: solid 1px var(--border-gray-color);
 }
 .login-stay-sign-in i{
 	font-size: 25px;
-	color: #9ba1a3;
+	color: #ffffff;
 }
 .login-stay-sign-in span{
 	padding-left: 5px;
@@ -421,4 +416,9 @@ select {
 
 .join_title{
   font-size: 15px;
+}
+
+.main-container{
+  background-color: #c9c3c3;
+  height: 80%;
 }
