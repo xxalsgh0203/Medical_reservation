@@ -57,9 +57,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item"><a class="nav-link" href="./Login.php">Log in</a></li>
+        <li class="nav-item"><a class="nav-link" href="./login.php">Log in</a></li>
         <li class="nav-item"><a class="nav-link" href="./signup.php">Sign up</a></li>
-        <li class="nav-item"><a class="nav-link" href="./patientpage.html">Manage Reservation</a></li>
+        <li class="nav-item"><a class="nav-link" href="./patientPage.php">Manage Reservation</a></li>
       </ul>
     </div>
   </div>
