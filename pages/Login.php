@@ -1,3 +1,33 @@
+<?php
+session_start();
+
+require_once "../php/config.php";
+
+if($_SERVER["REQUEST_METHOD"] == "POST") {
+  // username and password sent from form
+  
+  $username = mysqli_real_escape_string($db, $_POST['username']);
+  $password = mysqli_real_escape_string($db, $_POST['password']); 
+  
+  $sql = "SELECT patient_id FROM PATIENT WHERE name = '$username' AND password = '$password'";
+  $result = mysqli_query($db, $sql);
+  $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+  
+  $count = mysqli_num_rows($result);
+      
+  if($count == 1) {
+    $_SESSION["loggedin"] = true;
+    $_SESSION["username"] = $username; 
+    
+    echo(" Welcome ");
+    echo($username);
+  }else {
+    echo(" Log in failed");
+  }
+}
+?>
+
+
 <!doctype html>
 <html lang="en">
 
@@ -39,7 +69,7 @@
 
             <div class="text-center" id="login-header">Sign in</div>
 
-            <form action="../php/login.php/" method="POST" class="login-input-section-wrap">
+            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" class="login-input-section-wrap">
                 <div class="login-input-wrap">	
                     <input placeholder="Username" type="text" name="username"></input>
                 </div>
