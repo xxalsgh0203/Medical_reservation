@@ -1,10 +1,10 @@
 <?php
 session_start();
 
-if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-  header("location: patientPage.html");
-  exit;
-}
+// if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+//   header("location: patientPage.php");
+//   exit;
+// }
 
 require_once "../php/config.php";
 
@@ -24,7 +24,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $_SESSION["loggedin"] = true;
     $_SESSION["username"] = $username; 
     
-    header("location: patientPage.html");
+    header("location: patientPage.php");
   }else {
     echo(" Log in failed");
   }

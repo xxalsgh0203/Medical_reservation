@@ -13,7 +13,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $param_phone = mysqli_real_escape_string($db, $_POST['phone']);
     $param_email = mysqli_real_escape_string($db, $_POST['email']);
     $param_age = mysqli_real_escape_string($db, $_POST['age']);
-    $param_medical_allergy = mysqli_real_escape_string($db, $_POST['allergy']);
+    $param_medical_allergy = mysqli_real_escape_string($db, $_POST['allergy'] || false);
     
     if(mysqli_stmt_execute($stmt)){
       header("location: login.php");

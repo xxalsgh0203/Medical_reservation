@@ -1,3 +1,13 @@
+<?php
+session_start();
+ 
+// Check if the user is logged in, if not then redirect them to login page
+// if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+//     header("location: login.php");
+//     exit;
+// }
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -25,7 +35,7 @@
       <ul class="navbar-nav ml-auto">
         <li class="nav-item"><a class="nav-link" href="./Login.php">Log in</a></li>
         <li class="nav-item"><a class="nav-link" href="./signup.php">Sign up</a></li>
-        <li class="nav-item"><a class="nav-link" href="./patientpage.html">Manage Reservation</a></li>
+        <li class="nav-item"><a class="nav-link" href="./patientpage.php">Manage Reservation</a></li>
       </ul>
     </div>
   </div>
@@ -34,7 +44,9 @@
   <!-- End Header -->
   <!-- ======= Hero Section ======= -->
   <section id="hero" class="d-flex align-items-center">
-    
+    <div class="container text-center position-relative">
+      <h1>Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b></h1>
+    </div>
   </section>
   <!-- End Hero -->
 
