@@ -143,7 +143,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
       <!-- JOIN BTN-->
       <div class="btn_area">
         <input type="submit" id="btnJoin">
-          <span>Join</span>
         </button>
       </div>
 

@@ -65,59 +65,60 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
   </div>
 </nav>
 
-  <!-- End Header -->
-  <!-- ======= signup Section ======= -->
-  <section id="signin">
-    <div class="main-container">
-            <div class="main-wrap">
+<!-- End Header -->
+<!-- ======= signup Section ======= -->
+<section id="signin">
+  <div class="main-container">
+    <div class="main-wrap">
 
-            <div class="text-center" id="login-header">Sign in</div>
+      <div class="text-center" id="login-header">Sign in</div>
 
-            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" class="login-input-section-wrap">
-                <div class="login-input-wrap">	
-                    <input placeholder="Username" type="text" name="username"></input>
-                </div>
-                <div class="login-input-wrap password-wrap">	
-                    <input placeholder="Password" type="password" name="password"></input>
-                </div>
-                <div class="login-button-wrap">
-                    <input type="submit" value="Sign in">
-                </div>
-                <div class="login-stay-sign-in">
-                    <i class="far fa-check-circle"></i>
-                    <span>Stay Signed in</span>
-                </div>
-              </form>
-            <footer>
-                <div class="copyright-wrap">
-                </div>
-            </footer>
-            </div>
+      <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"
+        class="login-input-section-wrap">
+        <div class="login-input-wrap">
+          <input placeholder="Username" type="text" name="username"></input>
         </div>
-    </section>
-  <!-- End signup -->
-
-  <!-- Footer-->
-  <footer class="footer py-4 mt-5">
-    <div class="container">
-      <div class="row align-items-center">
-        <div class="col-lg-4 text-lg-left">COSC3380 Group Project</div>
-        <div class="col-lg-4 my-3 my-lg-0">
-          <a class="btn btn-back btn-social mx-2" href="#!">
-            <i class="fab fa-twitter"></i></a>
-          <a class="btn btn-back btn-social mx-2" href="#!">
-            <i class="fab fa-facebook-f"></i></a>
-          <a class="btn btn-back btn-social mx-2" href="#!">
-            <i class="fab fa-linkedin-in"></i></a>
+        <div class="login-input-wrap password-wrap">
+          <input placeholder="Password" type="password" name="password"></input>
         </div>
-        <div class="col-lg-4 text-lg-right">
-          <a class="mr-3 text" href="#!">Privacy Policy</a>
-          <a href="#!" class="text">Terms of Use</a></div>
-      </div>
+        <div class="login-button-wrap">
+          <input id="login-button" type="submit" value="Sign in">
+        </div>
+        <div class="login-stay-sign-in">
+          <!-- <i class="far fa-check-circle"></i>
+          <span>Stay Signed in</span> -->
+        </div>
+      </form>
+      <footer>
+        <div class="copyright-wrap">
+        </div>
+      </footer>
     </div>
-  </footer>
+  </div>
+</section>
+<!-- End signup -->
 
-  <script src="main.js"></script>
+<!-- Footer-->
+<footer class="footer py-4 mt-5">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-4 text-lg-left">COSC3380 Group Project</div>
+      <div class="col-lg-4 my-3 my-lg-0">
+        <a class="btn btn-back btn-social mx-2" href="#!">
+          <i class="fab fa-twitter"></i></a>
+        <a class="btn btn-back btn-social mx-2" href="#!">
+          <i class="fab fa-facebook-f"></i></a>
+        <a class="btn btn-back btn-social mx-2" href="#!">
+          <i class="fab fa-linkedin-in"></i></a>
+      </div>
+      <div class="col-lg-4 text-lg-right">
+        <a class="mr-3 text" href="#!">Privacy Policy</a>
+        <a href="#!" class="text">Terms of Use</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="main.js"></script>
 </body>
 
 </html>
