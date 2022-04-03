@@ -9,14 +9,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     mysqli_stmt_bind_param($stmt, "ssisii", $param_name, $param_password, $param_phone, $param_email, $param_age, $param_medical_allergy);
     
     $param_name = mysqli_real_escape_string($db, $_POST['name']);
-    $param_password = password_hash($password, PASSWORD_DEFAULT);
+    $param_password = mysqli_real_escape_string($db, $_POST['password']);
     $param_phone = mysqli_real_escape_string($db, $_POST['phone']);
     $param_email = mysqli_real_escape_string($db, $_POST['email']);
     $param_age = mysqli_real_escape_string($db, $_POST['age']);
     $param_medical_allergy = mysqli_real_escape_string($db, $_POST['allergy']);
     
     if(mysqli_stmt_execute($stmt)){
-      echo "Signed up successfully!";
+      header("location: login.php");
     } else{
       echo "Oops! Something went wrong. Please try again later.";
     }

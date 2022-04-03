@@ -1,6 +1,11 @@
 <?php
 session_start();
 
+if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+  header("location: patientPage.html");
+  exit;
+}
+
 require_once "../php/config.php";
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -19,8 +24,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $_SESSION["loggedin"] = true;
     $_SESSION["username"] = $username; 
     
-    echo(" Welcome ");
-    echo($username);
+    header("location: patientPage.html");
   }else {
     echo(" Log in failed");
   }
