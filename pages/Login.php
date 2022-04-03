@@ -23,8 +23,8 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item"><a class="nav-link" href="./Login.html">Log in</a></li>
-        <li class="nav-item"><a class="nav-link" href="./signup.html">Sign up</a></li>
+        <li class="nav-item"><a class="nav-link" href="./Login.php">Log in</a></li>
+        <li class="nav-item"><a class="nav-link" href="./signup.php">Sign up</a></li>
         <li class="nav-item"><a class="nav-link" href="./patientpage.html">Manage Reservation</a></li>
       </ul>
     </div>
