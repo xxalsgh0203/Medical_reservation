@@ -1,3 +1,13 @@
+<?php
+session_start();
+ 
+// Check if the user is logged in, if not then redirect them to login page
+// if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+//     header("location: login.php");
+//     exit;
+// }
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -23,45 +33,25 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item"><a class="nav-link" href="./Login.html">Log in</a></li>
-        <li class="nav-item"><a class="nav-link" href="./signup.html">Sign up</a></li>
-        <li class="nav-item"><a class="nav-link" href="./patientpage.html">Manage Reservation</a></li>
+        <li class="nav-item"><a class="nav-link" href="./login.php">Log in</a></li>
+        <li class="nav-item"><a class="nav-link" href="./signup.php">Sign up</a></li>
+        <li class="nav-item"><a class="nav-link" href="./patientPage.php">Manage Reservation</a></li>
       </ul>
     </div>
   </div>
 </nav>
 
   <!-- End Header -->
-  <!-- ======= signup Section ======= -->
-  <section id="signin">
-    <div class="main-container">
-            <div class="main-wrap">
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex align-items-center">
+    <div class="container text-center position-relative">
+      <h1>Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b></h1>
+    </div>
+  </section>
+  <!-- End Hero -->
 
-            <div class="text-center" id="login-header">Sign in</div>
 
-            <form action="../php/login.php/" method="POST" class="login-input-section-wrap">
-                <div class="login-input-wrap">	
-                    <input placeholder="Username" type="text" name="username"></input>
-                </div>
-                <div class="login-input-wrap password-wrap">	
-                    <input placeholder="Password" type="password" name="password"></input>
-                </div>
-                <div class="login-button-wrap">
-                    <input type="submit" value="Sign in">
-                </div>
-                <div class="login-stay-sign-in">
-                    <i class="far fa-check-circle"></i>
-                    <span>Stay Signed in</span>
-                </div>
-              </form>
-            <footer>
-                <div class="copyright-wrap">
-                </div>
-            </footer>
-            </div>
-        </div>
-    </section>
-  <!-- End signup -->
+
 
   <!-- Footer-->
   <footer class="footer py-4 mt-5">
@@ -84,6 +74,9 @@
   </footer>
 
   <script src="main.js"></script>
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  </script>
 </body>
 
 </html>

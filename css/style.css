@@ -402,7 +402,7 @@ select {
 	padding-top: 13px;
   background-color: #a6e3a2;
 }
-.login-button-wrap button{
+.login-button-wrap #login-button {
 	width: 465px;
 	height :48px;
 	font-size: 18px;

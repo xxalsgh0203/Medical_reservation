@@ -46,17 +46,18 @@ CREATE TABLE PATIENT (
 	Patient_id           INT AUTO_INCREMENT,
     Primary_physician_id INT,
     Specialist_approved  BOOLEAN,
-    Name                 VARCHAR(20),
+    Name                 VARCHAR(20) NOT NULL,
+    Password             VARCHAR(255) NOT NULL,
     Phone_number         INT UNIQUE NOT NULL,
     Email                VARCHAR(254) UNIQUE,
     Age                  INT,
-    Medical_allgery      BOOLEAN NOT NULL,
+    Medical_allergy      BOOLEAN NOT NULL,
     PRIMARY KEY (Patient_id),
     FOREIGN KEY (Primary_physician_id) REFERENCES DOCTOR(Doctor_id)
 );
 
 INSERT INTO PATIENT
-VALUES (1, 1, false, "Bob", 1234567890, "bob@hotmail.com", 20, false);
+VALUES (1, 1, false, "Bob", "password",1234567890, "bob@hotmail.com", 20, false);
 
 CREATE TABLE APPOINTMENT (
 	Appointment_id        INT AUTO_INCREMENT,
