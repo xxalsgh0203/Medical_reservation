@@ -48,7 +48,7 @@ if ($result->num_rows > 0) {
 <section id="AdminUsers">
   <div class="main-container">
     <div class="main-wrap">
-      <div class="text-center" id="Admin-header">Admin</div>
+      <div class="text-center" id="Admin-header">Patient</div>
       <div class="container-fluid">
         <div class="row justify-content-center my-5">
           <div class="col-10">
