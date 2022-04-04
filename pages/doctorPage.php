@@ -45,43 +45,41 @@ if ($result->num_rows > 0) {
 <!-- End Header -->
 <!-- ======= Doctor Section ======= -->
 
-<body>
-  <!--
-        <div class="text-center" id="login-header">Doctors Page</div>
-        <div class="carousel-container">
-          <div class="carousel-slide">
-              <img src="https://th.bing.com/th/id/OIP.ojEjZxhp8ORBoX0Y2JFbkgHaEM?pid=ImgDet&rs=1" aLt="">
-              <img src="https://th.bing.com/th/id/OIP.JW_4m4RVV4ywf0aiB6TWrgHaLH?w=124&h=186&c=7&r=0&o=5&dpr=1.25&pid=1.7" aLt="">
-              <img src="https://pikwizard.com/photos/823b34ec55677202d73fd148bc416087-m.jpg" aLt="">
+<section id="Doctors">
+  <div class="main-container">
+    <div class="main-wrap">
+
+      <div class="text-center" id="Admin-header">Admin</div>
+      <div class="container-fluid">
+        <div class="row justify-content-center my-5">
+          <div class="col-10">
+            <table class="table table-bordered">
+              <thead class="thead">
+                <tr>
+                  <th>Doctor ID</th>
+                  <th>Office ID</th>
+                  <th>Specialty</th>
+                  <th>Name</th>
+                  <th>Availability</th>
+                  <th>Phone Number</th>
+                </tr>
+                <?php echo $tableResult;?>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+
           </div>
-        </div>-->
+        </div>
+      </div>
 
-  <br>
-  <table style="margin-left:auto; margin-right:auto;" border="2">
-    <tr>
-      <th>Doctor ID</th>
-      <th>Office ID</th>
-      <th>Specialty</th>
-      <th>Name</th>
-      <th>Availability</th>
-      <th>Phone Number</th>
-    </tr>
-    <?php echo $tableResult;?>
-  </table>
-
-  <!--
-        <table style="margin-left:auto; margin-right:auto;">
-          <tr>
-            <th>Doctor ID</th>
-            <th>Office ID</th>
-            <th>Specialty</th>
-            <th>Name</th>
-            <th>Availability</th>
-            <th>Phone Number</th>
-
-          </tr>
-        </table> -->
-</body>
+      <footer>
+        <div class="copyright-wrap">
+        </div>
+      </footer>
+    </div>
+  </div>
+</section>
 <!-- End Doctors Page-->
 
 <!-- Footer-->
