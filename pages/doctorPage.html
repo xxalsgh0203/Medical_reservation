@@ -42,7 +42,9 @@
               <img src="https://pikwizard.com/photos/823b34ec55677202d73fd148bc416087-m.jpg" aLt="">
           </div>
         </div>
+       
         <br>
+        <!--
         <table style="margin-left:auto; margin-right:auto;">
           <tr>
             <th>Doctor ID</th>
@@ -54,6 +56,48 @@
 
           </tr>
         </table>
+        
+        <?php
+        $servername = "34.133.173.227";
+        $username = "root";
+        $password = "rootPassword";
+        $database = "medical_clinic";
+
+        // Create connection
+        $db = mysqli_connect($servername, $username, $password, $database);
+
+        // Check connection
+        if ($db->connect_error) {
+          die("Connection failed: " . $db->connect_error);
+        }
+
+
+        $sql = "SELECT Doctor_id, Office_id, Days_in_office, Speciality, Name, Phone_Number from Doctor";
+        $result = $conn-> query($sql);
+
+        if ($result-> num_rows >0){
+          while($row = $result-> fetch_assoc()) {
+          echo "<tr><td>". $row["Doctor_id"] . "</td><td>" . $row["Office_id"] .  "</td><td>" . $row["Days_in_office"] . "</td><td>" . 
+                $row["Speciality"] .   "</td><td>" . $row["Speciality"] . "<tr><td>";
+          
+        }
+          ?>-->
+
+
+
+
+         
+        <table style="margin-left:auto; margin-right:auto;">
+          <tr>
+            <th>Doctor ID</th>
+            <th>Office ID</th>
+            <th>Specialty</th>
+            <th>Name</th>
+            <th>Availability</th>
+            <th>Phone Number</th>
+
+          </tr>
+        </table> 
       </body>
   <!-- End Doctors Page-->
 
