@@ -57,11 +57,11 @@ if ($result->num_rows > 0) {
               <thead class="thead">
                 <tr>
                   <th>Doctor ID</th>
-      <th>Office ID</th>
-      <th>Specialty</th>
-      <th>Name</th>
-      <th>Availability</th>
-      <th>Phone Number</th>
+                  <th>Office ID</th>
+                  <th>Specialty</th>
+                  <th>Name</th>
+                  <th>Availability</th>
+                  <th>Phone Number</th>
                 </tr>
                 <?php echo $tableResult;?>
               </thead>
