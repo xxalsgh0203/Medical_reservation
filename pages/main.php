@@ -38,7 +38,7 @@
       <a href="../php/config.php" class="main-btn">Test connecting to database</a>
       <h1>Service opens in 2 weeks</h1>
       <h2>Group project COSC3380.</h2>
-      <a href="#about" class="main-btn">Get Started</a>
+      <a href="./requestAppointment.php" class="main-btn">Make Reservation!</a>
     </div>
   </section>
   <!-- End Hero -->
