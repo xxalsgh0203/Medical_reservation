@@ -1,4 +1,4 @@
-<footer class="footer py-4 mt-5">
+<footer class="footer py-4">
   <div class="container">
     <div class="row align-items-center">
       <div class="col-lg-4 text-lg-left">COSC3380 Group Project</div>
