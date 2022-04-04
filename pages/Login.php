@@ -14,19 +14,46 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
   $username = mysqli_real_escape_string($db, $_POST['username']);
   $password = mysqli_real_escape_string($db, $_POST['password']); 
   
-  $sql = "SELECT patient_id FROM PATIENT WHERE name = '$username' AND password = '$password'";
-  $result = mysqli_query($db, $sql);
-  $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+  $sqlPatient = "SELECT patient_id FROM PATIENT WHERE name = '$username' AND password = '$password'";
+  $resultPatient = mysqli_query($db, $sqlPatient);
+  $rowPatient = mysqli_fetch_array($resultPatient, MYSQLI_ASSOC);
   
-  $count = mysqli_num_rows($result);
+  $countPatient = mysqli_num_rows($resultPatient);
       
-  if($count == 1) {
+  if($countPatient == 1) {
     $_SESSION["loggedin"] = true;
-    $_SESSION["username"] = $username; 
+    $_SESSION["username"] = $username;
+    $_SESSION["id"] = true;
     
     header("location: patientPage.php");
-  }else {
-    echo(" Log in failed");
+  }
+
+  $sqlDoctor = "SELECT doctor_id FROM DOCTOR WHERE name = '$username' AND password = '$password'";
+  $resultDoctor = mysqli_query($db, $sqlDoctor);
+  $rowDoctor = mysqli_fetch_array($resultDoctor, MYSQLI_ASSOC);
+  
+  $countDoctor = mysqli_num_rows($resultDoctor);
+      
+  if($countDoctor == 1) {
+    $_SESSION["loggedin"] = true;
+    $_SESSION["username"] = $username;
+    $_SESSION["id"] = true;
+    
+    header("location: doctorPage.html");
+  }
+
+  $sqlAdmin = "SELECT admin_id FROM ADMIN WHERE name = '$username' AND password = '$password'";
+  $resultAdmin = mysqli_query($db, $sqlAdmin);
+  $rowAdmin = mysqli_fetch_array($resultAdmin, MYSQLI_ASSOC);
+  
+  $countAdmin = mysqli_num_rows($resultAdmin);
+      
+  if($countAdmin == 1) {
+    $_SESSION["loggedin"] = true;
+    $_SESSION["username"] = $username;
+    $_SESSION["id"] = true;
+    
+    header("location: adminPage.html");
   }
 }
 ?>
