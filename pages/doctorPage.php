@@ -18,7 +18,7 @@ $tableResult = "";
 if ($result->num_rows > 0) {
   $tableResult = "<tr>";
   while($row = $result-> fetch_assoc()) {
-    $tableResult .= "<td>" . $row["Office_id"] . "</td><td>" . $row["Name"] . "</td><td>". "</td><td>" . $row["Days_in_office"] . "</td><td>" . $row["Speciality"] . "</td><td>" . $row["Phone_number"] . "</td>";
+    $tableResult .= "<td>" . $row["Office_id"] . "</td><td>" . $row["Name"] . "</td><td>" . $row["Speciality"] . "</td><td>" . $row["Days_in_office"] . "</td><td>" . $row["Phone_number"] . "</td>";
   }
   $tableResult .= "</tr>";
 }
@@ -49,17 +49,16 @@ if ($result->num_rows > 0) {
   <div class="main-container">
     <div class="main-wrap">
 
-      <div class="text-center" id="Admin-header">Admin</div>
+      <div class="text-center" id="Admin-header">Doctor</div>
       <div class="container-fluid">
         <div class="row justify-content-center my-5">
           <div class="col-10">
             <table class="table table-bordered">
               <thead class="thead">
                 <tr>
-                  <th>Doctor ID</th>
                   <th>Office ID</th>
-                  <th>Specialty</th>
                   <th>Name</th>
+                  <th>Specialty</th>
                   <th>Availability</th>
                   <th>Phone Number</th>
                 </tr>
