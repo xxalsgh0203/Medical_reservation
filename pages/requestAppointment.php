@@ -1,24 +1,16 @@
 <?php
-session_start();
-
 require_once "../php/config.php";
  
-// Check if the user is logged in, if not then redirect them to login page
-// if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
-//     header("location: login.php");
-//     exit;
-// }
 ?>
 
 <!doctype html>
 <html lang="en">
 
 <head>
-  <title>Request Appointment</title>
+  <title>Consultation</title>
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="stylesheet" href="../css/raStyle.css">
   <link rel="stylesheet" href="../css/style.css">
 
   <!-- Bootstrap CSS -->
@@ -44,36 +36,43 @@ require_once "../php/config.php";
   </div>
 </nav>
 
-  <!-- End Header -->
-  <!-- ======= Hero Section ======= -->
-<body>
+<!-- End Header -->
+<!-- ======= signup Section ======= -->
+<section id="signup">
+  <!-- wrapper -->
+  <div id="wrapper">
+    <form class="text-center">
+      Choose your date
+      <p><input type="date" value="2019-09-22"></p>
+      <p><input type="submit" value="Submit"></p>
+    </form>
 
-</body>
-  <!-- End Hero -->
+  </div>
+  <!-- wrapper -->
+</section>
+<!-- End signup -->
 
-
-
-
-  <!-- Footer-->
-  <footer class="footer py-4 mt-5" id="footer">
-    <div class="container">
-      <div class="row align-items-center">
-        <div class="col-lg-4 text-lg-left">COSC3380 Group Project</div>
-        <div class="col-lg-4 my-3 my-lg-0">
-          <a class="btn btn-back btn-social mx-2" href="#!">
-            <i class="fab fa-twitter"></i></a>
-          <a class="btn btn-back btn-social mx-2" href="#!">
-            <i class="fab fa-facebook-f"></i></a>
-          <a class="btn btn-back btn-social mx-2" href="#!">
-            <i class="fab fa-linkedin-in"></i></a>
-        </div>
-        <div class="col-lg-4 text-lg-right">
-          <a class="mr-3 text" href="#!">Privacy Policy</a>
-          <a href="#!" class="text">Terms of Use</a></div>
+<!-- Footer-->
+<footer class="footer py-4 mt-5">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-4 text-lg-left">COSC3380 Group Project</div>
+      <div class="col-lg-4 my-3 my-lg-0">
+        <a class="btn btn-back btn-social mx-2" href="#!">
+          <i class="fab fa-twitter"></i></a>
+        <a class="btn btn-back btn-social mx-2" href="#!">
+          <i class="fab fa-facebook-f"></i></a>
+        <a class="btn btn-back btn-social mx-2" href="#!">
+          <i class="fab fa-linkedin-in"></i></a>
       </div>
+      <div class="col-lg-4 text-lg-right">
+        <a class="mr-3 text" href="#!">Privacy Policy</a>
+        <a href="#!" class="text">Terms of Use</a></div>
     </div>
-  </footer>
-  </script>
-</body>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+
 
 </html>
