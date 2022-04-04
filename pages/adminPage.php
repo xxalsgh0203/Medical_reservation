@@ -21,7 +21,6 @@ if ($result->num_rows > 0) {
   }
   $tableResult .= "</tr>";
 }
-
 ?>
 
 <!doctype html>
