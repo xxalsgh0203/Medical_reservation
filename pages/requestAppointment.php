@@ -40,12 +40,31 @@ require_once "../php/config.php";
 <!-- ======= signup Section ======= -->
 <section id="signup">
   <!-- wrapper -->
-  <div id="wrapper">
-    <form class="text-center">
+  <div id="wrapper-request-appointment">
+    <div class="col-sm-8 col-lg-8" >
+      <p class="make-reservation-header">Make Your Reservation</p>
+    </div>
+    <div class="col-sm-8 col-lg-8">
       Choose your date
-      <p><input type="date" value="2019-09-22"></p>
-      <p><input type="submit" value="Submit"></p>
-    </form>
+      <p><input type="date" value="2019-09-22" class="form-control"></p>
+    </div>
+
+
+    <div class="col-sm-8 col-lg-8">
+      Choose Time
+      <p><input type="time" id="time" class="form-control"></p>
+    </div>
+
+        
+    <div class="col-sm-8 col-lg-8">
+      Symptoms
+      <textarea id="symptoms" class="form-control" required></textarea>
+    </div>
+
+    <div class="col-sm-8 col-lg-8">
+      Choose Doctor
+      <textarea id="choose-doctor" class="form-control" required></textarea>
+    </div>
 
   </div>
   <!-- wrapper -->
