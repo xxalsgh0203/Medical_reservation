@@ -66,6 +66,10 @@ require_once "../php/config.php";
       <textarea id="choose-doctor" class="form-control" required></textarea>
     </div>
 
+    <div class="col-sm-8 col-lg-8">
+      <input class="btn" type="submit" name="button" value="Submit"/>
+    </div>
+
   </div>
   <!-- wrapper -->
 </section>
