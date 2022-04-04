@@ -25,6 +25,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $_SESSION["loggedin"] = true;
     $_SESSION["username"] = $username;
     $_SESSION["id"] = $rowPatient["patient_id"];
+    $_SESSION["href"] = "../pages/patientPage.php";
     
     header("location: patientPage.php");
   }
@@ -39,8 +40,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $_SESSION["loggedin"] = true;
     $_SESSION["username"] = $username;
     $_SESSION["id"] = $rowDoctor["doctor_id"];
+    $_SESSION["href"] = "../pages/doctorPage.php";
     
-    header("location: doctorPage.html");
+    header("location: doctorPage.php");
   }
 
   $sqlAdmin = "SELECT admin_id FROM ADMIN WHERE name = '$username' AND password = '$password'";
@@ -53,6 +55,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $_SESSION["loggedin"] = true;
     $_SESSION["username"] = $username;
     $_SESSION["id"] = $rowAdmin["admin_id"];
+    $_SESSION["href"] = "../pages/adminPage.html";
     
     header("location: adminPage.html");
   }

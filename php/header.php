@@ -1,3 +1,12 @@
+<?php
+require_once "../php/config.php";
+
+$href = "";
+if (isset($_SESSION["href"])) {
+  $href = $_SESSION["href"];
+}
+?>
+
 <nav class="navbar navbar-expand-lg nav-back fixed-top" id="mainNav">
   <div class="container">
     <img src="../img/main_icon.png" class="mainicon">
@@ -8,9 +17,9 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item"><a class="nav-link" href="./login.php">Log in</a></li>
-        <li class="nav-item"><a class="nav-link" href="./signup.php">Sign up</a></li>
-        <li class="nav-item"><a class="nav-link" href="./patientPage.php">Manage Reservation</a></li>
+        <li class="nav-item"><a class="nav-link" href="../pages/login.php">Log in</a></li>
+        <li class="nav-item"><a class="nav-link" href="../pages/signup.php">Sign up</a></li>
+        <li class="nav-item"><a class="nav-link" href=<?php echo $href;?>>Manage Appointments</a></li>
       </ul>
     </div>
   </div>
