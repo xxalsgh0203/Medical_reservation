@@ -1,5 +1,7 @@
 <?php
 session_start();
+
+require_once "../php/config.php";
  
 // Check if the user is logged in, if not then redirect them to login page
 // if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){

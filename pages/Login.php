@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+require_once "../php/config.php";
+
 // if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
 //   header("location: patientPage.php");
 //   exit;
@@ -9,7 +11,6 @@ session_start();
 require_once "../php/config.php";
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
-  // username and password sent from form
   
   $username = mysqli_real_escape_string($db, $_POST['username']);
   $password = mysqli_real_escape_string($db, $_POST['password']); 
@@ -23,7 +24,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
   if($countPatient == 1) {
     $_SESSION["loggedin"] = true;
     $_SESSION["username"] = $username;
-    $_SESSION["id"] = true;
+    $_SESSION["id"] = $rowPatient["patient_id"];
     
     header("location: patientPage.php");
   }
@@ -37,7 +38,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
   if($countDoctor == 1) {
     $_SESSION["loggedin"] = true;
     $_SESSION["username"] = $username;
-    $_SESSION["id"] = true;
+    $_SESSION["id"] = $rowDoctor["doctor_id"];
     
     header("location: doctorPage.html");
   }
@@ -51,7 +52,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
   if($countAdmin == 1) {
     $_SESSION["loggedin"] = true;
     $_SESSION["username"] = $username;
-    $_SESSION["id"] = true;
+    $_SESSION["id"] = $rowAdmin["admin_id"];
     
     header("location: adminPage.html");
   }

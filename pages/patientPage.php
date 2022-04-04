@@ -1,12 +1,23 @@
 <?php
 session_start();
+
+require_once "../php/config.php";
  
 // Check if the user is logged in, if not then redirect them to login page
-// if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
-//     header("location: login.php");
-//     exit;
-// }
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+    header("location: login.php");
+    exit;
+}
+
+$id = $_SESSION["id"];
+$sql = "SELECT email FROM PATIENT WHERE patient_id = '$id'";
+$result = mysqli_query($db, $sql);
+$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+
+$email = $row["email"];
 ?>
+
+
 
 <!doctype html>
 <html lang="en">
@@ -46,6 +57,7 @@ session_start();
   <section id="hero" class="d-flex align-items-center">
     <div class="container text-center position-relative">
       <h1>Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b></h1>
+      <p>I got your email from the database: <?php echo $email;?></p>
     </div>
   </section>
   <!-- End Hero -->
