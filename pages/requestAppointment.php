@@ -2,8 +2,15 @@
 session_start();
 require_once "../php/config.php";
 
-$sql = "INSERT INTO APPOINTMENT(Appointment_id, Patient_id, Doctor_id, Office_id, Appointment_status_id, Slotted_time) "
- 
+$time = $_POST['time'];
+$doctor = $_POST['doctor'];
+
+
+$sql = "INSERT INTO APPOINTMENT(Doctor_id, Slotted_time) 
+        VALUES ('$doctor', '$time');";
+mysqli_query($conn,$sql);
+
+
 ?>
 
 <!doctype html>
