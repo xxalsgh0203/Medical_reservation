@@ -1,8 +1,13 @@
 <?php
 require_once "../php/config.php";
+/*if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true)
+{
+  header("location: login.php");
+  exit;
+
+}*/
  
 ?>
-
 <!doctype html>
 <html lang="en">
 
@@ -38,7 +43,7 @@ require_once "../php/config.php";
 
 <!-- End Header -->
 <!-- ======= signup Section ======= -->
-<section id="signup">
+<form id="signup" method ="POST" action="requestAppointment.php">
   <!-- wrapper -->
   <div id="wrapper-request-appointment">
     <div class="col-sm-8 col-lg-8" >
@@ -46,33 +51,50 @@ require_once "../php/config.php";
     </div>
     <div class="col-sm-8 col-lg-8">
       Choose your date
-      <p><input type="date" value="2019-09-22" class="form-control"></p>
+      <p><input type="date" value="today" class="form-control" name="date"></p>
     </div>
 
 
     <div class="col-sm-8 col-lg-8">
       Choose Time
-      <p><input type="time" id="time" class="form-control"></p>
+      <p><input type="time" id="time" class="form-control" step="3600000" name="time"></p>
     </div>
 
         
     <div class="col-sm-8 col-lg-8">
       Symptoms
-      <textarea id="symptoms" class="form-control" required></textarea>
+      <textarea id="symptoms" class="form-control" required name="symptons"></textarea>
     </div>
 
     <div class="col-sm-8 col-lg-8">
       Choose Doctor
-      <textarea id="choose-doctor" class="form-control" required></textarea>
+      <textarea id="choose-doctor" class="form-control" required name="doctor"></textarea>
     </div>
 
     <div class="col-sm-8 col-lg-8">
-      <input class="btn" type="submit" name="button" value="Submit"/>
+      <br>
+      <input class="form-control" type="submit" name="button" value="Submit"/>
     </div>
 
   </div>
+  <?php
+  // Check if the user is logged in, if not then redirect them to login page
+  if(isset($_POST['date']) || isset($_POST['time']) || isset($_POST['symptons']) || isset($_POST['doctor'])) {
+    $doctor = $_POST['date'];
+    $time = $_POST['time'];
+    $symptons = $_POST['symptons'];
+    $deliverFrom = $_POST['doctor'];
+    $suggestedPrice = $_POST['suggestedPrice'];
+
+    //$query = "SELECT `fuelform`(SugPrice, DelDate, DelAddress, DelForm, GalReq, TotalCost, loginafule_User)
+    //VALUES ('$suggestedPrice', '$deliverlyDate', '$deliverAddress', '$deliverFrom', '$gallonsRequested', '$totalCost', '$user');";
+
+    //$result   = mysqli_query($conn, $query);
+
+}
+  ?>
   <!-- wrapper -->
-</section>
+</form>
 <!-- End signup -->
 
 <!-- Footer-->
