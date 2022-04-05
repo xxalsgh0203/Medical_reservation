@@ -10,11 +10,17 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 }
 
 $id = $_SESSION["id"];
-$sql = "SELECT email FROM PATIENT WHERE patient_id = '$id'";
+$sql = "SELECT Primary_physician_id, Name, Phone_number, Email, Age, Medical_allergy FROM PATIENT WHERE Patient_id = '$id'";
 $result = mysqli_query($db, $sql);
-$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 
-$email = $row["email"];
+$tableResult = "";
+if ($result->num_rows > 0) {
+  $tableResult = "<tr>";
+  while($row = $result-> fetch_assoc()) {
+    $tableResult .= "<td>" . $row["Primary_physician_id"] . "</td><td>" . $row["Name"] . "</td><td>" . $row["Phone_number"] . "</td><td>" . $row["Email"] . "</td><td>" . $row["Age"] . "</td><td>" . $row["Medical_allergy"] . "</td>";
+  }
+  $tableResult .= "</tr>";
+}
 ?>
 
 
@@ -37,14 +43,43 @@ $email = $row["email"];
 <?php include_once("../php/header.php"); ?>
 
   <!-- End Header -->
-  <!-- ======= Hero Section ======= -->
-  <section id="hero" class="d-flex align-items-center">
-    <div class="container text-center position-relative">
-      <h1>Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b></h1>
-      <p>I got your email from the database: <?php echo $email;?></p>
+
+  <!-- ======= Patient Page ======= -->
+<section id="AdminUsers">
+  <div class="main-container">
+    <div class="main-wrap">
+      <div class="text-center" id="Admin-header">Patient</div>
+      <div class="container-fluid">
+        <div class="row justify-content-center my-5">
+          <div class="col-10">
+            <table class="table table-bordered">
+              <thead class="thead">
+                <tr>
+                  <th scope="col">Primary_physician_id</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Phone number</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Age</th>
+                  <th scope="col">Medical_allergy</th>
+                </tr>
+                <?php echo $tableResult;?>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="copyright-wrap">
+        </div>
+      </footer>
     </div>
-  </section>
-  <!-- End Hero -->
+  </div>
+</section>
+<!-- End signup -->
 
 
 

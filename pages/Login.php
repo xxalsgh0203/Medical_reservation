@@ -55,9 +55,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $_SESSION["loggedin"] = true;
     $_SESSION["username"] = $username;
     $_SESSION["id"] = $rowAdmin["admin_id"];
-    $_SESSION["href"] = "../pages/adminPage.html";
+    $_SESSION["href"] = "../pages/adminPage.php";
     
-    header("location: adminPage.html");
+    header("location: adminPage.php");
   }
 }
 ?>

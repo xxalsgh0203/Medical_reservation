@@ -1,5 +1,7 @@
 <?php
+session_start();
 require_once "../php/config.php";
+<<<<<<< HEAD
 /*if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true)
 {
   header("location: login.php");
@@ -7,6 +9,18 @@ require_once "../php/config.php";
 
 }*/
  
+=======
+
+$time = $_POST['time'];
+$doctor = $_POST['doctor'];
+
+
+$sql = "INSERT INTO APPOINTMENT(Doctor_id, Slotted_time) 
+        VALUES ('$doctor', '$time');";
+mysqli_query($conn,$sql);
+
+
+>>>>>>> 88aea7f0b2cdab2998e12afcb66add458eb7c511
 ?>
 <!doctype html>
 <html lang="en">
