@@ -1,27 +1,34 @@
 <?php
 session_start();
+
 require_once "../php/config.php";
-<<<<<<< HEAD
-/*if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true)
-{
-  header("location: login.php");
-  exit;
-
-}*/
  
-=======
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+        
+  $sql = "INSERT INTO APPOINTMENT (Doctor_id, Office_id, Appointment_status_id, Specialist_status, Slotted_time) VALUES (?, ?, ?, ?, ?);";
+    
+  if($stmt = mysqli_prepare($db, $sql)){
+    mysqli_stmt_bind_param($stmt, "iiiis", $doctor, $office, $Appointment_status_id, $status, $time);
+    
+    $doctor = mysqli_real_escape_string($db, $_POST['doctor']);
+    $office = mysqli_real_escape_string($db, $_POST['office']);
+    $Appointment_status_id = 1;
+    $status = true;
+    $time = mysqli_real_escape_string($db, $_POST['time']);
 
-$time = $_POST['time'];
-$doctor = $_POST['doctor'];
+    if(mysqli_stmt_execute($stmt)) {
+      header("location: patientPage.php");
+    } else{
+      echo "Oops! Something went wrong. Please try again later.";
+    }
 
-
-$sql = "INSERT INTO APPOINTMENT(Doctor_id, Slotted_time) 
-        VALUES ('$doctor', '$time');";
-mysqli_query($conn,$sql);
-
-
->>>>>>> 88aea7f0b2cdab2998e12afcb66add458eb7c511
+    mysqli_stmt_close($stmt);
+  }
+  
+  mysqli_close($db);
+}
 ?>
+
 <!doctype html>
 <html lang="en">
 
@@ -37,30 +44,14 @@ mysqli_query($conn,$sql);
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 
-<nav class="navbar navbar-expand-lg nav-back fixed-top" id="mainNav">
-  <div class="container">
-    <img src="../img/main_icon.png" class="mainicon">
-    <a class="navbar-brand" href="./main.php">Medimon</a>
-    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
-      data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
-      aria-label="Toggle navigation"><i class="fas fa-syringe fa-2x"></i>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarResponsive">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item"><a class="nav-link" href="./login.php">Log in</a></li>
-        <li class="nav-item"><a class="nav-link" href="./signup.php">Sign up</a></li>
-        <li class="nav-item"><a class="nav-link" href="./patientPage.php">Manage Reservation</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
+<?php include_once("../php/header.php"); ?>
 
 <!-- End Header -->
 <!-- ======= signup Section ======= -->
-<form id="signup" method ="POST" action="requestAppointment.php">
+<form id="signup" method="POST" action="requestAppointment.php">
   <!-- wrapper -->
   <div id="wrapper-request-appointment">
-    <div class="col-sm-8 col-lg-8" >
+    <div class="col-sm-8 col-lg-8">
       <p class="make-reservation-header">Make Your Reservation</p>
     </div>
     <div class="col-sm-8 col-lg-8">
@@ -74,7 +65,7 @@ mysqli_query($conn,$sql);
       <p><input type="time" id="time" class="form-control" step="3600000" name="time"></p>
     </div>
 
-        
+
     <div class="col-sm-8 col-lg-8">
       Symptoms
       <textarea id="symptoms" class="form-control" required name="symptons"></textarea>
@@ -86,50 +77,23 @@ mysqli_query($conn,$sql);
     </div>
 
     <div class="col-sm-8 col-lg-8">
+      Choose Office
+      <textarea id="choose-office" class="form-control" required name="office"></textarea>
+    </div>
+
+    <div class="col-sm-8 col-lg-8">
       <br>
-      <input class="form-control" type="submit" name="button" value="Submit"/>
+      <input class="form-control" type="submit" name="button" value="Submit" />
     </div>
 
   </div>
-  <?php
-  // Check if the user is logged in, if not then redirect them to login page
-  if(isset($_POST['date']) || isset($_POST['time']) || isset($_POST['symptons']) || isset($_POST['doctor'])) {
-    $doctor = $_POST['date'];
-    $time = $_POST['time'];
-    $symptons = $_POST['symptons'];
-    $deliverFrom = $_POST['doctor'];
-    $suggestedPrice = $_POST['suggestedPrice'];
 
-    //$query = "SELECT `fuelform`(SugPrice, DelDate, DelAddress, DelForm, GalReq, TotalCost, loginafule_User)
-    //VALUES ('$suggestedPrice', '$deliverlyDate', '$deliverAddress', '$deliverFrom', '$gallonsRequested', '$totalCost', '$user');";
-
-    //$result   = mysqli_query($conn, $query);
-
-}
-  ?>
   <!-- wrapper -->
 </form>
 <!-- End signup -->
 
 <!-- Footer-->
-<footer class="footer py-4 mt-5">
-  <div class="container">
-    <div class="row align-items-center">
-      <div class="col-lg-4 text-lg-left">COSC3380 Group Project</div>
-      <div class="col-lg-4 my-3 my-lg-0">
-        <a class="btn btn-back btn-social mx-2" href="#!">
-          <i class="fab fa-twitter"></i></a>
-        <a class="btn btn-back btn-social mx-2" href="#!">
-          <i class="fab fa-facebook-f"></i></a>
-        <a class="btn btn-back btn-social mx-2" href="#!">
-          <i class="fab fa-linkedin-in"></i></a>
-      </div>
-      <div class="col-lg-4 text-lg-right">
-        <a class="mr-3 text" href="#!">Privacy Policy</a>
-        <a href="#!" class="text">Terms of Use</a></div>
-    </div>
-  </div>
-</footer>
+<?php include_once("../php/footer.php"); ?>
 
 <script src="main.js"></script>
 
