@@ -83,12 +83,32 @@ CREATE TABLE APPOINTMENT (
     Office_id             INT NOT NULL,
     Appointment_status_id INT NOT NULL,
     Slotted_time          TIME NOT NULL,
+    Specialist_status     BOOLEAN NOT NULL, /*If it is a specialist appointment */
     PRIMARY KEY (Appointment_id),
     FOREIGN KEY (Patient_id) REFERENCES PATIENT(Patient_id),
     FOREIGN KEY (Doctor_id) REFERENCES DOCTOR(Doctor_id),
     FOREIGN KEY (Office_id) REFERENCES OFFICE(Office_id)
 );
 
+DELIMITER $$
+CREATE TRIGGER SAPPROVE
+AFTER INSERT
+ON APPOINTMENT
+FOR EACH ROW
+BEGIN
+	IF EXISTS (
+		SELECT *
+		FROM PATIENT
+		INNER JOIN APPOINTMENT ON PATIENT.Patient_id = APPOINTMENT.Patient_id
+		WHERE PATIENT.Specialist_approved = FALSE
+		AND APPOINTMENT.Specialist_status = TRUE
+	)
+    THEN
+		PRINT 'You do NOT have Approval'
+		ROLLBACK TRANSACTION;
+	END IF;
+END
+DELIMITER ;
 
 CREATE TABLE PRESCRIPTION (
     Patient_id        INT NOT NULL,
