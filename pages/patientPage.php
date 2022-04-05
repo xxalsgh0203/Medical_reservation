@@ -67,17 +67,18 @@ if ($result->num_rows > 0) {
               <tbody>
               </tbody>
             </table>
-
+            <a href="./requestAppointment.php">Make Reservation!</a>
+            
           </div>
         </div>
       </div>
-
+      
       <footer>
         <div class="copyright-wrap">
+          </div>
+        </footer>
         </div>
-      </footer>
-    </div>
-  </div>
+      </div>
 </section>
 <!-- End signup -->
 

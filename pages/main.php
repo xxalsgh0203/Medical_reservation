@@ -20,7 +20,6 @@
   <!-- ======= Hero Section ======= -->
   <section id="hero" class="d-flex align-items-center">
     <div class="container text-center position-relative">
-      <a href="../php/config.php" class="main-btn">Test connecting to database</a>
       <h1>Service opens in 2 weeks</h1>
       <h2>Group project COSC3380.</h2>
       <a href="./requestAppointment.php" class="main-btn">Make Reservation!</a>
