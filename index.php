@@ -6,7 +6,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="css/style.css">
 
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -14,7 +14,7 @@
 </head>
 
   <!-- Header -->
-  <?php include_once("../php/header.php"); ?>
+  <?php include_once("php/header.php"); ?>
 
   <!-- End Header -->
   <!-- ======= Hero Section ======= -->
@@ -29,7 +29,7 @@
 
 
   <!-- Footer-->
-  <?php include_once("../php/footer.php"); ?>
+  <?php include_once("./php/footer.php"); ?>
 
   <script src="main.js"></script>
 </body>
