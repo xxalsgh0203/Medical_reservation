@@ -5,10 +5,10 @@ require_once "./php/config.php";
  
 if($_SERVER["REQUEST_METHOD"] == "POST"){
         
-  $sql = "INSERT INTO APPOINTMENT (Doctor_id, Office_id, Appointment_status_id, Specialist_status, Slotted_time) VALUES (?, ?, ?, ?, ?);";
+  $sql = "INSERT INTO APPOINTMENT (Doctor_id, Patient_id, Office_id, Appointment_status_id, Specialist_status, Slotted_time) VALUES (?, ?, ?, ?, ?, ?);";
     
   if($stmt = mysqli_prepare($db, $sql)){
-    mysqli_stmt_bind_param($stmt, "iiiis", $doctor, $office, $Appointment_status_id, $status, $time);
+    mysqli_stmt_bind_param($stmt, "iiiiis", $doctor, $id, $office, $Appointment_status_id, $status, $time);
     
     $doctor = mysqli_real_escape_string($db, $_POST['doctor']);
     $office = mysqli_real_escape_string($db, $_POST['office']);

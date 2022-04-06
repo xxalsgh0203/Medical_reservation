@@ -103,9 +103,13 @@ BEGIN
 		WHERE PATIENT.Specialist_approved = FALSE
 		AND APPOINTMENT.Specialist_status = TRUE
 	)
-    THEN
+    THEN (
 		PRINT 'You do NOT have Approval'
+        Declare @Msg varchar(8000)
+        set @Msg = 'MESSAGE'
+		raiserror(50005, @Msg)
 		ROLLBACK TRANSACTION;
+	)
 	END IF;
 END
 DELIMITER ;
