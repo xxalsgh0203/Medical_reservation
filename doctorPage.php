@@ -23,7 +23,22 @@ if ($result->num_rows > 0) {
   $tableResult .= "</tr>";
 }
 
+//Querie to retrieve patients for said id
+$sql = "SELECT Patient_id, Name, Phone_number, Email, Age, Medical_allergy FROM PATIENT WHERE Primary_physician_id = '$id'";
+$result = mysqli_query($db, $sql);
+
+$PtableResult = "";
+if ($result->num_rows > 0) {
+  $PtableResult = "<tr>";
+  while($row = $result-> fetch_assoc()) {
+    $PtableResult .= "<td>" . $row["Patient_id"] . "</td><td>"  . $row["Name"] . "</td><td>" . $row["Phone_number"] . "</td><td>" . $row["Email"] . "</td><td>" . $row["Age"] . "</td><td>" . $row["Medical_allergy"] . "</td>";
+  }
+  $PtableResult .= "</tr>"; 
+}
+
+
 ?>
+
 
 <!doctype html>
 <html lang="en">
@@ -49,7 +64,7 @@ if ($result->num_rows > 0) {
   <div class="main-container">
     <div class="main-wrap">
 
-      <div class="text-center" id="Admin-header">Doctor</div>
+      <div class="text-center" id="Doctor-header">Doctor</div>
       <div class="container-fluid">
         <div class="row justify-content-center my-5">
           <div class="col-10">
@@ -80,6 +95,45 @@ if ($result->num_rows > 0) {
   </div>
 </section>
 <!-- End Doctors Page-->
+
+<!-- ======= Doctor's Patients Section ======= -->
+
+<section id="Doc's Patients">
+  <div class="main-container">
+    <div class="main-wrap">
+
+      <div class="text-center" id="Doctor-header">Assigned Patients</div>
+      <div class="container-fluid">
+        <div class="row justify-content-center my-5">
+          <div class="col-10">
+            <table class="table table-bordered">
+              <thead class="thead">
+                <tr>
+                  <th>Patient ID</th>
+                  <th>Name</th>
+                  <th>Phone number</th>
+                  <th>Email</th>
+                  <th>Age</th>
+                  <th>Medical_allergy</th>
+                </tr>
+                <?php echo $PtableResult;?>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="copyright-wrap">
+        </div>
+      </footer>
+    </div>
+  </div>
+</section>
+<!-- End Doctor's Patients-->
 
 <!-- Footer-->
 <?php include_once("./php/footer.php"); ?>

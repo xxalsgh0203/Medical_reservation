@@ -90,6 +90,10 @@ CREATE TABLE APPOINTMENT (
     FOREIGN KEY (Office_id) REFERENCES OFFICE(Office_id)
 );
 
+INSERT INTO APPOINTMENT(Appointment_id, Patient_id, Doctor_id, Office_id, Appointment_status_id, Slotted_time, Specialist_status) VALUES
+(1, 1, 1, 1, 1, "Wade@gmail.com", 3:00, 1);
+
+
 DELIMITER $$
 CREATE TRIGGER SAPPROVE
 AFTER INSERT
