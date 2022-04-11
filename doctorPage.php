@@ -36,6 +36,20 @@ if ($result->num_rows > 0) {
   $PtableResult .= "</tr>"; 
 }
 
+//Query to retrieve appointments for doctor
+$sql = "SELECT Patient_id, Office_id, Appointment_status_id, Slotted_time, Specialist_status FROM APPOINTMENT WHERE Doctor_id = '$id'";
+$result = mysqli_query($db, $sql);
+
+//table results for appointments
+$APtableResult = "";
+if ($result->num_rows > 0) {
+  $APtableResult = "<tr>";
+  while($row = $result-> fetch_assoc()) {
+    $APtableResult .= "<td>" . $row["Patient_id"] . "</td><td>"  . $row["Office_id"] . "</td><td>" . $row["Appointment_status_id"] . "</td><td>" . $row["Slotted_time"] . "</td><td>" . $row["Specialist_status"] . "</td> <a href='.php?'Delete</a> <td>" . "</td>";
+  }
+  $APtableResult .= "</tr>"; 
+}
+
 
 ?>
 
@@ -134,6 +148,47 @@ if ($result->num_rows > 0) {
   </div>
 </section>
 <!-- End Doctor's Patients-->
+
+<!-- ======= Appointments Section ======= -->
+
+<section id="Doc's Patients">
+  <div class="main-container">
+    <div class="main-wrap">
+
+      <div class="text-center" id="Doctor-header">Appointments</div>
+      <div class="container-fluid">
+        <div class="row justify-content-center my-5">
+          <div class="col-10">
+            <table class="table table-bordered">
+              <thead class="thead">
+                <tr>
+                  <th>Patient ID</th>
+                  <th>Office ID</th>
+                  <th>Appointment status</th>
+                  <th>Slotted Time</th>
+                  <th>Specialist Status</th>
+                  <th>Cancel Appointment</th>
+                </tr>
+                <?php echo $APtableResult;?>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="copyright-wrap">
+        </div>
+      </footer>
+    </div>
+  </div>
+</section>
+<!-- End Appointments-->
+
+
 
 <!-- Footer-->
 <?php include_once("./php/footer.php"); ?>
