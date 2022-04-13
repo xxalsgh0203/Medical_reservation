@@ -1,5 +1,6 @@
 <?php
 require_once "../php/config.php";
+require_once "requestAppointment.php"
   // Check if the user is logged in, if not then redirect them to login page
 /*if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true)
 {
@@ -44,83 +45,12 @@ require_once "../php/config.php";
 
 <!-- End Header -->
 <!-- ======= signup Section ======= -->
-<form id="signup" method ="POST" action="requestAppointment.php">
-  <!-- wrapper -->
-  <div id="wrapper-request-appointment">
-    <div class="col-sm-8 col-lg-8" >
-      <p class="make-reservation-header">Make Your Reservation</p>
-    </div>
-    <!--div class="col-sm-8 col-lg-8">
-      Choose your date
-      <p><input type="date" value="today" class="form-control" name="date"></p>
-    </div-->
-
-    <!--div class="col-sm-8 col-lg-8">
-      Choose Time
-      <p><input type="time" id="time" class="form-control" step="3600000" name="time"></p>
-    </div-->
-
-        
-    <!--div class="col-sm-8 col-lg-8">
-      Symptoms
-      <textarea id="symptoms" class="form-control" required name="symptons"></textarea>
-    </div-->
-
-    <div class="col-sm-8 col-lg-8">
-      Choose Doctor Type
-      <select id="choose-doctor" class="form-control" required name="doctor">
-        <option value="Regular">Regular</option>
-        <option value="Eye Doctor">Eye Doctor</option>
-        <option value="Orthodontist">Orthodontist</option>
-        <option value="Dermatologist">Dermatologist</option>
-        <option value="Gynecologist">Gynecologist</option>
-        <option value="Cardiologist">Cardiologist</option>
-        <option value="Oncology">Oncologist</option>
-        <option value="Gastroenterologist">Gastroenterologist</option>
-      </select>
-    </div>
-
-    <div class="col-sm-8 col-lg-8">
-      <br>
-      <input class="form-control" type="submit" name="button" value="Next"/>
-    </div>
-
-  </div>
-
-  <!-- wrapper -->
-</form>
 <?php
-  if(isset($_POST['doctor'])) {
+if(isset($_POST['doctor'])) {
     $doctor = $_POST['doctor'];
-    if ($doctor == "regular") {
-      $doctor = null;
-    }
-
-    $query = "SELECT name, Days_in_office FROM DOCTOR WHERE Speciality = '$doctor';";
-    $result   = mysqli_query($db, $query);
-    $resultCheck = mysqli_num_rows($result);
-
-    if($resultCheck > 0) {
-      echo "<p>Please select an avaiable Doctor<p><br>";
-      echo "
-      <form class='doctorSel' action='requestAppointment.php' method = 'POST';>";
-      while ($row = mysqli_fetch_array($result)) {
-        echo "
-        <label for= '".$row['name']."'>".$row['name']."</label>
-        <br>
-        <label for= 'DaysAv'> Days Avaiable: </label>".$row['Days_in_office']."
-        <input type='radio' name= '".$row['name']."' value='name'/>";
-      }
-    }
-    echo "
-    <input class='form-control' type='submit' name='button' value='Next'/>
-    </form>";
-
-    if (isset($_POST['name'])) {
-      echo $_POST['name'];
-    }
+    echo $doctor;
 }
-  ?>
+?>
 <!-- End signup -->
 
 <!-- Footer-->
