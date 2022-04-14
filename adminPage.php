@@ -31,7 +31,7 @@ $APtableResult = "";
 if ($result->num_rows > 0) {
   $APtableResult = "<tr>";
   while($row = $result-> fetch_assoc()) {
-    $APtableResult .= "<td>" . $row["Patient_id"] . "</td><td>"  . $row["Office_id"] . "</td><td>" . $row["Appointment_status_id"] . "</td><td>" . $row["Slotted_time"] . "</td><td>" . $row["Specialist_status"] . "</td> <a href='.php?'Delete</a> <td>" . "</td>";
+    $APtableResult .= "<td>" . $row["Patient_id"] . "</td><td>"  . $row["Office_id"] . "</td><td>" . $row["Appointment_status_id"] . "</td><td>" . $row["Slotted_time"] . "</td><td>" . $row["Specialist_status"] . "</td>";
   }
   $APtableResult .= "</tr>"; 
 }
@@ -52,6 +52,22 @@ if ($result->num_rows > 0) {
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
+   <!--style for buttons --> 
+   <style>
+     button
+     {
+       font-size: 20px;
+       padding:10px;
+       border-radius:10px;
+       margin:20px;
+     }
+     #container
+     {
+       text-align: center;
+     }
+   </style>
 </head>
 
 <?php include_once("./php/header.php"); ?>
@@ -111,7 +127,6 @@ if ($result->num_rows > 0) {
                   <th>Appointment status</th>
                   <th>Slotted Time</th>
                   <th>Specialist Status</th>
-                  <th>Approve Appointment</th>
                 </tr>
                 <?php echo $APtableResult;?>
               </thead>
@@ -131,6 +146,23 @@ if ($result->num_rows > 0) {
   </div>
 </section>
 <!-- End Appointments-->
+
+<!-- Redirection buttons for Admin-->
+  <body>
+     <!-- Used to center container -->
+     <div id = "container">
+        <!--Used to redirect to data entry page -->
+        <a href="DataEntryForm.php"> 
+          <button id = "Redi1">Edit Data</button>
+        </a>
+        <!--Used to redirect to report page -->
+        <a href="ReportsForm.php"> 
+          <button id = "Redi2">Reports</button>
+        </a>
+     </div>
+  </body>
+
+<!-- End of redirection-->
 
 <!-- Footer-->
 <?php include_once("./php/footer.php"); ?>
