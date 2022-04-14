@@ -52,12 +52,46 @@ if ($result->num_rows > 0) {
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+ 
+  <style>
+     /* Used to center the title*/
+    h1 {text-align: center;}
+  /* used to center inputs*/
+    form { 
+          margin: 0 auto; 
+          width:1000px;
+          }
+  </style>
 </head>
 
 <?php include_once("./php/header.php"); ?>
 
 <!-- End Header -->
 <!-- ======= DataEntry Page ======= -->
+<section id="signup">
+
+<!-- Header of the page-->
+<h1>Data Entry Form</h1>
+
+<form action="">
+  <h2>  <b>Add patient</b>  </h2>
+  <label for="PPname">Primary physician:</label>
+  <input type="text" id="PPname" name="PPname">
+  <label for="name">Patient Name:</label>
+  <input type="text" id="name" name="name">
+  <label for="SPApproved">Specialist approval:</label>
+  <input type="number" id="AprNum" name="AprNum"> 
+  <br>
+  <label for="lname">Last Name:</label>
+  <input type="text" id="lname" name="lname">
+  <input type="submit" value="Submit">
+  <!--Used to separate inputs-->
+  <br>
+  
+</form>
+
+</section>
 
 <!-- End Of Data Entry -->
 

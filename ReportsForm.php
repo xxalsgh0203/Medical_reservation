@@ -58,7 +58,13 @@ if ($result->num_rows > 0) {
 
 <!-- End Header -->
 <!-- ======= DataEntry Page ======= -->
-
+   <body>
+       <br>
+       <h2>welcome</h2>
+       <h2>welcome</h2>
+       <h2>welcome</h2>
+       <h2>welcome</h2>
+   </body>
 <!-- End Of Data Entry -->
 
 
