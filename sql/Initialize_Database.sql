@@ -83,12 +83,59 @@ CREATE TABLE APPOINTMENT (
     Office_id             INT NOT NULL,
     Appointment_status_id INT NOT NULL,
     Slotted_time          TIME NOT NULL,
+    Specialist_status     BOOLEAN NOT NULL, /*If it is a specialist appointment */
     PRIMARY KEY (Appointment_id),
     FOREIGN KEY (Patient_id) REFERENCES PATIENT(Patient_id),
     FOREIGN KEY (Doctor_id) REFERENCES DOCTOR(Doctor_id),
     FOREIGN KEY (Office_id) REFERENCES OFFICE(Office_id)
 );
 
+INSERT INTO APPOINTMENT(Appointment_id, Patient_id, Doctor_id, Office_id, Appointment_status_id, Slotted_time, Specialist_status) VALUES
+(1, 1, 1, 1, 1, "Wade@gmail.com", 3:00, 1);
+
+
+DELIMITER $$
+CREATE TRIGGER SAPPROVE
+AFTER INSERT
+ON APPOINTMENT
+FOR EACH ROW
+BEGIN
+	IF EXISTS (
+		SELECT *
+		FROM PATIENT
+		INNER JOIN APPOINTMENT ON PATIENT.Patient_id = APPOINTMENT.Patient_id
+		WHERE PATIENT.Specialist_approved = FALSE
+		AND APPOINTMENT.Specialist_status = TRUE
+	)
+    THEN (
+		PRINT 'You do NOT have Approval'
+        Declare @Msg varchar(8000)
+        set @Msg = 'MESSAGE'
+		raiserror(50005, @Msg)
+		ROLLBACK TRANSACTION;
+	)
+	END IF;
+END
+DELIMITER ;
+
+DELIMITER $$
+CREATE TRIGGER CONFLICT
+AFTER INSERT
+ON APPOINTMENT
+FOR EACH ROW
+BEGIN
+	IF EXISTS (
+		SELECT *
+		FROM APPOINTMENTS
+		WHERE Doctor_id = NEW.Doctor_id
+		AND Slotted_time = NEW.Slotted_time
+	)
+	THEN
+		PRINT 'Time is Taken'
+		ROLLBACK TRANSACTION;
+	END IF;
+END
+DELIMITER ;
 
 CREATE TABLE PRESCRIPTION (
     Patient_id        INT NOT NULL,
