@@ -25,7 +25,7 @@ if (isset($_SESSION["href"])) {
               echo '<li class="nav-item"><a class="nav-link" href="./Logout.php" id="logout">Log out</a></li>';
           }
         ?>
-        <li class="nav-item"><a class="nav-link" href=<?php echo $href;?>>Manage Appointments</a></li>
+        <li class="nav-item"><a class="nav-link" href="./patientPage.php">Manage Appointments</a></li>
       </ul>
     </div>
   </div>
