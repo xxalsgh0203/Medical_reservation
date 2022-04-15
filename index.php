@@ -13,7 +13,7 @@
 </head>
 
   <!-- Header -->
-  <?php include("php/header.php"); ?>
+  <?php include_once("php/header.php"); ?>
 
   <!-- End Header -->
   <!-- ======= Hero Section ======= -->
