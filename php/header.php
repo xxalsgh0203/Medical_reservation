@@ -19,8 +19,7 @@ if (isset($_SESSION["href"])) {
       <ul class="navbar-nav ml-auto">
         <?php
           if (!isset($_SESSION['loggedin'])) {
-            echo '<li class="nav-item"><a class="nav-link" href="./Login.php" id="login">Log in</a></li>';
-            echo '<li class="nav-item"><a class="nav-link" href="./signup.php">Sign up</a></li>';
+            echo '<li class="nav-item"><a class="nav-link" href="./Login.php" id="login">Log in / Sign up</a></li>';
           } else {
               echo '<li class="nav-item"><a class="nav-link" href="./Logout.php" id="logout">Log out</a></li>';
           }

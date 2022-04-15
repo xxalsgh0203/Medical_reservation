@@ -380,8 +380,8 @@
     flex-direction: column;
     align-items: center;
     border-radius: 2%;
-    background-color: #b95151;
-    border: 5px solid rgb(220, 182, 182);
+    background-color: #a99b9b;
+    border: 5px solid rgb(193, 183, 183);
   }
   
   .login-input-wrap{
@@ -404,7 +404,7 @@
   .login-button-wrap {
     margin-top: 50px;
     padding-top: 13px;
-    background-color: #c1b2aa;
+    background-color: #68ca74;
   }
   .login-button-wrap #login-button {
     width: 465px;
@@ -513,3 +513,7 @@
     margin-top: 20px;
   }
 
+.noidsignin{
+  margin-top: 30px;
+  color: rgb(62, 62, 207);
+}

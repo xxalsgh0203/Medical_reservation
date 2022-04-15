@@ -85,7 +85,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
   <div class="main-container">
     <div class="main-wrap">
 
-      <div class="text-center" id="login-header">Sign in</div>
+      <div class="text-center" id="login-header">Log in to your Account</div>
 
       <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"
         class="login-input-section-wrap">
@@ -98,6 +98,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="login-button-wrap">
           <input id="login-button" type="submit" value="Sign in">
         </div>
+        <a href = "./signup.php">
+          <div class="noidsignin">Create an account</div>
+        </a>
         <div class="login-stay-sign-in">
           <!-- <i class="far fa-check-circle"></i>
           <span>Stay Signed in</span> -->
