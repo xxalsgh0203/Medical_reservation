@@ -78,7 +78,7 @@
   
   #hero h1 {
     font-size: 43px;
-    font-weight: 700;
+    font-weight: 500;
     line-height: 56px;
     color: #fff;
   }
@@ -134,9 +134,7 @@
     text-decoration: none;
     color: #fff;
   }
-  
-  
-  
+
   
   .footer {
     text-align: center;
