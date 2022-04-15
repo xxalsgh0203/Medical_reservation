@@ -37,7 +37,7 @@ if ($result->num_rows > 0) {
 }
 
 //Query to retrieve appointments for doctor
-$sql = "SELECT Patient_id, Office_id, Appointment_status_id, Slotted_time, Specialist_status FROM APPOINTMENT WHERE Doctor_id = '$id'";
+$sql = "SELECT Patient_id, Office_id, Appointment_id, Appointment_status_id, Slotted_time, Specialist_status FROM APPOINTMENT WHERE Doctor_id = '$id'";
 $result = mysqli_query($db, $sql);
 
 //table results for appointments
@@ -45,11 +45,18 @@ $APtableResult = "";
 if ($result->num_rows > 0) {
   $APtableResult = "<tr>";
   while($row = $result-> fetch_assoc()) {
-    $APtableResult .= "<td>" . $row["Patient_id"] . "</td><td>"  . $row["Office_id"] . "</td><td>" . $row["Appointment_status_id"] . "</td><td>" . $row["Slotted_time"] . "</td><td>" . $row["Specialist_status"] . "</td> <a href='.php?'Delete</a> <td>" . "</td>";
+    $APtableResult .= "<td>" . $row["Patient_id"] . "</td><td>"  . $row["Office_id"] . "</td><td>" . $row["Appointment_status_id"] . "</td><td>" . $row["Slotted_time"] . "</td><td>" . $row["Specialist_status"] . "</td><td> 
+    <a href='./doctorPage.php?delete_id=" . $row["Appointment_id"] . "'>X</a>
+    </td>";
   }
   $APtableResult .= "</tr>"; 
 }
 
+if (isset($_GET['delete_id'])) {
+	$id = $_GET['delete_id'];
+
+	mysqli_query($db, "DELETE FROM APPOINTMENT WHERE Appointment_id = " . $id);
+}
 
 ?>
 

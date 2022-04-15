@@ -34,7 +34,7 @@ INSERT INTO ADMIN(Office_id, Name, Password, Phone_number, Email) VALUES
 (1, "Alice", "Password", 1111111111, "alice@yahoo.com"),
 (1, "Bob", "Password", 2222222222, "bob@ygoogle.com"),
 (1, "Charlie", "Password", 3333333333, "charlie@uh.edu"),
-(1, "Drake", "Password", 4444444444, "drake@hotmail.com");
+(1, "Admin", "Password", 4444444444, "admin@medical.com");
 
 CREATE TABLE DOCTOR (
 	Doctor_id      INT AUTO_INCREMENT,
@@ -53,7 +53,7 @@ INSERT INTO DOCTOR(Office_id, Days_in_office, Speciality, Name, Password, Phone_
 (1, 'Tuesday', "Anesthesiology", "Miranda", "Password", 2222222222),
 (1, 'Wednesday', "Oncology", "Noah", "Password", 3333333333),
 (2, 'Thursday', null, "Marshall", "Password", 4444444444),
-(2, 'Friday', null, "Lydia", "Password", 5555555555);
+(2, 'Friday', null, "Doctor", "Password", 5555555555);
 
 CREATE TABLE PATIENT (
 	Patient_id           INT AUTO_INCREMENT,
@@ -74,7 +74,7 @@ INSERT INTO PATIENT(Primary_physician_id, Specialist_approved, Name, Password, P
 (2, false, "Loren", "password", 3333333333, "Loren@yahoo.com", 10, true),
 (3, false, "Elsa", "password", 4444444444, "Elsa@hotmail.com", 20, false),
 (4, false, "Richard", "password", 5555555555, "Richard@yahoo.com", 50, true),
-(5, false, "Salvador", "password", 6666666666, "Salvador@yahoo.com", 100, false);
+(5, false, "Patient", "Password", 6666666666, "Patient@medical.com", 100, false);
 
 CREATE TABLE APPOINTMENT (
 	Appointment_id        INT AUTO_INCREMENT,
@@ -91,7 +91,8 @@ CREATE TABLE APPOINTMENT (
 );
 
 INSERT INTO APPOINTMENT(Appointment_id, Patient_id, Doctor_id, Office_id, Appointment_status_id, Slotted_time, Specialist_status) VALUES
-(1, 1, 1, 1, 1, "Wade@gmail.com", 3:00, 1);
+(1, 1, 1, 1, 1, "3:00", 1),
+(2, 5, 5, 1, 1, "12:00", 0);
 
 
 DELIMITER $$
