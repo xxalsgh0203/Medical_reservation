@@ -34,8 +34,8 @@
     --------------------------------------------------------------*/
   #hero {
     width: 100%;
-    height: 80vh;
-    background: url("./images/hero.jpg") center center;
+    height: 93%;
+    background: gray;
     background-size: cover;
     position: relative;
   }
@@ -46,8 +46,7 @@
   
   #signup {
     width: 100%;
-    height: 80vh;
-    background: url("./images/hero.jpg") center center;
+    background: center center;
     background-size: cover;
     position: relative;
     margin-top: 100px;
@@ -56,11 +55,10 @@
   
   #signin{
     width: 100%;
-  
-    background: url("./images/hero.jpg") center center;
+    background: center center;
     background-size: cover;
-    height: 93%;
-    /* position: relative; */
+    height: 900px;
+    position: relative;
   }
   
   #requestAppointment {
@@ -78,22 +76,16 @@
   }
   
   
-  #hero:before {
-    content: "";
-    background: rgba(0, 0, 0, 0.6);
-    position: absolute;
-    bottom: 0;
-    top: 0;
-    left: 0;
-    right: 0;
-  }
-  
   #hero h1 {
-    margin: 0 0 10px 0;
-    font-size: 48px;
+    font-size: 43px;
     font-weight: 700;
     line-height: 56px;
     color: #fff;
+  }
+
+  #hero p{
+    font-size: 30px;
+    color: rgb(236, 117, 117);
   }
   
   #hero h2 {
@@ -117,6 +109,7 @@
     border-radius: 50px;
     transition: 0.5s;
     margin: 10px;
+    background: #72cbc6;
     border: 2px solid #fff;
     color: #fff;
   }
