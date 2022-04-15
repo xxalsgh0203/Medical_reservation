@@ -90,9 +90,17 @@ CREATE TABLE APPOINTMENT (
     FOREIGN KEY (Office_id) REFERENCES OFFICE(Office_id)
 );
 
-INSERT INTO APPOINTMENT(Appointment_id, Patient_id, Doctor_id, Office_id, Appointment_status_id, Slotted_time, Specialist_status) VALUES
-(1, 1, 1, 1, 1, "3:00", 1),
-(2, 5, 5, 1, 1, "12:00", 0);
+INSERT INTO APPOINTMENT(Patient_id, Doctor_id, Office_id, Appointment_status_id, Slotted_time, Specialist_status) VALUES
+(1, 1, 1, 1, "9:00", 1),
+(1, 5, 2, 1, "15:00", 1),
+(2, 3, 1, 1, "7:00", 0),
+(2, 4, 2, 1, "1:00", 0),
+(2, 5, 1, 1, "3:00", 0),
+(3, 1, 1, 1, "2:30", 1),
+(4, 2, 1, 1, "16:00", 1),
+(4, 5, 1, 1, "11:00", 1),
+(5, 5, 2, 1, "2:00", 0),
+(5, 1, 1, 1, "12:00", 0);
 
 
 DELIMITER $$
