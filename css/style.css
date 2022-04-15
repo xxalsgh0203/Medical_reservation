@@ -50,14 +50,14 @@
     background-size: cover;
     position: relative;
     margin-top: 100px;
-    height: 900px;
+    height: 800px;
   }
   
   #signin{
     width: 100%;
     background: center center;
     background-size: cover;
-    height: 900px;
+    height: 760px;
     position: relative;
   }
   
@@ -354,7 +354,7 @@
   }
   .main-container .main-wrap{
     width:768px;
-  
+    margin-top: 40px;
   }
   
   .main-container .main-wrap .logo-wrap{
@@ -388,7 +388,7 @@
     background: rgb(255, 255, 255);
   }
   .password-wrap{
-    margin-top: 13px;
+    margin-top: 15px;
   }
   .login-input-wrap input{
     border: none;
