@@ -20,11 +20,11 @@ if (isset($_SESSION["href"])) {
         <?php
           if (!isset($_SESSION['loggedin'])) {
             echo '<li class="nav-item"><a class="nav-link" href="./Login.php" id="login">Log in</a></li>';
+            echo '<li class="nav-item"><a class="nav-link" href="./signup.php">Sign up</a></li>';
           } else {
               echo '<li class="nav-item"><a class="nav-link" href="./Logout.php" id="logout">Log out</a></li>';
           }
         ?>
-        <li class="nav-item"><a class="nav-link" href="./signup.php">Sign up</a></li>
         <li class="nav-item"><a class="nav-link" href=<?php echo $href;?>>Manage Appointments</a></li>
       </ul>
     </div>

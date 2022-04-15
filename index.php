@@ -1,5 +1,8 @@
 <!doctype html>
 <html lang="en">
+<?php
+  session_start();
+?>
 
 <head>
   <title>Consultation</title>
@@ -13,7 +16,7 @@
 </head>
 
   <!-- Header -->
-  <?php include_once("php/header.php"); ?>
+  <?php include("./php/header.php"); ?>
 
   <!-- End Header -->
   <!-- ======= Hero Section ======= -->
@@ -30,7 +33,6 @@
   <!-- Footer-->
   <?php include_once("./php/footer.php"); ?>
 
-  <script src="main.js"></script>
 </body>
 
 </html>
