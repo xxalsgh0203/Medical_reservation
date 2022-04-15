@@ -29,7 +29,7 @@ if ($result->num_rows > 0) {
 <html lang="en">
 
 <head>
-  <title>Consultation</title>
+  <title>GROUP 5</title>
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
