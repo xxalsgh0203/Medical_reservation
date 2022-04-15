@@ -2,39 +2,6 @@
 session_start();
 
 require_once "./php/config.php";
- 
-// Check if the user is logged in, if not then redirect them to login page
-if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
-    header("location: login.php");
-    exit;
-}
-
-$id = $_SESSION["id"];
-$sql = "SELECT Office_id, Name, Phone_number, Email FROM ADMIN WHERE Admin_id = '$id'";
-$result = mysqli_query($db, $sql);
-
-$tableResult = "";
-if ($result->num_rows > 0) {
-  $tableResult = "<tr>";
-  while($row = $result-> fetch_assoc()) {
-    $tableResult .= "<td>" . $row["Office_id"] . "</td><td>" . $row["Name"] . "</td><td>" . $row["Phone_number"] . "</td><td>" . $row["Email"] . "</td>";
-  }
-  $tableResult .= "</tr>";
-}
-
-//Query to retrieve appointments for doctor
-$sql = "SELECT Patient_id, Office_id, Appointment_status_id, Slotted_time, Specialist_status FROM APPOINTMENT WHERE Doctor_id = '$id'";
-$result = mysqli_query($db, $sql);
-
-//table results for appointments
-$APtableResult = "";
-if ($result->num_rows > 0) {
-  $APtableResult = "<tr>";
-  while($row = $result-> fetch_assoc()) {
-    $APtableResult .= "<td>" . $row["Patient_id"] . "</td><td>"  . $row["Office_id"] . "</td><td>" . $row["Appointment_status_id"] . "</td><td>" . $row["Slotted_time"] . "</td><td>" . $row["Specialist_status"] . "</td> <a href='.php?'Delete</a> <td>" . "</td>";
-  }
-  $APtableResult .= "</tr>"; 
-}
 
 
 ?>
@@ -75,20 +42,23 @@ if ($result->num_rows > 0) {
 <h1>Data Entry Form</h1>
 
 <form action="">
-  <h2>  <b>Add patient</b>  </h2>
-  <label for="PPname">Primary physician:</label>
-  <input type="text" id="PPname" name="PPname">
-  <label for="name">Patient Name:</label>
-  <input type="text" id="name" name="name">
-  <label for="SPApproved">Specialist approval:</label>
-  <input type="number" id="AprNum" name="AprNum"> 
+  <h2>  <b>Add Doctor</b>  </h2>
+  <label for="OFFID">Office ID:</label>
+  <input type="number" id="OFFID" name="OFFID">
+  <label for="Inoffice">Days in office:</label>
+  <input type="text" id="Inoffice" name="Inoffice" maxlength="10">
+  <label for="SPType">Speciality:</label>
+  <input type="text" id="SPType" name="SPType" maxlength = "30"> 
   <br>
-  <label for="lname">Last Name:</label>
-  <input type="text" id="lname" name="lname">
-  <input type="submit" value="Submit">
+  <label for="Dname">Name:</label>
+  <input type="text" id="Dname" name="Dname" maxlength="20">
+  <label for="DPWord">create password:</label>
+  <input type="text" id="DPWord" name="DPWord">
+  <label for="DPhoneNum">Phone Number:</label>
+  <input type="text" id="DPhoneNum" name="DPhoneNum" maxlength="10">    
   <!--Used to separate inputs-->
   <br>
-  
+  <input type="submit" value="Submit">
 </form>
 
 </section>
