@@ -24,8 +24,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $_SESSION["loggedin"] = true;
     $_SESSION["username"] = $username;
     $_SESSION["id"] = $rowPatient["patient_id"];
-    $_SESSION["href"] = "./patientPage.php";
-    
+    // $_SESSION["href"] = "./patientPage.php";
+  
     header("location: patientPage.php");
   }
 
@@ -77,7 +77,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 
-<?php include_once("./php/header.php"); ?>
+<?php include("./php/header.php"); ?>
 
 <!-- End Header -->
 <!-- ======= signup Section ======= -->
@@ -114,7 +114,19 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <!-- Footer-->
 <?php include_once("./php/footer.php"); ?>
-</body>
 
+<script>
+  const loginbutton = document.getElementById("login-button");
+  const foo = "<?php echo $_SESSION['loggedin'] ?>";
+  const usrname = "<?php echo $_SESSION['username'] ?>";
+  const logged_in = document.getElementById("login");
+  loginbutton.addEventListener('click', ()=>{
+    if(logged_in){
+      logged_in.innerHTML = usrname;
+      alert(usrname + " you are logged in");
+    }
+  });
+</script>
+</body>
 
 </html>

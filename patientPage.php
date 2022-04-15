@@ -40,7 +40,7 @@ if ($result->num_rows > 0) {
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 
-<?php include_once("./php/header.php"); ?>
+<?php include("./php/header.php"); ?>
 
   <!-- End Header -->
 
@@ -88,9 +88,8 @@ if ($result->num_rows > 0) {
   <!-- Footer-->
   <?php include_once("./php/footer.php"); ?>
 
-  <script src="main.js"></script>
-  <!-- Optional JavaScript -->
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script>
+
   </script>
 </body>
 
