@@ -17,8 +17,13 @@ if (isset($_SESSION["href"])) {
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item"><a class="nav-link" href="./Login.php" id="login">Log in</a></li>
-        <li class="nav-item"><a class="nav-link" href="./Logout.php" id="logout">Log out</a></li>
+        <?php
+          if (!isset($_SESSION['loggedin'])) {
+            echo '<li class="nav-item"><a class="nav-link" href="./Login.php" id="login">Log in</a></li>';
+          } else {
+              echo '<li class="nav-item"><a class="nav-link" href="./Logout.php" id="logout">Log out</a></li>';
+          }
+        ?>
         <li class="nav-item"><a class="nav-link" href="./signup.php">Sign up</a></li>
         <li class="nav-item"><a class="nav-link" href=<?php echo $href;?>>Manage Appointments</a></li>
       </ul>

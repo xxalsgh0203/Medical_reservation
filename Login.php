@@ -122,7 +122,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
   const logged_in = document.getElementById("login");
   loginbutton.addEventListener('click', ()=>{
     if(logged_in){
-      logged_in.innerHTML = usrname;
       alert(usrname + " you are logged in");
     }
   });
