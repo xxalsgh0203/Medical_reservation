@@ -56,6 +56,7 @@ if (isset($_GET['delete_id'])) {
 	$id = $_GET['delete_id'];
 
 	mysqli_query($db, "DELETE FROM APPOINTMENT WHERE Appointment_id = " . $id);
+  header('location: doctorPage.php');
 }
 
 ?>
