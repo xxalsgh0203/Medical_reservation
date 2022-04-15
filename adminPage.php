@@ -15,11 +15,9 @@ $result = mysqli_query($db, $sql);
 
 $tableResult = "";
 if ($result->num_rows > 0) {
-  $tableResult = "<tr>";
   while($row = $result-> fetch_assoc()) {
-    $tableResult .= "<td>" . $row["Office_id"] . "</td><td>" . $row["Name"] . "</td><td>" . $row["Phone_number"] . "</td><td>" . $row["Email"] . "</td>";
+    $tableResult .= "<tr>" . "<td>" . $row["Office_id"] . "</td><td>" . $row["Name"] . "</td><td>" . $row["Phone_number"] . "</td><td>" . $row["Email"] . "</td>" . "<tr>";
   }
-  $tableResult .= "</tr>";
 }
 
 //Query to retrieve appointments for doctor

@@ -82,6 +82,7 @@ CREATE TABLE APPOINTMENT (
     Doctor_id             INT NOT NULL,
     Office_id             INT NOT NULL,
     Appointment_status_id INT NOT NULL,
+    Appointment_status    VARCHAR(12) NOT NULL,
     Slotted_time          TIME NOT NULL,
     Specialist_status     BOOLEAN NOT NULL, /*If it is a specialist appointment */
     PRIMARY KEY (Appointment_id),
@@ -91,16 +92,16 @@ CREATE TABLE APPOINTMENT (
 );
 
 INSERT INTO APPOINTMENT(Patient_id, Doctor_id, Office_id, Appointment_status_id, Slotted_time, Specialist_status) VALUES
-(1, 1, 1, 1, "9:00", 1),
-(1, 5, 2, 1, "15:00", 1),
-(2, 3, 1, 1, "7:00", 0),
-(2, 4, 2, 1, "1:00", 0),
-(2, 5, 1, 1, "3:00", 0),
-(3, 1, 1, 1, "2:30", 1),
-(4, 2, 1, 1, "16:00", 1),
-(4, 5, 1, 1, "11:00", 1),
-(5, 5, 2, 1, "2:00", 0),
-(5, 1, 1, 1, "12:00", 0);
+(1, 1, 1, 1,"completed", "9:00", 1),
+(1, 5, 2, 1, "approved", "15:00", 1),
+(2, 3, 1, 1, "canceled", "7:00", 0),
+(2, 4, 2, 1, "canceled", "1:00", 0),
+(2, 5, 1, 1,"approved",  "3:00", 0),
+(3, 1, 1, 1, "rejected","2:30", 1),
+(4, 2, 1, 1, "canceled", "16:00", 1),
+(4, 5, 1, 1,"approved" "11:00", 1),
+(5, 5, 2, 1, "approved", "2:00", 0),
+(5, 1, 1, 1, "approved", "12:00", 0);
 
 
 DELIMITER $$
