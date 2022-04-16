@@ -66,6 +66,10 @@ if ($result->num_rows > 0) {
   }
 }
 
+//Query to retrieve schedule for doctor
+$sql = "SELECT * FROM WORK_INFO WHERE Doctor_id = '$id'";
+$result = mysqli_query($db, $sql);
+
 if (isset($_GET['delete_id'])) {
 	$id = $_GET['delete_id'];
 

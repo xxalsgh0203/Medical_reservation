@@ -5,10 +5,10 @@ Purpose: Display patient information
 Implemented Features:
   display upcomming appointments
   button to requestAppointment page
+  display prescription
 
 TODO: 
   display personal information (including general doctor/physician)
-  display prescription
 
  -->
  
@@ -96,7 +96,7 @@ if ($result->num_rows > 0) {
             <a href="requestAppointment.php">Make Reservation!</a>
 
             <h2>Prescriptions</h2>
-
+  
             <table class="table table-bordered">
               <thead class="thead">
                 <tr>

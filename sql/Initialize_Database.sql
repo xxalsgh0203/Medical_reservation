@@ -39,7 +39,6 @@ INSERT INTO ADMIN(Office_id, Name, Password, Phone_number, Email) VALUES
 CREATE TABLE DOCTOR (
 	Doctor_id      INT AUTO_INCREMENT,
     Office_id      INT,
-    Days_in_office VARCHAR(10) CHECK(Days_in_office IN('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday')),
     Speciality     VARCHAR(30),
     Name           VARCHAR(20),
     Password       VARCHAR(255) NOT NULL,
@@ -48,12 +47,29 @@ CREATE TABLE DOCTOR (
     FOREIGN KEY (Office_id) REFERENCES OFFICE(Office_id)
 );
 
-INSERT INTO DOCTOR(Office_id, Days_in_office, Speciality, Name, Password, Phone_number) VALUES
-(1, 'Monday', null, "Greg", "Password", 1111111111),
-(1, 'Tuesday', "Anesthesiology", "Miranda", "Password", 2222222222),
-(1, 'Wednesday', "Oncology", "Noah", "Password", 3333333333),
-(2, 'Thursday', null, "Marshall", "Password", 4444444444),
-(2, 'Friday', null, "Doctor", "Password", 5555555555);
+INSERT INTO DOCTOR(Office_id, Speciality, Name, Password, Phone_number) VALUES
+(1, null, "Greg", "Password", 1111111111),
+(1, "Anesthesiology", "Miranda", "Password", 2222222222),
+(1, "Oncology", "Noah", "Password", 3333333333),
+(2, null, "Marshall", "Password", 4444444444),
+(2, null, "Doctor", "Password", 5555555555);
+
+CREATE TABLE WORK_INFO (
+    Doctor_id  INT NOT NULL,
+    Office_id  INT NOT NULL,
+    Weekday    VARCHAR(10) CHECK(Weekday IN('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday')),
+    Start_time TIME NOT NULL,
+    End_time   TIME NOT NULL,
+    PRIMARY    KEY (Doctor_id, Weekday),
+    FOREIGN    KEY (Doctor_id) REFERENCES DOCTOR(Doctor_id)
+);
+
+INSERT INTO WORK_INFO(Doctor_id, Office_id, Weekday, Start_time, End_time) VALUES
+(5, 1, 'Monday', '9:00', "15:00"),
+(5, 1, 'Tuesday', '10:00', "14:00"),
+(5, 1, 'Wednesday', '12:00', "18:00"),
+(5, 2, 'Thursday', '7:00', "12:00"),
+(5, 2, 'Friday', '9:00', "15:00");
 
 CREATE TABLE PATIENT (
 	Patient_id           INT AUTO_INCREMENT,
