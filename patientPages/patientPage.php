@@ -35,6 +35,18 @@ if ($result->num_rows > 0) {
   }
   $tableResult .= "</tr>";
 }
+
+$sql = "SELECT * FROM PRESCRIPTION WHERE Patient_id = '$id'";
+$result = mysqli_query($db, $sql);
+
+$PtableResult = "";
+if ($result->num_rows > 0) {
+  $PtableResult = "<tr>";
+  while($row = $result-> fetch_assoc()) {
+    $PtableResult .= "<td>" . $row["Patient_id"] . "</td><td>"  . $row["Medication"] . "</td><td>" . $row["Test"] . "</td><td>" . $row["Prescription_date"] . "</td>";
+  }
+  $PtableResult .= "</tr>"; 
+}
 ?>
 
 
@@ -82,6 +94,22 @@ if ($result->num_rows > 0) {
               </tbody>
             </table>
             <a href="requestAppointment.php">Make Reservation!</a>
+
+            <h2>Prescriptions</h2>
+
+            <table class="table table-bordered">
+              <thead class="thead">
+                <tr>
+                  <th scope="col">Patient_id</th>
+                  <th scope="col">Medication</th>
+                  <th scope="col">Test</th>
+                  <th scope="col">Prescription_date</th>
+                </tr>
+                <?php echo $PtableResult;?>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
             
           </div>
         </div>

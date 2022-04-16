@@ -81,7 +81,7 @@ CREATE TABLE APPOINTMENT (
     Patient_id            INT,
     Doctor_id             INT NOT NULL,
     Office_id             INT NOT NULL,
-    Appointment_status_id INT NOT NULL,
+    Appointment_status_id INT NOT NULL DEFAULT 0,
     Appointment_status    VARCHAR(12) NOT NULL,
     Slotted_time          TIME NOT NULL,
     Specialist_status     BOOLEAN NOT NULL, /*If it is a specialist appointment */
@@ -91,17 +91,17 @@ CREATE TABLE APPOINTMENT (
     FOREIGN KEY (Office_id) REFERENCES OFFICE(Office_id)
 );
 
-INSERT INTO APPOINTMENT(Patient_id, Doctor_id, Office_id, Appointment_status_id, Slotted_time, Specialist_status) VALUES
-(1, 1, 1, 1,"completed", "9:00", 1),
-(1, 5, 2, 1, "approved", "15:00", 1),
-(2, 3, 1, 1, "canceled", "7:00", 0),
-(2, 4, 2, 1, "canceled", "1:00", 0),
-(2, 5, 1, 1,"approved",  "3:00", 0),
-(3, 1, 1, 1, "rejected","2:30", 1),
-(4, 2, 1, 1, "canceled", "16:00", 1),
-(4, 5, 1, 1,"approved" "11:00", 1),
-(5, 5, 2, 1, "approved", "2:00", 0),
-(5, 1, 1, 1, "approved", "12:00", 0);
+INSERT INTO APPOINTMENT(Patient_id, Doctor_id, Office_id, Appointment_status, Slotted_time, Specialist_status) VALUES
+(1, 1, 1, "completed", "9:00", 1),
+(1, 5, 2, "approved", "15:00", 1),
+(2, 3, 1, "canceled", "7:00", 0),
+(2, 4, 2, "canceled", "1:00", 0),
+(2, 5, 1, "approved", "3:00", 0),
+(3, 1, 1, "rejected", "2:30", 1),
+(4, 2, 1, "canceled", "16:00", 1),
+(4, 5, 1, "approved", "11:00", 1),
+(5, 5, 2, "approved", "2:00", 0),
+(5, 1, 1, "approved", "12:00", 0);
 
 
 DELIMITER $$
@@ -155,6 +155,9 @@ CREATE TABLE PRESCRIPTION (
     PRIMARY KEY (Patient_id, Medication, Prescription_date),
     FOREIGN KEY (Patient_id) REFERENCES PATIENT(Patient_id)
 );
+
+INSERT INTO PRESCRIPTION(Patient_id, Medication, Test, Prescription_date) VALUES
+(5, "Medication string", "Test string", "2020/01/01");
 
 CREATE TABLE PATIENT_APPOINTMENTS (
 	Patient_id     INT NOT NULL,

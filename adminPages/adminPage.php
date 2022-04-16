@@ -11,7 +11,7 @@ Implemented Features:
 
 TODO: 
   Move general display stuff to report page
-  display appointments to approve with functioanlity to approve/not approve (Sergio)
+  display appointments to approve with functioanlity to approve/not approve
   
  -->
 
