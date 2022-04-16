@@ -1,3 +1,14 @@
+<!-- 
+
+Purpose: Allow patients the ability to request appointments
+
+Implemented Features:
+
+TODO: 
+  debug then fill in implemented features/todo
+
+ -->
+ 
 <?php
 require_once "php/config.php";
   // Check if the user is logged in, if not then redirect them to login page
@@ -6,24 +17,38 @@ require_once "php/config.php";
   header("location: login.php");
   exit;
 
+<<<<<<< HEAD:requestAppointment.php
 }*/
+=======
+require_once "../php/config.php";
+
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+  header("location: ../auth/login.php");
+  exit;
+}
+>>>>>>> 4fcc20711b9f7a4b272f7e214b8b09277fa8ea52:patientPages/requestAppointment.php
  
 ?>
 <!doctype html>
 <html lang="en">
 
 <head>
-  <title>Consultation</title>
+  <title>GROUP 5</title>
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<<<<<<< HEAD:requestAppointment.php
   <link rel="stylesheet" href="css/style.css">
+=======
+  <link rel="stylesheet" href="../css/style.css">
+>>>>>>> 4fcc20711b9f7a4b272f7e214b8b09277fa8ea52:patientPages/requestAppointment.php
 
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 
+<<<<<<< HEAD:requestAppointment.php
 <nav class="navbar navbar-expand-lg nav-back fixed-top" id="mainNav">
   <div class="container">
     <img src="../img/main_icon.png" class="mainicon">
@@ -41,6 +66,9 @@ require_once "php/config.php";
     </div>
   </div>
 </nav>
+=======
+<?php include_once("../php/header.php"); ?>
+>>>>>>> 4fcc20711b9f7a4b272f7e214b8b09277fa8ea52:patientPages/requestAppointment.php
 
 <!-- End Header -->
 <!-- ======= signup Section ======= -->
@@ -92,6 +120,7 @@ require_once "php/config.php";
 <!-- End signup -->
 
 <!-- Footer-->
+<<<<<<< HEAD:requestAppointment.php
 <footer class="footer py-4 mt-5">
   <div class="container">
     <div class="row align-items-center">
@@ -110,6 +139,9 @@ require_once "php/config.php";
     </div>
   </div>
 </footer>
+=======
+<?php include_once("../php/footer.php"); ?>
+>>>>>>> 4fcc20711b9f7a4b272f7e214b8b09277fa8ea52:patientPages/requestAppointment.php
 
 <script src="main.js"></script>
 

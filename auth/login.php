@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-require_once "./php/config.php";
+require_once "../php/config.php";
 
 // if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
 //   header("location: patientPage.php");
@@ -24,9 +24,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $_SESSION["loggedin"] = true;
     $_SESSION["username"] = $username;
     $_SESSION["id"] = $rowPatient["patient_id"];
-    $_SESSION["href"] = "./patientPage.php";
-    
-    header("location: patientPage.php");
+    $_SESSION["type"] = "patient";
+    $_SESSION["href"] = "//localhost/cosc3380/patientPages/patientPage.php";
+  
+    header("location: ../patientPages/patientPage.php");
   }
 
   $sqlDoctor = "SELECT doctor_id FROM DOCTOR WHERE name = '$username' AND password = '$password'";
@@ -39,9 +40,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $_SESSION["loggedin"] = true;
     $_SESSION["username"] = $username;
     $_SESSION["id"] = $rowDoctor["doctor_id"];
-    $_SESSION["href"] = "./doctorPage.php";
+    $_SESSION["href"] = "//localhost/cosc3380/doctorPages/doctorPage.php";
+    $_SESSION["type"] = "doctor";
     
-    header("location: doctorPage.php");
+    header("location: ../doctorPages/doctorPage.php");
   }
 
   $sqlAdmin = "SELECT admin_id FROM ADMIN WHERE name = '$username' AND password = '$password'";
@@ -54,9 +56,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $_SESSION["loggedin"] = true;
     $_SESSION["username"] = $username;
     $_SESSION["id"] = $rowAdmin["admin_id"];
-    $_SESSION["href"] = "./adminPage.php";
-    
-    header("location: adminPage.php");
+    $_SESSION["href"] = "//localhost/cosc3380/adminPages/adminPage.php";
+    $_SESSION["type"] = "admin";
+    header("location: ../adminPages/adminPage.php");
   }
 }
 ?>
@@ -66,18 +68,18 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 <html lang="en">
 
 <head>
-  <title>Consultation</title>
+  <title>GROUP 5</title>
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="../css/style.css">
   
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 
-<?php include_once("./php/header.php"); ?>
+<?php include("../php/header.php"); ?>
 
 <!-- End Header -->
 <!-- ======= signup Section ======= -->
@@ -85,7 +87,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
   <div class="main-container">
     <div class="main-wrap">
 
-      <div class="text-center" id="login-header">Sign in</div>
+      <div class="text-center" id="login-header">Log in to your Account</div>
 
       <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"
         class="login-input-section-wrap">
@@ -98,6 +100,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="login-button-wrap">
           <input id="login-button" type="submit" value="Sign in">
         </div>
+        <a href = "signup.php">
+          <div class="noidsignin">Create an account</div>
+        </a>
         <div class="login-stay-sign-in">
           <!-- <i class="far fa-check-circle"></i>
           <span>Stay Signed in</span> -->
@@ -113,8 +118,19 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 <!-- End signup -->
 
 <!-- Footer-->
-<?php include_once("./php/footer.php"); ?>
-</body>
+<?php include_once("../php/footer.php"); ?>
 
+<script>
+  const loginbutton = document.getElementById("login-button");
+  const foo = "<?php echo $_SESSION['loggedin'] ?>";
+  const usrname = "<?php echo $_SESSION['username'] ?>";
+  const logged_in = document.getElementById("login");
+  loginbutton.addEventListener('click', ()=>{
+    if(logged_in){
+      alert("Welcome" + $usrname + "!");
+    }
+  });
+</script>
+</body>
 
 </html>

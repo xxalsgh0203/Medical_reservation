@@ -1,7 +1,21 @@
+<!-- 
+
+Purpose: Display doctor information and allow them to edit appointments
+
+Implemented Features:
+  Display logged in doctor information
+  display assigned patients
+  display upcomming appoitnemtns with delete
+
+TODO: 
+  display schedule for different offices
+  add edit functionality to appointments (Sergio)
+ -->
+ 
 <?php
 session_start();
 
-require_once "./php/config.php";
+require_once "../php/config.php";
 
 // Check if the user is logged in, if not then redirect them to login page
 // if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true)
@@ -11,14 +25,14 @@ require_once "./php/config.php";
 // }
 
 $id = $_SESSION["id"];
-$sql = "SELECT Office_id, Name, Days_in_office, Speciality, Phone_number FROM DOCTOR WHERE Doctor_id = '$id'";
+$sql = "SELECT Office_id, Name, Speciality, Phone_number FROM DOCTOR WHERE Doctor_id = '$id'";
 $result = mysqli_query($db, $sql);
 
 $tableResult = "";
 if ($result->num_rows > 0) {
   $tableResult = "<tr>";
   while($row = $result-> fetch_assoc()) {
-    $tableResult .= "<td>" . $row["Office_id"] . "</td><td>" . $row["Name"] . "</td><td>" . $row["Speciality"] . "</td><td>" . $row["Days_in_office"] . "</td><td>" . $row["Phone_number"] . "</td>";
+    $tableResult .= "<td>" . $row["Office_id"] . "</td><td>" . $row["Name"] . "</td><td>" . $row["Speciality"] .  "</td><td>" . $row["Phone_number"] . "</td>";
   }
   $tableResult .= "</tr>";
 }
@@ -46,11 +60,15 @@ if ($result->num_rows > 0) {
   while($row = $result-> fetch_assoc()) {
     $APtableResult .= "<tr>";
     $APtableResult .= "<td>" . $row["Patient_id"] . "</td><td>"  . $row["Office_id"] . "</td><td>" . $row["Appointment_status_id"] . "</td><td>" . $row["Slotted_time"] . "</td><td>" . $row["Specialist_status"] . "</td><td> 
-    <a href='./doctorPage.php?delete_id=" . $row["Appointment_id"] . "'>X</a>
+    <a href='../doctorPage.php?delete_id=" . $row["Appointment_id"] . "'>X</a>
     </td>";
     $APtableResult .= "</tr>"; 
   }
 }
+
+//Query to retrieve schedule for doctor
+$sql = "SELECT * FROM WORK_INFO WHERE Doctor_id = '$id'";
+$result = mysqli_query($db, $sql);
 
 if (isset($_GET['delete_id'])) {
 	$id = $_GET['delete_id'];
@@ -66,18 +84,18 @@ if (isset($_GET['delete_id'])) {
 <html lang="en">
 
 <head>
-  <title>Doctors</title>
+  <title>GROUP 5</title>
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="../css/style.css">
 
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 
-<?php include_once("./php/header.php"); ?>
+<?php include_once("../php/header.php"); ?>
 
 <!-- End Header -->
 <!-- ======= Doctor Section ======= -->
@@ -96,7 +114,6 @@ if (isset($_GET['delete_id'])) {
                   <th>Office ID</th>
                   <th>Name</th>
                   <th>Specialty</th>
-                  <th>Availability</th>
                   <th>Phone Number</th>
                 </tr>
                 <?php echo $tableResult;?>
@@ -199,7 +216,7 @@ if (isset($_GET['delete_id'])) {
 
 
 <!-- Footer-->
-<?php include_once("./php/footer.php"); ?>
+<?php include_once("../php/footer.php"); ?>
 
 <script src="main.js"></script>
 </body>

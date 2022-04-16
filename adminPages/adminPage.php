@@ -1,11 +1,29 @@
+<!-- 
+
+Purpose: Display admin information and allow them to access reports, dataEntry page, and approve appointments
+
+Implemented Features:
+  Display logedin admin info
+  Display appoitnments for doctor with same id as logged in admin
+  Display all doctors
+  Display all admins
+  Button to dataEntryForm and reportsForm
+
+TODO: 
+  Move general display stuff to report page
+  display appointments to approve with functioanlity to approve/not approve
+  
+ -->
+
+
 <?php
 session_start();
 
-require_once "./php/config.php";
+require_once "../php/config.php";
  
 // Check if the user is logged in, if not then redirect them to login page
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
-    header("location: login.php");
+    header("location: ../auth/login.php");
     exit;
 }
 
@@ -15,11 +33,10 @@ $result = mysqli_query($db, $sql);
 
 $tableResult = "";
 if ($result->num_rows > 0) {
-  $tableResult = "<tr>";
   while($row = $result-> fetch_assoc()) {
-    $tableResult .= "<td>" . $row["Office_id"] . "</td><td>" . $row["Name"] . "</td><td>" . $row["Phone_number"] . "</td><td>" . $row["Email"] . "</td>";
+    $tableResult .= "<tr>" . "<td>" . $row["Office_id"] . "</td><td>" . $row["Name"] . "</td><td>" . 
+                    $row["Phone_number"] . "</td><td>" . $row["Email"] . "</td>" . "<tr>";
   }
-  $tableResult .= "</tr>";
 }
 
 //Query to retrieve appointments for doctor
@@ -30,19 +47,21 @@ $result = mysqli_query($db, $sql);
 $APtableResult = "";
 if ($result->num_rows > 0) {
   while($row = $result-> fetch_assoc()) {
-    $APtableResult .= "<tr>". "<td>" . $row["Patient_id"] . "</td><td>"  . $row["Office_id"] . "</td><td>" . $row["Appointment_status_id"] . "</td><td>" . $row["Slotted_time"] . "</td><td>" . $row["Specialist_status"] . "</td>" . "<tr>";
+    $APtableResult .= "<tr>". "<td>" . $row["Patient_id"] . "</td><td>"  . $row["Office_id"] . "</td><td>" .
+                       $row["Appointment_status_id"] . "</td><td>" . $row["Slotted_time"] . "</td><td>" . $row["Specialist_status"] . "</td>" . "<tr>";
   }
 }
 
 
 //used to retrieve other doctors
-$sql = "SELECT Office_id, Name, Days_in_office, Speciality, Phone_number FROM DOCTOR";
+$sql = "SELECT Office_id, Name, Speciality, Phone_number FROM DOCTOR";
 $result = mysqli_query($db, $sql);
 
 $DtableResult = "";
 if ($result->num_rows > 0) {
   while($row = $result-> fetch_assoc()) {
-    $DtableResult .= "<tr>". "<td>" . $row["Office_id"] . "</td><td>" . $row["Name"] . "</td><td>" . $row["Speciality"] . "</td><td>" . $row["Days_in_office"] . "</td><td>" . $row["Phone_number"] . "</td>" . "<tr>";
+    $DtableResult .= "<tr>". "<td>" . $row["Office_id"] . "</td><td>" . $row["Name"] . "</td><td>" . 
+                      $row["Speciality"] . "</td><td>" . $row["Phone_number"] . "</td>" . "<tr>";
   }
 }
 
@@ -53,7 +72,8 @@ $result = mysqli_query($db, $sql);
 $OtADtableResult = "";
 if ($result->num_rows > 0) {
   while($row = $result-> fetch_assoc()) {
-    $OtADtableResult .= "<tr>". "<td>" . $row["Office_id"] . "</td><td>" . $row["Name"] . "</td><td>" . $row["Phone_number"] . "</td><td>" . $row["Email"] . "</td>" . "<tr>";
+    $OtADtableResult .= "<tr>". "<td>" . $row["Office_id"] . "</td><td>" . $row["Name"] . "</td><td>" . 
+                          $row["Phone_number"] . "</td><td>" . $row["Email"] . "</td>" . "<tr>";
   }
  
 }
@@ -64,11 +84,11 @@ if ($result->num_rows > 0) {
 <html lang="en">
 
 <head>
-  <title>Admins</title>
+  <title>GROUP 5</title>
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="../css/style.css">
 
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -91,7 +111,7 @@ if ($result->num_rows > 0) {
    </style>
 </head>
 
-<?php include_once("./php/header.php"); ?>
+<?php include_once("../php/header.php"); ?>
 
 <!-- End Header -->
 <!-- ======= Admin Page ======= -->
@@ -99,7 +119,7 @@ if ($result->num_rows > 0) {
   <div class="main-container">
     <div class="main-wrap">
 
-      <div class="text-center" id="Admin-header">Admin</div>
+      <div class="text-center" id="Admin-header">Current Admin</div>
       <div class="container-fluid">
         <div class="row justify-content-center my-5">
           <div class="col-10">
@@ -127,7 +147,12 @@ if ($result->num_rows > 0) {
       </footer>
     </div>
   </div>
+
+
+  <h2>hi hello</h2>
 </section>
+
+
 <!-- End signup -->
 
 <!-- ======= Appointments Section ======= -->
@@ -148,6 +173,8 @@ if ($result->num_rows > 0) {
                   <th>Appointment status</th>
                   <th>Slotted Time</th>
                   <th>Specialist Status</th>
+                  <th>Update</th>
+                  <th>Delete</th>
                 </tr>
                 <?php echo $APtableResult;?>
               </thead>
@@ -185,8 +212,9 @@ if ($result->num_rows > 0) {
                   <th>Office ID</th>
                   <th>Name</th>
                   <th>Specialty</th>
-                  <th>Availability</th>
                   <th>Phone Number</th>
+                  <th>Update</th>
+                  <th>Delete</th>
                 </tr>
                 <?php echo $DtableResult;?>
               </thead>
@@ -224,6 +252,8 @@ if ($result->num_rows > 0) {
                   <th scope="col">Name</th>
                   <th scope="col">Phone number</th>
                   <th scope="col">Email</th>
+                  <th>Update</th>
+                  <th>Delete</th>
                 </tr>
                 <?php echo $OtADtableResult;?>
               </thead>
@@ -253,11 +283,11 @@ if ($result->num_rows > 0) {
      <!-- Used to center container -->
      <div id = "container">
         <!--Used to redirect to data entry page -->
-        <a href="DataEntryForm.php"> 
+        <a href="dataEntryForm.php"> 
           <button id = "Redi1">Edit Data</button>
         </a>
         <!--Used to redirect to report page -->
-        <a href="ReportsForm.php"> 
+        <a href="reportsForm.php"> 
           <button id = "Redi2">Reports</button>
         </a>
      </div>
@@ -266,9 +296,14 @@ if ($result->num_rows > 0) {
 <!-- End of redirection-->
 
 <!-- Footer-->
-<?php include_once("./php/footer.php"); ?>
+<?php include_once("../php/footer.php"); ?>
 
 <script src="main.js"></script>
 </body>
 
 </html>
+
+<!--
+"</td><td>" . $row["Specialist_status"] . "</td><td> 
+    <a href='../doctorPage.php?delete_id=" . $row["Appointment_id"] . "'>X</a>
+    </td>" -->

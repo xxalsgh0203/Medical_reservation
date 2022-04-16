@@ -39,7 +39,6 @@ INSERT INTO ADMIN(Office_id, Name, Password, Phone_number, Email) VALUES
 CREATE TABLE DOCTOR (
 	Doctor_id      INT AUTO_INCREMENT,
     Office_id      INT,
-    Days_in_office VARCHAR(10) CHECK(Days_in_office IN('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday')),
     Speciality     VARCHAR(30),
     Name           VARCHAR(20),
     Password       VARCHAR(255) NOT NULL,
@@ -48,12 +47,29 @@ CREATE TABLE DOCTOR (
     FOREIGN KEY (Office_id) REFERENCES OFFICE(Office_id)
 );
 
-INSERT INTO DOCTOR(Office_id, Days_in_office, Speciality, Name, Password, Phone_number) VALUES
-(1, 'Monday', null, "Greg", "Password", 1111111111),
-(1, 'Tuesday', "Anesthesiology", "Miranda", "Password", 2222222222),
-(1, 'Wednesday', "Oncology", "Noah", "Password", 3333333333),
-(2, 'Thursday', null, "Marshall", "Password", 4444444444),
-(2, 'Friday', null, "Doctor", "Password", 5555555555);
+INSERT INTO DOCTOR(Office_id, Speciality, Name, Password, Phone_number) VALUES
+(1, null, "Greg", "Password", 1111111111),
+(1, "Anesthesiology", "Miranda", "Password", 2222222222),
+(1, "Oncology", "Noah", "Password", 3333333333),
+(2, null, "Marshall", "Password", 4444444444),
+(2, null, "Doctor", "Password", 5555555555);
+
+CREATE TABLE WORK_INFO (
+    Doctor_id  INT NOT NULL,
+    Office_id  INT NOT NULL,
+    Weekday    VARCHAR(10) CHECK(Weekday IN('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday')),
+    Start_time TIME NOT NULL,
+    End_time   TIME NOT NULL,
+    PRIMARY    KEY (Doctor_id, Weekday),
+    FOREIGN    KEY (Doctor_id) REFERENCES DOCTOR(Doctor_id)
+);
+
+INSERT INTO WORK_INFO(Doctor_id, Office_id, Weekday, Start_time, End_time) VALUES
+(5, 1, 'Monday', '9:00', "15:00"),
+(5, 1, 'Tuesday', '10:00', "14:00"),
+(5, 1, 'Wednesday', '12:00', "18:00"),
+(5, 2, 'Thursday', '7:00', "12:00"),
+(5, 2, 'Friday', '9:00', "15:00");
 
 CREATE TABLE PATIENT (
 	Patient_id           INT AUTO_INCREMENT,
@@ -81,7 +97,8 @@ CREATE TABLE APPOINTMENT (
     Patient_id            INT,
     Doctor_id             INT NOT NULL,
     Office_id             INT NOT NULL,
-    Appointment_status_id INT NOT NULL,
+    Appointment_status_id INT NOT NULL DEFAULT 0,
+    Appointment_status    VARCHAR(12) NOT NULL,
     Slotted_time          TIME NOT NULL,
     Specialist_status     BOOLEAN NOT NULL, /*If it is a specialist appointment */
     PRIMARY KEY (Appointment_id),
@@ -90,17 +107,17 @@ CREATE TABLE APPOINTMENT (
     FOREIGN KEY (Office_id) REFERENCES OFFICE(Office_id)
 );
 
-INSERT INTO APPOINTMENT(Patient_id, Doctor_id, Office_id, Appointment_status_id, Slotted_time, Specialist_status) VALUES
-(1, 1, 1, 1, "9:00", 1),
-(1, 5, 2, 1, "15:00", 1),
-(2, 3, 1, 1, "7:00", 0),
-(2, 4, 2, 1, "1:00", 0),
-(2, 5, 1, 1, "3:00", 0),
-(3, 1, 1, 1, "2:30", 1),
-(4, 2, 1, 1, "16:00", 1),
-(4, 5, 1, 1, "11:00", 1),
-(5, 5, 2, 1, "2:00", 0),
-(5, 1, 1, 1, "12:00", 0);
+INSERT INTO APPOINTMENT(Patient_id, Doctor_id, Office_id, Appointment_status, Slotted_time, Specialist_status) VALUES
+(1, 1, 1, "completed", "9:00", 1),
+(1, 5, 2, "approved", "15:00", 1),
+(2, 3, 1, "canceled", "7:00", 0),
+(2, 4, 2, "canceled", "1:00", 0),
+(2, 5, 1, "approved", "3:00", 0),
+(3, 1, 1, "rejected", "2:30", 1),
+(4, 2, 1, "canceled", "16:00", 1),
+(4, 5, 1, "approved", "11:00", 1),
+(5, 5, 2, "approved", "2:00", 0),
+(5, 1, 1, "approved", "12:00", 0);
 
 
 DELIMITER $$
@@ -154,6 +171,9 @@ CREATE TABLE PRESCRIPTION (
     PRIMARY KEY (Patient_id, Medication, Prescription_date),
     FOREIGN KEY (Patient_id) REFERENCES PATIENT(Patient_id)
 );
+
+INSERT INTO PRESCRIPTION(Patient_id, Medication, Test, Prescription_date) VALUES
+(5, "Medication string", "Test string", "2020/01/01");
 
 CREATE TABLE PATIENT_APPOINTMENTS (
 	Patient_id     INT NOT NULL,
