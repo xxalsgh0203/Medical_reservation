@@ -1,11 +1,27 @@
+<!-- 
+
+Purpose: Display relevant information and provide functionalities to the logged in admin
+
+Implemented Features:
+  Display logedin admin info
+  Display appoitnments for doctor with same id as logged in admin
+  Display all doctors
+  Display all admins
+
+TODO: 
+  Move general display stuff to report page
+
+ -->
+
+
 <?php
 session_start();
 
-require_once "./php/config.php";
+require_once "../php/config.php";
  
 // Check if the user is logged in, if not then redirect them to login page
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
-    header("location: login.php");
+    header("location: ../auth/login.php");
     exit;
 }
 
@@ -70,7 +86,7 @@ if ($result->num_rows > 0) {
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="../css/style.css">
 
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -93,7 +109,7 @@ if ($result->num_rows > 0) {
    </style>
 </head>
 
-<?php include_once("./php/header.php"); ?>
+<?php include_once("../php/header.php"); ?>
 
 <!-- End Header -->
 <!-- ======= Admin Page ======= -->
@@ -261,11 +277,11 @@ if ($result->num_rows > 0) {
      <!-- Used to center container -->
      <div id = "container">
         <!--Used to redirect to data entry page -->
-        <a href="DataEntryForm.php"> 
+        <a href="dataEntryForm.php"> 
           <button id = "Redi1">Edit Data</button>
         </a>
         <!--Used to redirect to report page -->
-        <a href="ReportsForm.php"> 
+        <a href="reportsForm.php"> 
           <button id = "Redi2">Reports</button>
         </a>
      </div>
@@ -274,7 +290,7 @@ if ($result->num_rows > 0) {
 <!-- End of redirection-->
 
 <!-- Footer-->
-<?php include_once("./php/footer.php"); ?>
+<?php include_once("../php/footer.php"); ?>
 
 <script src="main.js"></script>
 </body>

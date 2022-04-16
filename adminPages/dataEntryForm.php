@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-require_once "./php/config.php";
+require_once "../php/config.php";
 /*
 if($_SERVER["REQUEST_METHOD"] == "POST")
 {
@@ -18,7 +18,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="../css/style.css">
 
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -36,7 +36,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
   </style>
 </head>
 
-<?php include_once("./php/header.php"); ?>
+<?php include_once("../php/header.php"); ?>
 
 <!-- End Header -->
 <!-- ======= DataEntry Page ======= -->
@@ -96,7 +96,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
 
 
 <!-- Footer-->
-<?php include_once("./php/footer.php"); ?>
+<?php include_once("../php/footer.php"); ?>
 
 <script src="main.js"></script>
 </body>

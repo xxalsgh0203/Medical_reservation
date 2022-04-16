@@ -26,7 +26,7 @@
       <h1>Customoers want to use an app to<br/>schedule appointments with you online</h1>
       <img id="mainimg" src="./img/mainimage.jpeg" width="50%" height="50%">
       <p>Allow clients to book appointments directly from app <br/> All From One Place</p>
-      <a href="./requestAppointment.php" class="main-btn">Make your Appointment!</a>
+      <a href="./patientPages/requestAppointment.php" class="main-btn">Make your Appointment!</a>
     </div>
   </section>
   <!-- End Hero -->

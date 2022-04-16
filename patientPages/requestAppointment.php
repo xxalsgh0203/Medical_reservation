@@ -1,10 +1,10 @@
 <?php
 session_start();
 
-require_once "./php/config.php";
+require_once "../php/config.php";
 
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
-  header("location: login.php");
+  header("location: ../auth/login.php");
   exit;
 }
  
@@ -42,14 +42,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="../css/style.css">
 
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 
-<?php include_once("./php/header.php"); ?>
+<?php include_once("../php/header.php"); ?>
 
 <!-- End Header -->
 <!-- ======= signup Section ======= -->
@@ -133,7 +133,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <!-- End signup -->
 
 <!-- Footer-->
-<?php include_once("./php/footer.php"); ?>
+<?php include_once("../php/footer.php"); ?>
 
 <script src="main.js"></script>
 
