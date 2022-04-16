@@ -16,7 +16,8 @@ $result = mysqli_query($db, $sql);
 $tableResult = "";
 if ($result->num_rows > 0) {
   while($row = $result-> fetch_assoc()) {
-    $tableResult .= "<tr>" . "<td>" . $row["Office_id"] . "</td><td>" . $row["Name"] . "</td><td>" . $row["Phone_number"] . "</td><td>" . $row["Email"] . "</td>" . "<tr>";
+    $tableResult .= "<tr>" . "<td>" . $row["Office_id"] . "</td><td>" . $row["Name"] . "</td><td>" . 
+                    $row["Phone_number"] . "</td><td>" . $row["Email"] . "</td>" . "<tr>";
   }
 }
 
@@ -28,7 +29,8 @@ $result = mysqli_query($db, $sql);
 $APtableResult = "";
 if ($result->num_rows > 0) {
   while($row = $result-> fetch_assoc()) {
-    $APtableResult .= "<tr>". "<td>" . $row["Patient_id"] . "</td><td>"  . $row["Office_id"] . "</td><td>" . $row["Appointment_status_id"] . "</td><td>" . $row["Slotted_time"] . "</td><td>" . $row["Specialist_status"] . "</td>" . "<tr>";
+    $APtableResult .= "<tr>". "<td>" . $row["Patient_id"] . "</td><td>"  . $row["Office_id"] . "</td><td>" .
+                       $row["Appointment_status_id"] . "</td><td>" . $row["Slotted_time"] . "</td><td>" . $row["Specialist_status"] . "</td>" . "<tr>";
   }
 }
 
@@ -40,7 +42,8 @@ $result = mysqli_query($db, $sql);
 $DtableResult = "";
 if ($result->num_rows > 0) {
   while($row = $result-> fetch_assoc()) {
-    $DtableResult .= "<tr>". "<td>" . $row["Office_id"] . "</td><td>" . $row["Name"] . "</td><td>" . $row["Speciality"] . "</td><td>" . $row["Days_in_office"] . "</td><td>" . $row["Phone_number"] . "</td>" . "<tr>";
+    $DtableResult .= "<tr>". "<td>" . $row["Office_id"] . "</td><td>" . $row["Name"] . "</td><td>" . 
+                      $row["Speciality"] . "</td><td>" . $row["Days_in_office"] . "</td><td>" . $row["Phone_number"] . "</td>" . "<tr>";
   }
 }
 
@@ -51,7 +54,8 @@ $result = mysqli_query($db, $sql);
 $OtADtableResult = "";
 if ($result->num_rows > 0) {
   while($row = $result-> fetch_assoc()) {
-    $OtADtableResult .= "<tr>". "<td>" . $row["Office_id"] . "</td><td>" . $row["Name"] . "</td><td>" . $row["Phone_number"] . "</td><td>" . $row["Email"] . "</td>" . "<tr>";
+    $OtADtableResult .= "<tr>". "<td>" . $row["Office_id"] . "</td><td>" . $row["Name"] . "</td><td>" . 
+                          $row["Phone_number"] . "</td><td>" . $row["Email"] . "</td>" . "<tr>";
   }
  
 }
@@ -97,7 +101,7 @@ if ($result->num_rows > 0) {
   <div class="main-container">
     <div class="main-wrap">
 
-      <div class="text-center" id="Admin-header">Admin</div>
+      <div class="text-center" id="Admin-header">Current Admin</div>
       <div class="container-fluid">
         <div class="row justify-content-center my-5">
           <div class="col-10">
@@ -146,6 +150,8 @@ if ($result->num_rows > 0) {
                   <th>Appointment status</th>
                   <th>Slotted Time</th>
                   <th>Specialist Status</th>
+                  <th>Update</th>
+                  <th>Delete</th>
                 </tr>
                 <?php echo $APtableResult;?>
               </thead>
@@ -185,6 +191,8 @@ if ($result->num_rows > 0) {
                   <th>Specialty</th>
                   <th>Availability</th>
                   <th>Phone Number</th>
+                  <th>Update</th>
+                  <th>Delete</th>
                 </tr>
                 <?php echo $DtableResult;?>
               </thead>
@@ -222,6 +230,8 @@ if ($result->num_rows > 0) {
                   <th scope="col">Name</th>
                   <th scope="col">Phone number</th>
                   <th scope="col">Email</th>
+                  <th>Update</th>
+                  <th>Delete</th>
                 </tr>
                 <?php echo $OtADtableResult;?>
               </thead>

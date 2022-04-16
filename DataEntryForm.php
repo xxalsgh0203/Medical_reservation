@@ -63,9 +63,33 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
   <!--Used to separate inputs-->
   <br>
   <input type="submit" value="Submit">
+
+  <br>  <br>
+ 
+  <h2>  <b>Add Admin</b>  </h2>
+  <label for="ADOFFID">Office ID:</label>
+  <input type="number" id="ADOFFID" name="ADOFFID">
+  <label for="Inoffice">Days in office:</label>
+  <label for="ADname">Name:</label>
+  <input type="text" id="ADname" name="ADname" maxlength="20">
+  <br>
+  <label for="ADPWord">create password:</label>
+  <input type="text" id="ADPWord" name="ADPWord">
+  <label for="DPhoneNum">Phone Number:</label>
+  <input type="text" id="ADPhoneNum" name="ADPhoneNum" maxlength="10"> 
+  <label for="ADEmail">Email:</label>
+  <input type="text" id="ADEmail" name="ADEmail" maxlength="30">   
+  <!--Used to separate inputs-->
+  <br>
+  <input type="submit" value="Submit">
+
+
+
 </form>
 
 </section>
+
+
 
 <!-- End Of Data Entry -->
 
