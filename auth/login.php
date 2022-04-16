@@ -27,7 +27,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $_SESSION["type"] = "patient";
     $_SESSION["href"] = "//localhost/cosc3380/patientPages/patientPage.php";
   
-    header("location: ../index.php");
+    header("location: ../patientPages/patientPage.php");
   }
 
   $sqlDoctor = "SELECT doctor_id FROM DOCTOR WHERE name = '$username' AND password = '$password'";
@@ -43,7 +43,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $_SESSION["href"] = "//localhost/cosc3380/doctorPages/doctorPage.php";
     $_SESSION["type"] = "doctor";
     
-    header("location: ../index.php");
+    header("location: ../doctorPages/doctorPage.php");
   }
 
   $sqlAdmin = "SELECT admin_id FROM ADMIN WHERE name = '$username' AND password = '$password'";
@@ -58,7 +58,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $_SESSION["id"] = $rowAdmin["admin_id"];
     $_SESSION["href"] = "//localhost/cosc3380/adminPages/adminPage.php";
     $_SESSION["type"] = "admin";
-    header("location: ../index.php");
+    header("location: ../adminPages/adminPage.php");
   }
 }
 ?>
