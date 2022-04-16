@@ -28,7 +28,7 @@ if (isset($_POST['SubmitD']))
     $DPhoneNum = $_POST['DPhoneNum'];
 
     //Used to insert data into doctor
-    $db->query("INSERT INTO DOCTOR (Office_id  Name Speciality Password Phone_number) 
+    $db->query("INSERT INTO DOCTOR (Office_id,  Name, Speciality, Password, Phone_number) 
                     VALUES ('$OFFID', '$DName', '$SPType', '$DPWord', '$DPhoneNum')")  or die($db->error); 
 }
 
