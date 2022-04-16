@@ -1,6 +1,6 @@
+
 <?php
-require_once "../php/config.php";
-require_once "requestAppointment.php"
+require_once "php/config.php";
   // Check if the user is logged in, if not then redirect them to login page
 /*if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true)
 {
@@ -18,7 +18,7 @@ require_once "requestAppointment.php"
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="css/style.css">
 
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -46,12 +46,32 @@ require_once "requestAppointment.php"
 <!-- End Header -->
 <!-- ======= signup Section ======= -->
 <?php
-if(isset($_POST['doctor'])) {
+  if(isset($_POST['doctor'])) {
     $doctor = $_POST['doctor'];
-    echo $doctor;
+
+    $query = "SELECT name FROM DOCTOR WHERE Speciality = '$doctor';";
+    $result   = mysqli_query($db, $query);
+    $resultCheck = mysqli_num_rows($result);
+
+    if($resultCheck > 0) {
+      echo "<p>Please select an avaiable Doctor<p><br>";
+      echo "
+      <form class='doctorSel' action='requestAppointment3.php' method = 'POST';>";
+      while ($row = mysqli_fetch_array($result)) {
+        echo "
+        <label for= '".$row['name']."'>".$row['name']."</label>
+        <br>
+        <input type='radio' name= 'name' id='".$row['name']." value = '".$row['name']."''/><br>";
+      }
+      echo "
+      <input class='form-control' type='submit' name='button' value='Next'/>
+      </form>";
+      if (isset($_POST['name'])) {
+        echo $_POST['name'];
+      }
+    }
 }
-?>
-<!-- End signup -->
+  ?>
 
 <!-- Footer-->
 <footer class="footer py-4 mt-5">
