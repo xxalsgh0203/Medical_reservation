@@ -16,7 +16,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $param_medical_allergy = mysqli_real_escape_string($db, $_POST['allergy'] || false);
     
     if(mysqli_stmt_execute($stmt)){
-      header("location: ../login.php");
+      header("location: login.php");
     } else{
       echo "Oops! Something went wrong. Please try again later.";
     }

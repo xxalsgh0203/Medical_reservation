@@ -1,4 +1,18 @@
-<?php
+<!-- 
+
+Purpose: Allow admin to enter data into database
+
+Implemented Features:
+  form to add doctor
+  form to add admin
+
+TODO: 
+  form to add patient
+  add backend to all forms
+
+ -->
+ 
+ <?php
 session_start();
 
 require_once "../php/config.php";

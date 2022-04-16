@@ -1,3 +1,17 @@
+<!-- 
+
+Purpose: Display patient information
+
+Implemented Features:
+  display upcomming appointments
+  button to requestAppointment page
+
+TODO: 
+  display personal information (including general doctor/physician)
+  display prescription
+
+ -->
+ 
 <?php
 session_start();
 

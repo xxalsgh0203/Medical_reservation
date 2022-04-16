@@ -1,3 +1,14 @@
+<!-- 
+
+Purpose: Allow patients the ability to request appointments
+
+Implemented Features:
+
+TODO: 
+  debug then fill in implemented features/todo
+
+ -->
+ 
 <?php
 session_start();
 

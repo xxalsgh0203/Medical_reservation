@@ -1,3 +1,17 @@
+<!-- 
+
+Purpose: Display doctor information and allow them to edit appointments
+
+Implemented Features:
+  Display logged in doctor information
+  display assigned patients
+  display upcomming appoitnemtns with delete
+
+TODO: 
+  display schedule for different offices
+  add edit functionality to appointments (Sergio)
+ -->
+ 
 <?php
 session_start();
 

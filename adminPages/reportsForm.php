@@ -1,4 +1,16 @@
-<?php
+<!-- 
+
+Purpose: Allow admin to request and view reports
+
+Implemented Features:
+
+TODO: 
+  Add buttons to view various reports
+  implement report+display for each report
+
+ -->
+ 
+ <?php
 session_start();
 
 require_once "../php/config.php";

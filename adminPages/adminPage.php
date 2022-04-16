@@ -1,16 +1,18 @@
 <!-- 
 
-Purpose: Display relevant information and provide functionalities to the logged in admin
+Purpose: Display admin information and allow them to access reports, dataEntry page, and approve appointments
 
 Implemented Features:
   Display logedin admin info
   Display appoitnments for doctor with same id as logged in admin
   Display all doctors
   Display all admins
+  Button to dataEntryForm and reportsForm
 
 TODO: 
   Move general display stuff to report page
-
+  display appointments to approve with functioanlity to approve/not approve (Sergio)
+  
  -->
 
 
