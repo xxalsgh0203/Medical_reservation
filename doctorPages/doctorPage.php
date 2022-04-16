@@ -25,14 +25,14 @@ require_once "../php/config.php";
 // }
 
 $id = $_SESSION["id"];
-$sql = "SELECT Office_id, Name, Days_in_office, Speciality, Phone_number FROM DOCTOR WHERE Doctor_id = '$id'";
+$sql = "SELECT Office_id, Name, Speciality, Phone_number FROM DOCTOR WHERE Doctor_id = '$id'";
 $result = mysqli_query($db, $sql);
 
 $tableResult = "";
 if ($result->num_rows > 0) {
   $tableResult = "<tr>";
   while($row = $result-> fetch_assoc()) {
-    $tableResult .= "<td>" . $row["Office_id"] . "</td><td>" . $row["Name"] . "</td><td>" . $row["Speciality"] . "</td><td>" . $row["Days_in_office"] . "</td><td>" . $row["Phone_number"] . "</td>";
+    $tableResult .= "<td>" . $row["Office_id"] . "</td><td>" . $row["Name"] . "</td><td>" . $row["Speciality"] .  "</td><td>" . $row["Phone_number"] . "</td>";
   }
   $tableResult .= "</tr>";
 }
@@ -114,7 +114,6 @@ if (isset($_GET['delete_id'])) {
                   <th>Office ID</th>
                   <th>Name</th>
                   <th>Specialty</th>
-                  <th>Availability</th>
                   <th>Phone Number</th>
                 </tr>
                 <?php echo $tableResult;?>

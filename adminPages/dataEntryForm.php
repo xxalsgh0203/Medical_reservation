@@ -50,11 +50,54 @@ if (isset($_POST['SubmitAD']))
 
 }
 
+$chosenTable = "";
+
 if(isset($_POST['SubmitTID']))
 {
   $TableID = $_POST['TableID'];
 
- 
+  if ($TableID == "DOCTOR")
+  {
+    //used to retrieve other doctors
+    $sql = "SELECT Office_id, Name, Speciality, Phone_number FROM DOCTOR";
+    $result = mysqli_query($db, $sql);
+
+    if ($result->num_rows > 0) {
+      while($row = $result-> fetch_assoc()) {
+        $chosenTable .= "<tr>". "<td>" . $row["Office_id"] . "</td><td>" . $row["Name"] . "</td><td>" . 
+                          $row["Speciality"] . "</td><td>" . $row["Phone_number"] . "</td>" . "<tr>";
+      }
+    }
+  }
+  
+  if ($TableID == "ADMIN")
+  {
+    /*to retrieve admins*/
+    $sql = "SELECT * FROM ADMIN";
+    $result = mysqli_query($db, $sql);
+
+    if ($result->num_rows > 0) {
+      while($row = $result-> fetch_assoc()) {
+        $chosenTable .= "<tr>". "<td>" . $row["Office_id"] . "</td><td>" . $row["Name"] . "</td><td>" . 
+                              $row["Phone_number"] . "</td><td>" . $row["Email"] . "</td>" . "<tr>";
+      }
+    
+    }
+  }
+
+  if ($TableID == "PATIENT")
+  {
+    //used to store patient table
+    $sql = "SELECT * FROM PATIENT ";
+    $result = mysqli_query($db, $sql);
+    
+    if ($result->num_rows > 0) {
+      while($row = $result-> fetch_assoc()) {
+        $chosenTable .= "<tr>" ."<td>" . $row["Primary_physician_id"] . "</td><td>" . $row["Name"] . "</td><td>" . $row["Phone_number"] 
+                        . "</td><td>" . $row["Email"] . "</td><td>" . $row["Age"] . "</td><td>" . $row["Medical_allergy"] . "</td>" . "<tr>";
+      }
+    }
+  }
   
 }
 
@@ -149,7 +192,23 @@ if(isset($_POST['SubmitTID']))
             <br>
             <button type="submit" class="btn btn-primary" name="SubmitAD">Submit</button>
 
-
+             <br>  <br>
+          
+            <h2>  <b>Add Patient</b>  </h2>
+            <label for="ADOFFID">Office ID:</label>
+            <input type="number" id="ADOFFID" name="ADOFFID">
+            <label for="ADname">Name:</label>
+            <input type="text" id="ADname" name="ADname" maxlength="20">
+            <label for="ADPWord">create password:</label>
+            <input type="text" id="ADPWord" name="ADPWord">
+            <br>
+            <label for="DPhoneNum">Phone Number:</label>
+            <input type="text" id="ADPhoneNum" name="ADPhoneNum" maxlength="10"> 
+            <label for="ADEmail">Email:</label>
+            <input type="text" id="ADEmail" name="ADEmail" maxlength="30">   
+            <!--Used to separate inputs-->
+            <br>
+            <button type="submit" class="btn btn-primary" name="SubmitAD">Submit</button>
 
 </form>
 

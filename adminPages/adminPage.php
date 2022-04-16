@@ -147,7 +147,12 @@ if ($result->num_rows > 0) {
       </footer>
     </div>
   </div>
+
+
+  <h2>hi hello</h2>
 </section>
+
+
 <!-- End signup -->
 
 <!-- ======= Appointments Section ======= -->
