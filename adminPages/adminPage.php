@@ -54,14 +54,14 @@ if ($result->num_rows > 0) {
 
 
 //used to retrieve other doctors
-$sql = "SELECT Office_id, Name, Days_in_office, Speciality, Phone_number FROM DOCTOR";
+$sql = "SELECT Office_id, Name, Speciality, Phone_number FROM DOCTOR";
 $result = mysqli_query($db, $sql);
 
 $DtableResult = "";
 if ($result->num_rows > 0) {
   while($row = $result-> fetch_assoc()) {
     $DtableResult .= "<tr>". "<td>" . $row["Office_id"] . "</td><td>" . $row["Name"] . "</td><td>" . 
-                      $row["Speciality"] . "</td><td>" . $row["Days_in_office"] . "</td><td>" . $row["Phone_number"] . "</td>" . "<tr>";
+                      $row["Speciality"] . "</td><td>" . $row["Phone_number"] . "</td>" . "<tr>";
   }
 }
 
@@ -207,7 +207,6 @@ if ($result->num_rows > 0) {
                   <th>Office ID</th>
                   <th>Name</th>
                   <th>Specialty</th>
-                  <th>Availability</th>
                   <th>Phone Number</th>
                   <th>Update</th>
                   <th>Delete</th>
@@ -298,3 +297,8 @@ if ($result->num_rows > 0) {
 </body>
 
 </html>
+
+<!--
+"</td><td>" . $row["Specialist_status"] . "</td><td> 
+    <a href='../doctorPage.php?delete_id=" . $row["Appointment_id"] . "'>X</a>
+    </td>" -->
