@@ -16,7 +16,7 @@ TODO:
 session_start();
 
 require_once "../php/config.php";
-
+//Takes in input for doctor from SubmitD
 if (isset($_POST['SubmitD']))
 {
 
@@ -32,11 +32,31 @@ if (isset($_POST['SubmitD']))
                     VALUES ('$OFFID', '$DName', '$SPType', '$DPWord', '$DPhoneNum')")  or die($db->error); 
 }
 
-/*
-if($_SERVER["REQUEST_METHOD"] == "POST")
+//Takes in input for Admin from submitAD
+if (isset($_POST['SubmitAD']))
 {
- $sql = ""
-} */
+  //Store input values
+    $ADOFFID =  $_POST['ADOFFID'];
+    $ADName = $_POST['ADname'];
+    $ADPWord = $_POST['ADPWord'];
+    $ADPhoneNum = $_POST['ADPhoneNum'];
+    $ADEmail = $_POST['ADEmail'];
+
+    //Used to insert data into admin
+    $db->query("INSERT INTO ADMIN (Office_id,  Name, Password, Phone_number, Email) 
+                    VALUES ('$ADOFFID', '$ADName', '$ADPWord', '$ADPhoneNum', '$ADEmail')")  or die($db->error); 
+
+
+
+}
+
+if(isset($_POST['SubmitTID']))
+{
+  $TableID = $_POST['TableID'];
+
+ 
+  
+}
 
 ?> 
 
@@ -63,6 +83,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
           margin: 0 auto; 
           width:1000px;
           }
+
+    div
+    {
+    margin: 0px auto;
+    width:300px;
+    }
   </style>
 </head>
 
@@ -70,10 +96,22 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
 
 <!-- End Header -->
 <!-- ======= DataEntry Page ======= -->
-<section id="signup">
 
 <!-- Header of the page-->
 <h1>Data Entry Form</h1>
+
+<!-- Pick a specific table -->
+<body>
+  <br>
+  <div>
+  <label for="TableID"> <b>Select table to View:</b> </label>
+  <input type="text" id="TableID" name="TableID">
+  <button type="submit" class="btn btn-primary" name="SubmitTID">Submit</button>
+  </div>
+</body>
+
+<section id="signup">
+
 
 <form action="" method="POST">
           
@@ -109,7 +147,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
             <input type="text" id="ADEmail" name="ADEmail" maxlength="30">   
             <!--Used to separate inputs-->
             <br>
-            <button type="submit" class="btn btn-primary" name="Submit">Submit</button>
+            <button type="submit" class="btn btn-primary" name="SubmitAD">Submit</button>
 
 
 
