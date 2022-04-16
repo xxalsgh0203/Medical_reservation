@@ -57,8 +57,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $_SESSION["username"] = $username;
     $_SESSION["id"] = $rowAdmin["admin_id"];
     $_SESSION["href"] = "./adminPage.php";
-    
-    header("location: adminPage.php");
+    $_SESSION["type"] = "admin";
+    header("location: index.php");
   }
 }
 ?>
@@ -127,7 +127,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
   const logged_in = document.getElementById("login");
   loginbutton.addEventListener('click', ()=>{
     if(logged_in){
-      alert(usrname + " you are logged in");
+      alert("Welcome" + $usrname + "!");
     }
   });
 </script>

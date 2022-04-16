@@ -9,7 +9,7 @@ if (isset($_SESSION["href"])) {
 
 <nav class="navbar navbar-expand-lg nav-back fixed-top" id="mainNav">
   <div class="container">
-    <img src="./img/main_icon.png" class="mainicon">
+    <img src="./img/main_icon.png" class="mainicon" href="./index.php">
     <a class="navbar-brand" href="./index.php">Medimon</a>
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
       data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
@@ -30,6 +30,8 @@ if (isset($_SESSION["href"])) {
             echo '<li class="nav-item"><a class="nav-link" href="./patientPage.php">Manage Appointments</a></li>';
           } else if (isset($_SESSION['type']) == "doctor"){
               echo '<li class="nav-item"><a class="nav-link" href="./doctorPage.php">Manage Appointments</a></li>';
+          } else {
+            echo '<li class="nav-item"><a class="nav-link" href="./adminPage.php">Manage Appointments</a></li>';
           }
         ?>
       </ul>
