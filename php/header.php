@@ -24,7 +24,14 @@ if (isset($_SESSION["href"])) {
               echo '<li class="nav-item"><a class="nav-link" href="./Logout.php" id="logout">Log out</a></li>';
           }
         ?>
-        <li class="nav-item"><a class="nav-link" href="./patientPage.php">Manage Appointments</a></li>
+
+        <?php 
+          if (isset($_SESSION['type']) == "patient") {
+            echo '<li class="nav-item"><a class="nav-link" href="./patientPage.php">Manage Appointments</a></li>';
+          } else if (isset($_SESSION['type']) == "doctor"){
+              echo '<li class="nav-item"><a class="nav-link" href="./doctorPage.php">Manage Appointments</a></li>';
+          }
+        ?>
       </ul>
     </div>
   </div>

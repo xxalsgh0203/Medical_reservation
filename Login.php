@@ -24,9 +24,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $_SESSION["loggedin"] = true;
     $_SESSION["username"] = $username;
     $_SESSION["id"] = $rowPatient["patient_id"];
+    $_SESSION["type"] = "patient";
     // $_SESSION["href"] = "./patientPage.php";
   
-    header("location: patientPage.php");
+    header("location: index.php");
   }
 
   $sqlDoctor = "SELECT doctor_id FROM DOCTOR WHERE name = '$username' AND password = '$password'";
@@ -39,9 +40,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $_SESSION["loggedin"] = true;
     $_SESSION["username"] = $username;
     $_SESSION["id"] = $rowDoctor["doctor_id"];
-    $_SESSION["href"] = "./doctorPage.php";
+    // $_SESSION["href"] = "./doctorPage.php";
+    $_SESSION["type"] = "doctor";
     
-    header("location: doctorPage.php");
+    header("location: index.php");
   }
 
   $sqlAdmin = "SELECT admin_id FROM ADMIN WHERE name = '$username' AND password = '$password'";
