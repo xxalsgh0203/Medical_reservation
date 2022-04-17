@@ -34,7 +34,7 @@ if (isset($_POST['SubmitD']))
     $_SESSION['message'] = "Record has been Saved!";
     $_SESSION['msg_type'] = "Success";
 
-    header("location : dataEntryForm.php");
+    header("location: dataEntryForm.php");
 
 }
 
@@ -49,13 +49,34 @@ if (isset($_POST['SubmitAD']))
     $ADEmail = $_POST['ADEmail'];
 
     //Used to insert data into admin
-    $db->query("INSERT INTO ADMIN (Office_id,  Name, Password, Phone_number, Email) 
+    $db->query("INSERT INTO ADMIN (Office_id, Name, Password, Phone_number, Email) 
                     VALUES ('$ADOFFID', '$ADName', '$ADPWord', '$ADPhoneNum', '$ADEmail')")  or die($db->error); 
 
     $_SESSION['message'] = "Record has been Saved!";
     $_SESSION['msg_type'] = "Success";
 
-    header("location : dataEntryForm.php");
+    header("location: dataEntryForm.php");
+
+}
+
+//Takes in input for Patient from submitAP
+if (isset($_POST['SubmitAP']))
+{
+  //Store input values
+    $APPPID =  $_POST['APPPID'];
+    $APName = $_POST['APname'];
+    $APPWord = $_POST['APPWord'];
+    $APPhoneNum = $_POST['APPhoneNum'];
+    $APEmail = $_POST['APEmail'];
+
+    //Used to insert data into admin
+    $db->query("INSERT INTO PATIENT (Primary_physician_id, Name, Password, Phone_number, Email) 
+                    VALUES ('$APPPID', '$APName', '$APPWord', '$APPhoneNum', '$APEmail')")  or die($db->error); 
+
+    $_SESSION['message'] = "Record has been Saved!";
+    $_SESSION['msg_type'] = "Success";
+
+    header("location: dataEntryForm.php");
 
 }
 
@@ -155,23 +176,22 @@ if (isset($_POST['SubmitAD']))
               <br>  <br>
               <!-- Input taken for Patient -->
               <h2>  Add Patient  </h2>
-              <label for="ADOFFID">Office ID:</label>
-              <input type="number" id="ADOFFID" name="ADOFFID">
-              <label for="ADname">Name:</label>
-              <input type="text" id="ADname" name="ADname" maxlength="20">
-              <label for="ADPWord">create password:</label>
-              <input type="text" id="ADPWord" name="ADPWord">
+              <label for="APPPID">Primary Physician ID:</label>
+              <input type="number" id="APPPID" name="APPPID">
+              <label for="APname">Name:</label>
+              <input type="text" id="APname" name="APname" maxlength="20">
+              <label for="APPWord">create password:</label>
+              <input type="text" id="APPWord" name="APPWord">
               <br>
-              <label for="DPhoneNum">Phone Number:</label>
-              <input type="text" id="ADPhoneNum" name="ADPhoneNum" maxlength="10"> 
-              <label for="ADEmail">Email:</label>
-              <input type="text" id="ADEmail" name="ADEmail" maxlength="30">   
+              <label for="APPhoneNum">Phone Number:</label>
+              <input type="text" id="APPhoneNum" name="APPhoneNum" maxlength="10"> 
+              <label for="APEmail">Email:</label>
+              <input type="text" id="APEmail" name="APEmail" maxlength="30">   
               <!--Used to separate inputs-->
               <br>
-              <button type="submit" class="btn btn-primary" name="SubmitAD">Submit</button>
+              <button type="submit" class="btn btn-primary" name="SubmitAP">Submit</button>
   </form>
 </section>
-
 
 
 <!-- End Of Data Entry -->

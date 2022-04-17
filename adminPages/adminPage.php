@@ -7,6 +7,7 @@ Implemented Features:
   Display appoitnments for doctor with same id as logged in admin
   Display all doctors
   Display all admins
+  display all patients
   Button to dataEntryForm and reportsForm
 
 TODO: 

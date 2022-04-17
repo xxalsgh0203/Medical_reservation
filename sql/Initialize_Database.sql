@@ -74,13 +74,13 @@ INSERT INTO WORK_INFO(Doctor_id, Office_id, Weekday, Start_time, End_time) VALUE
 CREATE TABLE PATIENT (
 	Patient_id           INT AUTO_INCREMENT,
     Primary_physician_id INT,
-    Specialist_approved  BOOLEAN,
+    Specialist_approved  BOOLEAN DEFAULT false,
     Name                 VARCHAR(20) NOT NULL,
     Password             VARCHAR(255) NOT NULL,
     Phone_number         CHAR(10) UNIQUE NOT NULL,
     Email                VARCHAR(254) UNIQUE,
     Age                  INT,
-    Medical_allergy      BOOLEAN NOT NULL,
+    Medical_allergy      BOOLEAN NOT NULL DEFAULT false,
     PRIMARY KEY (Patient_id),
     FOREIGN KEY (Primary_physician_id) REFERENCES DOCTOR(Doctor_id)
 );
