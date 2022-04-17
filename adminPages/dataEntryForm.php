@@ -158,36 +158,6 @@ if (isset($_POST['SubmitAD']))
               <!--Used to separate inputs-->
               <br>
               <button type="submit" class="btn btn-primary" name="SubmitAD">Submit</button>
-
-
-
-              <br><br><br>
-              <!--Update row by unique identifier-->
-              <h3> <b>Update Doctor info:</b> </h3>
-              <label for="DPhoneID">Identify Row to Edit:</label>
-              <input type="text" id="DPhoneID" name ="DPhoneID" maxlength="10">
-              <br>
-              <label for="UOFFID">Office ID:</label>
-              <input type="number" id="UOFFID" name="UOFFID">
-              <label for="USPType">Speciality:</label>
-              <input type="text" id="USPType" name="USPType" maxlength = "30"> 
-              <label for="UDname">Name:</label>
-              <input type="text" id="UDname" name="UDname" maxlength="20">
-              <br>
-              <label for="UDPWord">change password:</label>
-              <input type="Password" id="UDPWord" name="UDPWord">
-              <label for="UDPhoneNum">Phone Number:</label>
-              <input type="text" id="UDPhoneNum" name="UDPhoneNum" maxlength="10">
-              <br>
-              <button type="submit" class="btn btn-primary" name="USubmitD">Submit</button>
-
-              <br><br><br>
-              <!--Delete doctor row -->
-              <h3> <b>Delete Doctor row:</b> </h3>
-              <label for="DPhoneID">Identify Row to Edit:</label>
-              <input type="text" id="DPhoneID" name ="DPhoneID" maxlength="10">
-              <br>
-              <button type="submit" class="btn btn-primary" name="DelSubmitD">Delete</button>
   </form>
 </section>
 
