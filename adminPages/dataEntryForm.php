@@ -37,15 +37,23 @@ if (isset($_GET['delete_Did'])) {
   $id = $_GET['delete_Did'];
 
  mysqli_query($db, "DELETE FROM DOCTOR WHERE Doctor_id = " . $id);
-header('location: adminPage.php');
+header('location: dataEntryForm.php');
 
 }
 
 if (isset($_GET['update_Did'])) {
-  $id = $_GET['delete_Did'];
+  $id = $_GET['update_Did'];
+  $OFFID =  $_POST['OFFID'];
+  $DName = $_POST['Dname'];
+  $SPType = $_POST['SPType'];
+  $DPWord = $_POST['DPWord'];
+  $DPhoneNum = $_POST['DPhoneNum'];
 
- mysqli_query($db, "DELETE FROM DOCTOR WHERE Doctor_id = " . $id);
-header('location: adminPage.php');
+//Used to update data into  doctor row
+$db->query("UPDATE INTO DOCTOR  (Office_id,  Name, Speciality, Password, Phone_number) 
+VALUES ('$OFFID', '$DName', '$SPType', '$DPWord', '$DPhoneNum') WHERE Doctor_id = " . $id)  or die($db->error); 
+
+header('location: dataEntryForm.php');
 
 }
 
@@ -119,7 +127,7 @@ if ($result->num_rows > 0) {
   while($row = $result-> fetch_assoc()) {
     $PtableResult .= "<tr>" . "<td>" . $row["Name"] . "</td><td>" . $row["Phone_number"] . "</td><td>" . 
                     $row["Email"] . "</td><td>" . $row["Age"] . "</td>" . "</td><td>" . $row["Medical_allergy"] . "</td>" .  "</td><td>" . $row["Specialist_approved"] . "</td>" .
-                     "</td><td> <a href='../adminPages/adminPage.php?update_Pid=" . $row["Patient_id"]  . "'>Update</a> </td>" . "</td><td> <a href='../adminPages/adminPage.php?delete_Pid=" . 
+                     "</td><td> <a href='../adminPages/dataEntryForm.php?update_Pid=" . $row["Patient_id"]  . "'>Update</a> </td>" . "</td><td> <a href='../adminPages/dataEntryForm.php?delete_Pid=" . 
                      $row["Patient_id"] . "'>Delete</a> </td>"  . "<tr>";
   }
 }
