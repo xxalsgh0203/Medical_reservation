@@ -64,6 +64,26 @@ if ($result->num_rows > 0) {
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<style>
+  .data 
+  {
+    width: 800px;
+  padding: 100px;
+  margin-top: 20px;
+  
+  }
+  
+  .table 
+  {
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    clear: both;
+  }
+
+  
+</style>
+
 </head>
 
 <?php include_once("../php/header.php"); ?>
@@ -72,8 +92,32 @@ if ($result->num_rows > 0) {
 <!-- ======= reports Page ======= -->
    <section id = "reportsForm">
       
-        <div class = "wrapper">
+        <div class = "center">
         <h1>Report Form</h1>
+        </div>
+
+        <div class = "data">
+          <select name="Office id" style="border: 1px solid">
+              <option>Select</option>
+              <option> 1 PUC</option>
+              <option >2 PUC</option>
+          </select>
+          <select name="Appointments" style="border: 1px solid">
+              <option >Select</option>
+              <option> 1 PUC</option>
+              <option >2 PUC</option>
+          </select>
+          <button type="submit" class="btn btn-primary" name="Submit">Submit</button>
+          <br><br>
+          <table border = "1" class  = "table">
+            <tr>
+                <th>Office id</th>
+                <th>Amount of appointments</th>
+                <th>Specialist enrolled</th>
+                <th>Hours Most Visited</th>
+            </tr>
+          </table>
+
         </div>
 
 
