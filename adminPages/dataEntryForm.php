@@ -16,6 +16,33 @@ TODO:
 session_start();
 
 require_once "../php/config.php";
+
+
+//------------------------------used to retrieve other doctors------------------------------------
+$sql = "SELECT Office_id, Name, Speciality, Phone_number, Doctor_id FROM DOCTOR";
+$result = mysqli_query($db, $sql);
+
+$DtableResult = "";
+if ($result->num_rows > 0) {
+  while($row = $result-> fetch_assoc()) {
+    $DtableResult .= "<tr>". "<td>" . $row["Office_id"] . "</td><td>" . $row["Name"] . "</td><td>" . 
+                      $row["Speciality"] . "</td> <td>" . $row["Phone_number"] . "</td>" . "</td><td> 
+                      <a href='../adminPages/dataEntryForm.php?update_Did=" . $row["Doctor_id"]  . "'>Update</a> </td>" . "</td><td> <a href='../adminPages/dataEntryForm.php?delete_Did=" . $row["Doctor_id"] . "'>Delete</a>
+                                           </td>" .  "</tr>";
+  }
+}
+
+//used when the delete hyperlink is pressed
+if (isset($_GET['delete_Did'])) {
+  $id = $_GET['delete_Did'];
+
+ mysqli_query($db, "DELETE FROM DOCTOR WHERE Doctor_id = " . $id);
+header('location: adminPage.php');
+
+}
+
+
+
 //Takes in input for doctor from SubmitD
 if (isset($_POST['SubmitD']))
 {
@@ -37,6 +64,23 @@ if (isset($_POST['SubmitD']))
     header("location : dataEntryForm.php");
 
 }
+
+
+/*---------------------------to retrieve  admins------------------------------------------------*/
+$sql = "SELECT * FROM ADMIN";
+$result = mysqli_query($db, $sql);
+
+$OtADtableResult = "";
+if ($result->num_rows > 0) {
+  while($row = $result-> fetch_assoc()) {
+    $OtADtableResult .= "<tr>". "<td>" . $row["Office_id"] . "</td><td>" . $row["Name"] . "</td><td>" . 
+                          $row["Phone_number"] . "</td><td>" . $row["Email"] . "</td>" . "</td><td> 
+                          <a href='../adminPages/dataEntryForm.php?update_ADid=" . $row["Admin_id"]  . "'>Update</a> </td>" . "</td><td> <a href='../adminPages/dataEntryForm.php?delete_ADid=" . $row["Admin_id"] . "'>Delete</a>
+                                               </td>"."<tr>";
+  }
+ 
+}
+
 
 //Takes in input for Admin from submitAD
 if (isset($_POST['SubmitAD']))
@@ -77,21 +121,18 @@ if (isset($_POST['SubmitAD']))
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
  
-  <!-- <style>
-     /* Used to center the title*/
-    h1 {text-align: center;}
-  /* used to center inputs*/
-    form { 
-          margin: 0 auto; 
-          width:1000px;
-          }
+    <style>
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
 
-    div
-    {
-    margin: 0px auto;
-    width:300px;
-    }
-  </style> -->
+table.center {
+  margin-left: auto; 
+  margin-right: auto;
+}
+
+</style>
 </head>
 
 <?php include_once("../php/header.php"); ?>
@@ -110,10 +151,122 @@ if (isset($_POST['SubmitAD']))
   </div>
 </body> -->
 
+  <!-- Header of the page-->
+  <section>
+    <br><br>
+    <h1>Data Entry Form</h1>
+  </section>
+  
+
+<!-- ======= Doctor Section ======= -->
 
 <section id="dataEntry">
-    <!-- Header of the page-->
-    <h1>Data Entry Form</h1>
+      <h1>Doctors</h1>
+    
+      <table  class = "center" border="6" >
+              <thead class="thead">
+                <tr>
+                  <th>Office ID</th>
+                  <th>Name</th>
+                  <th>Specialty</th>
+                  <th>Phone Number</th>
+                  <th>update</th>
+                  <th>delete</th>
+                </tr>
+                <?php echo $DtableResult;?>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+  
+
+      <form action="" method="POST">
+            <!--input taken for doctor-->
+              <h2>  Doctor info:  </h2>
+              <label for="OFFID">Office ID:</label>
+              <input type="number" id="OFFID" name="OFFID">
+              <label for="SPType">Speciality:</label>
+              <input type="text" id="SPType" name="SPType" maxlength = "30"> 
+              <label for="Dname">Name:</label>
+              <input type="text" id="Dname" name="Dname" maxlength="20">
+              <br>
+              <label for="DPWord">create password:</label>
+              <input type="Password" id="DPWord" name="DPWord">
+              <label for="DPhoneNum">Phone Number:</label>
+              <input type="text" id="DPhoneNum" name="DPhoneNum" maxlength="10">    
+              <!--Used to separate inputs-->
+              <br>
+              <button type="submit" class="btn btn-primary" name="SubmitD">Submit</button>
+              </form>
+
+            <br><br><br>
+            <h1>Admin</h1>
+            <table  class = "center" border="6">
+              <thead class="thead">
+                <tr>
+                  <th scope="col">Office ID</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Phone number</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">update</th>
+                  <th scope="col">delete</th>
+                </tr>
+                <?php echo $OtADtableResult;?>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+
+            <!--input taken for admin -->
+              <h2>  Admin info:  </h2>
+              <label for="ADOFFID">Office ID:</label>
+              <input type="number" id="ADOFFID" name="ADOFFID">
+              <label for="ADname">Name:</label>
+              <input type="text" id="ADname" name="ADname" maxlength="20">
+              <label for="ADPWord">create password:</label>
+              <input type="text" id="ADPWord" name="ADPWord">
+              <br>
+              <label for="ADPhoneNum">Phone Number:</label>
+              <input type="text" id="ADPhoneNum" name="ADPhoneNum" maxlength="10"> 
+              <label for="ADEmail">Email:</label>
+              <input type="text" id="ADEmail" name="ADEmail" maxlength="30">   
+              <!--Used to separate inputs-->
+              <br>
+              <button type="submit" class="btn btn-primary" name="SubmitAD">Submit</button>
+
+              <br><br><br>
+              <h1>Patient</h1>
+              <!-- Input taken for Patient -->
+              <h1> Patient info:  </h2>
+              <label for="ADOFFID">Office ID:</label>
+              <input type="number" id="ADOFFID" name="ADOFFID">
+              <label for="ADname">Name:</label>
+              <input type="text" id="ADname" name="ADname" maxlength="20">
+              <label for="ADPWord">create password:</label>
+              <input type="text" id="ADPWord" name="ADPWord">
+              <br>
+              <label for="DPhoneNum">Phone Number:</label>
+              <input type="text" id="ADPhoneNum" name="ADPhoneNum" maxlength="10"> 
+              <label for="ADEmail">Email:</label>
+              <input type="text" id="ADEmail" name="ADEmail" maxlength="30">   
+              <!--Used to separate inputs-->
+              <br>
+              <button type="submit" class="btn btn-primary" name="SubmitAD">Submit</button>
+              
+
+
+
+
+</section>
+<!-- End Doctors Page-->
+
+
+
+
+
+
+<section id="dataEntry">
+  
 
 
   <form action="" method="POST">
