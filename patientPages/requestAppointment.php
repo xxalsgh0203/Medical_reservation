@@ -1,12 +1,12 @@
 <?php
 require_once "../php/config.php";
   // Check if the user is logged in, if not then redirect them to login page
-if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true)
+/*if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true)
 {
   header("location: login.php");
   exit;
 
-}
+}*/
  
 ?>
 <!doctype html>
@@ -55,6 +55,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true)
       Choose Doctor Type
       <select id="choose-doctor" class="form-control" required name="doctor" required>
         <option value="Regular">Regular</option>
+        <option value="Anesthesiology">Anesthesiology</option>
         <option value="Eye Doctor">Eye Doctor</option>
         <option value="Orthodontist">Orthodontist</option>
         <option value="Dermatologist">Dermatologist</option>

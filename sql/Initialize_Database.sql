@@ -74,13 +74,13 @@ INSERT INTO WORK_INFO(Doctor_id, Office_id, Weekday, Start_time, End_time) VALUE
 CREATE TABLE PATIENT (
 	Patient_id           INT AUTO_INCREMENT,
     Primary_physician_id INT,
-    Specialist_approved  BOOLEAN,
+    Specialist_approved  BOOLEAN DEFAULT false,
     Name                 VARCHAR(20) NOT NULL,
     Password             VARCHAR(255) NOT NULL,
     Phone_number         CHAR(10) UNIQUE NOT NULL,
     Email                VARCHAR(254) UNIQUE,
     Age                  INT,
-    Medical_allergy      BOOLEAN NOT NULL,
+    Medical_allergy      BOOLEAN NOT NULL DEFAULT false,
     PRIMARY KEY (Patient_id),
     FOREIGN KEY (Primary_physician_id) REFERENCES DOCTOR(Doctor_id)
 );
@@ -108,17 +108,18 @@ CREATE TABLE APPOINTMENT (
 );
 
 INSERT INTO APPOINTMENT(Patient_id, Doctor_id, Office_id, Appointment_status, Slotted_time, Specialist_status) VALUES
-(1, 1, 1, "completed", "9:00", 1),
+(1, 1, 1, "pending", "9:00", 1),
 (1, 5, 2, "approved", "15:00", 1),
-(2, 3, 1, "canceled", "7:00", 0),
+(2, 3, 1, "pending", "7:00", 0),
 (2, 4, 2, "canceled", "1:00", 0),
 (2, 5, 1, "approved", "3:00", 0),
 (3, 1, 1, "rejected", "2:30", 1),
 (4, 2, 1, "canceled", "16:00", 1),
 (4, 5, 1, "approved", "11:00", 1),
-(5, 5, 2, "approved", "2:00", 0),
+(5, 5, 2, "pending", "2:00", 0),
 (5, 1, 1, "approved", "12:00", 0);
 
+/*
 
 DELIMITER $$
 CREATE TRIGGER SAPPROVE
@@ -138,11 +139,33 @@ BEGIN
         Declare @Msg varchar(8000)
         set @Msg = 'MESSAGE'
 		raiserror(50005, @Msg)
-		ROLLBACK TRANSACTION;
+		DELETE NEW
 	)
 	END IF;
-END
+END;$$
 DELIMITER ;
+
+*/
+
+DELIMITER $$
+CREATE TRIGGER SAPPROVE
+AFTER INSERT
+ON APPOINTMENT
+FOR EACH ROW
+BEGIN
+	IF (
+		SELECT COUNT(*)
+		FROM PATIENT
+		INNER JOIN APPOINTMENT ON PATIENT.Patient_id = APPOINTMENT.Patient_id
+		WHERE PATIENT.Specialist_approved = FALSE
+		AND APPOINTMENT.Specialist_status = TRUE
+		) >= 1 THEN
+        DELETE NEW FROM APPOINTMENT;
+	END IF;
+END; $$
+DELIMITER ;
+
+/*
 
 DELIMITER $$
 CREATE TRIGGER CONFLICT
@@ -158,9 +181,28 @@ BEGIN
 	)
 	THEN
 		PRINT 'Time is Taken'
-		ROLLBACK TRANSACTION;
+		DELETE NEW
 	END IF;
-END
+END;$$
+DELIMITER ;
+
+*/
+
+DELIMITER $$
+CREATE TRIGGER CONFLICT
+AFTER INSERT
+ON APPOINTMENT
+FOR EACH ROW
+BEGIN
+	IF (
+		SELECT COUNT(*)
+		FROM APPOINTMENTS
+		WHERE Doctor_id = NEW.Doctor_id
+		AND Slotted_time = NEW.Slotted_time
+	) >= 1 THEN
+		DELETE NEW FROM APPOINTMENT;
+	END IF;
+END;$$
 DELIMITER ;
 
 CREATE TABLE PRESCRIPTION (
