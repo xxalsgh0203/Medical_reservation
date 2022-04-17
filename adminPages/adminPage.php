@@ -29,6 +29,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     exit;
 }
 
+//Current admin log in info
 $id = $_SESSION["id"];
 $sql = "SELECT Office_id, Name, Phone_number, Email FROM ADMIN WHERE Admin_id = '$id'";
 $result = mysqli_query($db, $sql);
@@ -87,7 +88,7 @@ header('location: adminPage.php');
 
 }
 
-//used when the update link is pressed
+/*used when the update link is pressed
 if (isset($_GET['update_Did'])) {
   $id = $_GET['update_Did'];
   $result =  $db->query("SELECT * FROM DOCTOR WHERE Doctor_id = $id");
@@ -95,9 +96,9 @@ if (isset($_GET['update_Did'])) {
   {
     
   }
-header('location: adminPage.php');
 
-}
+header('location: adminPage.php');
+}*/
 
 if (isset($_GET['approve_id'])) {
   $id = $_GET['approve_id'];
@@ -129,14 +130,16 @@ if ($result->num_rows > 0) {
 }
 
 //Retrieve patients based on assigned office
-$sql = "SELECT Name, Phone_number, Email , Age, Medical_allergy FROM PATIENT";
+$sql = "SELECT Name, Phone_number, Email , Age, Medical_allergy, Specialist_approved, Patient_id FROM PATIENT";
 $result = mysqli_query($db, $sql);
 
 $PtableResult = "";
 if ($result->num_rows > 0) {
   while($row = $result-> fetch_assoc()) {
     $PtableResult .= "<tr>" . "<td>" . $row["Name"] . "</td><td>" . $row["Phone_number"] . "</td><td>" . 
-                    $row["Email"] . "</td><td>" . $row["Age"] . "</td>" . "</td><td>" . $row["Medical_allergy"] . "</td>" . "<tr>";
+                    $row["Email"] . "</td><td>" . $row["Age"] . "</td>" . "</td><td>" . $row["Medical_allergy"] . "</td>" .  "</td><td>" . $row["Specialist_approved"] . "</td>" .
+                     "</td><td> <a href='../adminPages/adminPage.php?update_Pid=" . $row["Patient_id"]  . "'>Update</a> </td>" . "</td><td> <a href='../adminPages/adminPage.php?delete_Pid=" . 
+                     $row["Patient_id"] . "'>Delete</a> </td>"  . "<tr>";
   }
 }
 
@@ -171,6 +174,10 @@ if ($result->num_rows > 0) {
        text-align: center;
      }
      h2
+     {
+       text-align: center;
+     }
+     h1
      {
        text-align: center;
      }
@@ -287,8 +294,8 @@ if ($result->num_rows > 0) {
           </div>
         </div>
       </div>
-            <!--Update row by unique identifier-->
-            <h3> <b>Update Doctor info:</b> </h3>
+            <!--Update Doctor info-->
+            <h1> Update Doctor info: </h1>
             <label for="UOFFID">Office ID:</label>
             <input type="number" id="UOFFID" name="UOFFID">
             <label for="USPType">Speciality:</label>
@@ -336,10 +343,19 @@ if ($result->num_rows > 0) {
         </div>
       </div>
 
-     <footer>
-        <div class="copyright-wrap">
-        </div>
-      </footer>
+          <!--Update Admin info-->
+          <h1> Update Admin info: </h1>
+            <label for="UOFFIAD">Office ID:</label>
+            <input type="number" id="UOFFIAD" name="UOFFIAD">
+            <label for="UDname">Name:</label>
+            <input type="text" id="UADname" name="UADname" maxlength="20">
+            <br>
+            <label for="UADPhoneNum">Phone Number:</label>
+            <input type="text" id="UADPhoneNum" name="UADPhoneNum" maxlength="10">
+            <label for="UADEmail">Email:</label>
+            <input type="text" id="UADEmail" name="UADEmail" maxlength="254">
+            <br>
+            <button type="submit" class="btn btn-primary" name="USubmitAD">Submit</button>
     </div>
   </div>
 </section>
@@ -350,10 +366,11 @@ if ($result->num_rows > 0) {
   <div class="main-container">
     <div class="main-wrap">
 
-      <div class="text-center" id="Admin-header">Patients</div>
+      <div class="text-center" id="PatientT"></div>
+      <h1>Patients</h1>
       <div class="container-fluid">
         <div class="row justify-content-center my-5">
-          <div class="col-10">
+          <div class="col-100">
             <table class="table table-bordered">
               <thead class="thead">
                 <tr>
@@ -362,6 +379,9 @@ if ($result->num_rows > 0) {
                   <th scope="col">Email</th>
                   <th scope="col">Age</th>
                   <th scope="col">Medical allergy</th>
+                  <th scope="col">Specialist approved</th>
+                  <th scope="col">Update</th>
+                  <th scope="col">Delete</th>
                 </tr>
                 <?php echo $PtableResult;?>
               </thead>
@@ -373,11 +393,37 @@ if ($result->num_rows > 0) {
         </div>
       </div>
 
+     <!-- Handles patient updates-->
+  <h2>  <b>Update patient info:</b>  </h2>
+  <label for="PPname">Primary physician:</label>
+  <input type="text" id="PPname" name="PPname">
+  <label for="name">Patient Name:</label>
+  <input type="text" id="name" name="name" maxlength="20"> 
+  <br>
+  <label for="PPWord">Update password:</label>
+  <input type="text" id="PPWord" name="PPWord">
+  <label for="SPApproved">Specialist approval:</label>
+  <input type="number" id="AprNum" name="AprNum"> 
+  <br>
+  <label for="PhoneNum">Phone Number:</label>
+  <input type="text" id="AprNum" name="AprNum" maxlength="10">    
+  <!--Used to separate inputs-->
+  <br>
+  <button type="submit" class="btn btn-primary" name="USubmitP">Submit</button>
 
 
+     <footer>
+        <div class="copyright-wrap">
+        </div>
+      </footer>
+    </div>
+  </div>
+</section>
+<!-- End of Patients -->
+<br> <br>
 
          <!-- Used to center container -->
-     <div id = "container">
+         <div id = "container">
         <!--Used to redirect to data entry page -->
         <a href="dataEntryForm.php"> 
           <button id = "Redi1">Enter Data</button>
@@ -388,14 +434,6 @@ if ($result->num_rows > 0) {
         </a>
      </div>
 
-     <footer>
-        <div class="copyright-wrap">
-        </div>
-      </footer>
-    </div>
-  </div>
-</section>
-<!-- End of Patients -->
 
 <!-- End of redirection-->
 
