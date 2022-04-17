@@ -37,7 +37,7 @@ if (isset($_GET['delete_Did'])) {
   $id = $_GET['delete_Did'];
 
  mysqli_query($db, "DELETE FROM DOCTOR WHERE Doctor_id = " . $id);
-header('location: dataEntryForm.php');
+header('location:dataEntryForm.php');
 
 }
 
@@ -53,7 +53,7 @@ if (isset($_GET['update_Did'])) {
 $db->query("UPDATE INTO DOCTOR  (Office_id,  Name, Speciality, Password, Phone_number) 
 VALUES ('$OFFID', '$DName', '$SPType', '$DPWord', '$DPhoneNum') WHERE Doctor_id = " . $id)  or die($db->error); 
 
-header('location: dataEntryForm.php');
+header('location:dataEntryForm.php');
 
 }
 
@@ -76,7 +76,7 @@ if (isset($_POST['SubmitD']))
                     VALUES ('$OFFID', '$DName', '$SPType', '$DPWord', '$DPhoneNum')")  or die($db->error); 
 
   
-    header("location : dataEntryForm.php");
+    header("location:dataEntryForm.php");
 
 }
 
@@ -112,7 +112,7 @@ if (isset($_POST['SubmitAD']))
                     VALUES ('$ADOFFID', '$ADName', '$ADPWord', '$ADPhoneNum', '$ADEmail')")  or die($db->error); 
 
    
-    header("location : dataEntryForm.php");
+    header("location:dataEntryForm.php");
 
 }
 
