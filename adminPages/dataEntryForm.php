@@ -41,6 +41,15 @@ header('location: adminPage.php');
 
 }
 
+if (isset($_GET['update_Did'])) {
+  $id = $_GET['delete_Did'];
+
+ mysqli_query($db, "DELETE FROM DOCTOR WHERE Doctor_id = " . $id);
+header('location: adminPage.php');
+
+}
+
+
 
 
 //Takes in input for doctor from SubmitD
@@ -58,9 +67,7 @@ if (isset($_POST['SubmitD']))
     $db->query("INSERT INTO DOCTOR (Office_id,  Name, Speciality, Password, Phone_number) 
                     VALUES ('$OFFID', '$DName', '$SPType', '$DPWord', '$DPhoneNum')")  or die($db->error); 
 
-    $_SESSION['message'] = "Record has been Saved!";
-    $_SESSION['msg_type'] = "Success";
-
+  
     header("location : dataEntryForm.php");
 
 }
@@ -96,9 +103,7 @@ if (isset($_POST['SubmitAD']))
     $db->query("INSERT INTO ADMIN (Office_id,  Name, Password, Phone_number, Email) 
                     VALUES ('$ADOFFID', '$ADName', '$ADPWord', '$ADPhoneNum', '$ADEmail')")  or die($db->error); 
 
-    $_SESSION['message'] = "Record has been Saved!";
-    $_SESSION['msg_type'] = "Success";
-
+   
     header("location : dataEntryForm.php");
 
 }
