@@ -12,7 +12,6 @@ Implemented Features:
 
 TODO: 
   Move general display stuff to report page
-  display appointments to approve with functioanlity to approve/not approve
   
  -->
 
@@ -43,7 +42,7 @@ if ($result->num_rows > 0) {
 }
 
 //Query to retrieve appointments for doctor
-$sql = "SELECT Patient_id, Office_id, Appointment_id, Appointment_status, Slotted_time, Specialist_status FROM APPOINTMENT WHERE Appointment_status = 'pending'";
+$sql = "SELECT Patient_id, Office_id, Appointment_id, Appointment_status, Slotted_time, Specialist_status FROM APPOINTMENT ORDER BY Appointment_status='rejected', Appointment_status='canceled', Appointment_status='approved', Appointment_status='pending'";
 $result = mysqli_query($db, $sql);
 
 //table results for appointments
@@ -53,7 +52,7 @@ if ($result->num_rows > 0) {
     $APtableResult .= "<tr>". "<td>" . $row["Patient_id"] . "</td><td>"  . $row["Office_id"] . "</td><td>" .
                        $row["Appointment_status"] . "</td><td>" . $row["Slotted_time"] . "</td><td>" . $row["Specialist_status"] . "</td>";
                        
-    if ($row["Appointment_status"] !== 'approved') {
+    if ($row["Appointment_status"] === 'pending') {
       $APtableResult .= "<td><a href='../adminPages/adminPage.php?approve_id=" . $row["Appointment_id"] . "'>X</a></td>";
       $APtableResult .= "<td><a href='../adminPages/adminPage.php?reject_id=" . $row["Appointment_id"] . "'>X</a></td>";
     } else {
