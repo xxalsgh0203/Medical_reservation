@@ -548,3 +548,14 @@
   margin: 0px auto;
   width:300px;
 }
+
+/* Report Form style  */
+#reportsForm{
+  width: 100%;
+  background: center center;
+  background-size: cover;
+  position: relative;
+  margin-top: 100px;
+  height: 130%;
+  text-align: center;
+}

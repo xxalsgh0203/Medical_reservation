@@ -30,6 +30,12 @@ if (isset($_POST['SubmitD']))
     //Used to insert data into doctor
     $db->query("INSERT INTO DOCTOR (Office_id,  Name, Speciality, Password, Phone_number) 
                     VALUES ('$OFFID', '$DName', '$SPType', '$DPWord', '$DPhoneNum')")  or die($db->error); 
+
+    $_SESSION['message'] = "Record has been Saved!";
+    $_SESSION['msg_type'] = "Success";
+
+    header("location : dataEntryForm.php");
+
 }
 
 //Takes in input for Admin from submitAD
@@ -46,10 +52,12 @@ if (isset($_POST['SubmitAD']))
     $db->query("INSERT INTO ADMIN (Office_id,  Name, Password, Phone_number, Email) 
                     VALUES ('$ADOFFID', '$ADName', '$ADPWord', '$ADPhoneNum', '$ADEmail')")  or die($db->error); 
 
+    $_SESSION['message'] = "Record has been Saved!";
+    $_SESSION['msg_type'] = "Success";
 
+    header("location : dataEntryForm.php");
 
 }
-
 
 
 ?> 
@@ -91,10 +99,8 @@ if (isset($_POST['SubmitAD']))
 <!-- End Header -->
 <!-- ======= DataEntry Page ======= -->
 
-<!-- Header of the page-->
-<h1>Data Entry Form</h1>
 
-<!-- Pick a specific table -->
+<!-- Pick a specific table 
 <body>
   <br>
   <div>
@@ -102,9 +108,14 @@ if (isset($_POST['SubmitAD']))
   <input type="text" id="TableID" name="TableID">
   <button type="submit" class="btn btn-primary" name="SubmitTID">Submit</button>
   </div>
-</body>
+</body> -->
+
 
 <section id="dataEntry">
+    <!-- Header of the page-->
+    <h1>Data Entry Form</h1>
+
+
   <form action="" method="POST">
             <!--input taken for doctor-->
               <h2>  Add Doctor  </h2>
@@ -158,36 +169,6 @@ if (isset($_POST['SubmitAD']))
               <!--Used to separate inputs-->
               <br>
               <button type="submit" class="btn btn-primary" name="SubmitAD">Submit</button>
-
-
-
-              <br><br><br>
-              <!--Update row by unique identifier-->
-              <h3> <b>Update Doctor info:</b> </h3>
-              <label for="DPhoneID">Identify Row to Edit:</label>
-              <input type="text" id="DPhoneID" name ="DPhoneID" maxlength="10">
-              <br>
-              <label for="UOFFID">Office ID:</label>
-              <input type="number" id="UOFFID" name="UOFFID">
-              <label for="USPType">Speciality:</label>
-              <input type="text" id="USPType" name="USPType" maxlength = "30"> 
-              <label for="UDname">Name:</label>
-              <input type="text" id="UDname" name="UDname" maxlength="20">
-              <br>
-              <label for="UDPWord">change password:</label>
-              <input type="Password" id="UDPWord" name="UDPWord">
-              <label for="UDPhoneNum">Phone Number:</label>
-              <input type="text" id="UDPhoneNum" name="UDPhoneNum" maxlength="10">
-              <br>
-              <button type="submit" class="btn btn-primary" name="USubmitD">Submit</button>
-
-              <br><br><br>
-              <!--Delete doctor row -->
-              <h3> <b>Delete Doctor row:</b> </h3>
-              <label for="DPhoneID">Identify Row to Edit:</label>
-              <input type="text" id="DPhoneID" name ="DPhoneID" maxlength="10">
-              <br>
-              <button type="submit" class="btn btn-primary" name="DelSubmitD">Delete</button>
   </form>
 </section>
 

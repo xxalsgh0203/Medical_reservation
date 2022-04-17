@@ -69,15 +69,11 @@ if ($result->num_rows > 0) {
 <?php include_once("../php/header.php"); ?>
 
 <!-- End Header -->
-<!-- ======= DataEntry Page ======= -->
-   <body>
-       <br>
-       <h2>welcome</h2>
-       <h2>welcome</h2>
-       <h2>welcome</h2>
-       <h2>welcome</h2>
-   </body>
-<!-- End Of Data Entry -->
+<!-- ======= reports Page ======= -->
+   <section id = "reportsForm">
+      <h1>Report Form</h1>
+   </section>
+<!-- End Of Reports page -->
 
 
 
