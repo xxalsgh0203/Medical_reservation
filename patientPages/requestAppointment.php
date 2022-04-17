@@ -1,12 +1,12 @@
 <?php
 require_once "../php/config.php";
   // Check if the user is logged in, if not then redirect them to login page
-/*if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true)
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true)
 {
   header("location: login.php");
   exit;
 
-}*/
+}
  
 ?>
 <!doctype html>
@@ -50,22 +50,7 @@ require_once "../php/config.php";
     <div class="col-sm-8 col-lg-8" >
       <p class="make-reservation-header">Make Your Reservation</p>
     </div>
-    <!--div class="col-sm-8 col-lg-8">
-      Choose your date
-      <p><input type="date" value="today" class="form-control" name="date"></p>
-    </div-->
-
-    <!--div class="col-sm-8 col-lg-8">
-      Choose Time
-      <p><input type="time" id="time" class="form-control" step="3600000" name="time"></p>
-    </div-->
-
-        
-    <!--div class="col-sm-8 col-lg-8">
-      Symptoms
-      <textarea id="symptoms" class="form-control" required name="symptons"></textarea>
-    </div-->
-
+    
     <div class="col-sm-8 col-lg-8">
       Choose Doctor Type
       <select id="choose-doctor" class="form-control" required name="doctor" required>

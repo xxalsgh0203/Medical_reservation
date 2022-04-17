@@ -1,6 +1,54 @@
 <?php
-session_start();
-require_once "../php/config.php";
+    session_start();
+    require_once "../php/config.php";
+
+    if(isset($_POST['time'])) {
+        $patientID = $_SESSION['id'];
+        $doctorID = $_SESSION['name'];
+        $doctor = $_SESSION['doctor'];
+        $time = $_POST['time'];
+        $appointmentStatus = "Pending";
+
+        $query = "Select Office_id from DOCTOR where Doctor_id = '$doctorID';";
+        $result = mysqli_query($db, $query);
+        $data= mysqli_fetch_assoc($result);
+
+        $officeID = $data['Office_id'];
+
+        $query = "select Speciality from DOCTOR where Doctor_id = '$doctorID';";
+        $result = mysqli_query($db, $query);
+        $data = mysqli_fetch_assoc($result);
+
+        $specialistStatus = 0;
+        if (!is_null($data['Speciality'])) {
+            $specialistStatus = 1;
+        }
+
+        /*$query = "Select * from DOCTOR;";
+        $result = mysqli_query($db, $query);
+        $resultCheck= mysqli_num_rows($result);
+
+
+        if($resultCheck > 0) {
+            while ($row = mysqli_fetch_array($result)) {
+                if(is_null($row['Speciality'])) {//checks to see if it 
+                    echo $row['Name']." ".$row['Speciality'].'<br>';
+                }
+                //echo $row['Name']." ".$row['Speciality'].'<br>';
+
+            }
+        }*/
+
+
+        /*$query = "INSERT INTO `APPOINTMENT`(Patient_id, Doctor_id, Office_id, Appointment_status, Slotted_time, Specialist_status) VALUES
+        ('$patientID', '$doctorID', '$officeID', '$appointmentStatus', '$time', '$specialistStatus');";
+        $result   = mysqli_query($db, $query);*/
+    }
+
+
+?>
+
+<?php
   // Check if the user is logged in, if not then redirect them to login page
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true)
 {
@@ -45,42 +93,11 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true)
 
 <!-- End Header -->
 <!-- ======= signup Section ======= -->
-<?php
-    $name;
-    if (isset($_POST['name'])){
-        $_POST['name'];
-        $name = $_POST['name'];
-        $_SESSION['name'] = $name;
-
-
-    }
-
-?>
-
 <body>
-
     <div class="container">
-        <form action = "requestAppointment4.php" method = "POST">
-            <h2>Please select a date </h2>
-            <div>
-                <label for="time">Select Date: </label>
-                <select name="time" id="time" required>
-                    <option value="9:00"> 9:00 AM</option>
-                    <option value="10:00"> 10:00 AM</option>
-                    <option value="11:00"> 11:00 AM</option>
-                    <option value="12:00"> 12:00 PM</option>
-                    <option value="13:00"> 1:00 PM</option>
-                    <option value="14:00"> 2:00 PM</option>
-                    <option value="15:00"> 3:00 PM</option>
-                    <option value="16:00"> 4:00 PM</option>
-                </select>
-            </div>
-            <div>
-                <input type="submit" name ="button" value="Submit"/>        </div>
-        </form>
+        <p>Appointment has been requested</p>
     </div>
 </body>
-
 <!-- Footer-->
 <footer class="footer py-4 mt-5">
   <div class="container">
