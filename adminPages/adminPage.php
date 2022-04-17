@@ -82,14 +82,14 @@ if ($result->num_rows > 0) {
  
 }
 
-$id = $_SESSION["id"];
-$sql = "SELECT Name, Phone_number, Email , Age Medical_allergy FROM PATIENT WHERE Patient_id = '$id'";
+//Retrieve patients based on assigned office
+$sql = "SELECT Name, Phone_number, Email , Age, Medical_allergy FROM PATIENT";
 $result = mysqli_query($db, $sql);
 
-$tableResult = "";
+$PtableResult = "";
 if ($result->num_rows > 0) {
   while($row = $result-> fetch_assoc()) {
-    $tableResult .= "<tr>" . "<td>" . $row["Name"] . "</td><td>" . $row["Phone_Number"] . "</td><td>" . 
+    $PtableResult .= "<tr>" . "<td>" . $row["Name"] . "</td><td>" . $row["Phone_number"] . "</td><td>" . 
                     $row["Email"] . "</td><td>" . $row["Age"] . "</td>" . "</td><td>" . $row["Medical_Allergy"] . "</td>" . "<tr>";
   }
 }
@@ -270,18 +270,6 @@ if ($result->num_rows > 0) {
         </div>
       </div>
 
-         <!-- Used to center container -->
-     <div id = "container">
-        <!--Used to redirect to data entry page -->
-        <a href="dataEntryForm.php"> 
-          <button id = "Redi1">Enter Data</button>
-        </a>
-        <!--Used to redirect to report page -->
-        <a href="reportsForm.php"> 
-          <button id = "Redi2">Reports</button>
-        </a>
-     </div>
-
      <footer>
         <div class="copyright-wrap">
         </div>
@@ -291,23 +279,25 @@ if ($result->num_rows > 0) {
 </section>
 <!-- End of other Admins -->
 
-<section id="AdminUsers">
+<!-- Patients -->
+<section id="Patient">
   <div class="main-container">
     <div class="main-wrap">
 
-      <div class="text-center" id="Admin-header">Other Admins</div>
+      <div class="text-center" id="Admin-header">Patients</div>
       <div class="container-fluid">
         <div class="row justify-content-center my-5">
           <div class="col-10">
             <table class="table table-bordered">
               <thead class="thead">
                 <tr>
-                  <th scope="col">Office ID</th>
                   <th scope="col">Name</th>
-                  <th scope="col">Phone number</th>
+                  <th scope="col">Phone Number</th>
                   <th scope="col">Email</th>
+                  <th scope="col">Age</th>
+                  <th scope="col">Medical allergy</th>
                 </tr>
-                <?php echo $OtADtableResult;?>
+                <?php echo $PtableResult;?>
               </thead>
               <tbody>
               </tbody>
@@ -336,7 +326,7 @@ if ($result->num_rows > 0) {
     </div>
   </div>
 </section>
-
+<!-- End of Patients -->
 
 <!-- End of redirection-->
 
