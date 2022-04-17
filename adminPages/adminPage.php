@@ -108,6 +108,10 @@ if ($result->num_rows > 0) {
      {
        text-align: center;
      }
+     h2
+     {
+       text-align: center;
+     }
    </style>
 </head>
 
@@ -115,7 +119,7 @@ if ($result->num_rows > 0) {
 
 <!-- End Header -->
 <!-- ======= Admin Page ======= -->
-<section id="AdminUsers">
+<body>
   <div class="main-container">
     <div class="main-wrap">
 
@@ -139,18 +143,14 @@ if ($result->num_rows > 0) {
 
           </div>
         </div>
-      </div>
 
-      <footer>
-        <div class="copyright-wrap">
-        </div>
-      </footer>
+      </div>
     </div>
   </div>
 
 
-  <h2>hi hello</h2>
-</section>
+  
+  </body>
 
 
 <!-- End signup -->
@@ -185,10 +185,8 @@ if ($result->num_rows > 0) {
           </div>
         </div>
       </div>
-
-      <footer>
-        <div class="copyright-wrap">
-        </div>
+      <h2> <b>Edit Data:</b> </h2>
+    
       </footer>
     </div>
   </div>
@@ -225,11 +223,24 @@ if ($result->num_rows > 0) {
           </div>
         </div>
       </div>
-
-      <footer>
-        <div class="copyright-wrap">
+      <!-- Used to update data -->
+      <h2> <b>Updata Data:</b> </h2>
+      <form action="" method="POST">
+        <div class="row justify-content-center">
+          <div class = "form-group">
+            <label for="DPWord">create password:</label>
+            <input type="text" id="DPWord" name="ADPWord">
+          </div>
+          <div class = "form-group">
+            <label for="DPhoneNum">Phone Number:</label>
+            <input type="text" id="DPhoneNum" name="DPhoneNum" maxlength="10"> 
+          </div>
+          <div class = "form-group">
+            <label for="DEmail">Email:</label>
+            <input type="text" id="DEmail" name="DEmail" maxlength="30">  
+          </div>
         </div>
-      </footer>
+      </form>
     </div>
   </div>
 </section>
@@ -264,8 +275,39 @@ if ($result->num_rows > 0) {
           </div>
         </div>
       </div>
+       <!-- Used to update data -->
+       <h2> <b>Updata Data:</b> </h2>
+      <form action="" method="POST">
+        <div class="row justify-content-center">
+          <div class = "form-group">
+            <label for="ADPWord">create password:</label>
+            <input type="text" id="ADPWord" name="ADPWord">
+          </div>
+          <div class = "form-group">
+            <label for="DPhoneNum">Phone Number:</label>
+            <input type="text" id="ADPhoneNum" name="ADPhoneNum" maxlength="10"> 
+          </div>
+          <div class = "form-group">
+            <label for="ADEmail">Email:</label>
+            <input type="text" id="ADEmail" name="ADEmail" maxlength="30">  
+          </div>
+        </div>
+      </form>
 
-      <footer>
+
+         <!-- Used to center container -->
+     <div id = "container">
+        <!--Used to redirect to data entry page -->
+        <a href="dataEntryForm.php"> 
+          <button id = "Redi1">Enter Data</button>
+        </a>
+        <!--Used to redirect to report page -->
+        <a href="reportsForm.php"> 
+          <button id = "Redi2">Reports</button>
+        </a>
+     </div>
+
+     <footer>
         <div class="copyright-wrap">
         </div>
       </footer>
@@ -278,20 +320,7 @@ if ($result->num_rows > 0) {
 
 
 
-<!-- Redirection buttons for Admin-->
-  <body>
-     <!-- Used to center container -->
-     <div id = "container">
-        <!--Used to redirect to data entry page -->
-        <a href="dataEntryForm.php"> 
-          <button id = "Redi1">Edit Data</button>
-        </a>
-        <!--Used to redirect to report page -->
-        <a href="reportsForm.php"> 
-          <button id = "Redi2">Reports</button>
-        </a>
-     </div>
-  </body>
+
 
 <!-- End of redirection-->
 
@@ -304,6 +333,7 @@ if ($result->num_rows > 0) {
 </html>
 
 <!--
-"</td><td>" . $row["Specialist_status"] . "</td><td> 
-    <a href='../doctorPage.php?delete_id=" . $row["Appointment_id"] . "'>X</a>
-    </td>" -->
+"</td><td> 
+  <a href='../adminPage.php?edit=" . $row["Doctor_id"]  . "'>Update</a> </td>" . "</td><td> <a href='../adminPage.php?delete_id=" . $row["Doctor_id"] . "'>Delete</a>
+                       </td>" -->
+

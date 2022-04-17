@@ -157,7 +157,7 @@ if(isset($_POST['SubmitTID']))
 
 
 <form action="" method="POST">
-          
+          <!--input taken for doctor-->
             <h2>  <b>Add Doctor</b>  </h2>
             <label for="OFFID">Office ID:</label>
             <input type="number" id="OFFID" name="OFFID">
@@ -175,7 +175,7 @@ if(isset($_POST['SubmitTID']))
             <button type="submit" class="btn btn-primary" name="SubmitD">Submit</button>
 
             <br>  <br>
-          
+           <!--input taken for admin -->
             <h2>  <b>Add Admin</b>  </h2>
             <label for="ADOFFID">Office ID:</label>
             <input type="number" id="ADOFFID" name="ADOFFID">
@@ -184,7 +184,7 @@ if(isset($_POST['SubmitTID']))
             <label for="ADPWord">create password:</label>
             <input type="text" id="ADPWord" name="ADPWord">
             <br>
-            <label for="DPhoneNum">Phone Number:</label>
+            <label for="ADPhoneNum">Phone Number:</label>
             <input type="text" id="ADPhoneNum" name="ADPhoneNum" maxlength="10"> 
             <label for="ADEmail">Email:</label>
             <input type="text" id="ADEmail" name="ADEmail" maxlength="30">   
@@ -193,7 +193,7 @@ if(isset($_POST['SubmitTID']))
             <button type="submit" class="btn btn-primary" name="SubmitAD">Submit</button>
 
              <br>  <br>
-          
+            <!-- Input taken for Patient -->
             <h2>  <b>Add Patient</b>  </h2>
             <label for="ADOFFID">Office ID:</label>
             <input type="number" id="ADOFFID" name="ADOFFID">
