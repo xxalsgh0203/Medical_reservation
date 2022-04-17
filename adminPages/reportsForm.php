@@ -71,7 +71,13 @@ if ($result->num_rows > 0) {
 <!-- End Header -->
 <!-- ======= reports Page ======= -->
    <section id = "reportsForm">
-      <h1>Report Form</h1>
+      
+        <div class = "wrapper">
+        <h1>Report Form</h1>
+        </div>
+
+
+
    </section>
 <!-- End Of Reports page -->
 

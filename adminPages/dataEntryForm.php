@@ -27,7 +27,7 @@ if ($result->num_rows > 0) {
   while($row = $result-> fetch_assoc()) {
     $DtableResult .= "<tr>". "<td>" . $row["Office_id"] . "</td><td>" . $row["Name"] . "</td><td>" . 
                       $row["Speciality"] . "</td> <td>" . $row["Phone_number"] . "</td>" . "</td><td> 
-                      <a href='../adminPages/dataEntryForm.php?update_Did=" . $row["Doctor_id"]  . "'>Update</a> </td>" . "</td><td> <a href='../adminPages/dataEntryForm.php?delete_Did=" . $row["Doctor_id"] . "'>Delete</a>
+                      <a href='../adminPages/dataEntryForm.php?update_Did=" . $row["Doctor_id"]  . "'>edit</a> </td>" . "</td><td> <a href='../adminPages/dataEntryForm.php?delete_Did=" . $row["Doctor_id"] . "'>Delete</a>
                                            </td>" .  "</tr>";
   }
 }
@@ -40,18 +40,22 @@ if (isset($_GET['delete_Did'])) {
 header('location:dataEntryForm.php');
 
 }
-
+$update = false;
 if (isset($_GET['update_Did'])) {
   $id = $_GET['update_Did'];
-  $OFFID =  $_POST['OFFID'];
-  $DName = $_POST['Dname'];
-  $SPType = $_POST['SPType'];
-  $DPWord = $_POST['DPWord'];
-  $DPhoneNum = $_POST['DPhoneNum'];
+  $update = true;
+  $Eresult = $db->query("Select * FROM DOCTOR WHERE Doctor_id = $id");
 
-//Used to update data into  doctor row
-$db->query("UPDATE INTO DOCTOR  (Office_id,  Name, Speciality, Password, Phone_number) 
-VALUES ('$OFFID', '$DName', '$SPType', '$DPWord', '$DPhoneNum') WHERE Doctor_id = " . $id)  or die($db->error); 
+  if(count($Eresult)==1)
+  {
+    $row = $Eresult->fetch_array();
+    $OFFID =  $row['OFFID'];
+    $DName = $row['Dname'];
+    $SPType = $row['SPType'];
+    $DPWord = $row['DPWord'];
+    $DPhoneNum = $row['DPhoneNum'];
+  }
+
 
 header('location:dataEntryForm.php');
 
@@ -90,7 +94,7 @@ if ($result->num_rows > 0) {
   while($row = $result-> fetch_assoc()) {
     $OtADtableResult .= "<tr>". "<td>" . $row["Office_id"] . "</td><td>" . $row["Name"] . "</td><td>" . 
                           $row["Phone_number"] . "</td><td>" . $row["Email"] . "</td>" . "</td><td> 
-                          <a href='../adminPages/dataEntryForm.php?update_ADid=" . $row["Admin_id"]  . "'>Update</a> </td>" . "</td><td> <a href='../adminPages/dataEntryForm.php?delete_ADid=" . $row["Admin_id"] . "'>Delete</a>
+                          <a href='../adminPages/dataEntryForm.php?update_ADid=" . $row["Admin_id"]  . "'>edit</a> </td>" . "</td><td> <a href='../adminPages/dataEntryForm.php?delete_ADid=" . $row["Admin_id"] . "'>Delete</a>
                                                </td>"."<tr>";
   }
  
@@ -127,7 +131,7 @@ if ($result->num_rows > 0) {
   while($row = $result-> fetch_assoc()) {
     $PtableResult .= "<tr>" . "<td>" . $row["Name"] . "</td><td>" . $row["Phone_number"] . "</td><td>" . 
                     $row["Email"] . "</td><td>" . $row["Age"] . "</td>" . "</td><td>" . $row["Medical_allergy"] . "</td>" .  "</td><td>" . $row["Specialist_approved"] . "</td>" .
-                     "</td><td> <a href='../adminPages/dataEntryForm.php?update_Pid=" . $row["Patient_id"]  . "'>Update</a> </td>" . "</td><td> <a href='../adminPages/dataEntryForm.php?delete_Pid=" . 
+                     "</td><td> <a href='../adminPages/dataEntryForm.php?update_Pid=" . $row["Patient_id"]  . "'>edit</a> </td>" . "</td><td> <a href='../adminPages/dataEntryForm.php?delete_Pid=" . 
                      $row["Patient_id"] . "'>Delete</a> </td>"  . "<tr>";
   }
 }
@@ -260,8 +264,13 @@ table.center {
               <input type="text" id="ADEmail" name="ADEmail" maxlength="30">   
               <!--Used to separate inputs-->
               <br>
+              <?php
+              if ($update == true):
+              ?>
+               <button type="submit" class="btn btn-info" name="SubmitAD">Update</button>
+               <?php else: ?>
               <button type="submit" class="btn btn-primary" name="SubmitAD">Submit</button>
-
+              <?php endif; ?>
               
 
 
