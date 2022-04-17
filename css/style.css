@@ -524,3 +524,12 @@
   margin-top: 30px;
   color: rgb(62, 62, 207);
 }
+
+#dataEntry{
+  width: 100%;
+  background: center center;
+  background-size: cover;
+  position: relative;
+  margin-top: 100px;
+  height: 130%;
+}
