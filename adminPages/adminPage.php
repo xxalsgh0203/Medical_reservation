@@ -61,7 +61,7 @@ $DtableResult = "";
 if ($result->num_rows > 0) {
   while($row = $result-> fetch_assoc()) {
     $DtableResult .= "<tr>". "<td>" . $row["Office_id"] . "</td><td>" . $row["Name"] . "</td><td>" . 
-                      $row["Speciality"] . "</td><td>" . $row["Phone_number"] . "</td>" . "<tr>";
+                      $row["Speciality"] . "</td> <td>" . $row["Phone_number"] . "</td>" .  "<tr>";
   }
 }
 
@@ -173,8 +173,6 @@ if ($result->num_rows > 0) {
                   <th>Appointment status</th>
                   <th>Slotted Time</th>
                   <th>Specialist Status</th>
-                  <th>Update</th>
-                  <th>Delete</th>
                 </tr>
                 <?php echo $APtableResult;?>
               </thead>
@@ -211,8 +209,6 @@ if ($result->num_rows > 0) {
                   <th>Name</th>
                   <th>Specialty</th>
                   <th>Phone Number</th>
-                  <th>Update</th>
-                  <th>Delete</th>
                 </tr>
                 <?php echo $DtableResult;?>
               </thead>
@@ -263,8 +259,6 @@ if ($result->num_rows > 0) {
                   <th scope="col">Name</th>
                   <th scope="col">Phone number</th>
                   <th scope="col">Email</th>
-                  <th>Update</th>
-                  <th>Delete</th>
                 </tr>
                 <?php echo $OtADtableResult;?>
               </thead>
@@ -315,8 +309,6 @@ if ($result->num_rows > 0) {
   </div>
 </section>
 <!-- End signup -->
-
-    
 
 
 

@@ -50,56 +50,7 @@ if (isset($_POST['SubmitAD']))
 
 }
 
-$chosenTable = "";
 
-if(isset($_POST['SubmitTID']))
-{
-  $TableID = $_POST['TableID'];
-
-  if ($TableID == "DOCTOR")
-  {
-    //used to retrieve other doctors
-    $sql = "SELECT Office_id, Name, Speciality, Phone_number FROM DOCTOR";
-    $result = mysqli_query($db, $sql);
-
-    if ($result->num_rows > 0) {
-      while($row = $result-> fetch_assoc()) {
-        $chosenTable .= "<tr>". "<td>" . $row["Office_id"] . "</td><td>" . $row["Name"] . "</td><td>" . 
-                          $row["Speciality"] . "</td><td>" . $row["Phone_number"] . "</td>" . "<tr>";
-      }
-    }
-  }
-  
-  if ($TableID == "ADMIN")
-  {
-    /*to retrieve admins*/
-    $sql = "SELECT * FROM ADMIN";
-    $result = mysqli_query($db, $sql);
-
-    if ($result->num_rows > 0) {
-      while($row = $result-> fetch_assoc()) {
-        $chosenTable .= "<tr>". "<td>" . $row["Office_id"] . "</td><td>" . $row["Name"] . "</td><td>" . 
-                              $row["Phone_number"] . "</td><td>" . $row["Email"] . "</td>" . "<tr>";
-      }
-    
-    }
-  }
-
-  if ($TableID == "PATIENT")
-  {
-    //used to store patient table
-    $sql = "SELECT * FROM PATIENT ";
-    $result = mysqli_query($db, $sql);
-    
-    if ($result->num_rows > 0) {
-      while($row = $result-> fetch_assoc()) {
-        $chosenTable .= "<tr>" ."<td>" . $row["Primary_physician_id"] . "</td><td>" . $row["Name"] . "</td><td>" . $row["Phone_number"] 
-                        . "</td><td>" . $row["Email"] . "</td><td>" . $row["Age"] . "</td><td>" . $row["Medical_allergy"] . "</td>" . "<tr>";
-      }
-    }
-  }
-  
-}
 
 ?> 
 
@@ -158,7 +109,7 @@ if(isset($_POST['SubmitTID']))
 
 <form action="" method="POST">
           <!--input taken for doctor-->
-            <h2>  <b>Add Doctor</b>  </h2>
+            <h2>  Add Doctor  </h2>
             <label for="OFFID">Office ID:</label>
             <input type="number" id="OFFID" name="OFFID">
             <label for="SPType">Speciality:</label>
@@ -176,7 +127,7 @@ if(isset($_POST['SubmitTID']))
 
             <br>  <br>
            <!--input taken for admin -->
-            <h2>  <b>Add Admin</b>  </h2>
+            <h2>  Add Admin  </h2>
             <label for="ADOFFID">Office ID:</label>
             <input type="number" id="ADOFFID" name="ADOFFID">
             <label for="ADname">Name:</label>
@@ -194,7 +145,7 @@ if(isset($_POST['SubmitTID']))
 
              <br>  <br>
             <!-- Input taken for Patient -->
-            <h2>  <b>Add Patient</b>  </h2>
+            <h2>  Add Patient  </h2>
             <label for="ADOFFID">Office ID:</label>
             <input type="number" id="ADOFFID" name="ADOFFID">
             <label for="ADname">Name:</label>
@@ -210,7 +161,38 @@ if(isset($_POST['SubmitTID']))
             <br>
             <button type="submit" class="btn btn-primary" name="SubmitAD">Submit</button>
 
+
+
+            <br><br><br>
+            <!--Update row by unique identifier-->
+            <h3> <b>Update Doctor info:</b> </h3>
+            <label for="DPhoneID">Identify Row to Edit:</label>
+            <input type="text" id="DPhoneID" name ="DPhoneID" maxlength="10">
+            <br>
+            <label for="UOFFID">Office ID:</label>
+            <input type="number" id="UOFFID" name="UOFFID">
+            <label for="USPType">Speciality:</label>
+            <input type="text" id="USPType" name="USPType" maxlength = "30"> 
+            <label for="UDname">Name:</label>
+            <input type="text" id="UDname" name="UDname" maxlength="20">
+            <br>
+            <label for="UDPWord">change password:</label>
+            <input type="Password" id="UDPWord" name="UDPWord">
+            <label for="UDPhoneNum">Phone Number:</label>
+            <input type="text" id="UDPhoneNum" name="UDPhoneNum" maxlength="10">
+            <br>
+            <button type="submit" class="btn btn-primary" name="USubmitD">Submit</button>
+
+            <br><br><br>
+            <!--Delete doctor row -->
+            <h3> <b>Delete Doctor row:</b> </h3>
+            <label for="DPhoneID">Identify Row to Edit:</label>
+            <input type="text" id="DPhoneID" name ="DPhoneID" maxlength="10">
+            <br>
+            <button type="submit" class="btn btn-primary" name="DelSubmitD">Delete</button>
 </form>
+
+
 
 </section>
 
