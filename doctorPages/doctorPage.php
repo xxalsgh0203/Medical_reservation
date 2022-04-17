@@ -6,10 +6,11 @@ Implemented Features:
   Display logged in doctor information
   display assigned patients
   display upcomming appoitnemtns with delete
+  display schedule for different offices
 
 TODO: 
-  display schedule for different offices
-  add edit functionality to appointments (Sergio)
+  finalize design
+  finalize attributes displayed
  -->
  
 <?php
@@ -67,8 +68,25 @@ if ($result->num_rows > 0) {
 }
 
 //Query to retrieve schedule for doctor
-$sql = "SELECT * FROM WORK_INFO WHERE Doctor_id = '$id'";
-$result = mysqli_query($db, $sql);
+
+//table results for schedule
+$SPtableResult = "";
+$weekdays = [
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday"
+];
+foreach ($weekdays as $weekday) {
+  $sql = "SELECT * FROM WORK_INFO WHERE Doctor_id = '$id' AND Weekday = '$weekday'";
+  $result = mysqli_query($db, $sql);
+  $row = $result -> fetch_assoc();
+
+  $SPtableResult .= "<tr>";
+  $SPtableResult .= "<td>" . $weekday . "</td><td>"  . $row["Start_time"] . "</td><td>" . $row["End_time"] . "</td><td>" . $row["Office_id"] . "</td>";
+  $SPtableResult .= "</tr>"; 
+}
 
 if (isset($_GET['delete_id'])) {
 	$id = $_GET['delete_id'];
@@ -195,6 +213,40 @@ if (isset($_GET['delete_id'])) {
                   <th>Cancel Appointment</th>
                 </tr>
                 <?php echo $APtableResult;?>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="copyright-wrap">
+        </div>
+      </footer>
+    </div>
+  </div>
+</section>
+
+<section id="Doc's Patients">
+  <div class="main-container">
+    <div class="main-wrap">
+
+      <div class="text-center" id="Doctor-header">Schedule</div>
+      <div class="container-fluid">
+        <div class="row justify-content-center my-5">
+          <div class="col-10">
+            <table class="table table-bordered">
+              <thead class="thead">
+                <tr>
+                  <th>Weekday</th>
+                  <th>Start time</th>
+                  <th>End time</th>
+                  <th>Office id</th>
+                </tr>
+                <?php echo $SPtableResult;?>
               </thead>
               <tbody>
               </tbody>
