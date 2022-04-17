@@ -37,12 +37,12 @@ $tableResult = "";
 if ($result->num_rows > 0) {
   while($row = $result-> fetch_assoc()) {
     $tableResult .= "<tr>" . "<td>" . $row["Office_id"] . "</td><td>" . $row["Name"] . "</td><td>" . 
-                    $row["Phone_number"] . "</td><td>" . $row["Email"] . "</td>" . "<tr>";
+                    $row["Phone_number"] . "</td><td>" . $row["Email"] . "</td>" . "</tr>";
   }
 }
 
 //Query to retrieve appointments for doctor
-$sql = "SELECT Patient_id, Office_id, Appointment_status_id, Slotted_time, Specialist_status FROM APPOINTMENT WHERE Doctor_id = '$id'";
+$sql = "SELECT Patient_id, Office_id, Appointment_id, Appointment_status, Slotted_time, Specialist_status FROM APPOINTMENT WHERE Appointment_status = 'pending'";
 $result = mysqli_query($db, $sql);
 
 //table results for appointments
@@ -50,7 +50,16 @@ $APtableResult = "";
 if ($result->num_rows > 0) {
   while($row = $result-> fetch_assoc()) {
     $APtableResult .= "<tr>". "<td>" . $row["Patient_id"] . "</td><td>"  . $row["Office_id"] . "</td><td>" .
-                       $row["Appointment_status_id"] . "</td><td>" . $row["Slotted_time"] . "</td><td>" . $row["Specialist_status"] . "</td>" . "<tr>";
+                       $row["Appointment_status"] . "</td><td>" . $row["Slotted_time"] . "</td><td>" . $row["Specialist_status"] . "</td>";
+                       
+    if ($row["Appointment_status"] !== 'approved') {
+      $APtableResult .= "<td><a href='../adminPages/adminPage.php?approve_id=" . $row["Appointment_id"] . "'>X</a></td>";
+      $APtableResult .= "<td><a href='../adminPages/adminPage.php?reject_id=" . $row["Appointment_id"] . "'>X</a></td>";
+    } else {
+      $APtableResult .= "<td></td><td></td>";
+    }
+    $APtableResult .= "</tr>";
+
   }
 }
 
@@ -65,7 +74,7 @@ if ($result->num_rows > 0) {
     $DtableResult .= "<tr>". "<td>" . $row["Office_id"] . "</td><td>" . $row["Name"] . "</td><td>" . 
                       $row["Speciality"] . "</td> <td>" . $row["Phone_number"] . "</td>" . "</td><td> 
                       <a href='../adminPages/adminPage.php?update_Did=" . $row["Doctor_id"]  . "'>Update</a> </td>" . "</td><td> <a href='../adminPages/adminPage.php?delete_Did=" . $row["Doctor_id"] . "'>Delete</a>
-                                           </td>" .  "<tr>";
+                                           </td>" .  "</tr>";
   }
 }
 
@@ -92,6 +101,21 @@ header('location: adminPage.php');
 
   header("location : adminPage.php");
 }
+
+if (isset($_GET['approve_id'])) {
+  $id = $_GET['approve_id'];
+
+  mysqli_query($db, "UPDATE APPOINTMENT SET Appointment_status='approved' WHERE Appointment_id = " . $id);
+  header('location: adminPage.php');
+}
+
+if (isset($_GET['reject_id'])) {
+  $id = $_GET['reject_id'];
+
+  mysqli_query($db, "UPDATE APPOINTMENT SET Appointment_status='rejected' WHERE Appointment_id = " . $id);
+  header('location: adminPage.php');
+}
+
 
 
 /*to retrieve other admins*/
@@ -226,6 +250,8 @@ if (isset($_SESSION['message']));
                   <th>Appointment status</th>
                   <th>Slotted Time</th>
                   <th>Specialist Status</th>
+                  <th>Approve</th>
+                  <th>Reject</th>
                 </tr>
                 <?php echo $APtableResult;?>
               </thead>
