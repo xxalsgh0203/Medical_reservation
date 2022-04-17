@@ -90,7 +90,7 @@ $PtableResult = "";
 if ($result->num_rows > 0) {
   while($row = $result-> fetch_assoc()) {
     $PtableResult .= "<tr>" . "<td>" . $row["Name"] . "</td><td>" . $row["Phone_number"] . "</td><td>" . 
-                    $row["Email"] . "</td><td>" . $row["Age"] . "</td>" . "</td><td>" . $row["Medical_Allergy"] . "</td>" . "<tr>";
+                    $row["Email"] . "</td><td>" . $row["Age"] . "</td>" . "</td><td>" . $row["Medical_allergy"] . "</td>" . "<tr>";
   }
 }
 
