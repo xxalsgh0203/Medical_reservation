@@ -5,10 +5,12 @@ Purpose: Display patient information
 Implemented Features:
   display personal information
   button to requestAppointment page
+  display upcomming appointments
   display prescription
 
 TODO: 
-  display upcomming appointments
+  finalize design
+  finalize attributes being displayed
 
  -->
  
