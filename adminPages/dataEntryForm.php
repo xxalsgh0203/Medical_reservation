@@ -60,7 +60,6 @@ if (isset($_POST['SubmitAD']))
 }
 
 
-
 ?> 
 
 <!doctype html>

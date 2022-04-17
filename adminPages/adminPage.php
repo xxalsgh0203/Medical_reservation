@@ -63,7 +63,7 @@ if ($result->num_rows > 0) {
   while($row = $result-> fetch_assoc()) {
     $DtableResult .= "<tr>". "<td>" . $row["Office_id"] . "</td><td>" . $row["Name"] . "</td><td>" . 
                       $row["Speciality"] . "</td> <td>" . $row["Phone_number"] . "</td>" . "</td><td> 
-                      <a href='../adminPages/adminPage.php?edit_Did=" . $row["Doctor_id"]  . "'>Update</a> </td>" . "</td><td> <a href='../adminPages/adminPage.php?delete_Did=" . $row["Doctor_id"] . "'>Delete</a>
+                      <a href='../adminPages/adminPage.php?update_Did=" . $row["Doctor_id"]  . "'>Update</a> </td>" . "</td><td> <a href='../adminPages/adminPage.php?delete_Did=" . $row["Doctor_id"] . "'>Delete</a>
                                            </td>" .  "<tr>";
   }
 }
@@ -80,7 +80,17 @@ header('location: adminPage.php');
   header("location : adminPage.php");
 }
 
+if (isset($_GET['update_Did'])) {
+  $id = $_GET['delete_Did'];
 
+ mysqli_query($db, "DELETE FROM DOCTOR WHERE Doctor_id = " . $id);
+header('location: adminPage.php');
+
+  $_SESSION['message'] = "Record has been deleted!";
+  $_SESSION['msg_type'] = "danger";
+
+  header("location : adminPage.php");
+}
 
 
 /*to retrieve other admins*/
