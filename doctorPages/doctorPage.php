@@ -60,7 +60,7 @@ if ($result->num_rows > 0) {
   while($row = $result-> fetch_assoc()) {
     $APtableResult .= "<tr>";
     $APtableResult .= "<td>" . $row["Patient_id"] . "</td><td>"  . $row["Office_id"] . "</td><td>" . $row["Appointment_status_id"] . "</td><td>" . $row["Slotted_time"] . "</td><td>" . $row["Specialist_status"] . "</td><td> 
-    <a href='../doctorPage.php?delete_id=" . $row["Appointment_id"] . "'>X</a>
+    <a href='../doctorPages/doctorPage.php?delete_id=" . $row["Appointment_id"] . "'>X</a>
     </td>";
     $APtableResult .= "</tr>"; 
   }
