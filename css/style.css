@@ -524,3 +524,38 @@
   margin-top: 30px;
   color: rgb(62, 62, 207);
 }
+
+#dataEntry{
+  width: 100%;
+  background: center center;
+  background-size: cover;
+  position: relative;
+  margin-top: 100px;
+  height: 130%;
+  text-align: center;
+}
+
+#dateEntry h1 {
+  text-align: center;
+}
+
+#dataEntry form { 
+  margin: 0 auto; 
+  width:1000px;
+}
+
+#dataEntry div{
+  margin: 0px auto;
+  width:300px;
+}
+
+/* Report Form style  */
+#reportsForm{
+  width: 100%;
+  background: center center;
+  background-size: cover;
+  position: relative;
+  margin-top: 100px;
+  height: 130%;
+  text-align: center;
+}

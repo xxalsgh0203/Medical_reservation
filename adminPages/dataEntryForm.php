@@ -30,6 +30,12 @@ if (isset($_POST['SubmitD']))
     //Used to insert data into doctor
     $db->query("INSERT INTO DOCTOR (Office_id,  Name, Speciality, Password, Phone_number) 
                     VALUES ('$OFFID', '$DName', '$SPType', '$DPWord', '$DPhoneNum')")  or die($db->error); 
+
+    $_SESSION['message'] = "Record has been Saved!";
+    $_SESSION['msg_type'] = "Success";
+
+    header("location : dataEntryForm.php");
+
 }
 
 //Takes in input for Admin from submitAD
@@ -46,60 +52,13 @@ if (isset($_POST['SubmitAD']))
     $db->query("INSERT INTO ADMIN (Office_id,  Name, Password, Phone_number, Email) 
                     VALUES ('$ADOFFID', '$ADName', '$ADPWord', '$ADPhoneNum', '$ADEmail')")  or die($db->error); 
 
+    $_SESSION['message'] = "Record has been Saved!";
+    $_SESSION['msg_type'] = "Success";
 
+    header("location : dataEntryForm.php");
 
 }
 
-$chosenTable = "";
-
-if(isset($_POST['SubmitTID']))
-{
-  $TableID = $_POST['TableID'];
-
-  if ($TableID == "DOCTOR")
-  {
-    //used to retrieve other doctors
-    $sql = "SELECT Office_id, Name, Speciality, Phone_number FROM DOCTOR";
-    $result = mysqli_query($db, $sql);
-
-    if ($result->num_rows > 0) {
-      while($row = $result-> fetch_assoc()) {
-        $chosenTable .= "<tr>". "<td>" . $row["Office_id"] . "</td><td>" . $row["Name"] . "</td><td>" . 
-                          $row["Speciality"] . "</td><td>" . $row["Phone_number"] . "</td>" . "<tr>";
-      }
-    }
-  }
-  
-  if ($TableID == "ADMIN")
-  {
-    /*to retrieve admins*/
-    $sql = "SELECT * FROM ADMIN";
-    $result = mysqli_query($db, $sql);
-
-    if ($result->num_rows > 0) {
-      while($row = $result-> fetch_assoc()) {
-        $chosenTable .= "<tr>". "<td>" . $row["Office_id"] . "</td><td>" . $row["Name"] . "</td><td>" . 
-                              $row["Phone_number"] . "</td><td>" . $row["Email"] . "</td>" . "<tr>";
-      }
-    
-    }
-  }
-
-  if ($TableID == "PATIENT")
-  {
-    //used to store patient table
-    $sql = "SELECT * FROM PATIENT ";
-    $result = mysqli_query($db, $sql);
-    
-    if ($result->num_rows > 0) {
-      while($row = $result-> fetch_assoc()) {
-        $chosenTable .= "<tr>" ."<td>" . $row["Primary_physician_id"] . "</td><td>" . $row["Name"] . "</td><td>" . $row["Phone_number"] 
-                        . "</td><td>" . $row["Email"] . "</td><td>" . $row["Age"] . "</td><td>" . $row["Medical_allergy"] . "</td>" . "<tr>";
-      }
-    }
-  }
-  
-}
 
 ?> 
 
@@ -118,7 +77,7 @@ if(isset($_POST['SubmitTID']))
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
  
-  <style>
+  <!-- <style>
      /* Used to center the title*/
     h1 {text-align: center;}
   /* used to center inputs*/
@@ -132,7 +91,7 @@ if(isset($_POST['SubmitTID']))
     margin: 0px auto;
     width:300px;
     }
-  </style>
+  </style> -->
 </head>
 
 <?php include_once("../php/header.php"); ?>
@@ -140,10 +99,8 @@ if(isset($_POST['SubmitTID']))
 <!-- End Header -->
 <!-- ======= DataEntry Page ======= -->
 
-<!-- Header of the page-->
-<h1>Data Entry Form</h1>
 
-<!-- Pick a specific table -->
+<!-- Pick a specific table 
 <body>
   <br>
   <div>
@@ -151,67 +108,68 @@ if(isset($_POST['SubmitTID']))
   <input type="text" id="TableID" name="TableID">
   <button type="submit" class="btn btn-primary" name="SubmitTID">Submit</button>
   </div>
-</body>
-
-<section id="signup">
+</body> -->
 
 
-<form action="" method="POST">
-          
-            <h2>  <b>Add Doctor</b>  </h2>
-            <label for="OFFID">Office ID:</label>
-            <input type="number" id="OFFID" name="OFFID">
-            <label for="SPType">Speciality:</label>
-            <input type="text" id="SPType" name="SPType" maxlength = "30"> 
-            <label for="Dname">Name:</label>
-            <input type="text" id="Dname" name="Dname" maxlength="20">
-            <br>
-            <label for="DPWord">create password:</label>
-            <input type="Password" id="DPWord" name="DPWord">
-            <label for="DPhoneNum">Phone Number:</label>
-            <input type="text" id="DPhoneNum" name="DPhoneNum" maxlength="10">    
-            <!--Used to separate inputs-->
-            <br>
-            <button type="submit" class="btn btn-primary" name="SubmitD">Submit</button>
+<section id="dataEntry">
+    <!-- Header of the page-->
+    <h1>Data Entry Form</h1>
 
-            <br>  <br>
-          
-            <h2>  <b>Add Admin</b>  </h2>
-            <label for="ADOFFID">Office ID:</label>
-            <input type="number" id="ADOFFID" name="ADOFFID">
-            <label for="ADname">Name:</label>
-            <input type="text" id="ADname" name="ADname" maxlength="20">
-            <label for="ADPWord">create password:</label>
-            <input type="text" id="ADPWord" name="ADPWord">
-            <br>
-            <label for="DPhoneNum">Phone Number:</label>
-            <input type="text" id="ADPhoneNum" name="ADPhoneNum" maxlength="10"> 
-            <label for="ADEmail">Email:</label>
-            <input type="text" id="ADEmail" name="ADEmail" maxlength="30">   
-            <!--Used to separate inputs-->
-            <br>
-            <button type="submit" class="btn btn-primary" name="SubmitAD">Submit</button>
 
-             <br>  <br>
-          
-            <h2>  <b>Add Patient</b>  </h2>
-            <label for="ADOFFID">Office ID:</label>
-            <input type="number" id="ADOFFID" name="ADOFFID">
-            <label for="ADname">Name:</label>
-            <input type="text" id="ADname" name="ADname" maxlength="20">
-            <label for="ADPWord">create password:</label>
-            <input type="text" id="ADPWord" name="ADPWord">
-            <br>
-            <label for="DPhoneNum">Phone Number:</label>
-            <input type="text" id="ADPhoneNum" name="ADPhoneNum" maxlength="10"> 
-            <label for="ADEmail">Email:</label>
-            <input type="text" id="ADEmail" name="ADEmail" maxlength="30">   
-            <!--Used to separate inputs-->
-            <br>
-            <button type="submit" class="btn btn-primary" name="SubmitAD">Submit</button>
+  <form action="" method="POST">
+            <!--input taken for doctor-->
+              <h2>  Add Doctor  </h2>
+              <label for="OFFID">Office ID:</label>
+              <input type="number" id="OFFID" name="OFFID">
+              <label for="SPType">Speciality:</label>
+              <input type="text" id="SPType" name="SPType" maxlength = "30"> 
+              <label for="Dname">Name:</label>
+              <input type="text" id="Dname" name="Dname" maxlength="20">
+              <br>
+              <label for="DPWord">create password:</label>
+              <input type="Password" id="DPWord" name="DPWord">
+              <label for="DPhoneNum">Phone Number:</label>
+              <input type="text" id="DPhoneNum" name="DPhoneNum" maxlength="10">    
+              <!--Used to separate inputs-->
+              <br>
+              <button type="submit" class="btn btn-primary" name="SubmitD">Submit</button>
 
-</form>
+              <br>  <br>
+            <!--input taken for admin -->
+              <h2>  Add Admin  </h2>
+              <label for="ADOFFID">Office ID:</label>
+              <input type="number" id="ADOFFID" name="ADOFFID">
+              <label for="ADname">Name:</label>
+              <input type="text" id="ADname" name="ADname" maxlength="20">
+              <label for="ADPWord">create password:</label>
+              <input type="text" id="ADPWord" name="ADPWord">
+              <br>
+              <label for="ADPhoneNum">Phone Number:</label>
+              <input type="text" id="ADPhoneNum" name="ADPhoneNum" maxlength="10"> 
+              <label for="ADEmail">Email:</label>
+              <input type="text" id="ADEmail" name="ADEmail" maxlength="30">   
+              <!--Used to separate inputs-->
+              <br>
+              <button type="submit" class="btn btn-primary" name="SubmitAD">Submit</button>
 
+              <br>  <br>
+              <!-- Input taken for Patient -->
+              <h2>  Add Patient  </h2>
+              <label for="ADOFFID">Office ID:</label>
+              <input type="number" id="ADOFFID" name="ADOFFID">
+              <label for="ADname">Name:</label>
+              <input type="text" id="ADname" name="ADname" maxlength="20">
+              <label for="ADPWord">create password:</label>
+              <input type="text" id="ADPWord" name="ADPWord">
+              <br>
+              <label for="DPhoneNum">Phone Number:</label>
+              <input type="text" id="ADPhoneNum" name="ADPhoneNum" maxlength="10"> 
+              <label for="ADEmail">Email:</label>
+              <input type="text" id="ADEmail" name="ADEmail" maxlength="30">   
+              <!--Used to separate inputs-->
+              <br>
+              <button type="submit" class="btn btn-primary" name="SubmitAD">Submit</button>
+  </form>
 </section>
 
 

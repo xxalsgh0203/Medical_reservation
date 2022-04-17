@@ -21,6 +21,7 @@ session_start();
 
 require_once "../php/config.php";
  
+
 // Check if the user is logged in, if not then redirect them to login page
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: ../auth/login.php");
@@ -54,16 +55,43 @@ if ($result->num_rows > 0) {
 
 
 //used to retrieve other doctors
-$sql = "SELECT Office_id, Name, Speciality, Phone_number FROM DOCTOR";
+$sql = "SELECT Office_id, Name, Speciality, Phone_number, Doctor_id FROM DOCTOR";
 $result = mysqli_query($db, $sql);
 
 $DtableResult = "";
 if ($result->num_rows > 0) {
   while($row = $result-> fetch_assoc()) {
     $DtableResult .= "<tr>". "<td>" . $row["Office_id"] . "</td><td>" . $row["Name"] . "</td><td>" . 
-                      $row["Speciality"] . "</td><td>" . $row["Phone_number"] . "</td>" . "<tr>";
+                      $row["Speciality"] . "</td> <td>" . $row["Phone_number"] . "</td>" . "</td><td> 
+                      <a href='../adminPages/adminPage.php?update_Did=" . $row["Doctor_id"]  . "'>Update</a> </td>" . "</td><td> <a href='../adminPages/adminPage.php?delete_Did=" . $row["Doctor_id"] . "'>Delete</a>
+                                           </td>" .  "<tr>";
   }
 }
+
+if (isset($_GET['delete_Did'])) {
+  $id = $_GET['delete_Did'];
+
+ mysqli_query($db, "DELETE FROM DOCTOR WHERE Doctor_id = " . $id);
+header('location: adminPage.php');
+
+  $_SESSION['message'] = "Record has been deleted!";
+  $_SESSION['msg_type'] = "danger";
+
+  header("location : adminPage.php");
+}
+
+if (isset($_GET['update_Did'])) {
+  $id = $_GET['delete_Did'];
+
+ mysqli_query($db, "DELETE FROM DOCTOR WHERE Doctor_id = " . $id);
+header('location: adminPage.php');
+
+  $_SESSION['message'] = "Record has been deleted!";
+  $_SESSION['msg_type'] = "danger";
+
+  header("location : adminPage.php");
+}
+
 
 /*to retrieve other admins*/
 $sql = "SELECT * FROM ADMIN";
@@ -76,6 +104,18 @@ if ($result->num_rows > 0) {
                           $row["Phone_number"] . "</td><td>" . $row["Email"] . "</td>" . "<tr>";
   }
  
+}
+
+//Retrieve patients based on assigned office
+$sql = "SELECT Name, Phone_number, Email , Age, Medical_allergy FROM PATIENT";
+$result = mysqli_query($db, $sql);
+
+$PtableResult = "";
+if ($result->num_rows > 0) {
+  while($row = $result-> fetch_assoc()) {
+    $PtableResult .= "<tr>" . "<td>" . $row["Name"] . "</td><td>" . $row["Phone_number"] . "</td><td>" . 
+                    $row["Email"] . "</td><td>" . $row["Age"] . "</td>" . "</td><td>" . $row["Medical_allergy"] . "</td>" . "<tr>";
+  }
 }
 
 ?>
@@ -108,14 +148,30 @@ if ($result->num_rows > 0) {
      {
        text-align: center;
      }
+     h2
+     {
+       text-align: center;
+     }
    </style>
 </head>
 
 <?php include_once("../php/header.php"); ?>
 
 <!-- End Header -->
+
+<?php 
+if (isset($_SESSION['message']));
+?>
+
+<div class ="alert alert-<?=$_SESSION['msg_type']?>">
+<?php
+  echo $_SESSION["message"];
+  unset($_SESSION['message']);
+?>
+</div>
+
 <!-- ======= Admin Page ======= -->
-<section id="AdminUsers">
+<body>
   <div class="main-container">
     <div class="main-wrap">
 
@@ -139,18 +195,14 @@ if ($result->num_rows > 0) {
 
           </div>
         </div>
-      </div>
 
-      <footer>
-        <div class="copyright-wrap">
-        </div>
-      </footer>
+      </div>
     </div>
   </div>
 
 
-  <h2>hi hello</h2>
-</section>
+  
+  </body>
 
 
 <!-- End signup -->
@@ -173,8 +225,6 @@ if ($result->num_rows > 0) {
                   <th>Appointment status</th>
                   <th>Slotted Time</th>
                   <th>Specialist Status</th>
-                  <th>Update</th>
-                  <th>Delete</th>
                 </tr>
                 <?php echo $APtableResult;?>
               </thead>
@@ -185,10 +235,7 @@ if ($result->num_rows > 0) {
           </div>
         </div>
       </div>
-
-      <footer>
-        <div class="copyright-wrap">
-        </div>
+    
       </footer>
     </div>
   </div>
@@ -213,8 +260,8 @@ if ($result->num_rows > 0) {
                   <th>Name</th>
                   <th>Specialty</th>
                   <th>Phone Number</th>
-                  <th>Update</th>
-                  <th>Delete</th>
+                  <th>update</th>
+                  <th>delete</th>
                 </tr>
                 <?php echo $DtableResult;?>
               </thead>
@@ -225,11 +272,7 @@ if ($result->num_rows > 0) {
           </div>
         </div>
       </div>
-
-      <footer>
-        <div class="copyright-wrap">
-        </div>
-      </footer>
+      
     </div>
   </div>
 </section>
@@ -252,8 +295,6 @@ if ($result->num_rows > 0) {
                   <th scope="col">Name</th>
                   <th scope="col">Phone number</th>
                   <th scope="col">Email</th>
-                  <th>Update</th>
-                  <th>Delete</th>
                 </tr>
                 <?php echo $OtADtableResult;?>
               </thead>
@@ -265,33 +306,63 @@ if ($result->num_rows > 0) {
         </div>
       </div>
 
-      <footer>
+     <footer>
         <div class="copyright-wrap">
         </div>
       </footer>
     </div>
   </div>
 </section>
-<!-- End signup -->
+<!-- End of other Admins -->
 
-    
+<!-- Patients -->
+<section id="Patient">
+  <div class="main-container">
+    <div class="main-wrap">
 
+      <div class="text-center" id="Admin-header">Patients</div>
+      <div class="container-fluid">
+        <div class="row justify-content-center my-5">
+          <div class="col-10">
+            <table class="table table-bordered">
+              <thead class="thead">
+                <tr>
+                  <th scope="col">Name</th>
+                  <th scope="col">Phone Number</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Age</th>
+                  <th scope="col">Medical allergy</th>
+                </tr>
+                <?php echo $PtableResult;?>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
 
+          </div>
+        </div>
+      </div>
 
-<!-- Redirection buttons for Admin-->
-  <body>
-     <!-- Used to center container -->
+         <!-- Used to center container -->
      <div id = "container">
         <!--Used to redirect to data entry page -->
         <a href="dataEntryForm.php"> 
-          <button id = "Redi1">Edit Data</button>
+          <button id = "Redi1">Enter Data</button>
         </a>
         <!--Used to redirect to report page -->
         <a href="reportsForm.php"> 
           <button id = "Redi2">Reports</button>
         </a>
      </div>
-  </body>
+
+     <footer>
+        <div class="copyright-wrap">
+        </div>
+      </footer>
+    </div>
+  </div>
+</section>
+<!-- End of Patients -->
 
 <!-- End of redirection-->
 
@@ -304,6 +375,7 @@ if ($result->num_rows > 0) {
 </html>
 
 <!--
-"</td><td>" . $row["Specialist_status"] . "</td><td> 
-    <a href='../doctorPage.php?delete_id=" . $row["Appointment_id"] . "'>X</a>
-    </td>" -->
+"</td><td> 
+  <a href='../adminPage.php?edit=" . $row["Doctor_id"]  . "'>Update</a> </td>" . "</td><td> <a href='../adminPage.php?delete_id=" . $row["Doctor_id"] . "'>Delete</a>
+                       </td>" -->
+
