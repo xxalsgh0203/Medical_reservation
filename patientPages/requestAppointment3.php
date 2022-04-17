@@ -58,7 +58,6 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true)
 ?>
 
 <body>
-
     <div class="container">
         <form action = "requestAppointment4.php" method = "POST">
             <h2>Please select a date </h2>

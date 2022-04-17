@@ -47,32 +47,63 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true)
 <!-- End Header -->
 <!-- ======= signup Section ======= -->
 <body>
-    <?php
-        $doctor;
-        if(isset($_POST['doctor'])) {
-            $doctor = $_POST['doctor'];
-            $_SESSION['doctor'] = $doctor;
+    <div class = "container">
+        <br>
+        <br>
+        <br>
+        <?php
+            $doctor;
+            if(isset($_POST['doctor'])) {
+                $doctor = $_POST['doctor'];
+                $_SESSION['doctor'] = $doctor;
+                if ($doctor == "Regular") {
+                    $query = "SELECT name, Doctor_id, Speciality FROM DOCTOR;";
+                    $result   = mysqli_query($db, $query);
+                    $resultCheck = mysqli_num_rows($result);
+        
+                    if($resultCheck > 0) {
+                    echo "<p>Please select an avaiable Doctor<p><br>";
+                    echo "
+                    <form class='doctorSel' action='requestAppointment3.php' method = 'POST';>";
+                    while ($row = mysqli_fetch_array($result)) {
+                       // echo $row['Speciality'].' '.$row['name'].'<br>';
+                        if ((is_null($row['Speciality']) and $doctor == "Regular") or $row['Speciality'] == "Regular") {
+                            echo "
+                            <label for= ".$row['Doctor_id'].">".$row['name']."</label>
+                            <br>
+                            <input type='radio' name= 'name' id= ".$row['Doctor_id']." value = ".$row['Doctor_id']." /><br>";
+                        }
+                    }
+                    echo "
+                    <input class='form-control' type='submit' name='button' value='Next'/>
+                    </form>";
+                    }
+                }
+                else {
+                    $query = "SELECT name, Doctor_id from DOCTOR where Speciality = '$doctor';";
+                    $result = mysqli_query($db, $query);
+                    $resultCheck = mysqli_num_rows($result);
 
-            $query = "SELECT name, Doctor_id FROM DOCTOR WHERE Speciality = '$doctor';";
-            $result   = mysqli_query($db, $query);
-            $resultCheck = mysqli_num_rows($result);
-
-            if($resultCheck > 0) {
-            echo "<p>Please select an avaiable Doctor<p><br>";
-            echo "
-            <form class='doctorSel' action='requestAppointment3.php' method = 'POST';>";
-            while ($row = mysqli_fetch_array($result)) {
-                echo "
-                <label for= ".$row['Doctor_id'].">".$row['name']."</label>
-                <br>
-                <input type='radio' name= 'name' id= ".$row['Doctor_id']." value = ".$row['Doctor_id']." /><br>";
+                    //echo $resultCheck;
+        
+                    if($resultCheck > 0) {
+                    echo "<p>Please select an avaiable Doctor<p><br>";
+                    echo "
+                    <form class='doctorSel' action='requestAppointment3.php' method = 'POST';>";
+                    while ($row = mysqli_fetch_array($result)) {
+                        echo "
+                        <label for= ".$row['Doctor_id'].">".$row['name']."</label>
+                        <br>
+                        <input type='radio' name= 'name' id= ".$row['Doctor_id']." value = ".$row['Doctor_id']." /><br>";
+                    }
+                    echo "
+                    <input class='form-control' type='submit' name='button' value='Next'/>
+                    </form>";
+                    }
+                }
             }
-            echo "
-            <input class='form-control' type='submit' name='button' value='Next'/>
-            </form>";
-            }
-        }
-    ?>
+        ?>
+    </div>
 </body>
 <!-- Footer-->
 <footer class="footer py-4 mt-5">
