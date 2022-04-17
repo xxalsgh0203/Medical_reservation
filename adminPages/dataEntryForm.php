@@ -30,6 +30,12 @@ if (isset($_POST['SubmitD']))
     //Used to insert data into doctor
     $db->query("INSERT INTO DOCTOR (Office_id,  Name, Speciality, Password, Phone_number) 
                     VALUES ('$OFFID', '$DName', '$SPType', '$DPWord', '$DPhoneNum')")  or die($db->error); 
+
+    $_SESSION['message'] = "Record has been Saved!";
+    $_SESSION['msg_type'] = "Success";
+
+    header("location : dataEntryForm.php");
+
 }
 
 //Takes in input for Admin from submitAD
@@ -46,7 +52,10 @@ if (isset($_POST['SubmitAD']))
     $db->query("INSERT INTO ADMIN (Office_id,  Name, Password, Phone_number, Email) 
                     VALUES ('$ADOFFID', '$ADName', '$ADPWord', '$ADPhoneNum', '$ADEmail')")  or die($db->error); 
 
+    $_SESSION['message'] = "Record has been Saved!";
+    $_SESSION['msg_type'] = "Success";
 
+    header("location : dataEntryForm.php");
 
 }
 

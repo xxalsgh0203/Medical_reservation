@@ -21,6 +21,7 @@ session_start();
 
 require_once "../php/config.php";
  
+
 // Check if the user is logged in, if not then redirect them to login page
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: ../auth/login.php");
@@ -62,10 +63,23 @@ if ($result->num_rows > 0) {
   while($row = $result-> fetch_assoc()) {
     $DtableResult .= "<tr>". "<td>" . $row["Office_id"] . "</td><td>" . $row["Name"] . "</td><td>" . 
                       $row["Speciality"] . "</td> <td>" . $row["Phone_number"] . "</td>" . "</td><td> 
-                      <a href='../adminPage.php?edit_Did=" . $row["Doctor_id"]  . "'>Update</a> </td>" . "</td><td> <a href='../adminPage.php?delete_Did=" . $row["Doctor_id"] . "'>Delete</a>
+                      <a href='../adminPages/adminPage.php?edit_Did=" . $row["Doctor_id"]  . "'>Update</a> </td>" . "</td><td> <a href='../adminPages/adminPage.php?delete_Did=" . $row["Doctor_id"] . "'>Delete</a>
                                            </td>" .  "<tr>";
   }
 }
+
+if (isset($_GET['delete_Did'])) {
+  $id = $_GET['delete_Did'];
+
+ mysqli_query($db, "DELETE FROM DOCTOR WHERE Doctor_id = " . $id);
+header('location: adminPage.php');
+
+  $_SESSION['message'] = "Record has been deleted!";
+  $_SESSION['msg_type'] = "danger";
+
+  header("location : adminPage.php");
+}
+
 
 
 
@@ -134,6 +148,18 @@ if ($result->num_rows > 0) {
 <?php include_once("../php/header.php"); ?>
 
 <!-- End Header -->
+
+<?php 
+if (isset($_SESSION['message']));
+?>
+
+<div class ="alert alert-<?=$_SESSION['msg_type']?>">
+<?php
+  echo $_SESSION["message"];
+  unset($_SESSION['message']);
+?>
+</div>
+
 <!-- ======= Admin Page ======= -->
 <body>
   <div class="main-container">
