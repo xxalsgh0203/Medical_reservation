@@ -99,10 +99,8 @@ if (isset($_POST['SubmitAD']))
 <!-- End Header -->
 <!-- ======= DataEntry Page ======= -->
 
-<!-- Header of the page-->
-<h1>Data Entry Form</h1>
 
-<!-- Pick a specific table -->
+<!-- Pick a specific table 
 <body>
   <br>
   <div>
@@ -110,9 +108,14 @@ if (isset($_POST['SubmitAD']))
   <input type="text" id="TableID" name="TableID">
   <button type="submit" class="btn btn-primary" name="SubmitTID">Submit</button>
   </div>
-</body>
+</body> -->
+
 
 <section id="dataEntry">
+    <!-- Header of the page-->
+    <h1>Data Entry Form</h1>
+
+
   <form action="" method="POST">
             <!--input taken for doctor-->
               <h2>  Add Doctor  </h2>
