@@ -69,7 +69,7 @@ if (isset($_POST['SubmitAD']))
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
  
-  <style>
+  <!-- <style>
      /* Used to center the title*/
     h1 {text-align: center;}
   /* used to center inputs*/
@@ -83,7 +83,7 @@ if (isset($_POST['SubmitAD']))
     margin: 0px auto;
     width:300px;
     }
-  </style>
+  </style> -->
 </head>
 
 <?php include_once("../php/header.php"); ?>
