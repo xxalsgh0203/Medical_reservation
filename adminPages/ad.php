@@ -128,7 +128,7 @@ if ($result->num_rows > 0) {
  
 }
 
-//Retrieve patients based on assigned office
+//----------------------------------------Retrieve patients----------------------------------
 $sql = "SELECT Name, Phone_number, Email , Age, Medical_allergy, Specialist_approved, Patient_id FROM PATIENT";
 $result = mysqli_query($db, $sql);
 
