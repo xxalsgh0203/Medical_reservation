@@ -27,7 +27,7 @@ if ($result->num_rows > 0) {
   while($row = $result-> fetch_assoc()) {
     $DtableResult .= "<tr>". "<td>" . $row["Office_id"] . "</td><td>" . $row["Name"] . "</td><td>" . 
                       $row["Speciality"] . "</td> <td>" . $row["Phone_number"] . "</td>" . "</td><td> 
-                      <a href='../adminPages/dataEntryForm.php?update_Did=" . $row["Doctor_id"]  . "'>edit</a> </td>" . "</td><td> <a href='../adminPages/dataEntryForm.php?delete_Did=" . $row["Doctor_id"] . "'>Delete</a>
+                      <a href='../adminPages/editDoctor.php?update_Did=" . $row["Doctor_id"]  . "'>edit</a> </td>" . "</td><td> <a href='../adminPages/dataEntryForm.php?delete_Did=" . $row["Doctor_id"] . "'>Delete</a>
                                            </td>" .  "</tr>";
   }
 }
@@ -76,8 +76,13 @@ header('location:dataEntryForm.php');
 if (isset($_POST['USubmitD']))
 {
   $ID = $_POST['id'];
+  $Off_id = $_POST['OFFID'];
+  $dname = $_POST['Dname'];
+  $Speciality = $_POST[''];
 
-  $db->("UPDATE DOCTOR SET ")
+
+
+  $db->query("UPDATE DOCTOR SET Office_id='$Off_id',Name='$dname', Speciality='$Speciality' , Phone_number = '$PhoneNum' WHERE Doctor_id=$id");
 
 
 
@@ -118,7 +123,7 @@ if ($result->num_rows > 0) {
   while($row = $result-> fetch_assoc()) {
     $OtADtableResult .= "<tr>". "<td>" . $row["Office_id"] . "</td><td>" . $row["Name"] . "</td><td>" . 
                           $row["Phone_number"] . "</td><td>" . $row["Email"] . "</td>" . "</td><td> 
-                          <a href='../adminPages/dataEntryForm.php?update_ADid=" . $row["Admin_id"]  . "'>edit</a> </td>" . "</td><td> <a href='../adminPages/dataEntryForm.php?delete_ADid=" . $row["Admin_id"] . "'>Delete</a>
+                          <a href='../adminPages/editAdmin.php?update_ADid=" . $row["Admin_id"]  . "'>edit</a> </td>" . "</td><td> <a href='../adminPages/dataEntryForm.php?delete_ADid=" . $row["Admin_id"] . "'>Delete</a>
                                                </td>"."<tr>";
   }
  
@@ -155,7 +160,7 @@ if ($result->num_rows > 0) {
   while($row = $result-> fetch_assoc()) {
     $PtableResult .= "<tr>" . "<td>" . $row["Patient_id"] . "</td><td>" . $row["Name"] . "</td><td>" . $row["Phone_number"] . "</td><td>" . 
                     $row["Email"] . "</td><td>" . $row["Age"] . "</td>" . "</td><td>" . $row["Medical_allergy"] . "</td>" .  "</td><td>" . $row["Specialist_approved"] . "</td>" .
-                     "</td><td> <a href='../adminPages/dataEntryForm.php?update_Pid=" . $row["Patient_id"]  . "'>edit</a> </td>" . "</td><td> <a href='../adminPages/dataEntryForm.php?delete_Pid=" . 
+                     "</td><td> <a href='../adminPages/editPatient.php?update_Pid=" . $row["Patient_id"]  . "'>edit</a> </td>" . "</td><td> <a href='../adminPages/dataEntryForm.php?delete_Pid=" . 
                      $row["Patient_id"] . "'>Delete</a> </td>"  . "<tr>";
   }
 }
@@ -260,6 +265,7 @@ table.center {
       <form action="" method="POST">
             <!--input taken for doctor-->
               <h2>  Doctor info:  </h2>
+              <input type = "hidden" name = "id" value = "<?php echo $id; ?>">
               <label for="OFFID">Office ID:</label>
               <input type="number" id="OFFID" name="OFFID">
               <label for="SPType">Speciality:</label>
@@ -280,7 +286,7 @@ table.center {
                <?php else: ?>
               <button type="submit" class="btn btn-primary" name="SubmitD">Submit</button>
               <?php endif; ?>
-              </form>
+              
 
             <br><br><br> <br><br><br> <br><br><br>
             <h1>Admin</h1>
@@ -315,7 +321,7 @@ table.center {
               <!--Used to separate inputs-->
               <br>
               <button type="submit" class="btn btn-primary" name="SubmitAD">Submit</button>
-              
+              </form>
 
 
 
@@ -325,12 +331,13 @@ table.center {
 
 
 <section id="dataEntry">
+
+<form action="" method="POST">
 <br><br><br>
               <h1>Patient</h1>
               <table  class = "center" border="6">
               <thead class="thead">
                 <tr>
-                  <th>Patient ID</th>
                   <th>Name</th>
                   <th>Phone Number</th>
                   <th>Appointment status</th>
@@ -362,7 +369,7 @@ table.center {
               <!--Used to separate inputs-->
               <br>
               <button type="submit" class="btn btn-primary" name="SubmitP" id="dataentrysubmitbtn">Submit</button>
-               
+              </form>
   
 </section>
 
