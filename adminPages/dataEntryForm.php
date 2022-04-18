@@ -209,7 +209,7 @@ table.center {
   <!-- Header of the page-->
   <section>
     <br><br>
-    <h1>Data Entry Form</h1>
+    <h1 class="text-center" id="data-entry-header">Data Entry Form</h1>
   </section>
   
 
