@@ -313,7 +313,7 @@ table.center {
               <label for="ADname">Name:</label>
               <input type="text" id="ADname" name="ADname" maxlength="20">
               <label for="ADPWord">create password:</label>
-              <input type="text" id="ADPWord" name="ADPWord">
+              <input type="Password" id="ADPWord" name="ADPWord">
               <br>
               <label for="ADPhoneNum">Phone Number:</label>
               <input type="text" id="ADPhoneNum" name="ADPhoneNum" maxlength="10"> 
@@ -357,7 +357,7 @@ table.center {
               <label for="Pname">Name:</label>
               <input type="text" id="Pname" name="Pname" maxlength="20">
               <label for="PPWord">create password:</label>
-              <input type="text" id="PPWord" name="PPWord">
+              <input type="Password" id="PPWord" name="PPWord">
               <label for="PAge">Age:</label>
               <input type="number" id="PAge" name="PAge">
               <br>
