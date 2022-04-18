@@ -26,14 +26,14 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 }
 
 $id = $_SESSION["id"];
-$sql = "SELECT Primary_physician_id, Name, Phone_number, Email, Age, Medical_allergy FROM PATIENT WHERE Patient_id = '$id'";
+$sql = "SELECT Primary_physician_id, Name, Phone_number, Email, Age, Specialist_approved, Medical_allergy FROM PATIENT WHERE Patient_id = '$id'";
 $result = mysqli_query($db, $sql);
 
 $tableResult = "";
 if ($result->num_rows > 0) {
   $tableResult = "<tr>";
   while($row = $result-> fetch_assoc()) {
-    $tableResult .= "<td>" . $row["Primary_physician_id"] . "</td><td>" . $row["Name"] . "</td><td>" . $row["Phone_number"] . "</td><td>" . $row["Email"] . "</td><td>" . $row["Age"] . "</td><td>" . $row["Medical_allergy"] . "</td>";
+    $tableResult .= "<td>" . $row["Primary_physician_id"] . "</td><td>" . $row["Name"] . "</td><td>" . $row["Phone_number"] . "</td><td>" . $row["Email"] . "</td><td>" . $row["Age"] . "</td><td>" . $row["Specialist_approved"] . "</td><td>" . $row["Medical_allergy"] . "</td>";
   }
   $tableResult .= "</tr>";
 }
@@ -110,6 +110,7 @@ if (isset($_GET['delete_id'])) {
                   <th scope="col">Phone number</th>
                   <th scope="col">Email</th>
                   <th scope="col">Age</th>
+                  <th scope="col">Approved by specialist</th>
                   <th scope="col">Medical_allergy</th>
                 </tr>
                 <?php echo $tableResult;?>

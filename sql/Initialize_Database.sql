@@ -153,19 +153,23 @@ DELIMITER ;
 
 DELIMITER $$
 CREATE TRIGGER SAPPROVE
-AFTER INSERT
+BEFORE INSERT
 ON APPOINTMENT
 FOR EACH ROW
 BEGIN
 	IF (
-		SELECT COUNT(*)
-		FROM PATIENT
-		INNER JOIN APPOINTMENT ON PATIENT.Patient_id = APPOINTMENT.Patient_id
-		WHERE PATIENT.Specialist_approved = FALSE
-		AND APPOINTMENT.Specialist_status = TRUE
-		) >= 1 THEN
-        DELETE FROM APPOINTMENT
-            WHERE Appointment_id = NEW.Appointment_id;
+-- 		SELECT COUNT(*)
+-- 		FROM PATIENT
+-- 		INNER JOIN APPOINTMENT ON PATIENT.Patient_id = APPOINTMENT.Patient_id
+-- 		WHERE PATIENT.Specialist_approved = FALSE
+-- 		AND APPOINTMENT.Specialist_status = TRUE
+-- 		) >= 1 THEN
+--         DELETE FROM APPOINTMENT
+--             WHERE Appointment_id = NEW.Appointment_id;
+--             -- SET NEW.Appointment_status = "failed"
+
+		NEW.Specialist_status = TRUE) THEN
+			SET NEW.Appointment_status = "failed";
 	END IF;
 END; $$
 DELIMITER ;

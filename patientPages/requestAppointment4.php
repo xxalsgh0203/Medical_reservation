@@ -39,10 +39,13 @@
             }
         }*/
 
-
-        $query = "INSERT INTO `APPOINTMENT`(Patient_id, Doctor_id, Office_id, Appointment_status, Slotted_time, Specialist_status) VALUES
-        ('$patientID', '$doctorID', '$officeID', '$appointmentStatus', '$time', '$specialistStatus');";
-        $result   = mysqli_query($db, $query);
+        // try {
+          $query = "INSERT INTO `APPOINTMENT`(Patient_id, Doctor_id, Office_id, Appointment_status, Slotted_time, Specialist_status) VALUES
+          ('$patientID', '$doctorID', '$officeID', '$appointmentStatus', '$time', '$specialistStatus');";
+          $result = mysqli_query($db, $query);
+        // } catch  (Exception $e) {
+        //   $error = $e;
+        // }
     }
 
 
@@ -95,7 +98,13 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true)
 <body>
     <div class="container">
         <div class="ra-final">
-            <h1 class="ra-h"> Appoinmtent has been Requested </h1>
+
+          <?php if(isset($error) && !empty($error)) { ?>
+            <h1 class="ra-h"><?= $error; ?></span>
+          <?php } else { ?>
+            <h1 id="result" class="ra-h"> Appoinmtent has been Requested </h1>
+          <?php } ?>
+
             <br>
             <br>
             <p class= "ra-p"><a href="patientPage.php">Click here to return to the Patient Page</a></p>
