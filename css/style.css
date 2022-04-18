@@ -565,4 +565,52 @@
   text-align: center;
 }
 
+.ra {
+  width: 50%;
+  padding: 2rem;
+  margin-top:150px;
+  margin-bottom: 225px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: white;
+  border: 3px solid black;
+  padding-top: 0px;
+}
 
+.ra .ra-form{
+  padding-bottom:15px;
+  margin-bottom:15px;
+}
+
+.ra input[type='submit'], .ra textarea {
+  padding:4px;
+  width: 100%;
+}
+
+.ra-header{
+  margin-left:auto;
+  margin-right:auto;
+  margin-top:20px;
+  margin-bottom:20px;
+  text-align:center;
+}
+
+.ra-label{
+  text-align:center;
+}
+
+.ra-final{
+  text-align:center;
+  margin-left:auto;
+  margin-right:auto;
+  margin-top:250px;
+  margin-bottom: 250px;
+}
+
+.ra-h{
+  font-size: 50px;
+}
+
+.ra-p{
+  font-size: 25px;
+}

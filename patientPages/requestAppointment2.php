@@ -3,12 +3,12 @@
 require_once "../php/config.php";
 session_start();
   // Check if the user is logged in, if not then redirect them to login page
-if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true)
+/*if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true)
 {
   header("location: login.php");
   exit;
 
-}
+}*/
  
 ?>
 <!doctype html>
@@ -36,8 +36,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true)
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item"><a class="nav-link" href="./login.php">Log in</a></li>
-        <li class="nav-item"><a class="nav-link" href="./signup.php">Sign up</a></li>
+        <li class="nav-item"><a class="nav-link" href="../auth/login.php">Log Out</a></li>
         <li class="nav-item"><a class="nav-link" href="./patientPage.php">Manage Reservation</a></li>
       </ul>
     </div>
@@ -48,9 +47,6 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true)
 <!-- ======= signup Section ======= -->
 <body>
     <div class = "container">
-        <br>
-        <br>
-        <br>
         <?php
             $doctor;
             if(isset($_POST['doctor'])) {
@@ -62,20 +58,23 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true)
                     $resultCheck = mysqli_num_rows($result);
         
                     if($resultCheck > 0) {
-                    echo "<p>Please select an avaiable Doctor<p><br>";
                     echo "
-                    <form class='doctorSel' action='requestAppointment3.php' method = 'POST';>";
+                    <form class='ra' id='ra' action='requestAppointment3.php' method = 'POST';>
+                    <h3 class='ra-header'>Select an avaiable Doctor</h3>";
                     while ($row = mysqli_fetch_array($result)) {
                        // echo $row['Speciality'].' '.$row['name'].'<br>';
                         if ((is_null($row['Speciality']) and $doctor == "Regular") or $row['Speciality'] == "Regular") {
                             echo "
+                            <div class = 'ra-form'>
                             <label for= ".$row['Doctor_id'].">".$row['name']."</label>
-                            <br>
-                            <input type='radio' name= 'name' id= ".$row['Doctor_id']." value = ".$row['Doctor_id']." /><br>";
+                            <input type='radio' name= 'name' id= ".$row['Doctor_id']." value = ".$row['Doctor_id']." /><br>
+                            </div>";
                         }
                     }
                     echo "
-                    <input class='form-control' type='submit' name='button' value='Next'/>
+                    <div class='ra-form'>
+                    <input class='ra-form' type='submit' name='button' value='Next'/>
+                    </div>
                     </form>";
                     }
                 }
@@ -87,17 +86,20 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true)
                     //echo $resultCheck;
         
                     if($resultCheck > 0) {
-                    echo "<p>Please select an avaiable Doctor<p><br>";
-                    echo "
-                    <form class='doctorSel' action='requestAppointment3.php' method = 'POST';>";
+                        echo "
+                        <form class='ra' id='ra' action='requestAppointment3.php' method = 'POST';>
+                        <h3 class='ra-header'>Select an avaiable Doctor</h3>";
                     while ($row = mysqli_fetch_array($result)) {
                         echo "
+                        <div class = 'ra-form'>
                         <label for= ".$row['Doctor_id'].">".$row['name']."</label>
-                        <br>
-                        <input type='radio' name= 'name' id= ".$row['Doctor_id']." value = ".$row['Doctor_id']." /><br>";
+                        <input type='radio' name= 'name' id= ".$row['Doctor_id']." value = ".$row['Doctor_id']." /><br>
+                        </div>";
                     }
                     echo "
-                    <input class='form-control' type='submit' name='button' value='Next'/>
+                    <div class='ra-form'>
+                    <input class='ra-form' type='submit' name='button' value='Next'/>
+                    </div>
                     </form>";
                     }
                 }

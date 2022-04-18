@@ -34,8 +34,7 @@ require_once "../php/config.php";
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item"><a class="nav-link" href="./login.php">Log in</a></li>
-        <li class="nav-item"><a class="nav-link" href="./signup.php">Sign up</a></li>
+        <li class="nav-item"><a class="nav-link" href="../auth/login.php">Log Out</a></li>
         <li class="nav-item"><a class="nav-link" href="./patientPage.php">Manage Reservation</a></li>
       </ul>
     </div>
@@ -44,14 +43,11 @@ require_once "../php/config.php";
 
 <!-- End Header -->
 <!-- ======= signup Section ======= -->
-<form id="signup" method ="POST" action="requestAppointment2.php">
+<form id="ra" class="ra" method ="POST" action="requestAppointment2.php">
   <!-- wrapper -->
   <div id="wrapper-request-appointment">
-    <div class="col-sm-8 col-lg-8" >
-      <p class="make-reservation-header">Make Your Reservation</p>
-    </div>
-    
-    <div class="col-sm-8 col-lg-8">
+      <h3 class="ra-header">Make Your Reservation</h3>    
+    <div class="ra-form">
       Choose Doctor Type
       <select id="choose-doctor" class="form-control" required name="doctor" required>
         <option value="Regular">Regular</option>
@@ -66,9 +62,9 @@ require_once "../php/config.php";
       </select>
     </div>
 
-    <div class="col-sm-8 col-lg-8">
+    <div class="ra-form">
       <br>
-      <input class="form-control" type="submit" name="button" value="Next"/>
+      <input class="ra-form" type="submit" name="button" value="Next"/>
     </div>
 
   </div>

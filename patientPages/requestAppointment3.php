@@ -2,12 +2,12 @@
 session_start();
 require_once "../php/config.php";
   // Check if the user is logged in, if not then redirect them to login page
-if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true)
+/*if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true)
 {
   header("location: login.php");
   exit;
 
-}
+}*/
  
 ?>
 <!doctype html>
@@ -35,8 +35,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true)
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item"><a class="nav-link" href="./login.php">Log in</a></li>
-        <li class="nav-item"><a class="nav-link" href="./signup.php">Sign up</a></li>
+        <li class="nav-item"><a class="nav-link" href="../auth/login.php">Log Out</a></li>
         <li class="nav-item"><a class="nav-link" href="./patientPage.php">Manage Reservation</a></li>
       </ul>
     </div>
@@ -59,11 +58,11 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true)
 
 <body>
     <div class="container">
-        <form action = "requestAppointment4.php" method = "POST">
-            <h2>Please select a date </h2>
-            <div>
-                <label for="time">Select Date: </label>
-                <select name="time" id="time" required>
+        <form class = "ra" action = "requestAppointment4.php" method = "POST">
+            <h3 class="ra-header">Please select a Time </h3>
+            <div class = "ra-form">
+                <label for="time">Select Time: </label>
+                <select class="form-control" name="time" required>
                     <option value="9:00"> 9:00 AM</option>
                     <option value="10:00"> 10:00 AM</option>
                     <option value="11:00"> 11:00 AM</option>
@@ -74,7 +73,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true)
                     <option value="16:00"> 4:00 PM</option>
                 </select>
             </div>
-            <div>
+            <div class = "ra-form">
                 <input type="submit" name ="button" value="Submit"/>        </div>
         </form>
     </div>
