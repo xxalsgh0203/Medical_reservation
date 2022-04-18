@@ -158,8 +158,8 @@ $result = mysqli_query($db, $sql);
 $PtableResult = "";
 if ($result->num_rows > 0) {
   while($row = $result-> fetch_assoc()) {
-    $PtableResult .= "<tr>" . "<td>" . $row["Patient_id"] . "</td><td>" . $row["Name"] . "</td><td>" . $row["Phone_number"] . "</td><td>" . 
-                    $row["Email"] . "</td><td>" . $row["Age"] . "</td>" . "</td><td>" . $row["Medical_allergy"] . "</td>" .  "</td><td>" . $row["Specialist_approved"] . "</td>" .
+    $PtableResult .= "<tr>" . "<td>" . $row["Name"] . "</td><td>" . $row["Phone_number"] . "</td><td>" . 
+                    $row["Email"] . "</td><td>" . $row["Age"] . "</td>" . "</td><td>" . $row["Medical_allergy"] . "</td>" .
                      "</td><td> <a href='../adminPages/editPatient.php?update_Pid=" . $row["Patient_id"]  . "'>edit</a> </td>" . "</td><td> <a href='../adminPages/dataEntryForm.php?delete_Pid=" . 
                      $row["Patient_id"] . "'>Delete</a> </td>"  . "<tr>";
   }
@@ -176,10 +176,11 @@ if (isset($_POST['SubmitP']))
     $PPWord = $_POST['PPWord'];
     $PPhoneNum = $_POST['PPhoneNum'];
     $PEmail = $_POST['PEmail'];
+    $PAge = $_POST['PAge'];
 
     //Used to insert data into admin
-    $db->query("INSERT INTO PATIENT (Patient_id,  Name, Password, Phone_number, Email) 
-                    VALUES ('$PID', '$PName', '$PPWord', '$PPhoneNum', '$PEmail')")  or die($db->error); 
+    $db->query("INSERT INTO PATIENT (Name, Password, Phone_number, Email, Age) 
+                    VALUES ('$PName', '$PPWord', '$PPhoneNum', '$PEmail', '$PAge')")  or die($db->error); 
 
    
     header("location:dataEntryForm.php");
@@ -340,11 +341,9 @@ table.center {
                 <tr>
                   <th>Name</th>
                   <th>Phone Number</th>
-                  <th>Appointment status</th>
                   <th>Email</th>
                   <th>Age</th>
                   <th>Medical Allergy</th>
-                  <th>Specialist Status</th>
                   <th>edit</th>
                   <th>delete</th>
                 </tr>
@@ -355,13 +354,12 @@ table.center {
             </table>
               <!-- Input taken for Patient -->
               <h2> Patient info:  </h2>
-              
-              <label for="PID">Patient ID:</label>
-              <input type="number" id="PID" name="PID">
               <label for="Pname">Name:</label>
               <input type="text" id="Pname" name="Pname" maxlength="20">
               <label for="PPWord">create password:</label>
               <input type="text" id="PPWord" name="PPWord">
+              <label for="PAge">Age:</label>
+              <input type="number" id="PAge" name="PAge">
               <br>
               <label for="PPhoneNum">Phone Number:</label>
               <input type="text" id="PPhoneNum" name="PPhoneNum" maxlength="10"> 

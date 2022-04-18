@@ -8,10 +8,15 @@ require_once "../php/config.php";
 
 if(count($_POST) > 0)
 {
+      //Store input values
+      $PName = $_POST['Pname'];
+      $PPWord = $_POST['PPWord'];
+      $PPhoneNum = $_POST['PPhoneNum'];
+      $PEmail = $_POST['PEmail'];
+      $PAge = $_POST['PAge'];
 
-
-    mysqli_query($db, "UPDATE PATIENT SET Office_id= '".$_POST['Office_id'] . "' ,Name='".$_POST['Name'] . "' 
-    , Speciality='".$_POST['Speciality'] . "' , Phone_number = '".$_POST['Phone_number'] . "'  WHERE Doctor_id= '".$_GET['update_Did'] . "'");
+    mysqli_query($db, "UPDATE PATIENT SET Name='$PID' , Password='$PPWord' , Phone_number = '$PPhoneNum', Email = '$PEmail',
+                 Age = '$PAge' WHERE Patient_id= '".$_GET['update_Did'] . "'");
 }
 $id =$_GET['update_Did'];
 $result = mysqli_query($db, "SELECT * FROM DOCTOR WHERE Doctor_id = '$id'");
@@ -59,7 +64,7 @@ $row = mysqli_fetch_array($result);
   <!-- Header of the page-->
   <section>
     <br><br>
-    <h1 class="text-center" id="data-entry-header">Edit Form for Patientr</h1>
+    <h1 class="text-center" id="data-entry-header">Edit Form for Patient</h1>
   </section>
   
 
@@ -69,12 +74,12 @@ $row = mysqli_fetch_array($result);
 <form action="" method="POST">
             <!--input taken for doctor-->
               <input type = "hidden" name = "id" class = "txtField" value = "<?php echo $row['Patient_id']; ?>">
-              <label for="PID">Patient ID:</label>
-              <input type="number" id="PID" name="PID">
               <label for="Pname">Name:</label>
               <input type="text" id="Pname" name="Pname" maxlength="20">
               <label for="PPWord">create password:</label>
               <input type="text" id="PPWord" name="PPWord">
+              <label for="PAge">Age:</label>
+              <input type="number" id="PAge" name="PAge">
               <br>
               <label for="PPhoneNum">Phone Number:</label>
               <input type="text" id="PPhoneNum" name="PPhoneNum" maxlength="10"> 
