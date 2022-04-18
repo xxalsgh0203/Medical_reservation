@@ -139,7 +139,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <!-- End signup -->
 
 <!-- Footer-->
-<?php include_once("./php/footer.php"); ?>
+
 
 <script src="main.js"></script>
 

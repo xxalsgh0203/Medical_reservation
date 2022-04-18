@@ -164,7 +164,6 @@ if (isset($_GET['delete_id'])) {
 </section>
 
   <!-- Footer-->
-  <?php include_once("../php/footer.php"); ?>
 
   <script>
 

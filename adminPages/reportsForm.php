@@ -142,7 +142,6 @@ if ($result->num_rows > 0) {
 
 
 <!-- Footer-->
-<?php include_once("../php/footer.php"); ?>
 
 <script src="main.js"></script>
 </body>
