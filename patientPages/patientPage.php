@@ -61,7 +61,7 @@ if ($result->num_rows > 0) {
     $APtableResult .= "<td>" . $row["Patient_id"] . "</td><td>"  . $row["Office_id"] . "</td><td>" . $row["Appointment_status_id"] . "</td><td>" . $row["Slotted_time"] . "</td><td>" . $row["Specialist_status"] . "</td><td> 
     <a href='../patientPages/patientPage.php?delete_id=" . $row["Appointment_id"] . "'>X</a>
     </td>";
-    $APtableResult .= "</tr>"; 
+    $APtableResult .= "</tr>";
   }
 }
 
@@ -162,8 +162,6 @@ if (isset($_GET['delete_id'])) {
         </div>
       </div>
 </section>
-
-
 
   <!-- Footer-->
   <?php include_once("../php/footer.php"); ?>
