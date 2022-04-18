@@ -118,12 +118,12 @@ while($row = mysqli_fetch_array($dbres))
           <select name="Op1" style="border: 1px solid">
               <option>Select</option>
               <option id = "Office_id">Office id</option>
-              <option >2 PUC</option>
+              <option >Age</option>
           </select>
           <select name="Op2" style="border: 1px solid">
               <option >Select</option>
               <option>Appointmens</option>
-              <option >2 PUC</option>
+              <option >Specialist</option>
           </select>
          
 
