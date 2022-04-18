@@ -41,8 +41,17 @@ header('location:dataEntryForm.php');
 
 }
 
-$update = false;
+//used when the delete hyperlink is pressed
+if (isset($_GET['delete_Did'])) {
+  $id = $_GET['delete_Did'];
 
+ mysqli_query($db, "DELETE FROM DOCTOR WHERE Doctor_id = " . $id);
+header('location:dataEntryForm.php');
+
+}
+
+$update = false;
+$id = 1;
 if (isset($_GET['update_Did'])) {
   $id = $_GET['update_Did'];
   $update = true;
@@ -57,6 +66,19 @@ if (isset($_GET['update_Did'])) {
     $DPWord = $row['DPWord'];
     $DPhoneNum = $row['DPhoneNum'];
   }
+
+
+header('location:dataEntryForm.php');
+
+}
+
+
+if (isset($_POST['USubmitD']))
+{
+  $ID = $_POST['id'];
+
+  $db->("UPDATE DOCTOR SET ")
+
 
 
 header('location:dataEntryForm.php');
