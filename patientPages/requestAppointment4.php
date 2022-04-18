@@ -39,16 +39,18 @@
             }
         }*/
 
-        try {
-          $query = "INSERT INTO `APPOINTMENT`(Patient_id, Doctor_id, Office_id, Appointment_status, Slotted_time, Specialist_status) VALUES
-          ('$patientID', '$doctorID', '$officeID', '$appointmentStatus', '$time', '$specialistStatus');";
-          $result = mysqli_query($db, $query);
-        } catch  (Exception $e) {
-          //$error = $e;
-        }
         if ($doctorID == 2) {
           $error = "You do not have permission to schedule an appointment with a specialist";
+        } else {
+          try {
+            $query = "INSERT INTO `APPOINTMENT`(Patient_id, Doctor_id, Office_id, Appointment_status, Slotted_time, Specialist_status) VALUES
+            ('$patientID', '$doctorID', '$officeID', '$appointmentStatus', '$time', '$specialistStatus');";
+            $result = mysqli_query($db, $query);
+          } catch  (Exception $e) {
+            //$error = $e;
+          }
         }
+        
     }
 
 
