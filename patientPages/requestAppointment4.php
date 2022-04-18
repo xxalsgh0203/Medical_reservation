@@ -39,13 +39,13 @@
             }
         }*/
 
-        // try {
+        try {
           $query = "INSERT INTO `APPOINTMENT`(Patient_id, Doctor_id, Office_id, Appointment_status, Slotted_time, Specialist_status) VALUES
           ('$patientID', '$doctorID', '$officeID', '$appointmentStatus', '$time', '$specialistStatus');";
           $result = mysqli_query($db, $query);
-        // } catch  (Exception $e) {
-        //   $error = $e;
-        // }
+        } catch  (Exception $e) {
+          $error = $e;
+        }
     }
 
 
@@ -99,11 +99,11 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true)
     <div class="container">
         <div class="ra-final">
 
-          <?php if(isset($error) && !empty($error)) { ?>
+          <!-- <?php if(isset($error) && !empty($error)) { ?>
             <h1 class="ra-h"><?= $error; ?></span>
-          <?php } else { ?>
+          <?php } else { ?> -->
             <h1 id="result" class="ra-h"> Appoinmtent has been Requested </h1>
-          <?php } ?>
+          <!-- <?php } ?> -->
 
             <br>
             <br>
