@@ -40,13 +40,15 @@ if (isset($_GET['delete_Did'])) {
 header('location:dataEntryForm.php');
 
 }
+
 $update = false;
+
 if (isset($_GET['update_Did'])) {
   $id = $_GET['update_Did'];
   $update = true;
   $Eresult = $db->query("Select * FROM DOCTOR WHERE Doctor_id = $id");
 
-  if(count($Eresult)==1)
+  if($Eresult->num_rows == 1)
   {
     $row = $Eresult->fetch_array();
     $OFFID =  $row['OFFID'];
@@ -136,6 +138,26 @@ if ($result->num_rows > 0) {
   }
 }
 
+
+
+//Takes in input for Admin from submitAD
+if (isset($_POST['SubmitP']))
+{
+  //Store input values
+    $PID =  $_POST['PID'];
+    $PName = $_POST['Pname'];
+    $PPWord = $_POST['PPWord'];
+    $PPhoneNum = $_POST['PPhoneNum'];
+    $PEmail = $_POST['PEmail'];
+
+    //Used to insert data into admin
+    $db->query("INSERT INTO PATIENT (Patient_id,  Name, Password, Phone_number, Email) 
+                    VALUES ('$PID', '$PName', '$PPWord', '$PPhoneNum', '$PEmail')")  or die($db->error); 
+
+   
+    header("location:dataEntryForm.php");
+
+}
 
 ?> 
 
@@ -229,7 +251,13 @@ table.center {
               <input type="text" id="DPhoneNum" name="DPhoneNum" maxlength="10">    
               <!--Used to separate inputs-->
               <br>
+              <?php
+              if ($update == true):
+              ?>
+                <button type="submit" class="btn btn-info" name="SubmitD">Update</button>
+               <?php else: ?>
               <button type="submit" class="btn btn-primary" name="SubmitD">Submit</button>
+              <?php endif; ?>
               </form>
 
             <br><br><br> <br><br><br> <br><br><br>
@@ -264,13 +292,7 @@ table.center {
               <input type="text" id="ADEmail" name="ADEmail" maxlength="30">   
               <!--Used to separate inputs-->
               <br>
-              <?php
-              if ($update == true):
-              ?>
-               <button type="submit" class="btn btn-info" name="SubmitAD">Update</button>
-               <?php else: ?>
               <button type="submit" class="btn btn-primary" name="SubmitAD">Submit</button>
-              <?php endif; ?>
               
 
 
@@ -287,12 +309,13 @@ table.center {
               <thead class="thead">
                 <tr>
                   <th>Patient ID</th>
-                  <th>Office ID</th>
                   <th>Appointment status</th>
                   <th>Slotted Time</th>
                   <th>Specialist Status</th>
                   <th>Approve</th>
                   <th>Reject</th>
+                  <th>edit</th>
+                  <th>delete</th>
                 </tr>
                 <?php echo $PtableResult;?>
               </thead>
@@ -301,20 +324,20 @@ table.center {
             </table>
               <!-- Input taken for Patient -->
               <h1> Patient info:  </h2>
-              <label for="ADOFFID">Office ID:</label>
-              <input type="number" id="ADOFFID" name="ADOFFID">
-              <label for="ADname">Name:</label>
-              <input type="text" id="ADname" name="ADname" maxlength="20">
-              <label for="ADPWord">create password:</label>
-              <input type="text" id="ADPWord" name="ADPWord">
+              <label for="PID">Patient ID:</label>
+              <input type="number" id="PID" name="PID">
+              <label for="Pname">Name:</label>
+              <input type="text" id="Pname" name="Pname" maxlength="20">
+              <label for="PPWord">create password:</label>
+              <input type="text" id="PPWord" name="ADPWord">
               <br>
-              <label for="DPhoneNum">Phone Number:</label>
-              <input type="text" id="ADPhoneNum" name="ADPhoneNum" maxlength="10"> 
-              <label for="ADEmail">Email:</label>
-              <input type="text" id="ADEmail" name="ADEmail" maxlength="30">   
+              <label for="PPhoneNum">Phone Number:</label>
+              <input type="text" id="PPhoneNum" name="PPhoneNum" maxlength="10"> 
+              <label for="PEmail">Email:</label>
+              <input type="text" id="PEmail" name="PEmail" maxlength="30">   
               <!--Used to separate inputs-->
               <br>
-              <button type="submit" class="btn btn-primary" name="SubmitAD">Submit</button>
+              <button type="submit" class="btn btn-primary" name="SubmitP">Submit</button>
   
 </section>
 
