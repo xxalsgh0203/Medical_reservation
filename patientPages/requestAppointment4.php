@@ -40,9 +40,9 @@
         }*/
 
 
-        $query = "INSERT INTO `APPOINTMENT`(Patient_id, Doctor_id, Office_id, Appointment_status, Slotted_time, Specialist_status) VALUES
+        /*$query = "INSERT INTO `APPOINTMENT`(Patient_id, Doctor_id, Office_id, Appointment_status, Slotted_time, Specialist_status) VALUES
         ('$patientID', '$doctorID', '$officeID', '$appointmentStatus', '$time', '$specialistStatus');";
-        $result   = mysqli_query($db, $query);
+        $result   = mysqli_query($db, $query);*/
     }
 
 
@@ -83,8 +83,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true)
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item"><a class="nav-link" href="./login.php">Log in</a></li>
-        <li class="nav-item"><a class="nav-link" href="./signup.php">Sign up</a></li>
+        <li class="nav-item"><a class="nav-link" href="../auth/login.php">Log Out</a></li>
         <li class="nav-item"><a class="nav-link" href="./patientPage.php">Manage Reservation</a></li>
       </ul>
     </div>
@@ -95,7 +94,12 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true)
 <!-- ======= signup Section ======= -->
 <body>
     <div class="container">
-        <p>Appointment has been requested</p>
+        <div class="ra-final">
+            <h1 class="ra-h"> Appoinmtent has been Requested </h1>
+            <br>
+            <br>
+            <p class= "ra-p"><a href="patientPage.php">Click here to return to the Patient Page</a></p>
+        </div>
     </div>
 </body>
 <!-- Footer-->
