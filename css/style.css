@@ -633,3 +633,28 @@
   font: bold;
   font-size: 50px;
 }
+
+#dataEntry h1{
+  font-family: Monospace;
+}
+
+#dataEntry h2{
+  margin-top: 20px;
+  font-family: Monospace;
+}
+
+/* #dataEntry div{
+  margin-top: 50px;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  width: 200px;
+  height: 180px;
+  border: 1px solid red;
+  position: relative;
+} */
+
+#dataentrysubmitbtn{
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
