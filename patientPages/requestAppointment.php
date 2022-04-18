@@ -27,7 +27,7 @@ require_once "../php/config.php";
 <nav class="navbar navbar-expand-lg nav-back fixed-top" id="mainNav">
   <div class="container">
     <img src="../img/main_icon.png" class="mainicon">
-    <a class="navbar-brand" href="./main.php">Medimon</a>
+    <a class="navbar-brand" href="./index.php">Medimon</a>
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
       data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
       aria-label="Toggle navigation"><i class="fas fa-syringe fa-2x"></i>
