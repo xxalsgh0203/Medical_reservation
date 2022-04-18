@@ -40,9 +40,9 @@
         }*/
 
 
-        /*$query = "INSERT INTO `APPOINTMENT`(Patient_id, Doctor_id, Office_id, Appointment_status, Slotted_time, Specialist_status) VALUES
+        $query = "INSERT INTO `APPOINTMENT`(Patient_id, Doctor_id, Office_id, Appointment_status, Slotted_time, Specialist_status) VALUES
         ('$patientID', '$doctorID', '$officeID', '$appointmentStatus', '$time', '$specialistStatus');";
-        $result   = mysqli_query($db, $query);*/
+        $result   = mysqli_query($db, $query);
     }
 
 
