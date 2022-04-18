@@ -341,6 +341,7 @@ table.center {
                   <th>Name</th>
                   <th>Phone Number</th>
                   <th>Appointment status</th>
+                  <th>Email</th>
                   <th>Age</th>
                   <th>Medical Allergy</th>
                   <th>Specialist Status</th>
