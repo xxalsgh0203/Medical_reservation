@@ -3,12 +3,14 @@
 Purpose: Display patient information
 
 Implemented Features:
-  display upcomming appointments
+  display personal information
   button to requestAppointment page
+  display upcomming appointments
   display prescription
 
 TODO: 
-  display personal information (including general doctor/physician)
+  finalize design
+  finalize attributes being displayed
 
  -->
  
@@ -46,6 +48,28 @@ if ($result->num_rows > 0) {
     $PtableResult .= "<td>" . $row["Patient_id"] . "</td><td>"  . $row["Medication"] . "</td><td>" . $row["Test"] . "</td><td>" . $row["Prescription_date"] . "</td>";
   }
   $PtableResult .= "</tr>"; 
+}
+
+$sql = "SELECT Patient_id, Office_id, Appointment_id, Appointment_status_id, Slotted_time, Specialist_status FROM APPOINTMENT WHERE Patient_id = '$id'";
+$result = mysqli_query($db, $sql);
+
+//table results for appointments
+$APtableResult = "";
+if ($result->num_rows > 0) {
+  while($row = $result-> fetch_assoc()) {
+    $APtableResult .= "<tr>";
+    $APtableResult .= "<td>" . $row["Patient_id"] . "</td><td>"  . $row["Office_id"] . "</td><td>" . $row["Appointment_status_id"] . "</td><td>" . $row["Slotted_time"] . "</td><td>" . $row["Specialist_status"] . "</td><td> 
+    <a href='../patientPages/patientPage.php?delete_id=" . $row["Appointment_id"] . "'>X</a>
+    </td>";
+    $APtableResult .= "</tr>"; 
+  }
+}
+
+if (isset($_GET['delete_id'])) {
+	$id = $_GET['delete_id'];
+
+	mysqli_query($db, "DELETE FROM APPOINTMENT WHERE Appointment_id = " . $id);
+  header('location: patientPage.php');
 }
 ?>
 
@@ -96,7 +120,6 @@ if ($result->num_rows > 0) {
             <a href="requestAppointment.php">Make Reservation!</a>
 
             <h2>Prescriptions</h2>
-  
             <table class="table table-bordered">
               <thead class="thead">
                 <tr>
@@ -106,6 +129,23 @@ if ($result->num_rows > 0) {
                   <th scope="col">Prescription_date</th>
                 </tr>
                 <?php echo $PtableResult;?>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+
+            <h2>Appointments</h2>
+            <table class="table table-bordered">
+              <thead class="thead">
+                <tr>
+                  <th>Patient ID</th>
+                  <th>Office ID</th>
+                  <th>Appointment status</th>
+                  <th>Slotted Time</th>
+                  <th>Specialist Status</th>
+                  <th>Cancel Appointment</th>
+                </tr>
+                <?php echo $APtableResult;?>
               </thead>
               <tbody>
               </tbody>
@@ -122,8 +162,6 @@ if ($result->num_rows > 0) {
         </div>
       </div>
 </section>
-<!-- End signup -->
-
 
 
 

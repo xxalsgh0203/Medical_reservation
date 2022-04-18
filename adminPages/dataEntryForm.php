@@ -16,6 +16,54 @@ TODO:
 session_start();
 
 require_once "../php/config.php";
+
+
+//------------------------------used to retrieve other doctors------------------------------------
+$sql = "SELECT Office_id, Name, Speciality, Phone_number, Doctor_id FROM DOCTOR";
+$result = mysqli_query($db, $sql);
+
+$DtableResult = "";
+if ($result->num_rows > 0) {
+  while($row = $result-> fetch_assoc()) {
+    $DtableResult .= "<tr>". "<td>" . $row["Office_id"] . "</td><td>" . $row["Name"] . "</td><td>" . 
+                      $row["Speciality"] . "</td> <td>" . $row["Phone_number"] . "</td>" . "</td><td> 
+                      <a href='../adminPages/dataEntryForm.php?update_Did=" . $row["Doctor_id"]  . "'>edit</a> </td>" . "</td><td> <a href='../adminPages/dataEntryForm.php?delete_Did=" . $row["Doctor_id"] . "'>Delete</a>
+                                           </td>" .  "</tr>";
+  }
+}
+
+//used when the delete hyperlink is pressed
+if (isset($_GET['delete_Did'])) {
+  $id = $_GET['delete_Did'];
+
+ mysqli_query($db, "DELETE FROM DOCTOR WHERE Doctor_id = " . $id);
+header('location:dataEntryForm.php');
+
+}
+$update = false;
+if (isset($_GET['update_Did'])) {
+  $id = $_GET['update_Did'];
+  $update = true;
+  $Eresult = $db->query("Select * FROM DOCTOR WHERE Doctor_id = $id");
+
+  if(count($Eresult)==1)
+  {
+    $row = $Eresult->fetch_array();
+    $OFFID =  $row['OFFID'];
+    $DName = $row['Dname'];
+    $SPType = $row['SPType'];
+    $DPWord = $row['DPWord'];
+    $DPhoneNum = $row['DPhoneNum'];
+  }
+
+
+header('location:dataEntryForm.php');
+
+}
+
+
+
+
 //Takes in input for doctor from SubmitD
 if (isset($_POST['SubmitD']))
 {
@@ -31,12 +79,27 @@ if (isset($_POST['SubmitD']))
     $db->query("INSERT INTO DOCTOR (Office_id,  Name, Speciality, Password, Phone_number) 
                     VALUES ('$OFFID', '$DName', '$SPType', '$DPWord', '$DPhoneNum')")  or die($db->error); 
 
-    $_SESSION['message'] = "Record has been Saved!";
-    $_SESSION['msg_type'] = "Success";
-
-    header("location : dataEntryForm.php");
+  
+    header("location:dataEntryForm.php");
 
 }
+
+
+/*---------------------------to retrieve  admins------------------------------------------------*/
+$sql = "SELECT * FROM ADMIN";
+$result = mysqli_query($db, $sql);
+
+$OtADtableResult = "";
+if ($result->num_rows > 0) {
+  while($row = $result-> fetch_assoc()) {
+    $OtADtableResult .= "<tr>". "<td>" . $row["Office_id"] . "</td><td>" . $row["Name"] . "</td><td>" . 
+                          $row["Phone_number"] . "</td><td>" . $row["Email"] . "</td>" . "</td><td> 
+                          <a href='../adminPages/dataEntryForm.php?update_ADid=" . $row["Admin_id"]  . "'>edit</a> </td>" . "</td><td> <a href='../adminPages/dataEntryForm.php?delete_ADid=" . $row["Admin_id"] . "'>Delete</a>
+                                               </td>"."<tr>";
+  }
+ 
+}
+
 
 //Takes in input for Admin from submitAD
 if (isset($_POST['SubmitAD']))
@@ -52,11 +115,25 @@ if (isset($_POST['SubmitAD']))
     $db->query("INSERT INTO ADMIN (Office_id,  Name, Password, Phone_number, Email) 
                     VALUES ('$ADOFFID', '$ADName', '$ADPWord', '$ADPhoneNum', '$ADEmail')")  or die($db->error); 
 
-    $_SESSION['message'] = "Record has been Saved!";
-    $_SESSION['msg_type'] = "Success";
+   
+    header("location:dataEntryForm.php");
 
-    header("location : dataEntryForm.php");
+}
 
+
+
+//----------------------------------------Retrieve patients----------------------------------
+$sql = "SELECT Name, Phone_number, Email , Age, Medical_allergy, Specialist_approved, Patient_id FROM PATIENT";
+$result = mysqli_query($db, $sql);
+
+$PtableResult = "";
+if ($result->num_rows > 0) {
+  while($row = $result-> fetch_assoc()) {
+    $PtableResult .= "<tr>" . "<td>" . $row["Name"] . "</td><td>" . $row["Phone_number"] . "</td><td>" . 
+                    $row["Email"] . "</td><td>" . $row["Age"] . "</td>" . "</td><td>" . $row["Medical_allergy"] . "</td>" .  "</td><td>" . $row["Specialist_approved"] . "</td>" .
+                     "</td><td> <a href='../adminPages/dataEntryForm.php?update_Pid=" . $row["Patient_id"]  . "'>edit</a> </td>" . "</td><td> <a href='../adminPages/dataEntryForm.php?delete_Pid=" . 
+                     $row["Patient_id"] . "'>Delete</a> </td>"  . "<tr>";
+  }
 }
 
 
@@ -77,21 +154,18 @@ if (isset($_POST['SubmitAD']))
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
  
-  <!-- <style>
-     /* Used to center the title*/
-    h1 {text-align: center;}
-  /* used to center inputs*/
-    form { 
-          margin: 0 auto; 
-          width:1000px;
-          }
+    <style>
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
 
-    div
-    {
-    margin: 0px auto;
-    width:300px;
-    }
-  </style> -->
+table.center {
+  margin-left: auto; 
+  margin-right: auto;
+}
+
+</style>
 </head>
 
 <?php include_once("../php/header.php"); ?>
@@ -110,15 +184,38 @@ if (isset($_POST['SubmitAD']))
   </div>
 </body> -->
 
+  <!-- Header of the page-->
+  <section>
+    <br><br>
+    <h1>Data Entry Form</h1>
+  </section>
+  
+
+<!-- ======= Doctor Section ======= -->
 
 <section id="dataEntry">
-    <!-- Header of the page-->
-    <h1>Data Entry Form</h1>
+      <h1>Doctors</h1>
+    
+      <table  class = "center" border="6" >
+              <thead class="thead">
+                <tr>
+                  <th>Office ID</th>
+                  <th>Name</th>
+                  <th>Specialty</th>
+                  <th>Phone Number</th>
+                  <th>update</th>
+                  <th>delete</th>
+                </tr>
+                <?php echo $DtableResult;?>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+  
 
-
-  <form action="" method="POST">
+      <form action="" method="POST">
             <!--input taken for doctor-->
-              <h2>  Add Doctor  </h2>
+              <h2>  Doctor info:  </h2>
               <label for="OFFID">Office ID:</label>
               <input type="number" id="OFFID" name="OFFID">
               <label for="SPType">Speciality:</label>
@@ -133,10 +230,27 @@ if (isset($_POST['SubmitAD']))
               <!--Used to separate inputs-->
               <br>
               <button type="submit" class="btn btn-primary" name="SubmitD">Submit</button>
+              </form>
 
-              <br>  <br>
+            <br><br><br> <br><br><br> <br><br><br>
+            <h1>Admin</h1>
+            <table  class = "center" border="6">
+              <thead class="thead">
+                <tr>
+                  <th scope="col">Office ID</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Phone number</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">update</th>
+                  <th scope="col">delete</th>
+                </tr>
+                <?php echo $OtADtableResult;?>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
             <!--input taken for admin -->
-              <h2>  Add Admin  </h2>
+              <h2>  Admin info:  </h2>
               <label for="ADOFFID">Office ID:</label>
               <input type="number" id="ADOFFID" name="ADOFFID">
               <label for="ADname">Name:</label>
@@ -150,11 +264,43 @@ if (isset($_POST['SubmitAD']))
               <input type="text" id="ADEmail" name="ADEmail" maxlength="30">   
               <!--Used to separate inputs-->
               <br>
+              <?php
+              if ($update == true):
+              ?>
+               <button type="submit" class="btn btn-info" name="SubmitAD">Update</button>
+               <?php else: ?>
               <button type="submit" class="btn btn-primary" name="SubmitAD">Submit</button>
+              <?php endif; ?>
+              
 
-              <br>  <br>
+
+
+
+</section>
+
+
+
+<section id="dataEntry">
+<br><br><br>
+              <h1>Patient</h1>
+              <table  class = "center" border="6">
+              <thead class="thead">
+                <tr>
+                  <th>Patient ID</th>
+                  <th>Office ID</th>
+                  <th>Appointment status</th>
+                  <th>Slotted Time</th>
+                  <th>Specialist Status</th>
+                  <th>Approve</th>
+                  <th>Reject</th>
+                </tr>
+                <?php echo $PtableResult;?>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
               <!-- Input taken for Patient -->
-              <h2>  Add Patient  </h2>
+              <h1> Patient info:  </h2>
               <label for="ADOFFID">Office ID:</label>
               <input type="number" id="ADOFFID" name="ADOFFID">
               <label for="ADname">Name:</label>
@@ -169,7 +315,7 @@ if (isset($_POST['SubmitAD']))
               <!--Used to separate inputs-->
               <br>
               <button type="submit" class="btn btn-primary" name="SubmitAD">Submit</button>
-  </form>
+  
 </section>
 
 
