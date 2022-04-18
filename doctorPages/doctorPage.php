@@ -44,11 +44,11 @@ $result = mysqli_query($db, $sql);
 
 $PtableResult = "";
 if ($result->num_rows > 0) {
-  $PtableResult = "<tr>";
+ 
   while($row = $result-> fetch_assoc()) {
-    $PtableResult .= "<td>" . $row["Patient_id"] . "</td><td>"  . $row["Name"] . "</td><td>" . $row["Phone_number"] . "</td><td>" . $row["Email"] . "</td><td>" . $row["Age"] . "</td><td>" . $row["Medical_allergy"] . "</td>";
+    $PtableResult .= "<tr>". "<td>" . $row["Patient_id"] . "</td><td>"  . $row["Name"] . "</td><td>" . $row["Phone_number"] . "</td><td>" . $row["Email"] . "</td><td>" . $row["Age"] . "</td><td>" . $row["Medical_allergy"] . "</td>". "<tr>";
   }
-  $PtableResult .= "</tr>"; 
+  
 }
 
 //Query to retrieve appointments for doctor
@@ -59,11 +59,9 @@ $result = mysqli_query($db, $sql);
 $APtableResult = "";
 if ($result->num_rows > 0) {
   while($row = $result-> fetch_assoc()) {
-    $APtableResult .= "<tr>";
-    $APtableResult .= "<td>" . $row["Patient_id"] . "</td><td>"  . $row["Office_id"] . "</td><td>" . $row["Appointment_status_id"] . "</td><td>" . $row["Slotted_time"] . "</td><td>" . $row["Specialist_status"] . "</td><td> 
+    $APtableResult .= "<tr>". "<td>" . $row["Patient_id"] . "</td><td>"  . $row["Office_id"] . "</td><td>" . $row["Appointment_status_id"] . "</td><td>" . $row["Slotted_time"] . "</td><td>" . $row["Specialist_status"] . "</td><td> 
     <a href='../doctorPages/doctorPage.php?delete_id=" . $row["Appointment_id"] . "'>X</a>
-    </td>";
-    $APtableResult .= "</tr>"; 
+    </td>". "</tr>";
   }
 }
 
@@ -78,6 +76,8 @@ $weekdays = [
   "Thursday",
   "Friday"
 ];
+
+/*
 foreach ($weekdays as $weekday) {
   $sql = "SELECT * FROM WORK_INFO WHERE Doctor_id = '$id' AND Weekday = '$weekday'";
   $result = mysqli_query($db, $sql);
@@ -94,7 +94,7 @@ if (isset($_GET['delete_id'])) {
 	mysqli_query($db, "DELETE FROM APPOINTMENT WHERE Appointment_id = " . $id);
   header('location: doctorPage.php');
 }
-
+*/
 ?>
 
 
