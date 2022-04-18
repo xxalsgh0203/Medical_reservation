@@ -8,18 +8,17 @@ require_once "../php/config.php";
 
 if(count($_POST) > 0)
 {
-      //Store input values
-      $PName = $_POST['Pname'];
-      $PPWord = $_POST['PPWord'];
-      $PPhoneNum = $_POST['PPhoneNum'];
-      $PEmail = $_POST['PEmail'];
-      $PAge = $_POST['PAge'];
-
-    mysqli_query($db, "UPDATE ADMIN SET Name='$PID' , Password='$PPWord' , Phone_number = '$PPhoneNum', Email = '$PEmail',
-                 Age = '$PAge' WHERE Patient_id= '".$_GET['update_Did'] . "'");
+  //Store input values
+  $ADOFFID =  $_POST['ADOFFID'];
+  $ADName = $_POST['ADname'];
+  $ADPWord = $_POST['ADPWord'];
+  $ADPhoneNum = $_POST['ADPhoneNum'];
+  $ADEmail = $_POST['ADEmail'];
+    mysqli_query($db, "UPDATE ADMIN SET Offire_id='$ADOFFID' , Name='$ADName' , Password = '$ADPWord', Phone_number = '$ADPhoneNum',
+                 Email = '$ADEmail' WHERE Patient_id= '".$_GET['update_Did'] . "'");
 }
 $id =$_GET['update_Did'];
-$result = mysqli_query($db, "SELECT * FROM DOCTOR WHERE Doctor_id = '$id'");
+$result = mysqli_query($db, "SELECT * FROM ADMIN WHERE Admin_id = '$id'");
 $row = mysqli_fetch_array($result);
 ?> 
 
@@ -73,7 +72,7 @@ $row = mysqli_fetch_array($result);
 <section id="dataEntry">
 <form action="" method="POST">
             <!--input taken for doctor-->
-              <input type = "hidden" name = "id" class = "txtField" value = "<?php echo $row['Patient_id']; ?>">
+              <input type = "hidden" name = "id" class = "txtField" value = "<?php echo $row['Admin_id']; ?>">
               <label for="ADOFFID">Office ID:</label>
               <input type="number" id="ADOFFID" name="ADOFFID">
               <label for="ADname">Name:</label>

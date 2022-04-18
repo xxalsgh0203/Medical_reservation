@@ -16,10 +16,10 @@ if(count($_POST) > 0)
       $PAge = $_POST['PAge'];
 
     mysqli_query($db, "UPDATE PATIENT SET Name='$PID' , Password='$PPWord' , Phone_number = '$PPhoneNum', Email = '$PEmail',
-                 Age = '$PAge' WHERE Patient_id= '".$_GET['update_Did'] . "'");
+                 Age = '$PAge' WHERE Patient_id= '".$_GET['update_Pid'] . "'");
 }
 $id =$_GET['update_Did'];
-$result = mysqli_query($db, "SELECT * FROM DOCTOR WHERE Doctor_id = '$id'");
+$result = mysqli_query($db, "SELECT * FROM PATIENT WHERE Patient_id = '$id'");
 $row = mysqli_fetch_array($result);
 ?> 
 
