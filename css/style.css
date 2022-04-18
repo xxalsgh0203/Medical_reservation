@@ -662,3 +662,30 @@
 #dataEntry{
   margin-bottom: 100px;
 } */
+
+#reportsForm h1{
+  margin-top: 10%;
+  margin-bottom: 20px;
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font: bold;
+  font-size: 50px;
+}
+
+#reportsForm table{
+  position: absolute;
+  vertical-align: middle;
+  text-align: center;
+}
+
+#reportsForm {
+  position: relative;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.data{
+  display: inline-block;
+  position: relative;
+  vertical-align: middle;
+  text-align: center;
+}
