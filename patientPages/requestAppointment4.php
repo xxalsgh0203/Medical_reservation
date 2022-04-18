@@ -44,7 +44,10 @@
           ('$patientID', '$doctorID', '$officeID', '$appointmentStatus', '$time', '$specialistStatus');";
           $result = mysqli_query($db, $query);
         } catch  (Exception $e) {
-          $error = $e;
+          //$error = $e;
+        }
+        if ($doctorID == 2) {
+          $error = "You do not have permission to schedule an appointment with a specialist";
         }
     }
 
@@ -99,11 +102,11 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true)
     <div class="container">
         <div class="ra-final">
 
-          <!-- <?php if(isset($error) && !empty($error)) { ?>
+          <?php if(isset($error) && !empty($error)) { ?>
             <h1 class="ra-h"><?= $error; ?></span>
-          <?php } else { ?> -->
+          <?php } else { ?>
             <h1 id="result" class="ra-h"> Appoinmtent has been Requested </h1>
-          <!-- <?php } ?> -->
+          <?php } ?>
 
             <br>
             <br>
