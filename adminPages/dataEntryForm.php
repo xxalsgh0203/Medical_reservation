@@ -346,7 +346,8 @@ table.center {
               </tbody>
             </table>
               <!-- Input taken for Patient -->
-              <h1> Patient info:  </h2>
+              <h2> Patient info:  </h2>
+              
               <label for="PID">Patient ID:</label>
               <input type="number" id="PID" name="PID">
               <label for="Pname">Name:</label>
@@ -360,7 +361,8 @@ table.center {
               <input type="text" id="PEmail" name="PEmail" maxlength="30">   
               <!--Used to separate inputs-->
               <br>
-              <button type="submit" class="btn btn-primary" name="SubmitP">Submit</button>
+              <button type="submit" class="btn btn-primary" name="SubmitP" id="dataentrysubmitbtn">Submit</button>
+               
   
 </section>
 
