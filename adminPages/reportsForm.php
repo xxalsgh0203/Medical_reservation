@@ -48,6 +48,19 @@ if ($result->num_rows > 0) {
   $APtableResult .= "</tr>"; 
 }
 
+//Query to search for Reports
+$sql = "SELECT  ofic.Office_id, aptment.Appointment_id FROM OFFICE ofic LEFT JOIN APPOINTMENT aptment ON ofic.Office_id = aptment.Office_id ";
+$result = mysqli_query($db, $sql);
+
+$ReportResults = "";
+if ($result->num_rows > 0) {
+  while($row = $result-> fetch_assoc()) {
+    $ReportResults .= "<tr>" ."<td>" . $row["Office_id"] . "</td>" . "<td>" . $row["Appointment_id"] . "</td>" ."<tr>";
+  }
+  
+}
+
+
 
 ?>
 
@@ -97,25 +110,26 @@ if ($result->num_rows > 0) {
         </div>
 
         <div class = "data">
-          <select name="Office id" style="border: 1px solid">
+          <select name="Op1" style="border: 1px solid">
               <option>Select</option>
-              <option> 1 PUC</option>
+              <option>Office id</option>
               <option >2 PUC</option>
           </select>
-          <select name="Appointments" style="border: 1px solid">
+          <select name="Op2" style="border: 1px solid">
               <option >Select</option>
-              <option> 1 PUC</option>
+              <option>Appointmens</option>
               <option >2 PUC</option>
           </select>
           <button type="submit" class="btn btn-primary" name="Submit">Submit</button>
           <br><br>
-          <table border = "1" class  = "table">
+          <table border = "2" class  = "table">
             <tr>
                 <th>Office id</th>
                 <th>Amount of appointments</th>
-                <th>Specialist enrolled</th>
-                <th>Hours Most Visited</th>
+                <th>specialits Visits</th>
+                <th>Total</th>
             </tr>
+            <?php echo $ReportResults;?>
           </table>
 
         </div>
