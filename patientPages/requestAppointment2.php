@@ -89,13 +89,13 @@ session_start();
                         echo "
                         <form class='ra' id='ra' action='requestAppointment3.php' method = 'POST';>
                         <h3 class='ra-header'>Select an avaiable Doctor</h3>";
-                    while ($row = mysqli_fetch_array($result)) {
-                        echo "
-                        <div class = 'ra-form'>
-                        <label for= ".$row['Doctor_id'].">".$row['name']."</label>
-                        <input type='radio' name= 'name' id= ".$row['Doctor_id']." value = ".$row['Doctor_id']." /><br>
-                        </div>";
-                    }
+                        while ($row = mysqli_fetch_array($result)) {
+                            echo "
+                            <div class = 'ra-form'>
+                            <label for= ".$row['Doctor_id'].">".$row['name']."</label>
+                            <input type='radio' name= 'name' id= ".$row['Doctor_id']." value = ".$row['Doctor_id']." /><br>
+                            </div>";
+                        }
                     echo "
                     <div class='ra-form'>
                     <input class='ra-form' type='submit' name='button' value='Next'/>
