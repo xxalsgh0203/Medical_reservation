@@ -633,7 +633,7 @@
   font: bold;
   font-size: 50px;
 }
-
+/* 
 #dataEntry h1{
   font-family: Monospace;
 }
@@ -641,7 +641,7 @@
 #dataEntry h2{
   margin-top: 20px;
   font-family: Monospace;
-}
+} */
 
 /* #dataEntry div{
   margin-top: 50px;
@@ -654,7 +654,11 @@
   position: relative;
 } */
 
-#dataentrysubmitbtn{
+/* #dataentrysubmitbtn{
   margin-top: 20px;
   margin-bottom: 20px;
 }
+
+#dataEntry{
+  margin-bottom: 100px;
+} */
