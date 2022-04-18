@@ -118,7 +118,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 <!-- End signup -->
 
 <!-- Footer-->
-<?php include_once("../php/footer.php"); ?>
+
 
 <script>
   const loginbutton = document.getElementById("login-button");

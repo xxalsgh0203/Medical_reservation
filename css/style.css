@@ -147,6 +147,7 @@
     text-align: center;
     font-size: 0.9rem;
     background: #a6e3a2;
+    display: hidden;
   }
   
   .footer .btn-back {
@@ -618,4 +619,17 @@
 
 .ra-p{
   font-size: 25px;
+}
+
+
+#footer {
+  display: hidden;
+}
+
+#data-entry-header{
+  margin-top: 10%;
+  margin-bottom: 20px;
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font: bold;
+  font-size: 50px;
 }

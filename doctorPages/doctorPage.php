@@ -267,7 +267,6 @@ if (isset($_GET['delete_id'])) {
 
 
 <!-- Footer-->
-<?php include_once("../php/footer.php"); ?>
 
 <script src="main.js"></script>
 </body>
