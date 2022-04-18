@@ -131,7 +131,7 @@ $result = mysqli_query($db, $sql);
 $PtableResult = "";
 if ($result->num_rows > 0) {
   while($row = $result-> fetch_assoc()) {
-    $PtableResult .= "<tr>" . "<td>" . $row["Name"] . "</td><td>" . $row["Phone_number"] . "</td><td>" . 
+    $PtableResult .= "<tr>" . "<td>" . $row["Patient_id"] . "</td><td>" . $row["Name"] . "</td><td>" . $row["Phone_number"] . "</td><td>" . 
                     $row["Email"] . "</td><td>" . $row["Age"] . "</td>" . "</td><td>" . $row["Medical_allergy"] . "</td>" .  "</td><td>" . $row["Specialist_approved"] . "</td>" .
                      "</td><td> <a href='../adminPages/dataEntryForm.php?update_Pid=" . $row["Patient_id"]  . "'>edit</a> </td>" . "</td><td> <a href='../adminPages/dataEntryForm.php?delete_Pid=" . 
                      $row["Patient_id"] . "'>Delete</a> </td>"  . "<tr>";
@@ -140,7 +140,7 @@ if ($result->num_rows > 0) {
 
 
 
-//Takes in input for Admin from submitAD
+//Takes in input for Admin from submitP
 if (isset($_POST['SubmitP']))
 {
   //Store input values
@@ -309,11 +309,12 @@ table.center {
               <thead class="thead">
                 <tr>
                   <th>Patient ID</th>
+                  <th>Name</th>
+                  <th>Phone Number</th>
                   <th>Appointment status</th>
-                  <th>Slotted Time</th>
+                  <th>Age</th>
+                  <th>Medical Allergy</th>
                   <th>Specialist Status</th>
-                  <th>Approve</th>
-                  <th>Reject</th>
                   <th>edit</th>
                   <th>delete</th>
                 </tr>
@@ -329,7 +330,7 @@ table.center {
               <label for="Pname">Name:</label>
               <input type="text" id="Pname" name="Pname" maxlength="20">
               <label for="PPWord">create password:</label>
-              <input type="text" id="PPWord" name="ADPWord">
+              <input type="text" id="PPWord" name="PPWord">
               <br>
               <label for="PPhoneNum">Phone Number:</label>
               <input type="text" id="PPhoneNum" name="PPhoneNum" maxlength="10"> 
