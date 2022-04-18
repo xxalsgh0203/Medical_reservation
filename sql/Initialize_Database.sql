@@ -1,5 +1,8 @@
 DROP DATABASE IF EXISTS medical_clinic;
 CREATE DATABASE medical_clinic;
+/*
+SET GLOBAL log_bin_trust_function_creators = 1;
+*/
 
 USE medical_clinic;
 
@@ -147,6 +150,7 @@ DELIMITER ;
 
 */
 
+
 DELIMITER $$
 CREATE TRIGGER SAPPROVE
 AFTER INSERT
@@ -160,10 +164,12 @@ BEGIN
 		WHERE PATIENT.Specialist_approved = FALSE
 		AND APPOINTMENT.Specialist_status = TRUE
 		) >= 1 THEN
-        DELETE NEW FROM APPOINTMENT;
+        DELETE FROM APPOINTMENT
+            WHERE Appointment_id = NEW.Appointment_id;
 	END IF;
 END; $$
 DELIMITER ;
+
 
 /*
 
@@ -200,7 +206,8 @@ BEGIN
 		WHERE Doctor_id = NEW.Doctor_id
 		AND Slotted_time = NEW.Slotted_time
 	) >= 1 THEN
-		DELETE NEW FROM APPOINTMENT;
+		DELETE FROM APPOINTMENT
+            WHERE Appointment_id = NEW.Appointment_id;
 	END IF;
 END;$$
 DELIMITER ;

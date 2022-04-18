@@ -233,7 +233,6 @@ if (isset($_GET['delete_id'])) {
 <section id="Doc's Patients">
   <div class="main-container">
     <div class="main-wrap">
-
       <div class="text-center" id="Doctor-header">Schedule</div>
       <div class="container-fluid">
         <div class="row justify-content-center my-5">
