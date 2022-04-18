@@ -59,13 +59,13 @@ if ($result->num_rows > 0) {
   }
   
 }
-
+/*
 $sql = "SHOW COLUMNS FROM OFFICE";
 $dbres = mysqli_query($db, $sql);
 while($row = mysqli_fetch_array($dbres))
 {
   echo $row['Field']."<br>";
-}
+}*/
 
 ?>
 
@@ -113,21 +113,19 @@ while($row = mysqli_fetch_array($dbres))
         <div class = "center">
         <h1>Report Form</h1>
         </div>
-        <!--
+        
         <div class = "data">
           <select name="Op1" style="border: 1px solid">
               <option>Select</option>
-              <option>Office id</option>
+              <option id = "Office_id">Office id</option>
               <option >2 PUC</option>
           </select>
           <select name="Op2" style="border: 1px solid">
               <option >Select</option>
               <option>Appointmens</option>
               <option >2 PUC</option>
-          </select>-->
-          <div class = "data">
-            <label for="OFFID">Office id</label>
-          </div>
+          </select>
+         
 
           <button type="submit" class="btn btn-primary" name="Submit">Submit</button>
           <br><br>
@@ -143,14 +141,6 @@ while($row = mysqli_fetch_array($dbres))
          
         </div>
 
-
-        <div class = "data">
-        <?php  
-          while($row = mysqli_fetch_array($dbres))
-          {
-            echo $row['Field']."<br>";
-          }?>
-        </div>
 
    </section>
 <!-- End Of Reports page -->
