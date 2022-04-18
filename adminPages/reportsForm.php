@@ -49,13 +49,13 @@ if ($result->num_rows > 0) {
 }
 
 //Query to search for Reports
-$sql = "SELECT  ofic.Office_id, aptment.Appointment_id FROM OFFICE ofic LEFT JOIN APPOINTMENT aptment ON ofic.Office_id = aptment.Office_id ";
+$sql = "SELECT  ofic.Office_id, COUNT(*) FROM OFFICE ofic LEFT JOIN APPOINTMENT aptment ON ofic.Office_id = aptment.Office_id GROUP BY ofic.Office_id";
 $result = mysqli_query($db, $sql);
 
 $ReportResults = "";
 if ($result->num_rows > 0) {
   while($row = $result-> fetch_assoc()) {
-    $ReportResults .= "<tr>" ."<td>" . $row["Office_id"] . "</td>" . "<td>" . $row["Appointment_id"] . "</td>" ."<tr>";
+    $ReportResults .= "<tr>" ."<td>" . $row["Office_id"] . "</td>" . "<td>" . $row["COUNT(*)"] . "</td>" ."<tr>";
   }
   
 }
