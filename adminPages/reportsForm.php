@@ -110,7 +110,7 @@ while($row = mysqli_fetch_array($dbres))
 <!-- ======= reports Page ======= -->
    <section id = "reportsForm">
       
-        <div class = "center">
+        <div class = "reportF">
         <h1>Report Form</h1>
         </div>
         
