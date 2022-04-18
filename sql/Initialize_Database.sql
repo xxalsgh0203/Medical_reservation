@@ -158,18 +158,18 @@ ON APPOINTMENT
 FOR EACH ROW
 BEGIN
 	IF (
-		SELECT COUNT(*)
-		FROM PATIENT
-		INNER JOIN APPOINTMENT ON PATIENT.Patient_id = APPOINTMENT.Patient_id
-		WHERE PATIENT.Specialist_approved = FALSE
-		AND APPOINTMENT.Specialist_status = TRUE
-		) >= 1 THEN
-        SIGNAL SQLSTATE '77777'
-        SET MESSAGE_TEXT = 'Warning: You do NOT have specialist approval!';
-        /*
-        DELETE FROM APPOINTMENT
-            WHERE Appointment_id = NEW.Appointment_id;
-		*/
+-- 		SELECT COUNT(*)
+-- 		FROM PATIENT
+-- 		INNER JOIN APPOINTMENT ON PATIENT.Patient_id = APPOINTMENT.Patient_id
+-- 		WHERE PATIENT.Specialist_approved = FALSE
+-- 		AND APPOINTMENT.Specialist_status = TRUE
+-- 		) >= 1 THEN
+--         DELETE FROM APPOINTMENT
+--             WHERE Appointment_id = NEW.Appointment_id;
+--             -- SET NEW.Appointment_status = "failed"
+
+		NEW.Specialist_status = TRUE) THEN
+			SET NEW.Appointment_status = "failed";
 	END IF;
 END; $$
 DELIMITER ;
