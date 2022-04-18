@@ -50,15 +50,6 @@ $row = mysqli_fetch_array($result);
 <body>
     
 
-<!-- Pick a specific table 
-<body>
-  <br>
-  <div>
-  <label for="TableID"> <b>Select table to View:</b> </label>
-  <input type="text" id="TableID" name="TableID">
-  <button type="submit" class="btn btn-primary" name="SubmitTID">Submit</button>
-  </div>
-</body> -->
 
   <!-- Header of the page-->
   <section>

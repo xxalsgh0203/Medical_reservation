@@ -46,15 +46,6 @@ $row = mysqli_fetch_array($result);
 <body>
     
 
-<!-- Pick a specific table 
-<body>
-  <br>
-  <div>
-  <label for="TableID"> <b>Select table to View:</b> </label>
-  <input type="text" id="TableID" name="TableID">
-  <button type="submit" class="btn btn-primary" name="SubmitTID">Submit</button>
-  </div>
-</body> -->
 
   <!-- Header of the page-->
   <section>
@@ -70,16 +61,16 @@ $row = mysqli_fetch_array($result);
             <!--input taken for doctor-->
               <input type = "hidden" name = "id" class = "txtField" value = "<?php echo $row['Doctor_id']; ?>">
               <label for="OFFID">Office ID:</label>
-              <input type="number" id="OFFID" name="OFFID" value = "<?php echo $row['Office_id']; ?>">
+              <input type="number" id="OFFID" name="OFFID">
               <label for="SPType">Speciality:</label>
-              <input type="text" id="SPType" name="SPType" maxlength = "30" value = "<?php echo $row['Specialist']; ?>"> 
+              <input type="text" id="SPType" name="SPType" maxlength = "30" > 
               <label for="Dname">Name:</label>
-              <input type="text" id="Dname" name="Dname" maxlength="20" value = "<?php echo $row['Name']; ?>">
+              <input type="text" id="Dname" name="Dname" maxlength="20" >
               <br>
               <label for="DPWord">create password:</label>
-              <input type="Password" id="DPWord" name="DPWord" value = "<?php echo $row['Password']; ?>">
+              <input type="Password" id="DPWord" name="DPWord">
               <label for="DPhoneNum">Phone Number:</label>
-              <input type="text" id="DPhoneNum" name="DPhoneNum" maxlength="10" value = "<?php echo $row['Phone_Number']; ?>">    
+              <input type="text" id="DPhoneNum" name="DPhoneNum" maxlength="10" >    
               <!--Used to separate inputs-->
               <br>
               <button type="submit" class="btn btn-primary" name="SubmitD" value ="SubmitD">Submit</button>
