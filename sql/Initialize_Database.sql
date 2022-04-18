@@ -153,7 +153,7 @@ DELIMITER ;
 
 DELIMITER $$
 CREATE TRIGGER SAPPROVE
-AFTER INSERT
+BEFORE INSERT
 ON APPOINTMENT
 FOR EACH ROW
 BEGIN
@@ -164,8 +164,12 @@ BEGIN
 		WHERE PATIENT.Specialist_approved = FALSE
 		AND APPOINTMENT.Specialist_status = TRUE
 		) >= 1 THEN
+        SIGNAL SQLSTATE '77777'
+        SET MESSAGE_TEXT = 'Warning: You do NOT have specialist approval!';
+        /*
         DELETE FROM APPOINTMENT
             WHERE Appointment_id = NEW.Appointment_id;
+		*/
 	END IF;
 END; $$
 DELIMITER ;
@@ -196,7 +200,7 @@ DELIMITER ;
 
 DELIMITER $$
 CREATE TRIGGER CONFLICT
-AFTER INSERT
+BEFORE INSERT
 ON APPOINTMENT
 FOR EACH ROW
 BEGIN
@@ -206,8 +210,12 @@ BEGIN
 		WHERE Doctor_id = NEW.Doctor_id
 		AND Slotted_time = NEW.Slotted_time
 	) >= 1 THEN
+		SIGNAL SQLSTATE '88888'
+        SET MESSAGE_TEXT = 'Warning: An appointment with this time and doctor already exists!';
+		/*
 		DELETE FROM APPOINTMENT
             WHERE Appointment_id = NEW.Appointment_id;
+		*/
 	END IF;
 END;$$
 DELIMITER ;
