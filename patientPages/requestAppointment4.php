@@ -2,11 +2,14 @@
     session_start();
     require_once "../php/config.php";
 
-    if(isset($_POST['time'])) {
+    if(isset($_POST['time']) || isset($_POST['date'])) {
         $patientID = $_SESSION['id'];
         $doctorID = $_SESSION['name'];
         $doctor = $_SESSION['doctor'];
         $time = $_POST['time'];
+        $date = $_POST['date'];
+        $day = strtotime($date);
+        $day = date('l', $day);
         $appointmentStatus = "Pending";
 
         $query = "Select Office_id from DOCTOR where Doctor_id = '$doctorID';";
@@ -43,8 +46,8 @@
           $error = "You do not have permission to schedule an appointment with a specialist";
         } else {
           try {
-            $query = "INSERT INTO `APPOINTMENT`(Patient_id, Doctor_id, Office_id, Appointment_status, Slotted_time, Specialist_status) VALUES
-            ('$patientID', '$doctorID', '$officeID', '$appointmentStatus', '$time', '$specialistStatus');";
+            $query = "INSERT INTO `APPOINTMENT`(Patient_id, Doctor_id, Office_id, Appointment_status, Slotted_time, Specialist_status, Date, Day) VALUES
+            ('$patientID', '$doctorID', '$officeID', '$appointmentStatus', '$time', '$specialistStatus', '$date', '$day');";
             $result = mysqli_query($db, $query);
           } catch  (Exception $e) {
             //$error = $e;

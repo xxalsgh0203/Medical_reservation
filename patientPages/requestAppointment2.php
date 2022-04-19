@@ -60,21 +60,35 @@ session_start();
                     if($resultCheck > 0) {
                     echo "
                     <form class='ra' id='ra' action='requestAppointment3.php' method = 'POST';>
-                    <h3 class='ra-header'>Select an avaiable Doctor</h3>";
+                        <h3 class='ra-header'>Select an avaiable Doctor</h3>";
                     while ($row = mysqli_fetch_array($result)) {
-                       // echo $row['Speciality'].' '.$row['name'].'<br>';
                         if ((is_null($row['Speciality']) and $doctor == "Regular") or $row['Speciality'] == "Regular") {
+                            /*$doctorID = $row['Doctor_id'];
+                            $q1 = "select Weekday from WORK_INFO where Doctor_id = '$doctorID'";
+                            $r1 = mysqli_query($db, $query);
+                            $rc = mysqli_num_rows($result);
+                            echo $rc;
+                            if ($rc > 0) {
+                                echo "
+                                    <div class = 'ra-form'>
+                                        <label for = 'DayAv'>Days Avaiable:</label>
+                                        <p>";
+                                while($row1 = mysqli_fetch_array($r1)) {
+                                    echo "".$row1['Weekday']."  ";
+                                }
+                                echo "</p>";
+                            }*/
                             echo "
                             <div class = 'ra-form'>
-                            <label for= ".$row['Doctor_id'].">".$row['name']."</label>
-                            <input type='radio' name= 'name' id= ".$row['Doctor_id']." value = ".$row['Doctor_id']." /><br>
+                                <label for= ".$row['Doctor_id'].">".$row['name']."</label>
+                                <input type='radio' name= 'name' id= ".$row['Doctor_id']." value = ".$row['Doctor_id']." /><br>
                             </div>";
                         }
                     }
                     echo "
-                    <div class='ra-form'>
-                    <input class='ra-form' type='submit' name='button' value='Next'/>
-                    </div>
+                        <div class='ra-form'>
+                            <input class='ra-form' type='submit' name='button' value='Next'/>
+                        </div>
                     </form>";
                     }
                 }

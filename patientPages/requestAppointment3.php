@@ -19,7 +19,7 @@ require_once "../php/config.php";
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" href="../css/style.css">
-
+  
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -58,11 +58,16 @@ require_once "../php/config.php";
 
 <body>
     <div class="container">
-        <form class = "ra" action = "requestAppointment4.php" method = "POST">
-            <h3 class="ra-header">Please select a Time </h3>
+        <form class = "ra" id = 'form' action = "requestAppointment4.php" method = "POST">
+            <h3 class="ra-header">Please select a Date and Time </h3>
+            <div id="error"></div>
+            <div class = "ra-form">
+                <label for = "date">Date:</label>
+                <input type="date" name="date" id="date" placeholder="mm-dd-yyyy" class="form-control" required>
+            </div>
             <div class = "ra-form">
                 <label for="time">Select Time: </label>
-                <select class="form-control" name="time" required>
+                <select class="form-control" id="time" name="time">
                     <option value="9:00"> 9:00 AM</option>
                     <option value="10:00"> 10:00 AM</option>
                     <option value="11:00"> 11:00 AM</option>
