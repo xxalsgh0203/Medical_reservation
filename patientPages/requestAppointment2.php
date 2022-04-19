@@ -68,24 +68,10 @@ where Speciality = 'Oncologist';*/
                     while ($row = mysqli_fetch_array($result)) {
                         if ((is_null($row['Speciality']) and $doctor == "Regular") or $row['Speciality'] == "Regular") {
                             $doctorID = $row['Doctor_id'];
-                            $q1 = "select WORK_INFO.Weekday
+                            /*$q1 = "select WORK_INFO.Weekday as day
                             from DOCTOR
                             inner join WORK_INFO on DOCTOR.Doctor_id = WORK_INFO.Doctor_id
-                            where Speciality = '$doctor';";
-                            /*$r1 = mysqli_query($db, $query);
-                            $rc = mysqli_num_rows($result);
-                            echo $rc;
-                            if ($rc > 0) {
-                                echo "
-                                    <div class = 'ra-form'>
-                                        <label for = 'DayAv'>Days Avaiable:</label>
-                                        <p>";
-                                while($row1 = mysqli_fetch_array($r1)) {
-                                    echo "".$row1['Weekday']."  ";
-                                    var_dump($row1);
-                                }
-                                echo "</p>";
-                            }*/
+                            where Speciality = '$doctor';";*/
                             echo "
                             <div class = 'ra-form'>
                                 <label for= ".$row['Doctor_id'].">".$row['name']."</label>
