@@ -1,6 +1,6 @@
 <?php
 
-require_once "./php/config.php";
+require_once "../php/config.php";
  
 if($_SERVER["REQUEST_METHOD"] == "POST"){
         
@@ -37,14 +37,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="../css/style.css">
 
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 
-<?php include_once("./php/header.php"); ?>
+<?php include_once("../php/header.php"); ?>
 
 <!-- End Header -->
 <!-- ======= signup Section ======= -->
@@ -74,7 +74,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <span class="box int_pass">
           <input type="password" id="pswd1" class="int" maxlength="20" name="password">
           <span id="alertTxt">Unavailabe. Try another one</span>
-          <img src="./icon/m_icon_pass.png" id="pswd1_img1" class="pswdImg">
+          <img src="../icon/m_icon_pass.png" id="pswd1_img1" class="pswdImg">
         </span>
         <span class="error_next_box"></span>
       </div>
@@ -84,7 +84,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <h3 class="join_title"><label for="pswd2">Re-enter password</label></h3>
         <span class="box int_pass_check">
           <input type="text" id="pswd2" class="int" maxlength="20" name="rePassword">
-          <img src="./icon/m_icon_check_disable.png" id="pswd2_img1" class="pswdImg">
+          <img src="../icon/m_icon_check_disable.png" id="pswd2_img1" class="pswdImg">
         </span>
         <span class="error_next_box"></span>
       </div>

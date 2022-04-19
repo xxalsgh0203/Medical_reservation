@@ -26,17 +26,24 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 }
 
 $id = $_SESSION["id"];
-$sql = "SELECT Primary_physician_id, Name, Phone_number, Email, Age, Specialist_approved, Medical_allergy FROM PATIENT WHERE Patient_id = '$id'";
+$sql = "select DOCTOR.Name as Doctor_name, PATIENT.Name, PATIENT.Phone_number, PATIENT.Email, PATIENT.Age, PATIENT.Specialist_approved, PATIENT.Medical_allergy
+from PATIENT
+inner join DOCTOR on DOCTOR.Doctor_id = PATIENT.Primary_physician_id
+where Patient_id = '$id';";
 $result = mysqli_query($db, $sql);
 
 $tableResult = "";
 if ($result->num_rows > 0) {
   $tableResult = "<tr>";
   while($row = $result-> fetch_assoc()) {
-    $tableResult .= "<td>" . $row["Primary_physician_id"] . "</td><td>" . $row["Name"] . "</td><td>" . $row["Phone_number"] . "</td><td>" . $row["Email"] . "</td><td>" . $row["Age"] . "</td><td>" . $row["Specialist_approved"] . "</td><td>" . $row["Medical_allergy"] . "</td>";
+    echo "<br><br><br><br><br><br>";
+    var_dump($row);
+    $tableResult .= "<td>" . $row["Doctor_name"] . "</td><td>" . $row["Name"] . "</td><td>" . $row["Phone_number"] . "</td><td>" . $row["Email"] . "</td><td>" . $row["Age"] . "</td><td>" . $row["Specialist_approved"] . "</td><td>" . $row["Medical_allergy"] . "</td>";
   }
   $tableResult .= "</tr>";
 }
+
+
 
 $sql = "SELECT * FROM PRESCRIPTION WHERE Patient_id = '$id'";
 $result = mysqli_query($db, $sql);
@@ -105,7 +112,7 @@ if (isset($_GET['delete_id'])) {
             <table class="table table-bordered">
               <thead class="thead">
                 <tr>
-                  <th scope="col">Primary_physician_id</th>
+                  <th scope="col">Primary Physician Name</th>
                   <th scope="col">Name</th>
                   <th scope="col">Phone number</th>
                   <th scope="col">Email</th>

@@ -91,13 +91,10 @@ header('location:dataEntryForm.php');
 }
 
 
-
-
 //Takes in input for doctor from SubmitD
 if (isset($_POST['SubmitD']))
 {
 
-  
     $OFFID =  $_POST['OFFID'];
     $DName = $_POST['Dname'];
     $SPType = $_POST['SPType'];
