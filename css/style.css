@@ -693,3 +693,10 @@
 #AdminUsers{
   margin-top: 300px;
 }
+
+
+.dataEntryRenderbtn{
+  left:2%;
+  margin-top: 20%;
+  position: absolute;
+}

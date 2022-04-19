@@ -36,8 +36,6 @@ $tableResult = "";
 if ($result->num_rows > 0) {
   $tableResult = "<tr>";
   while($row = $result-> fetch_assoc()) {
-    echo "<br><br><br><br><br><br>";
-    var_dump($row);
     $tableResult .= "<td>" . $row["Doctor_name"] . "</td><td>" . $row["Name"] . "</td><td>" . $row["Phone_number"] . "</td><td>" . $row["Email"] . "</td><td>" . $row["Age"] . "</td><td>" . $row["Specialist_approved"] . "</td><td>" . $row["Medical_allergy"] . "</td>";
   }
   $tableResult .= "</tr>";
@@ -57,7 +55,7 @@ if ($result->num_rows > 0) {
   $PtableResult .= "</tr>"; 
 }
 
-$sql = "SELECT Patient_id, Office_id, Appointment_id, Appointment_status_id, Slotted_time, Specialist_status FROM APPOINTMENT WHERE Patient_id = '$id'";
+$sql = "SELECT Patient_id, Office_id, Appointment_id, Appointment_status_id, Date, Slotted_time, Specialist_status FROM APPOINTMENT WHERE Patient_id = '$id'";
 $result = mysqli_query($db, $sql);
 
 //table results for appointments
@@ -65,7 +63,7 @@ $APtableResult = "";
 if ($result->num_rows > 0) {
   while($row = $result-> fetch_assoc()) {
     $APtableResult .= "<tr>";
-    $APtableResult .= "<td>" . $row["Patient_id"] . "</td><td>"  . $row["Office_id"] . "</td><td>" . $row["Appointment_status_id"] . "</td><td>" . $row["Slotted_time"] . "</td><td>" . $row["Specialist_status"] . "</td><td> 
+    $APtableResult .= "<td>" . $row["Patient_id"] . "</td><td>"  . $row["Office_id"] . "</td><td>" . $row["Appointment_status_id"] . "</td><td>" . $row["Date"] . "</td><td>" . $row["Slotted_time"] . "</td><td>" . $row["Specialist_status"] . "</td><td> 
     <a href='../patientPages/patientPage.php?delete_id=" . $row["Appointment_id"] . "'>X</a>
     </td>";
     $APtableResult .= "</tr>";
@@ -149,6 +147,7 @@ if (isset($_GET['delete_id'])) {
                   <th>Patient ID</th>
                   <th>Office ID</th>
                   <th>Appointment status</th>
+                  <th>Date</th>
                   <th>Slotted Time</th>
                   <th>Specialist Status</th>
                   <th>Cancel Appointment</th>
