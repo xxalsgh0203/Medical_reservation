@@ -77,7 +77,7 @@ $weekdays = [
   "Friday"
 ];
 
-/*
+
 foreach ($weekdays as $weekday) {
   $sql = "SELECT * FROM WORK_INFO WHERE Doctor_id = '$id' AND Weekday = '$weekday'";
   $result = mysqli_query($db, $sql);
@@ -94,7 +94,7 @@ if (isset($_GET['delete_id'])) {
 	mysqli_query($db, "DELETE FROM APPOINTMENT WHERE Appointment_id = " . $id);
   header('location: doctorPage.php');
 }
-*/
+
 ?>
 
 
