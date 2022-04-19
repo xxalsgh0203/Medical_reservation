@@ -56,6 +56,10 @@ session_start();
                     $query = "SELECT name, Doctor_id, Speciality FROM DOCTOR;";
                     $result   = mysqli_query($db, $query);
                     $resultCheck = mysqli_num_rows($result);
+                    /* select DOCTOR.name, DOCTOR.Doctor_id, DOCTOR.Speciality, WORK_INFO.Weekday
+from DOCTOR
+inner join WORK_INFO on DOCTOR.Doctor_id = WORK_INFO.Doctor_id
+where Speciality = 'Oncologist';*/
         
                     if($resultCheck > 0) {
                     echo "
@@ -63,9 +67,12 @@ session_start();
                         <h3 class='ra-header'>Select an avaiable Doctor</h3>";
                     while ($row = mysqli_fetch_array($result)) {
                         if ((is_null($row['Speciality']) and $doctor == "Regular") or $row['Speciality'] == "Regular") {
-                            /*$doctorID = $row['Doctor_id'];
-                            $q1 = "select Weekday from WORK_INFO where Doctor_id = '$doctorID'";
-                            $r1 = mysqli_query($db, $query);
+                            $doctorID = $row['Doctor_id'];
+                            $q1 = "select WORK_INFO.Weekday
+                            from DOCTOR
+                            inner join WORK_INFO on DOCTOR.Doctor_id = WORK_INFO.Doctor_id
+                            where Speciality = '$doctor';";
+                            /*$r1 = mysqli_query($db, $query);
                             $rc = mysqli_num_rows($result);
                             echo $rc;
                             if ($rc > 0) {
@@ -75,6 +82,7 @@ session_start();
                                         <p>";
                                 while($row1 = mysqli_fetch_array($r1)) {
                                     echo "".$row1['Weekday']."  ";
+                                    var_dump($row1);
                                 }
                                 echo "</p>";
                             }*/
