@@ -26,7 +26,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 }
 
 $id = $_SESSION["id"];
-$sql = "select DOCTOR.Name, PATIENT.Name, PATIENT.Phone_number, PATIENT.Email, PATIENT.Age, PATIENT.Specialist_approved, PATIENT.Medical_allergy
+$sql = "select DOCTOR.Name as Doctor_name, PATIENT.Name, PATIENT.Phone_number, PATIENT.Email, PATIENT.Age, PATIENT.Specialist_approved, PATIENT.Medical_allergy
 from PATIENT
 inner join DOCTOR on DOCTOR.Doctor_id = PATIENT.Primary_physician_id
 where Patient_id = '$id';";
@@ -38,7 +38,7 @@ if ($result->num_rows > 0) {
   while($row = $result-> fetch_assoc()) {
     echo "<br><br><br><br><br><br>";
     var_dump($row);
-    $tableResult .= "<td>" . $row["Name"] . "</td><td>" . $row["Name"] . "</td><td>" . $row["Phone_number"] . "</td><td>" . $row["Email"] . "</td><td>" . $row["Age"] . "</td><td>" . $row["Specialist_approved"] . "</td><td>" . $row["Medical_allergy"] . "</td>";
+    $tableResult .= "<td>" . $row["Doctor_name"] . "</td><td>" . $row["Name"] . "</td><td>" . $row["Phone_number"] . "</td><td>" . $row["Email"] . "</td><td>" . $row["Age"] . "</td><td>" . $row["Specialist_approved"] . "</td><td>" . $row["Medical_allergy"] . "</td>";
   }
   $tableResult .= "</tr>";
 }
