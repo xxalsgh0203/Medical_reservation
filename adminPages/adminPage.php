@@ -225,7 +225,7 @@ if ($result->num_rows > 0) {
          <!-- Used to center container -->
          <div id = "container">
         <!--Used to redirect to data entry page -->
-        <a href="dataEntryForm.php"> 
+        <a href="doctorDataEntry.php"> 
           <button id = "Redi1">Enter Data</button>
         </a>
         <!--Used to redirect to report page -->
