@@ -31,7 +31,7 @@ if ($result->num_rows > 0) {
                        
     if ($row["Appointment_status"] === 'pending') {
       $APtableResult .= "<td><a href='../adminPages/adminPage.php?approve_id=" . $row["Appointment_id"] . "'>X</a></td>";
-      $APtableResult .= "<td><a href='../adminPages/adminPage.php?reject_id=" . $row["Appointment_id"] . "'>X</a></td>";
+      $APtableResult .= "<td><a href='../adminPages/adminPage.php?ren  ject_id=" . $row["Appointment_id"] . "'>X</a></td>";
     } else {
       $APtableResult .= "<td></td><td></td>";
     }
