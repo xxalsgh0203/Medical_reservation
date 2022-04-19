@@ -74,7 +74,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <span class="box int_pass">
           <input type="password" id="pswd1" class="int" maxlength="20" name="password">
           <span id="alertTxt">Unavailabe. Try another one</span>
-          <img src="./icon/m_icon_pass.png" id="pswd1_img1" class="pswdImg">
+          <img src="../icon/m_icon_pass.png" id="pswd1_img1" class="pswdImg">
         </span>
         <span class="error_next_box"></span>
       </div>
@@ -84,7 +84,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <h3 class="join_title"><label for="pswd2">Re-enter password</label></h3>
         <span class="box int_pass_check">
           <input type="text" id="pswd2" class="int" maxlength="20" name="rePassword">
-          <img src="./icon/m_icon_check_disable.png" id="pswd2_img1" class="pswdImg">
+          <img src="../icon/m_icon_check_disable.png" id="pswd2_img1" class="pswdImg">
         </span>
         <span class="error_next_box"></span>
       </div>
