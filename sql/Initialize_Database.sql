@@ -212,6 +212,7 @@ DELIMITER ;
 
 */
 
+/*
 DELIMITER $$
 CREATE TRIGGER CONFLICT
 BEFORE INSERT
@@ -235,10 +236,11 @@ BEGIN
 		DELETE FROM APPOINTMENT
             WHERE Appointment_id = NEW.Appointment_id;
 		*/
+        /*
 	END IF;
 END;$$
 DELIMITER ;
-
+*/
 
 CREATE TABLE PRESCRIPTION (
     Patient_id        INT NOT NULL,
