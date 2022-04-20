@@ -166,7 +166,12 @@ BEGIN
  		WHERE PATIENT.Specialist_approved = FALSE
  		AND APPOINTMENT.Specialist_status = TRUE
  		) >= 1 THEN
+        /*
         SET NEW.Error_code = 1;
+        */
+        SIGNAL SQLSTATE '77777'
+        SET MESSAGE_TEXT = 'Warning, You do NOT have Specialist approval!';
+        
 --         DELETE FROM APPOINTMENT
 --             WHERE Appointment_id = NEW.Appointment_id;
 --             -- SET NEW.Appointment_status = "failed"
@@ -214,8 +219,10 @@ BEGIN
 		WHERE Doctor_id = NEW.Doctor_id
 		AND Slotted_time = NEW.Slotted_time
 	) >= 1 THEN
+		/*
 		SET NEW.Error_Code = 2;
-        /*
+        */
+        
 		SIGNAL SQLSTATE '88888'
         SET MESSAGE_TEXT = 'Warning: An appointment with this time and doctor already exists!';
 		/*
