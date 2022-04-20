@@ -135,30 +135,9 @@ if ($result->num_rows > 0) {
               </tbody>
             </table>
 
-          </div>
-        </div>
+            <br> <br>
 
-      </div>
-    </div>
-  </div>
-
-
-  
-  </body>
-
-
-<!-- End signup -->
-
-<!-- ======= Appointments Section ======= -->
-
-<section id="Doc's Patients">
-  <div class="main-container">
-    <div class="main-wrap">
-
-      <div class="text-center" id="Doctor-header">Appointments</div>
-      <div class="container-fluid">
-        <div class="row justify-content-center my-5">
-          <div class="col-10">
+            <h2>Appointments</h2>
             <table class="table table-bordered">
               <thead class="thead">
                 <tr>
@@ -176,26 +155,9 @@ if ($result->num_rows > 0) {
               </tbody>
             </table>
 
-          </div>
-        </div>
-      </div>
-    
-      </footer>
-    </div>
-  </div>
-</section>
-<!-- End Appointments-->
+            <br> <br>
 
-
-<!-- ======= Other Admins======= -->
-<section id="AdminUsers">
-  <div class="main-container">
-    <div class="main-wrap">
-
-      <div class="text-center" id="Admin-header">Other Admins</div>
-      <div class="container-fluid">
-        <div class="row justify-content-center my-5">
-          <div class="col-10">
+            <h2>Other Admins</h2>
             <table class="table table-bordered">
               <thead class="thead">
                 <tr>
@@ -212,15 +174,16 @@ if ($result->num_rows > 0) {
 
           </div>
         </div>
-      </div>
 
-     
+      </div>
     </div>
   </div>
-</section>
-<!-- End of other Admins -->
 
-<br> <br>
+
+  
+  </body>
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
          <!-- Used to center container -->
          <div id = "container">
