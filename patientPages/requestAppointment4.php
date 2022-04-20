@@ -46,8 +46,8 @@
           $error = "You do not have permission to schedule an appointment with a specialist";
         } else {
           try {
-            $query = "INSERT INTO `APPOINTMENT`(Patient_id, Doctor_id, Office_id, Appointment_status, Slotted_time, Specialist_status, Date, Day) VALUES
-            ('$patientID', '$doctorID', '$officeID', '$appointmentStatus', '$time', '$specialistStatus', '$date', '$day');";
+            $query = "INSERT INTO `APPOINTMENT`(Patient_id, Doctor_id, Office_id, Appointment_status, Slotted_time, Specialist_status, Date) VALUES
+            ('$patientID', '$doctorID', '$officeID', '$appointmentStatus', '$time', '$specialistStatus', '$date');";
             $result = mysqli_query($db, $query);
           } catch  (Exception $e) {
             //$errortxt = mysqli_error();
