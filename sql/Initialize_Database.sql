@@ -114,14 +114,14 @@ CREATE TABLE APPOINTMENT (
 );
 
 INSERT INTO APPOINTMENT(Patient_id, Doctor_id, Office_id, Appointment_status, Date, Slotted_time, Specialist_status) VALUES
-(1, 1, 1, "pending", "2022-04-20", "9:00", 1),
-(1, 5, 2, "approved", "2022-04-21", "15:00", 1),
+(1, 1, 1, "pending", "2022-04-20", "9:00", 0),
+(1, 5, 2, "approved", "2022-04-21", "15:00", 0),
 (2, 3, 1, "pending", "2022-04-21", "7:00", 0),
 (2, 4, 2, "canceled", "2022-04-22", "1:00", 0),
 (2, 5, 1, "approved", "2022-04-22", "3:00", 0),
-(3, 1, 1, "rejected", "2022-04-22", "2:30", 1),
-(4, 2, 1, "canceled", "2022-04-23", "16:00", 1),
-(4, 5, 1, "approved", "2022-04-25", "11:00", 1),
+(3, 1, 1, "rejected", "2022-04-22", "2:30", 0),
+(4, 2, 1, "canceled", "2022-04-23", "16:00", 0),
+(4, 5, 1, "approved", "2022-04-25", "11:00", 0),
 (5, 5, 2, "pending", "2022-04-20", "2:00", 0),
 (5, 1, 1, "approved", "2022-04-25", "12:00", 0);
 
