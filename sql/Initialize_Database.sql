@@ -103,6 +103,7 @@ CREATE TABLE APPOINTMENT (
     Office_id             INT NOT NULL,
     Appointment_status_id INT NOT NULL DEFAULT 0,
     Appointment_status    VARCHAR(12) NOT NULL,
+    Date                  DATE NOT NULL,
     Slotted_time          TIME NOT NULL,
     Specialist_status     BOOLEAN NOT NULL, /*If it is a specialist appointment */
     /*Error_code            INT DEFAULT 0,*/
@@ -112,17 +113,17 @@ CREATE TABLE APPOINTMENT (
     FOREIGN KEY (Office_id) REFERENCES OFFICE(Office_id)
 );
 
-INSERT INTO APPOINTMENT(Patient_id, Doctor_id, Office_id, Appointment_status, Slotted_time, Specialist_status) VALUES
-(1, 1, 1, "pending", "9:00", 1),
-(1, 5, 2, "approved", "15:00", 1),
-(2, 3, 1, "pending", "7:00", 0),
-(2, 4, 2, "canceled", "1:00", 0),
-(2, 5, 1, "approved", "3:00", 0),
-(3, 1, 1, "rejected", "2:30", 1),
-(4, 2, 1, "canceled", "16:00", 1),
-(4, 5, 1, "approved", "11:00", 1),
-(5, 5, 2, "pending", "2:00", 0),
-(5, 1, 1, "approved", "12:00", 0);
+INSERT INTO APPOINTMENT(Patient_id, Doctor_id, Office_id, Appointment_status, Date, Slotted_time, Specialist_status) VALUES
+(1, 1, 1, "pending", "2022-04-20", "9:00", 1),
+(1, 5, 2, "approved", "2022-04-21", "15:00", 1),
+(2, 3, 1, "pending", "2022-04-21", "7:00", 0),
+(2, 4, 2, "canceled", "2022-04-22", "1:00", 0),
+(2, 5, 1, "approved", "2022-04-22", "3:00", 0),
+(3, 1, 1, "rejected", "2022-04-22", "2:30", 1),
+(4, 2, 1, "canceled", "2022-04-23", "16:00", 1),
+(4, 5, 1, "approved", "2022-04-25", "11:00", 1),
+(5, 5, 2, "pending", "2022-04-20", "2:00", 0),
+(5, 1, 1, "approved", "2022-04-25", "12:00", 0);
 
 /*
 
