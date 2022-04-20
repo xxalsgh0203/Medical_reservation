@@ -50,6 +50,8 @@
             ('$patientID', '$doctorID', '$officeID', '$appointmentStatus', '$time', '$specialistStatus', '$date', '$day');";
             $result = mysqli_query($db, $query);
           } catch  (Exception $e) {
+            $errortxt = mysqli_error();
+            echo "$errortext";
             //$error = $e;
           }
         }

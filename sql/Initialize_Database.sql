@@ -105,7 +105,7 @@ CREATE TABLE APPOINTMENT (
     Appointment_status    VARCHAR(12) NOT NULL,
     Slotted_time          TIME NOT NULL,
     Specialist_status     BOOLEAN NOT NULL, /*If it is a specialist appointment */
-    Error_code            INT DEFAULT 0,
+    /*Error_code            INT DEFAULT 0,*/
     PRIMARY KEY (Appointment_id),
     FOREIGN KEY (Patient_id) REFERENCES PATIENT(Patient_id),
     FOREIGN KEY (Doctor_id) REFERENCES DOCTOR(Doctor_id),
