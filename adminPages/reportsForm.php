@@ -98,6 +98,25 @@ while($row = mysqli_fetch_array($dbres))
     border: 1px solid #ccc;
     clear: both;
   }
+  .sidebyside 
+  {
+    padding: 10px;
+    position: relative;
+    background-color: #fff;
+    margin: 10px;
+  }
+  .navitem
+  {
+    display: inline-block;
+    width: 150px;
+    height: 30px;
+    text-align: center;
+    border: gray;
+    background-color: #E8562A;
+    color: #fff;
+    cursor: pointer;
+    font-weight: bold;
+  }
 
   
 </style>
@@ -106,6 +125,9 @@ while($row = mysqli_fetch_array($dbres))
 
 <?php include_once("../php/header.php"); ?>
 
+
+
+
 <!-- End Header -->
 <!-- ======= reports Page ======= -->
    <section id = "reportsForm">
@@ -113,21 +135,31 @@ while($row = mysqli_fetch_array($dbres))
         <div class = "reportF">
         <h1>Report Form</h1>
         </div>
+
+    
+      </div>
         
         <div class = "data">
-          <select name="Op1" style="border: 1px solid">
-              <option>Select</option>
-              <option id = "Office_id">Office id</option>
-              <option >Age</option>
-          </select>
-          <select name="Op2" style="border: 1px solid">
-              <option >Select</option>
-              <option>Appointmens</option>
-              <option >Specialist</option>
-          </select>
+
+        <div class = "input-group">
+          <label for="starting_date">Begin:</label>
+          <input type="datetime-local" id = "StartDateid">
+          <br>
+          <label for="ending_date">End:</label>
+          <input type="datetime-local" id = "EndDateid">
+        </div>
+
+
+
+   
+        <div class = "sidebyside">
+      <button class="navitem">Prescriptions</button>
+      <button class="navitem">Specialist</button>
+      <button class="navitem">Appointments</button>
+    
+      </div>
          
 
-          <button type="submit" class="btn btn-primary" name="Submit">Submit</button>
           <br><br>
           <table border = "2" class  = "table">
             <tr>
