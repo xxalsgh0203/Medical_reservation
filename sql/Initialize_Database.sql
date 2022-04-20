@@ -103,26 +103,27 @@ CREATE TABLE APPOINTMENT (
     Office_id             INT NOT NULL,
     Appointment_status_id INT NOT NULL DEFAULT 0,
     Appointment_status    VARCHAR(12) NOT NULL,
+    Date                  DATE NOT NULL,
     Slotted_time          TIME NOT NULL,
     Specialist_status     BOOLEAN NOT NULL, /*If it is a specialist appointment */
-    Error_code            INT DEFAULT 0,
+    /*Error_code            INT DEFAULT 0,*/
     PRIMARY KEY (Appointment_id),
     FOREIGN KEY (Patient_id) REFERENCES PATIENT(Patient_id),
     FOREIGN KEY (Doctor_id) REFERENCES DOCTOR(Doctor_id),
     FOREIGN KEY (Office_id) REFERENCES OFFICE(Office_id)
 );
 
-INSERT INTO APPOINTMENT(Patient_id, Doctor_id, Office_id, Appointment_status, Slotted_time, Specialist_status) VALUES
-(1, 1, 1, "pending", "9:00", 1),
-(1, 5, 2, "approved", "15:00", 1),
-(2, 3, 1, "pending", "7:00", 0),
-(2, 4, 2, "canceled", "1:00", 0),
-(2, 5, 1, "approved", "3:00", 0),
-(3, 1, 1, "rejected", "2:30", 1),
-(4, 2, 1, "canceled", "16:00", 1),
-(4, 5, 1, "approved", "11:00", 1),
-(5, 5, 2, "pending", "2:00", 0),
-(5, 1, 1, "approved", "12:00", 0);
+INSERT INTO APPOINTMENT(Patient_id, Doctor_id, Office_id, Appointment_status, Date, Slotted_time, Specialist_status) VALUES
+(1, 1, 1, "pending", "2022-04-20", "9:00", 0),
+(1, 5, 2, "approved", "2022-04-21", "15:00", 0),
+(2, 3, 1, "pending", "2022-04-21", "7:00", 0),
+(2, 4, 2, "canceled", "2022-04-22", "1:00", 0),
+(2, 5, 1, "approved", "2022-04-22", "3:00", 0),
+(3, 1, 1, "rejected", "2022-04-22", "2:30", 0),
+(4, 2, 1, "canceled", "2022-04-23", "16:00", 0),
+(4, 5, 1, "approved", "2022-04-25", "11:00", 0),
+(5, 5, 2, "pending", "2022-04-20", "2:00", 0),
+(5, 1, 1, "approved", "2022-04-25", "12:00", 0);
 
 /*
 
@@ -152,7 +153,7 @@ DELIMITER ;
 
 */
 
-
+/*
 DELIMITER $$
 CREATE TRIGGER SAPPROVE
 BEFORE INSERT
@@ -166,7 +167,13 @@ BEGIN
  		WHERE PATIENT.Specialist_approved = FALSE
  		AND APPOINTMENT.Specialist_status = TRUE
  		) >= 1 THEN
+        /*
         SET NEW.Error_code = 1;
+        */
+        /*
+        SIGNAL SQLSTATE '77777'
+        SET MESSAGE_TEXT = 'Warning, You do NOT have Specialist approval!';
+        
 --         DELETE FROM APPOINTMENT
 --             WHERE Appointment_id = NEW.Appointment_id;
 --             -- SET NEW.Appointment_status = "failed"
@@ -174,9 +181,12 @@ BEGIN
 		NEW.Specialist_status = TRUE) THEN
 			SET NEW.Appointment_status = "failed";
 		*/
+/*
 	END IF;
 END; $$
 DELIMITER ;
+*/
+
 
 
 /*
@@ -213,9 +223,12 @@ BEGIN
 		FROM APPOINTMENT
 		WHERE Doctor_id = NEW.Doctor_id
 		AND Slotted_time = NEW.Slotted_time
+        AND APPOINTMENT.Date = NEW.Date
 	) >= 1 THEN
+		/*
 		SET NEW.Error_Code = 2;
-        /*
+        */
+        
 		SIGNAL SQLSTATE '88888'
         SET MESSAGE_TEXT = 'Warning: An appointment with this time and doctor already exists!';
 		/*
@@ -225,6 +238,7 @@ BEGIN
 	END IF;
 END;$$
 DELIMITER ;
+
 
 CREATE TABLE PRESCRIPTION (
     Patient_id        INT NOT NULL,

@@ -29,7 +29,7 @@ session_start();
 <nav class="navbar navbar-expand-lg nav-back fixed-top" id="mainNav">
   <div class="container">
     <img src="../img/main_icon.png" class="mainicon">
-    <a class="navbar-brand" href="./main.php">Medimon</a>
+    <a class="navbar-brand" href="../index.php">Medimon</a>
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
       data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
       aria-label="Toggle navigation"><i class="fas fa-syringe fa-2x"></i>
@@ -116,24 +116,7 @@ where Speciality = 'Oncologist';*/
     </div>
 </body>
 <!-- Footer-->
-<footer class="footer py-4 mt-5">
-  <div class="container">
-    <div class="row align-items-center">
-      <div class="col-lg-4 text-lg-left">COSC3380 Group Project</div>
-      <div class="col-lg-4 my-3 my-lg-0">
-        <a class="btn btn-back btn-social mx-2" href="#!">
-          <i class="fab fa-twitter"></i></a>
-        <a class="btn btn-back btn-social mx-2" href="#!">
-          <i class="fab fa-facebook-f"></i></a>
-        <a class="btn btn-back btn-social mx-2" href="#!">
-          <i class="fab fa-linkedin-in"></i></a>
-      </div>
-      <div class="col-lg-4 text-lg-right">
-        <a class="mr-3 text" href="#!">Privacy Policy</a>
-        <a href="#!" class="text">Terms of Use</a></div>
-    </div>
-  </div>
-</footer>
+
 
 <script src="main.js"></script>
 

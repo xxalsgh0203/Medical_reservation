@@ -691,7 +691,7 @@
 }
 
 #AdminUsers{
-  margin-top: 300px;
+  margin-top: 50px;
 }
 
 
@@ -699,4 +699,11 @@
   left:2%;
   margin-top: 20%;
   position: absolute;
+}
+
+div.horizontalgap {
+  float: left;
+  overflow: hidden;
+  height: 10px;
+  width: 0px;
 }

@@ -46,10 +46,12 @@
           $error = "You do not have permission to schedule an appointment with a specialist";
         } else {
           try {
-            $query = "INSERT INTO `APPOINTMENT`(Patient_id, Doctor_id, Office_id, Appointment_status, Slotted_time, Specialist_status, Date, Day) VALUES
-            ('$patientID', '$doctorID', '$officeID', '$appointmentStatus', '$time', '$specialistStatus', '$date', '$day');";
+            $query = "INSERT INTO `APPOINTMENT`(Patient_id, Doctor_id, Office_id, Appointment_status, Slotted_time, Specialist_status, Date) VALUES
+            ('$patientID', '$doctorID', '$officeID', '$appointmentStatus', '$time', '$specialistStatus', '$date');";
             $result = mysqli_query($db, $query);
           } catch  (Exception $e) {
+            //$errortxt = mysqli_error();
+            //echo "$errortext";
             //$error = $e;
           }
         }
@@ -87,7 +89,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true)
 <nav class="navbar navbar-expand-lg nav-back fixed-top" id="mainNav">
   <div class="container">
     <img src="../img/main_icon.png" class="mainicon">
-    <a class="navbar-brand" href="./main.php">Medimon</a>
+    <a class="navbar-brand" href="../index.php">Medimon</a>
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
       data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
       aria-label="Toggle navigation"><i class="fas fa-syringe fa-2x"></i>
@@ -120,24 +122,6 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true)
     </div>
 </body>
 <!-- Footer-->
-<footer class="footer py-4 mt-5">
-  <div class="container">
-    <div class="row align-items-center">
-      <div class="col-lg-4 text-lg-left">COSC3380 Group Project</div>
-      <div class="col-lg-4 my-3 my-lg-0">
-        <a class="btn btn-back btn-social mx-2" href="#!">
-          <i class="fab fa-twitter"></i></a>
-        <a class="btn btn-back btn-social mx-2" href="#!">
-          <i class="fab fa-facebook-f"></i></a>
-        <a class="btn btn-back btn-social mx-2" href="#!">
-          <i class="fab fa-linkedin-in"></i></a>
-      </div>
-      <div class="col-lg-4 text-lg-right">
-        <a class="mr-3 text" href="#!">Privacy Policy</a>
-        <a href="#!" class="text">Terms of Use</a></div>
-    </div>
-  </div>
-</footer>
 
 <script src="main.js"></script>
 
