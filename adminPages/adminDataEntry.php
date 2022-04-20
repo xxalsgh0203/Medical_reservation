@@ -70,7 +70,7 @@ table.center {
 </style>
 </head>
 <body>
-    <div class="dataEntryRenderbtn">
+    <nav class="floating-menu">
         <a href="doctorDataEntry.php">
             <div>
                 Doctor Data Entry Page
@@ -86,7 +86,7 @@ table.center {
                 Patient Data Entry Page
             </div>
         </a>
-    </div>
+    </nav>
 
 <?php include_once("../php/header.php"); ?>
 

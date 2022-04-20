@@ -707,3 +707,25 @@ div.horizontalgap {
   height: 10px;
   width: 0px;
 }
+
+.floating-menu {
+  top:40%;
+  left:5%;
+  font-family: sans-serif;
+  background: yellowgreen;
+  padding: 5px;;
+  width: 130px;
+  z-index: 100;
+  position: fixed;
+}
+.floating-menu a, 
+.floating-menu h3 {
+  font-size: 0.9em;
+  display: block;
+  margin: 0 0.5em;
+  color: white;
+}
+
+.input-group{
+  vertical-align: middle;
+}

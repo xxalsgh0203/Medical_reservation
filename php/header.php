@@ -26,7 +26,7 @@ if (isset($_SESSION["href"])) {
         ?>
 
         <?php if (isset($_SESSION['type'])) { ?>
-            <li class="nav-item"><a class="nav-link" href=<?php echo $href;?>>Manage Appointments</a></li>;
+            <li class="nav-item"><a class="nav-link" href=<?php echo $href?>>Manage Appointments</a></li>
         <?php } ?>
       </ul>
     </div>
