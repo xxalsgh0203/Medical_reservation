@@ -105,6 +105,7 @@ CREATE TABLE APPOINTMENT (
     Appointment_status    VARCHAR(12) NOT NULL,
     Slotted_time          TIME NOT NULL,
     Specialist_status     BOOLEAN NOT NULL, /*If it is a specialist appointment */
+    Error_code            INT DEFAULT 0,
     PRIMARY KEY (Appointment_id),
     FOREIGN KEY (Patient_id) REFERENCES PATIENT(Patient_id),
     FOREIGN KEY (Doctor_id) REFERENCES DOCTOR(Doctor_id),
@@ -159,18 +160,20 @@ ON APPOINTMENT
 FOR EACH ROW
 BEGIN
 	IF (
--- 		SELECT COUNT(*)
--- 		FROM PATIENT
--- 		INNER JOIN APPOINTMENT ON PATIENT.Patient_id = APPOINTMENT.Patient_id
--- 		WHERE PATIENT.Specialist_approved = FALSE
--- 		AND APPOINTMENT.Specialist_status = TRUE
--- 		) >= 1 THEN
+ 		SELECT COUNT(*)
+ 		FROM PATIENT
+ 		INNER JOIN APPOINTMENT ON PATIENT.Patient_id = APPOINTMENT.Patient_id
+ 		WHERE PATIENT.Specialist_approved = FALSE
+ 		AND APPOINTMENT.Specialist_status = TRUE
+ 		) >= 1 THEN
+        SET NEW.Error_code = 1;
 --         DELETE FROM APPOINTMENT
 --             WHERE Appointment_id = NEW.Appointment_id;
 --             -- SET NEW.Appointment_status = "failed"
-
+		/*
 		NEW.Specialist_status = TRUE) THEN
 			SET NEW.Appointment_status = "failed";
+		*/
 	END IF;
 END; $$
 DELIMITER ;
@@ -211,6 +214,8 @@ BEGIN
 		WHERE Doctor_id = NEW.Doctor_id
 		AND Slotted_time = NEW.Slotted_time
 	) >= 1 THEN
+		SET NEW.Error_Code = 2;
+        /*
 		SIGNAL SQLSTATE '88888'
         SET MESSAGE_TEXT = 'Warning: An appointment with this time and doctor already exists!';
 		/*
