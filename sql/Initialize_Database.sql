@@ -2,6 +2,7 @@ DROP DATABASE IF EXISTS medical_clinic;
 CREATE DATABASE medical_clinic;
 /*
 SET GLOBAL log_bin_trust_function_creators = 1;
+testing testing testing
 */
 
 USE medical_clinic;
@@ -153,7 +154,7 @@ DELIMITER ;
 
 */
 
-/*
+
 DELIMITER $$
 CREATE TRIGGER SAPPROVE
 BEFORE INSERT
@@ -170,7 +171,6 @@ BEGIN
         /*
         SET NEW.Error_code = 1;
         */
-        /*
         SIGNAL SQLSTATE '77777'
         SET MESSAGE_TEXT = 'Warning, You do NOT have Specialist approval!';
         
@@ -181,11 +181,10 @@ BEGIN
 		NEW.Specialist_status = TRUE) THEN
 			SET NEW.Appointment_status = "failed";
 		*/
-/*
 	END IF;
 END; $$
 DELIMITER ;
-*/
+
 
 
 
@@ -212,6 +211,7 @@ DELIMITER ;
 
 */
 
+/*
 DELIMITER $$
 CREATE TRIGGER CONFLICT
 BEFORE INSERT
@@ -235,9 +235,11 @@ BEGIN
 		DELETE FROM APPOINTMENT
             WHERE Appointment_id = NEW.Appointment_id;
 		*/
+    /*
 	END IF;
 END;$$
 DELIMITER ;
+*/
 
 
 CREATE TABLE PRESCRIPTION (
