@@ -139,30 +139,10 @@ if (isset($_GET['delete_id'])) {
               <tbody>
               </tbody>
             </table>
+            
+            <br><br>
 
-          </div>
-        </div>
-      </div>
-
-      <footer>
-        <div class="copyright-wrap">
-        </div>
-      </footer>
-    </div>
-  </div>
-</section>
-<!-- End Doctors Page-->
-
-<!-- ======= Doctor's Patients Section ======= -->
-
-<section id="Doc's Patients">
-  <div class="main-container">
-    <div class="main-wrap">
-
-      <div class="text-center" id="Doctor-header">Assigned Patients</div>
-      <div class="container-fluid">
-        <div class="row justify-content-center my-5">
-          <div class="col-10">
+            <h2>Assigned Patients</h2>
             <table class="table table-bordered">
               <thead class="thead">
                 <tr>
@@ -179,29 +159,9 @@ if (isset($_GET['delete_id'])) {
               </tbody>
             </table>
 
-          </div>
-        </div>
-      </div>
+            <br><br>
 
-      <footer>
-        <div class="copyright-wrap">
-        </div>
-      </footer>
-    </div>
-  </div>
-</section>
-<!-- End Doctor's Patients-->
-
-<!-- ======= Appointments Section ======= -->
-
-<section id="Doc's Patients">
-  <div class="main-container">
-    <div class="main-wrap">
-
-      <div class="text-center" id="Doctor-header">Appointments</div>
-      <div class="container-fluid">
-        <div class="row justify-content-center my-5">
-          <div class="col-10">
+            <h2>Appointments</h2>
             <table class="table table-bordered">
               <thead class="thead">
                 <tr>
@@ -218,25 +178,9 @@ if (isset($_GET['delete_id'])) {
               </tbody>
             </table>
 
-          </div>
-        </div>
-      </div>
+            <br><br>
 
-      <footer>
-        <div class="copyright-wrap">
-        </div>
-      </footer>
-    </div>
-  </div>
-</section>
-
-<section id="Doc's Patients">
-  <div class="main-container">
-    <div class="main-wrap">
-      <div class="text-center" id="Doctor-header">Schedule</div>
-      <div class="container-fluid">
-        <div class="row justify-content-center my-5">
-          <div class="col-10">
+            <h2>Schedule</h2>
             <table class="table table-bordered">
               <thead class="thead">
                 <tr>
@@ -262,7 +206,7 @@ if (isset($_GET['delete_id'])) {
     </div>
   </div>
 </section>
-<!-- End Appointments-->
+<!-- End Doctors Page-->
 
 
 
