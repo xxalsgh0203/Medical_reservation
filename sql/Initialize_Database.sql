@@ -153,7 +153,7 @@ DELIMITER ;
 
 */
 
-
+/*
 DELIMITER $$
 CREATE TRIGGER SAPPROVE
 BEFORE INSERT
@@ -170,6 +170,7 @@ BEGIN
         /*
         SET NEW.Error_code = 1;
         */
+        /*
         SIGNAL SQLSTATE '77777'
         SET MESSAGE_TEXT = 'Warning, You do NOT have Specialist approval!';
         
@@ -180,9 +181,12 @@ BEGIN
 		NEW.Specialist_status = TRUE) THEN
 			SET NEW.Appointment_status = "failed";
 		*/
+/*
 	END IF;
 END; $$
 DELIMITER ;
+*/
+
 
 
 /*
@@ -234,6 +238,7 @@ BEGIN
 	END IF;
 END;$$
 DELIMITER ;
+
 
 CREATE TABLE PRESCRIPTION (
     Patient_id        INT NOT NULL,
