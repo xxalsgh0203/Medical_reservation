@@ -229,7 +229,7 @@ BEGIN
 		/*
 		SET NEW.Error_Code = 2;
         */
-        
+        /*
 		SIGNAL SQLSTATE '88888'
         SET MESSAGE_TEXT = 'Warning: An appointment with this time and doctor already exists!';
 		/*
