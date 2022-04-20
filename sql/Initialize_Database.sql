@@ -219,6 +219,7 @@ BEGIN
 		FROM APPOINTMENT
 		WHERE Doctor_id = NEW.Doctor_id
 		AND Slotted_time = NEW.Slotted_time
+        AND APPOINTMENT.Date = NEW.Date
 	) >= 1 THEN
 		/*
 		SET NEW.Error_Code = 2;
