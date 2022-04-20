@@ -125,20 +125,7 @@ if (isset($_GET['delete_id'])) {
             </table>
             <a href="requestAppointment.php">Make Reservation!</a>
 
-            <h2>Prescriptions</h2>
-            <table class="table table-bordered">
-              <thead class="thead">
-                <tr>
-                  <th scope="col">Patient_id</th>
-                  <th scope="col">Medication</th>
-                  <th scope="col">Test</th>
-                  <th scope="col">Prescription_date</th>
-                </tr>
-                <?php echo $PtableResult;?>
-              </thead>
-              <tbody>
-              </tbody>
-            </table>
+            <br><br>
 
             <h2>Appointments</h2>
             <table class="table table-bordered">
@@ -153,6 +140,23 @@ if (isset($_GET['delete_id'])) {
                   <th>Cancel Appointment</th>
                 </tr>
                 <?php echo $APtableResult;?>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+
+            <br><br>
+
+            <h2>Prescriptions</h2>
+            <table class="table table-bordered">
+              <thead class="thead">
+                <tr>
+                  <th scope="col">Patient_id</th>
+                  <th scope="col">Medication</th>
+                  <th scope="col">Test</th>
+                  <th scope="col">Prescription_date</th>
+                </tr>
+                <?php echo $PtableResult;?>
               </thead>
               <tbody>
               </tbody>
