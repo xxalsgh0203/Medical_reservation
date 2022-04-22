@@ -42,6 +42,49 @@ if (isset($_GET['report'])) {
     }
   }
 
+  if ($reportType == 'Appointments') {
+    $ReportResults = "<tr>
+                      <th colspan='3'>Office Information</th>
+                      <th colspan='3'>Appointment Information</th>
+                      <th colspan='3'>Patient Information</th>
+                    </tr>";
+    $ReportResults .= "<tr>
+                      <th>Address</th>
+                      <th>City</th>
+                      <th>State</th>
+                      <th>Date</th>
+                      <th>Time</th>
+                      <th>Status</th>
+                      <th>Name</th>
+                      <th>Age</th>
+                      <th>Has Allergies?</th>
+                    </tr>";
+    $sql = "SELECT O.Address, O.City, O.State, A.Date, A.Slotted_time, P.name, P.Age, P.Medical_allergy, A.Appointment_status FROM APPOINTMENT
+            as A
+            LEFT JOIN PATIENT as P
+            ON A.Patient_id = P.Patient_id
+            LEFT JOIN DOCTOR as D
+            ON A.Doctor_id = D.Doctor_id
+            LEFT JOIN OFFICE as O
+            ON A.Office_id = O.Office_id;";
+    $result = mysqli_query($db, $sql);
+
+    if ($result->num_rows > 0) {
+      while($row = $result-> fetch_assoc()) {
+        $ReportResults .= "<tr>" . 
+                          "<td>" . $row["Address"] . "</td>" .
+                          "<td>" . $row["City"] . "</td>" .
+                          "<td>" . $row["State"] . "</td>" .
+                          "<td>" . $row["Date"] . "</td>" .
+                          "<td>" . $row["Slotted_time"] . "</td>" .
+                          "<td>" . $row["Appointment_status"] . "</td>" .
+                          "<td>" . $row["name"] . "</td>" .
+                          "<td>" . $row["Age"] . "</td>" .
+                          "<td>" . $row["Medical_allergy"] . "</td>" . "<tr>";
+      }
+    }
+  }
+
   // header('location: reportsForm.php');
 }
 
@@ -208,9 +251,9 @@ while($row = mysqli_fetch_array($dbres))
 
 
     <div class="sidebyside">
-      <a class="navitem" id="Presid" href="./reportsForm.php?report=test">Prescriptions</a>
-      <a class="navitem" id="DocSpecialid">Specialist</a>
-      <a class="navitem" id="Appid">Appointments</a>
+      <a class="navitem" id="Presid" href="./reportsForm.php?report=Prescriptions">Prescriptions(todo)</a>
+      <a class="navitem" id="DocSpecialid" href="./reportsForm.php?report=Specialist">Specialist(todo)</a>
+      <a class="navitem" id="Appid" href="./reportsForm.php?report=Appointments">Appointments(done)</a>
 
     </div>
 
