@@ -9,8 +9,8 @@ TODO:
   implement report+display for each report
 
  -->
- 
- <?php
+
+<?php
 session_start();
 
 require_once "../php/config.php";
@@ -19,6 +19,30 @@ require_once "../php/config.php";
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: ../auth/login.php");
     exit;
+}
+
+$ReportResults = "";
+if (isset($_GET['report'])) {
+  $reportType = $_GET['report'];
+
+  if ($reportType == 'test') {
+    $ReportResults = "<tr>
+                        <th>Office id</th>
+                        <th>Amount of appointments</th>
+                        <th>specialits Visits</th>
+                        <th>Total</th>
+                      </tr>";
+    $sql = "SELECT  ofic.Office_id, COUNT(*) FROM OFFICE ofic LEFT JOIN APPOINTMENT aptment ON ofic.Office_id = aptment.Office_id GROUP BY ofic.Office_id";
+    $result = mysqli_query($db, $sql);
+  
+    if ($result->num_rows > 0) {
+      while($row = $result-> fetch_assoc()) {
+        $ReportResults .= "<tr>" ."<td>" . $row["Office_id"] . "</td>" . "<td>" . $row["COUNT(*)"] . "</td>" ."<tr>";
+      }
+    }
+  }
+
+  // header('location: reportsForm.php');
 }
 
 $id = $_SESSION["id"];
@@ -47,18 +71,6 @@ if ($result->num_rows > 0) {
   }
   $APtableResult .= "</tr>"; 
 }
-
-//Query to search for Reports
-$sql = "SELECT  ofic.Office_id, COUNT(*) FROM OFFICE ofic LEFT JOIN APPOINTMENT aptment ON ofic.Office_id = aptment.Office_id GROUP BY ofic.Office_id";
-$result = mysqli_query($db, $sql);
-
-$ReportResults = "";
-if ($result->num_rows > 0) {
-  while($row = $result-> fetch_assoc()) {
-    $ReportResults .= "<tr>" ."<td>" . $row["Office_id"] . "</td>" . "<td>" . $row["COUNT(*)"] . "</td>" ."<tr>";
-  }
-  
-}
 /*
 $sql = "SHOW COLUMNS FROM OFFICE";
 $dbres = mysqli_query($db, $sql);
@@ -83,43 +95,39 @@ while($row = mysqli_fetch_array($dbres))
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-<style>
-  .data 
-  {
-    width: 800px;
-  padding: 100px;
-  margin-top: 20px;
-  
-  }
-  
-  .table 
-  {
-    margin-top: 20px;
-    border: 1px solid #ccc;
-    clear: both;
-  }
-  .sidebyside 
-  {
-    padding: 10px;
-    position: relative;
-    background-color: #fff;
-    margin: 10px;
-  }
-  .navitem
-  {
-    display: inline-block;
-    width: 150px;
-    height: 30px;
-    text-align: center;
-    border: gray;
-    background-color: #E8562A;
-    color: #fff;
-    cursor: pointer;
-    font-weight: bold;
-  }
+  <style>
+    .data {
+      width: 800px;
+      padding: 100px;
+      margin-top: 20px;
 
-  
-</style>
+    }
+
+    .table {
+      margin-top: 20px;
+      border: 1px solid #ccc;
+      clear: both;
+    }
+
+    .sidebyside {
+      padding: 10px;
+      position: relative;
+      background-color: #fff;
+      margin: 10px;
+    }
+
+    .navitem {
+      display: inline-block;
+      width: 150px;
+      height: 30px;
+      text-align: center;
+      border: gray;
+      background-color: #E8562A;
+      color: #fff;
+      cursor: pointer;
+      font-weight: bold;
+    }
+  </style>
 
 </head>
 
@@ -130,51 +138,45 @@ while($row = mysqli_fetch_array($dbres))
 
 <!-- End Header -->
 <!-- ======= reports Page ======= -->
-   <section id = "reportsForm">
-      
-        <div class = "reportF">
-        <h1>Report Form</h1>
-        </div>
+<section id="reportsForm">
 
-    
-      </div>
-        
-        <div class = "data">
-
-        <div class = "input-group">
-          <label for="starting_date">Begin:</label>
-          <input type="datetime-local" id = "StartDateid">
-          <br>
-          <label for="ending_date">End:</label>
-          <input type="datetime-local" id = "EndDateid">
-        </div>
+  <div class="reportF">
+    <h1>Report Form</h1>
+  </div>
 
 
+  </div>
 
-   
-        <div class = "sidebyside">
-      <button class="navitem" id = "Presid">Prescriptions</button>
-      <button class="navitem" id = "DocSpecialid">Specialist</button>
-      <button class="navitem" id = "Appid">Appointments</button>
-    
-      </div>
-         
+  <div class="data">
 
-          <br><br>
-          <table border = "2" class  = "table">
-            <tr>
-                <th>Office id</th>
-                <th>Amount of appointments</th>
-                <th>specialits Visits</th>
-                <th>Total</th>
-            </tr>
-            <?php echo $ReportResults;?>
-          </table>
-         
-        </div>
+    <div class="input-group">
+      <label for="starting_date">Begin:</label>
+      <input type="datetime-local" id="StartDateid">
+      <br>
+      <label for="ending_date">End:</label>
+      <input type="datetime-local" id="EndDateid">
+    </div>
 
 
-   </section>
+
+
+    <div class="sidebyside">
+      <a class="navitem" id="Presid" href="./reportsForm.php?report=test">Prescriptions</a>
+      <a class="navitem" id="DocSpecialid">Specialist</a>
+      <a class="navitem" id="Appid">Appointments</a>
+
+    </div>
+
+    <br><br>
+
+    <table border="2" class="table">
+      <?php echo $ReportResults;?>
+    </table>
+
+  </div>
+
+
+</section>
 <!-- End Of Reports page -->
 
 
