@@ -91,11 +91,11 @@ CREATE TABLE PATIENT (
 
 INSERT INTO PATIENT(Primary_physician_id, Specialist_approved, Name, Password, Phone_number, Email, Age, Medical_allergy) VALUES
 (1, none, "Wade", "password", 2222222222, "Wade@gmail.com", 5, true),
-(2, false, "Loren", "password", 3333333333, "Loren@yahoo.com", 10, true),
-(3, false, "Elsa", "password", 4444444444, "Elsa@hotmail.com", 20, false),
-(4, false, "Richard", "password", 5555555555, "Richard@yahoo.com", 50, true),
-(5, false, "Patient", "Password", 6666666666, "Patient@medical.com", 100, false),
-(1, true, "Andy", "password", 9999999999, "Andy@gmail.com", 36, true);
+(2, none, "Loren", "password", 3333333333, "Loren@yahoo.com", 10, true),
+(3, none, "Elsa", "password", 4444444444, "Elsa@hotmail.com", 20, false),
+(4, none, "Richard", "password", 5555555555, "Richard@yahoo.com", 50, true),
+(5, none, "Patient", "Password", 6666666666, "Patient@medical.com", 100, false),
+(1, none, "Andy", "password", 9999999999, "Andy@gmail.com", 36, true);
 
 CREATE TABLE APPOINTMENT (
 	Appointment_id        INT AUTO_INCREMENT,
