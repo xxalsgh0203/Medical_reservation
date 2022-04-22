@@ -13,14 +13,14 @@ if ($result->num_rows > 0) {
   while($row = $result-> fetch_assoc()) {
     $PtableResult .= "<tr>" . "<td>" . $row["Name"] . "</td><td>" . $row["Phone_number"] . "</td><td>" . 
                     $row["Email"] . "</td><td>" . $row["Age"] . "</td>" . "</td><td>" . $row["Medical_allergy"] . "</td>" .
-                     "</td><td> <a href='../adminPages/editPatient.php?update_Pid=" . $row["Patient_id"]  . "'>edit</a> </td>" . "</td><td> <a href='../adminPages/dataEntryForm.php?delete_Pid=" . 
+                     "</td><td> <a href='../adminPages/editPatient.php?update_Pid=" . $row["Patient_id"]  . "'>edit</a> </td>" . "</td><td> <a href='../adminPages/patientDataEntry.php?delete_Pid=" . 
                      $row["Patient_id"] . "'>Delete</a> </td>"  . "<tr>";
   }
 }
 
 
 
-//Takes in input for Admin from submitP
+//Takes in input for Patient from submitP
 if (isset($_POST['SubmitP']))
 {
   //Store input values
@@ -36,7 +36,16 @@ if (isset($_POST['SubmitP']))
                     VALUES ('$PName', '$PPWord', '$PPhoneNum', '$PEmail', '$PAge')")  or die($db->error); 
 
    
-    header("location:dataEntryForm.php");
+    header("location:patientDataEntry.php");
+
+}
+
+//used when the delete hyperlink is pressed
+if (isset($_GET['delete_Pid'])) {
+  $id = $_GET['delete_Pid'];
+
+ mysqli_query($db, "DELETE FROM PATIENT WHERE Patient_id = " . $id);
+header('location:patientDataEntry.php');
 
 }
 
@@ -124,7 +133,7 @@ table.center {
               <label for="Pname">Name:</label>
               <input type="text" id="Pname" name="Pname" maxlength="20">
               <label for="PPWord">create password:</label>
-              <input type="text" id="PPWord" name="PPWord">
+              <input type="Password" id="PPWord" name="PPWord">
               <label for="PAge">Age:</label>
               <input type="number" id="PAge" name="PAge">
               <br>

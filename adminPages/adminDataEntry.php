@@ -35,7 +35,16 @@ if (isset($_POST['SubmitAD']))
                     VALUES ('$ADOFFID', '$ADName', '$ADPWord', '$ADPhoneNum', '$ADEmail')")  or die($db->error); 
 
    
-    header("location:dataEntryForm.php");
+    header("location:adminDataEntry.php");
+
+}
+
+//used when the delete hyperlink is pressed for admin
+if (isset($_GET['delete_ADid'])) {
+  $id = $_GET['delete_ADid'];
+
+ mysqli_query($db, "DELETE FROM ADMIN WHERE Admin_id = " . $id);
+header('location:adminDataEntry.php');
 
 }
 

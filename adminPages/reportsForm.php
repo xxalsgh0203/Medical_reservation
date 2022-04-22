@@ -153,9 +153,9 @@ while($row = mysqli_fetch_array($dbres))
 
    
         <div class = "sidebyside">
-      <button class="navitem">Prescriptions</button>
-      <button class="navitem">Specialist</button>
-      <button class="navitem">Appointments</button>
+      <button class="navitem" id = "Presid">Prescriptions</button>
+      <button class="navitem" id = "DocSpecialid">Specialist</button>
+      <button class="navitem" id = "Appid">Appointments</button>
     
       </div>
          

@@ -13,7 +13,7 @@ if ($result->num_rows > 0) {
   while($row = $result-> fetch_assoc()) {
     $DtableResult .= "<tr>". "<td>" . $row["Office_id"] . "</td><td>" . $row["Name"] . "</td><td>" . 
                       $row["Speciality"] . "</td> <td>" . $row["Phone_number"] . "</td>" . "</td><td> 
-                      <a href='../adminPages/editDoctor.php?update_Did=" . $row["Doctor_id"]  . "'>edit</a> </td>" . "</td><td> <a href='../adminPages/dataEntryForm.php?delete_Did=" . $row["Doctor_id"] . "'>Delete</a>
+                      <a href='../adminPages/editDoctor.php?update_Did=" . $row["Doctor_id"]  . "'>edit</a> </td>" . "</td><td> <a href='../adminPages/doctorDataEntry.php?delete_Did=" . $row["Doctor_id"] . "'>Delete</a>
                                            </td>" .  "</tr>";
   }
 }
@@ -23,18 +23,11 @@ if (isset($_GET['delete_Did'])) {
   $id = $_GET['delete_Did'];
 
  mysqli_query($db, "DELETE FROM DOCTOR WHERE Doctor_id = " . $id);
-header('location:dataEntryForm.php');
+header('location:doctorDataEntry.php');
 
 }
 
-//used when the delete hyperlink is pressed
-if (isset($_GET['delete_Did'])) {
-  $id = $_GET['delete_Did'];
 
- mysqli_query($db, "DELETE FROM DOCTOR WHERE Doctor_id = " . $id);
-header('location:dataEntryForm.php');
-
-}
 
 $update = false;
 $id = 1;
@@ -54,7 +47,7 @@ if (isset($_GET['update_Did'])) {
   }
 
 
-header('location:dataEntryForm.php');
+header('location:doctorDataEntry.php');
 
 }
 
@@ -66,13 +59,12 @@ if (isset($_POST['USubmitD']))
   $dname = $_POST['Dname'];
   $Speciality = $_POST[''];
 
-
-
   $db->query("UPDATE DOCTOR SET Office_id='$Off_id',Name='$dname', Speciality='$Speciality' , Phone_number = '$PhoneNum' WHERE Doctor_id=$id");
 
 
 
-header('location:dataEntryForm.php');
+header('location:doctorDataEntry.php');
+
 
 }
 
@@ -92,25 +84,11 @@ if (isset($_POST['SubmitD']))
                     VALUES ('$OFFID', '$DName', '$SPType', '$DPWord', '$DPhoneNum')")  or die($db->error); 
 
   
-    header("location:dataEntryForm.php");
+    header("location:doctorDataEntry.php");
 
 }
 
 
-/*---------------------------to retrieve  admins------------------------------------------------*/
-$sql = "SELECT * FROM ADMIN";
-$result = mysqli_query($db, $sql);
-
-$OtADtableResult = "";
-if ($result->num_rows > 0) {
-  while($row = $result-> fetch_assoc()) {
-    $OtADtableResult .= "<tr>". "<td>" . $row["Office_id"] . "</td><td>" . $row["Name"] . "</td><td>" . 
-                          $row["Phone_number"] . "</td><td>" . $row["Email"] . "</td>" . "</td><td> 
-                          <a href='../adminPages/editAdmin.php?update_ADid=" . $row["Admin_id"]  . "'>edit</a> </td>" . "</td><td> <a href='../adminPages/dataEntryForm.php?delete_ADid=" . $row["Admin_id"] . "'>Delete</a>
-                                               </td>"."<tr>";
-  }
- 
-}
 
 ?> 
 
@@ -212,13 +190,7 @@ table.center {
               <input type="text" id="DPhoneNum" name="DPhoneNum" maxlength="10">    
               <!--Used to separate inputs-->
               <br>
-              <?php
-              if ($update == true):
-              ?>
-                <button type="submit" class="btn btn-info" name="SubmitD">Update</button>
-               <?php else: ?>
               <button type="submit" class="btn btn-primary" name="SubmitD">Submit</button>
-              <?php endif; ?>
         </form>
 </section>
 

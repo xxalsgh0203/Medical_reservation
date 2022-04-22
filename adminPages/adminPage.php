@@ -69,6 +69,18 @@ if ($result->num_rows > 0) {
  
 }
 
+//-------------------------Retrieve table for doctors-------------->
+$sql = "SELECT * FROM DOCTOR";
+$result = mysqli_query($db, $sql);
+
+$DtableResult = "";
+if ($result->num_rows > 0) {
+  while($row = $result-> fetch_assoc()) {
+    $DtableResult .= "</tr>" . "<td>" . $row["Office_id"] . "</td><td>" . $row["Name"] . "</td><td>" . $row["Speciality"] .  "</td><td>" . $row["Phone_number"] . "</td>" . "</tr>";
+  }
+  
+}
+
 ?>
 
 <!doctype html>
@@ -172,20 +184,28 @@ if ($result->num_rows > 0) {
               </tbody>
             </table>
 
-          </div>
-        </div>
 
-      </div>
-    </div>
-  </div>
+            <br> <br>
+
+            <h2>Doctors</h2>
+            <table class="table table-bordered">
+              <thead class="thead">
+                <tr>
+                  <th>Office ID</th>
+                  <th>Name</th>
+                  <th>Specialty</th>
+                  <th>Phone Number</th>
+                </tr>
+                <?php echo $DtableResult;?>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+
+            <br> <br>
 
 
-  
-  </body>
-
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-
-         <!-- Used to center container -->
+              <!-- Used to center container -->
          <div id = "container">
         <!--Used to redirect to data entry page -->
         <a href="doctorDataEntry.php"> 
@@ -196,6 +216,22 @@ if ($result->num_rows > 0) {
           <button id = "Redi2">Reports</button>
         </a>
      </div>
+
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  
+
+
+
+
+
+  
 
      <!-- Footer-->
 

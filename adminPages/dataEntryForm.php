@@ -218,18 +218,7 @@ table.center {
 <?php include_once("../php/header.php"); ?>
 
 <!-- End Header -->
-<!-- ======= DataEntry Page ======= -->
 
-
-<!-- Pick a specific table 
-<body>
-  <br>
-  <div>
-  <label for="TableID"> <b>Select table to View:</b> </label>
-  <input type="text" id="TableID" name="TableID">
-  <button type="submit" class="btn btn-primary" name="SubmitTID">Submit</button>
-  </div>
-</body> -->
 
   <!-- Header of the page-->
   <section>
