@@ -5,26 +5,22 @@ require_once "../php/config.php";
 
 
 //Query to retrieve appointments for doctors
-$sql = "SELECT PData.NAME, PData.Email , PData.Phone_Number, PData.Age, PData.Specialist_approved, DData.NAME, DData.Email , DData.Phone_Number FROM PATIENT PData LEFT JOIN DOCTOR DData";
-$result = mysqli_query($db, $sql);
 
+
+$sql = "SELECT PData.Name as P_Name, PData.Email as P_Email, PData.Phone_Number as P_Phone_Num, PData.Age as P_Age, PData.Specialist_approved as P_SpesApprove, DData.Name as Doctor_name,
+         DData.Phone_Number as D_Phone_Num FROM PATIENT AS PData LEFT JOIN DOCTOR AS DData ON PData.Primary_physician_id = DData.Doctor_id ";
+$result = mysqli_query($db, $sql); 
 
 $PtableResult = "";
 if ($result->num_rows > 0) {
   while($row = $result-> fetch_assoc()) {
-    $APtableResult .= "<tr>". "<td>" . $row["Office_id"] . "</td><td>"  . $row["Office_id"] . "</td><td>" .
-                       $row["Appointment_status"] . "</td><td>" . $row["Slotted_time"] . "</td><td>" . $row["Specialist_status"] . "</td>";
+    $PtableResult .= "<tr>". "<td>" . $row["P_Name"] . "</td><td>"  . $row["P_Email"] . "</td><td>" . $row["P_Phone_Num"] . "</td><td>" .  $row["P_Age"] . "</td><td>" 
+                    . $row["P_SpesApprove"] . "</td><td>" . $row["D_Phone_Num"] . "</td><td>" . $row["Doctor_name"] . "</td>". "<tr>";
                        
-    if ($row["Appointment_status"] === 'pending') {
-      $APtableResult .= "<td><a href='../adminPages/adminPage.php?approve_id=" . $row["Appointment_id"] . "'>X</a></td>";
-      $APtableResult .= "<td><a href='../adminPages/adminPage.php?ren  ject_id=" . $row["Appointment_id"] . "'>X</a></td>";
-    } else {
-      $APtableResult .= "<td></td><td></td>";
-    }
-    $APtableResult .= "</tr>";
-
   }
 }
+
+
 ?>
 
 <!doctype html>
@@ -67,9 +63,35 @@ if ($result->num_rows > 0) {
 
 <?php include_once("../php/header.php"); ?>
 
-
-
-  
+<section id = "Admin user">
+<div class="main-container">
+    <div class="main-wrap">
+      <div class="text-center" id="Admin-header">Specialist approval</div>
+      <div class="container-fluid">
+        <div class="row justify-content-center my-5">
+          <div class="col-12">
+            <table class="table table-bordered">
+              <thead class="thead">
+                <tr>
+                  <th scope="col">Patient Name</th>
+                  <th scope="col">Patient Phone number</th>
+                  <th scope="col">Patient Email</th>
+                  <th scope="col">Age</th>
+                  <th scope="col">Approved for specialist</th>
+                  <th scope="col">Primary physcian</th>
+                  <th scope="col">Doctors contact</th>
+                </tr>
+                <?php echo $PtableResult;?>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+          
+            
+          </div>
+        </div>
+      </div>
+      </section>
 
      <!-- Footer-->
 
