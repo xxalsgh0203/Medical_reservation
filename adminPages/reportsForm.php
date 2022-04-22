@@ -85,7 +85,7 @@ if (isset($_GET['report'])) {
     }
   }
 
-  // header('location: reportsForm.php');
+  //header('location: reportsForm.php');
 }
 
 $id = $_SESSION["id"];
