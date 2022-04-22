@@ -143,10 +143,10 @@ while($row = mysqli_fetch_array($dbres))
 
         <div class = "input-group">
           <label for="starting_date">Begin:</label>
-          <input type="datetime-local" id = "StartDateid">
+          <input type="date" id = "StartDateid">
           <br>
           <label for="ending_date">End:</label>
-          <input type="datetime-local" id = "EndDateid">
+          <input type="date" id = "EndDateid">
         </div>
 
 

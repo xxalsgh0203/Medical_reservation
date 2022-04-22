@@ -215,6 +215,11 @@ if ($result->num_rows > 0) {
         <a href="reportsForm.php"> 
           <button id = "Redi2">Reports</button>
         </a>
+         <!--Used to redirect to Specialist Approval page -->
+         <a href="SpecialistApproval.php"> 
+          <button id = "Redi2">Specialist approval</button>
+        </a>
+
      </div>
 
 

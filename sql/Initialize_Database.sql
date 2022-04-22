@@ -78,7 +78,7 @@ INSERT INTO WORK_INFO(Doctor_id, Office_id, Weekday, Start_time, End_time) VALUE
 CREATE TABLE PATIENT (
 	Patient_id           INT AUTO_INCREMENT,
     Primary_physician_id INT,
-    Specialist_approved  BOOLEAN DEFAULT false,
+    Specialist_approved  VARCHAR(8) NOT NULL,
     Name                 VARCHAR(20) NOT NULL,
     Password             VARCHAR(255) NOT NULL,
     Phone_number         CHAR(10) UNIQUE NOT NULL,
@@ -90,7 +90,7 @@ CREATE TABLE PATIENT (
 );
 
 INSERT INTO PATIENT(Primary_physician_id, Specialist_approved, Name, Password, Phone_number, Email, Age, Medical_allergy) VALUES
-(1, false, "Wade", "password", 2222222222, "Wade@gmail.com", 5, true),
+(1, none, "Wade", "password", 2222222222, "Wade@gmail.com", 5, true),
 (2, false, "Loren", "password", 3333333333, "Loren@yahoo.com", 10, true),
 (3, false, "Elsa", "password", 4444444444, "Elsa@hotmail.com", 20, false),
 (4, false, "Richard", "password", 5555555555, "Richard@yahoo.com", 50, true),
@@ -115,8 +115,8 @@ CREATE TABLE APPOINTMENT (
 );
 
 INSERT INTO APPOINTMENT(Patient_id, Doctor_id, Office_id, Appointment_status, Date, Slotted_time, Specialist_status) VALUES
-(1, 1, 1, "pending", "2022-04-20", "9:00", 0),
-(1, 5, 2, "approved", "2022-04-21", "15:00", 0),
+(1, 1, 1, "pending", "2022-04-20", "9:00", 0, ),
+(1, 5, 2, "approved", "2022-04-21", "15:00", 0,),
 (2, 3, 1, "pending", "2022-04-21", "7:00", 0),
 (2, 4, 2, "canceled", "2022-04-22", "1:00", 0),
 (2, 5, 1, "approved", "2022-04-22", "3:00", 0),

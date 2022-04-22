@@ -13,7 +13,7 @@ if ($result->num_rows > 0) {
   while($row = $result-> fetch_assoc()) {
     $OtADtableResult .= "<tr>". "<td>" . $row["Office_id"] . "</td><td>" . $row["Name"] . "</td><td>" . 
                           $row["Phone_number"] . "</td><td>" . $row["Email"] . "</td>" . "</td><td> 
-                          <a href='../adminPages/editAdmin.php?update_ADid=" . $row["Admin_id"]  . "'>edit</a> </td>" . "</td><td> <a href='../adminPages/dataEntryForm.php?delete_ADid=" . $row["Admin_id"] . "'>Delete</a>
+                          <a href='../adminPages/editAdmin.php?update_ADid=" . $row["Admin_id"]  . "'>edit</a> </td>" . "</td><td> <a href='../adminPages/adminDataEntry.php?delete_ADid=" . $row["Admin_id"] . "'>Delete</a>
                                                </td>"."<tr>";
   }
  
@@ -21,7 +21,7 @@ if ($result->num_rows > 0) {
 
 
 //Takes in input for Admin from submitAD
-if (isset($_POST['SubmitAD']))
+if (isset($_POST['SubmitADm']))
 {
   //Store input values
     $ADOFFID =  $_POST['ADOFFID'];
@@ -35,7 +35,7 @@ if (isset($_POST['SubmitAD']))
                     VALUES ('$ADOFFID', '$ADName', '$ADPWord', '$ADPhoneNum', '$ADEmail')")  or die($db->error); 
 
    
-    header("location:adminDataEntry.php");
+    header("location:dataEntryForm.php");
 
 }
 
@@ -132,7 +132,7 @@ table.center {
               <label for="ADname">Name:</label>
               <input type="text" id="ADname" name="ADname" maxlength="20">
               <label for="ADPWord">create password:</label>
-              <input type="text" id="ADPWord" name="ADPWord">
+              <input type="Password" id="ADPWord" name="ADPWord">
               <br>
               <label for="ADPhoneNum">Phone Number:</label>
               <input type="text" id="ADPhoneNum" name="ADPhoneNum" maxlength="10"> 
@@ -140,7 +140,7 @@ table.center {
               <input type="text" id="ADEmail" name="ADEmail" maxlength="30">   
               <!--Used to separate inputs-->
               <br>
-              <button type="submit" class="btn btn-primary" name="SubmitAD">Submit</button>
+              <button type="submit" class="btn btn-primary" name="SubmitADm">Submit</button>
               </form>
 </section>
 
