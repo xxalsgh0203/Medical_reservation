@@ -84,8 +84,37 @@ if (isset($_GET['report'])) {
       }
     }
   }
+  
+  if ($reportType == 'Prescriptions') {
+    $ReportResults = "<tr>
+                      <th colspan='3'>Patient Information</th>
+                      <th colspan='3'>Prescription Information</th>
+                    </tr>";
+    $ReportResults .= "<tr>
+                      <th>Name</th>
+                      <th>Phone number</th>
+                      <th>Email</th>
+                      <th>Medication</th>
+                      <th>Test</th>
+                      <th>Prescription Date</th>
+                    </tr>";
+    $sql = "SELECT Name, Phone_number, Email, Medication, Test, Prescription_date FROM PATIENT as PAT
+            RIGHT JOIN PRESCRIPTION as PRE
+            ON PAT.Patient_id = PRE.Patient_id;";
+    $result = mysqli_query($db, $sql);
 
-  //header('location: reportsForm.php');
+    if ($result->num_rows > 0) {
+      while($row = $result-> fetch_assoc()) {
+        $ReportResults .= "<tr>" . 
+                          "<td>" . $row["Name"] . "</td>" .
+                          "<td>" . $row["Phone_number"] . "</td>" .
+                          "<td>" . $row["Email"] . "</td>" .
+                          "<td>" . $row["Medication"] . "</td>" .
+                          "<td>" . $row["Test"] . "</td>" .
+                          "<td>" . $row["Prescription_date"] . "</td>" . "<tr>";
+      }
+    }
+  }
 }
 
 $id = $_SESSION["id"];
@@ -204,9 +233,9 @@ while($row = mysqli_fetch_array($dbres))
 
 
     <div class="sidebyside">
-      <a class="navitem" id="Presid" href="./reportsForm.php?report=Prescriptions">Prescriptions(todo)</a>
+      <a class="navitem" id="Presid" href="./reportsForm.php?report=Prescriptions">Prescriptions(draft)</a>
       <a class="navitem" id="DocSpecialid" href="./reportsForm.php?report=Specialist">Specialist(todo)</a>
-      <a class="navitem" id="Appid" href="./reportsForm.php?report=Appointments">Appointments(done)</a>
+      <a class="navitem" id="Appid" href="./reportsForm.php?report=Appointments">Appointments(draft)</a>
 
     </div>
 
