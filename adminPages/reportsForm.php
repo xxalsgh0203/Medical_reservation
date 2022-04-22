@@ -181,53 +181,6 @@ while($row = mysqli_fetch_array($dbres))
 
 <!-- End Header -->
 <!-- ======= reports Page ======= -->
-<<<<<<< HEAD
-   <section id = "reportsForm">
-      
-        <div class = "reportF">
-        <h1>Report Form</h1>
-        </div>
-
-    
-      </div>
-        
-        <div class = "data">
-
-        <div class = "input-group">
-          <label for="starting_date">Begin:</label>
-          <input type="date" id = "StartDateid">
-          <br>
-          <label for="ending_date">End:</label>
-          <input type="date" id = "EndDateid">
-        </div>
-
-
-
-   
-        <div class = "sidebyside">
-      <button class="navitem" id = "Presid">Prescriptions</button>
-      <button class="navitem" id = "DocSpecialid">Specialist</button>
-      <button class="navitem" id = "Appid">Appointments</button>
-    
-      </div>
-         
-
-          <br><br>
-          <table border = "2" class  = "table">
-            <tr>
-                <th>Office id</th>
-                <th>Amount of appointments</th>
-                <th>specialits Visits</th>
-                <th>Total</th>
-            </tr>
-            <?php echo $ReportResults;?>
-          </table>
-         
-        </div>
-
-
-   </section>
-=======
 <section id="reportsForm">
 
   <div class="reportF">
@@ -267,7 +220,6 @@ while($row = mysqli_fetch_array($dbres))
 
 
 </section>
->>>>>>> 05e7fad7ae930730136c7dcd3e705acb5cf8fe14
 <!-- End Of Reports page -->
 
 
