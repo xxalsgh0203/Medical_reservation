@@ -7,18 +7,35 @@ require_once "../php/config.php";
 //Query to retrieve appointments for doctors
 
 
-$sql = "SELECT PData.Name as P_Name, PData.Email as P_Email, PData.Phone_Number as P_Phone_Num, PData.Age as P_Age, PData.Specialist_approved as P_SpesApprove, DData.Name as Doctor_name,
-         DData.Phone_Number as D_Phone_Num FROM PATIENT AS PData LEFT JOIN DOCTOR AS DData ON PData.Primary_physician_id = DData.Doctor_id ";
+$sql = "SELECT PData.Name as P_Name, PData.Email as P_Email, PData.Phone_Number as P_Phone_Num, PData.Age as P_Age, PData.Patient_id as P_id, PData.Specialist_approved as P_SpesApprove, DData.Name as Doctor_name,
+         DData.Phone_Number as D_Phone_Num FROM PATIENT AS PData LEFT JOIN DOCTOR AS DData ON PData.Primary_physician_id = DData.Doctor_id; ";
 $result = mysqli_query($db, $sql); 
 
 $PtableResult = "";
 if ($result->num_rows > 0) {
   while($row = $result-> fetch_assoc()) {
     $PtableResult .= "<tr>". "<td>" . $row["P_Name"] . "</td><td>"  . $row["P_Email"] . "</td><td>" . $row["P_Phone_Num"] . "</td><td>" .  $row["P_Age"] . "</td><td>" 
-                    . $row["P_SpesApprove"] . "</td><td>" . $row["D_Phone_Num"] . "</td><td>" . $row["Doctor_name"] . "</td>". "<tr>";
+                    . $row["P_SpesApprove"] . "</td><td>" . $row["D_Phone_Num"] . "</td><td>" . $row["Doctor_name"] . "</td>". "</td><td> 
+                    <a href='../adminPages/SpecialistApproval.php?approve_Pid=" . $row["P_id"]  . "'>Approve</a> </td>" . "</td><td> <a href='../adminPages/SpecialistApproval.php?remove_Pid=" . $row["P_id"] . "'>Remove</a>
+                                         </td>" .  "</tr>";
                        
   }
 }
+
+
+if (isset($_GET['approve_Pid'])) {
+    $id = $_GET['approve_Pid'];
+  
+    mysqli_query($db, "UPDATE PATIENT SET Specialist_approved = 'approved' WHERE Patient_id = " . $id);
+    header('location:SpecialistApproval.php');
+  }
+  
+  if (isset($_GET['remove_Pid'])) {
+    $id = $_GET['remove_Pid'];
+  
+    mysqli_query($db, "UPDATE PATIENT SET Specialist_approved ='NA' WHERE  Patient_id  = " . $id);
+    header('location:SpecialistApproval.php');
+  }
 
 
 ?>
@@ -80,6 +97,8 @@ if ($result->num_rows > 0) {
                   <th scope="col">Approved for specialist</th>
                   <th scope="col">Primary physcian</th>
                   <th scope="col">Doctors contact</th>
+                  <th scope="col">Approve status</th>
+                  <th scope="col">Remove status</th>
                 </tr>
                 <?php echo $PtableResult;?>
               </thead>
