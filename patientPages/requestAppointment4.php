@@ -42,21 +42,31 @@
             }
         }*/
 
-        if ($doctorID == 2) {
-          $error = "You do not have permission to schedule an appointment with a specialist";
-        } else {
+        //if ($doctorID == 2) {
+          //$error = "You do not have permission to schedule an appointment with a specialist";
+        //} else {
           try {
             $query = "INSERT INTO `APPOINTMENT`(Patient_id, Doctor_id, Office_id, Appointment_status, Slotted_time, Specialist_status, Date) VALUES
             ('$patientID', '$doctorID', '$officeID', '$appointmentStatus', '$time', '$specialistStatus', '$date');";
             $result = mysqli_query($db, $query);
           } catch  (Exception $e) {
+            $triggerVal = mysqli_sqlstate();
+            if (strcmp($triggerVal, '77777') == 0 ) {
+              $error = "WARNING! You do NOT have permission to schedule an appointment with a specialist! Please get approval first!"
+            }
+            elseif (strcmp($triggerVal, '88888') == 0 ) {
+              $error = "WARNING! An appointment with these details already exists! Please try changing your doctor, time, and/or date!"
+            }
+            else{
+              $error = "Unaccounted for error"
+            }
             //$errortxt = mysqli_error();
             //echo "$errortext";
             //$error = $e;
           }
-        }
+        //}
         
-    }
+    //}
 
 
 ?>
