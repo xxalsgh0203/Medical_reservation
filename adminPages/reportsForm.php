@@ -115,6 +115,27 @@ if (isset($_GET['report'])) {
       }
     }
   }
+
+  if ($reportType == 'Specialist') {
+    $ReportResults = "<tr></tr>";
+    $ReportResults .= "<tr></tr>";
+    $sql = "SELECT COUNT(D.Doctor_id), O.Address, O.City, O.State, D.Speciality
+            FROM DOCTOR AS D
+            LEFT JOIN OFFICE AS O ON D.Office_id = O.Office_id
+            GROUP BY O.Address, O.City, O.State, D.Speciality;";
+    $result = mysqli_query($db, $sql);
+
+    if ($result->num_rows > 0) {
+      while($row = $result-> fetch_assoc()) {
+        $ReportResults .= "<tr>" . 
+                          "<td>" . $row["COUNT(D.Doctor_id)"] . "</td>" .
+                          "<td>" . $row["Address"] . "</td>" .
+                          "<td>" . $row["City"] . "</td>" .
+                          "<td>" . $row["State"] . "</td>" .
+                          "<td>" . $row["Speciality"] . "</td>" . "<tr>";
+      }
+    }
+  }
 }
 
 $id = $_SESSION["id"];
