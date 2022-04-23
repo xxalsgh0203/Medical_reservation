@@ -115,17 +115,25 @@ if ($result->num_rows > 0) {
 }
 
 //-------------------------Retrieve table for doctors-------------->
-$sql = "SELECT * FROM DOCTOR";
+$sql = "SELECT Name, D.Name, D.Phone_number AS Doctor_number, D.Speciality, O.Address, O.Phone_number AS Office_number FROM DOCTOR AS D
+LEFT JOIN OFFICE AS O ON D.Office_id = O.Office_id;";
 $result = mysqli_query($db, $sql);
 
 $DtableResult = "";
 if ($result->num_rows > 0) {
+  $DtableResult = "<tr>
+                        <th>Name</th>
+                        <th>Number</th>
+                        <th>Speciality</th>
+                        <th>Work Address</th>
+                        <th>Work Number</th>
+                      </tr>";
   while($row = $result-> fetch_assoc()) {
     $spec = $row['Speciality'];
     if (is_null($row['Speciality'])) {
       $spec = "Regular";
     }
-    $DtableResult .= "</tr>" . "<td>" . $row["Office_id"] . "</td><td>" . $row["Name"] . "</td><td>" . $spec .  "</td><td>" . $row["Phone_number"] . "</td>" . "</tr>";
+    $DtableResult .= "</tr>" . "<td>" . $row["Name"] . "</td><td>" . $row["Doctor_number"] . "</td><td>" . $spec . "</td><td>" . $row["Address"] . "</td><td>" . $row["Office_number"] . "</td>" . "</tr>";
   }
   
 }
