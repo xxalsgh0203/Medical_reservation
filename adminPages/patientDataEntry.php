@@ -86,11 +86,13 @@ table.center {
                 Doctor Data Entry Page
             </div>
         </a>
+        <br>
         <a href="adminDataEntry.php">
             <div>
                 Admin Data Entry Page
             </div>
         </a>
+        <br>
         <a href="patientDataEntry.php">
             <div>
                 Patient Data Entry Page
@@ -129,6 +131,7 @@ table.center {
               </tbody>
             </table>
               <!-- Input taken for Patient -->
+              
               <h2> Patient info:  </h2>
               <label for="Pname">Name:</label>
               <input type="text" id="Pname" name="Pname" maxlength="20">
@@ -144,6 +147,7 @@ table.center {
               <!--Used to separate inputs-->
               <br>
               <button type="submit" class="btn btn-primary" name="SubmitP" id="dataentrysubmitbtn">Submit</button>
+              
               </form>
   
 </section>

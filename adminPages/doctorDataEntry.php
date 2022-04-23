@@ -129,11 +129,13 @@ table.center {
             Doctor Data Entry Page
         </div>
     </a>
+    <br>
     <a href="adminDataEntry.php">
         <div>
             Admin Data Entry Page
         </div>
     </a>
+    <br>
     <a href="patientDataEntry.php">
         <div>
             Patient Data Entry Page

@@ -729,3 +729,8 @@ div.horizontalgap {
 .input-group{
   vertical-align: middle;
 }
+
+.foating-menu a{
+  margin: 50px;
+}
+
