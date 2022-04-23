@@ -78,7 +78,8 @@ INSERT INTO WORK_INFO(Doctor_id, Office_id, Weekday, Start_time, End_time) VALUE
 CREATE TABLE PATIENT (
 	Patient_id           INT AUTO_INCREMENT,
     Primary_physician_id INT,
-    Specialist_approved  VARCHAR(8) NOT NULL,
+	Specialist_approved  BOOLEAN,
+    Specialist_Check  VARCHAR(8) NOT NULL,
     Name                 VARCHAR(20) NOT NULL,
     Password             VARCHAR(255) NOT NULL,
     Phone_number         CHAR(10) UNIQUE NOT NULL,
@@ -91,12 +92,12 @@ CREATE TABLE PATIENT (
 );
 
 INSERT INTO PATIENT(Primary_physician_id, Specialist_approved, Name, Password, Phone_number, Email, Age, Medical_allergy) VALUES
-(1, NA, "Wade", "password", 2222222222, "Wade@gmail.com", 5, true),
-(2, NA, "Loren", "password", 3333333333, "Loren@yahoo.com", 10, true),
-(3, NA, "Elsa", "password", 4444444444, "Elsa@hotmail.com", 20, false),
-(4, NA, "Richard", "password", 5555555555, "Richard@yahoo.com", 50, true),
-(5, NA, "Patient", "Password", 6666666666, "Patient@medical.com", 100, false),
-(1, NA, "Andy", "password", 9999999999, "Andy@gmail.com", 36, true);
+(1,0, 'NA', "Wade", "password", 2222222222, "Wade@gmail.com", 5, true),
+(2,0, 'NA', "Loren", "password", 3333333333, "Loren@yahoo.com", 10, true),
+(3,0, 'NA', "Elsa", "password", 4444444444, "Elsa@hotmail.com", 20, false),
+(4,1, 'NA', "Richard", "password", 5555555555, "Richard@yahoo.com", 50, true),
+(5,0, 'NA', "Patient", "Password", 6666666666, "Patient@medical.com", 100, false),
+(1,0,'NA', "Andy", "password", 9999999999, "Andy@gmail.com", 36, true);
 
 
 CREATE TABLE APPOINTMENT (
