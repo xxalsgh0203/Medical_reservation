@@ -66,7 +66,9 @@
             //$errortxt = mysqli_error();
             //echo "$errortext";
             //$error = $e;
-
+          }
+        //}
+        
     }
 
 
