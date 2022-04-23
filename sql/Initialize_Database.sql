@@ -78,8 +78,7 @@ INSERT INTO WORK_INFO(Doctor_id, Office_id, Weekday, Start_time, End_time) VALUE
 CREATE TABLE PATIENT (
 	Patient_id           INT AUTO_INCREMENT,
     Primary_physician_id INT,
-	Specialist_approved  BOOLEAN,
-    Specialist_Check  VARCHAR(8) NOT NULL,
+	Specialist_approved  VARCHAR(8) NOT NULL,
     Name                 VARCHAR(20) NOT NULL,
     Password             VARCHAR(255) NOT NULL,
     Phone_number         CHAR(10) UNIQUE NOT NULL,
