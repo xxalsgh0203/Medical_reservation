@@ -6,32 +6,65 @@ require_once "../php/config.php";
 
 //Current admin log in info
 $id = $_SESSION["id"];
-$sql = "SELECT Office_id, Name, Phone_number, Email FROM ADMIN WHERE Admin_id = '$id'";
+$sql = "SELECT O.Address, O.City, O.State, A.Name, A.Phone_number, A.Email FROM ADMIN AS A lEFT JOIN OFFICE AS O ON A.Office_id = O.Office_id WHERE Admin_id = '$id'";
 $result = mysqli_query($db, $sql);
 
 $tableResult = "";
 if ($result->num_rows > 0) {
+  $tableResult .= "<tr>
+                    <th colspan='3'>Office Information</th>
+                    <th colspan='3'>Personal Information</th>
+                  </tr>";
+  $tableResult .= "<tr>
+                    <th scope='col'>Address</th>
+                    <th scope='col'>City</th>
+                    <th scope='col'>State</th>
+                    <th scope='col'>Name</th>
+                    <th scope='col'>Phone number</th>
+                    <th scope='col'>Email</th>
+                  </tr>";
   while($row = $result-> fetch_assoc()) {
-    $tableResult .= "<tr>" . "<td>" . $row["Office_id"] . "</td><td>" . $row["Name"] . "</td><td>" . 
+    $tableResult .= "<tr>" . "<td>" . $row["Address"] . "</td><td>" . $row["City"] . "</td><td>" . 
+                    $row["State"] . "</td><td>" . 
+                    $row["Name"] . "</td><td>" . 
                     $row["Phone_number"] . "</td><td>" . $row["Email"] . "</td>" . "</tr>";
   }
 }
 
-
 //Query to retrieve appointments for doctors
-$sql = "SELECT Patient_id, Office_id, Appointment_id, Appointment_status, Slotted_time, Specialist_status FROM APPOINTMENT ORDER BY Appointment_status='rejected', Appointment_status='canceled', Appointment_status='approved', Appointment_status='pending'";
+$sql = " SELECT P.Name AS Patient_name, D.Name AS Doctor_name, A.Appointment_id, A.Date, A.Slotted_time, O.City, O.State, A.Appointment_status, Specialist_status FROM APPOINTMENT AS A
+LEFt JOIN OFFICE AS O ON A.Office_id = O.Office_id
+LEFT JOIN PATIENT AS P ON P.Patient_id = A.Patient_id
+LEFT JOIN DOCTOR AS D ON D.Doctor_id = A.Doctor_id
+ORDER BY Appointment_status='rejected', Appointment_status='canceled', Appointment_status='approved', Appointment_status='pending';";
 $result = mysqli_query($db, $sql);
 
 //table results for appointments
 $APtableResult = "";
 if ($result->num_rows > 0) {
+  $APtableResult = "<tr>
+                      <th>Patient Name</th>
+                      <th>Doctor Name</th>
+                      <th>Date</th>
+                      <th>Time</th>
+                      <th>City</th>
+                      <th>State</th>
+                      <th>Specialist required?</th>
+                      <th>Status</th>
+                      <th>Approve</th>
+                      <th>Reject</th>
+                    </tr>";
   while($row = $result-> fetch_assoc()) {
     $approved = 'No';
     if ($row['Specialist_status'] == 1) {
       $approved = 'Yes';
     }
-    $APtableResult .= "<tr>". "<td>" . $row["Patient_id"] . "</td><td>"  . $row["Office_id"] . "</td><td>" .
-                       $row["Appointment_status"] . "</td><td>" . $row["Slotted_time"] . "</td><td>" . $approved . "</td>";
+    $APtableResult .= "<tr>". "<td>" . $row["Patient_name"] . "</td><td>"  . $row["Doctor_name"] . "</td><td>"
+    . $row["Date"] . "</td><td>"
+    . $row["Slotted_time"] . "</td><td>"
+    . $row["City"] . "</td><td>"
+    . $row["State"] . "</td><td>" .
+                       $approved . "</td><td>" . $row["Appointment_status"] . "</td>";
                        
     if ($row["Appointment_status"] === 'pending') {
       $APtableResult .= "<td><a href='../adminPages/adminPage.php?approve_id=" . $row["Appointment_id"] . "'>X</a></td>";
@@ -168,12 +201,6 @@ if ($result->num_rows > 0) {
           <div class="col-10">
             <table class="table table-bordered">
               <thead class="thead">
-                <tr>
-                  <th scope="col">Office ID</th>
-                  <th scope="col">Name</th>
-                  <th scope="col">Phone number</th>
-                  <th scope="col">Email</th>
-                </tr>
                 <?php echo $tableResult;?>
               </thead>
               <tbody>
@@ -185,15 +212,6 @@ if ($result->num_rows > 0) {
             <h2>Appointments</h2>
             <table class="table table-bordered">
               <thead class="thead">
-                <tr>
-                  <th>Patient ID</th>
-                  <th>Office ID</th>
-                  <th>Appointment status</th>
-                  <th>Slotted Time</th>
-                  <th>Specialist Appointment</th>
-                  <th>Approve</th>
-                  <th>Reject</th>
-                </tr>
                 <?php echo $APtableResult;?>
               </thead>
               <tbody>
