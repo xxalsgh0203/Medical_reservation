@@ -188,7 +188,7 @@ BEGIN
 END; $$
 DELIMITER ;
 */
- /*
+ 
  DELIMITER $$
 CREATE TRIGGER SAPPROVE
 BEFORE INSERT
@@ -203,13 +203,13 @@ BEGIN
         AND PATIENT.Specialist_approved = FALSE) >=1 ) THEN
         /*
         SET NEW.Error_code = 1;
-        
+        */
         SIGNAL SQLSTATE '77777'
         SET MESSAGE_TEXT = 'Warning, You do NOT have Specialist approval!';
     END IF;
 END; $$
 DELIMITER ;
- */
+ 
 
 /*
 DELIMITER $$
