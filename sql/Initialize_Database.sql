@@ -246,10 +246,10 @@ CREATE TABLE PRESCRIPTION (
 );
 
 INSERT INTO PRESCRIPTION(Patient_id, Medication, Test, Prescription_date) VALUES
-(5, "Medication string", "Test string", "2020/01/02");
-(5, "Medication string", "Test string", "2020/01/01");
-(5, "Medication string", "Test string", "2020/01/03");
-(5, "Medication string", "Test string", "2020/01/04");
+(5, "Medication string", "Test string", "2020/01/02"),
+(5, "Medication string", "Test string", "2020/01/01"),
+(5, "Medication string", "Test string", "2020/01/03"),
+(5, "Medication string", "Test string", "2020/01/04"),
 (5, "Medication string", "Test string", "2020/01/05");
 
 CREATE TABLE PATIENT_APPOINTMENTS (
