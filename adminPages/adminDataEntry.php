@@ -21,7 +21,7 @@ if ($result->num_rows > 0) {
 
 
 //Takes in input for Admin from submitAD
-if (isset($_POST['SubmitADm']))
+if (isset($_POST['SubmitAD']))
 {
   //Store input values
     $ADOFFID =  $_POST['ADOFFID'];
@@ -35,7 +35,7 @@ if (isset($_POST['SubmitADm']))
                     VALUES ('$ADOFFID', '$ADName', '$ADPWord', '$ADPhoneNum', '$ADEmail')")  or die($db->error); 
 
    
-    header("location:dataEntryForm.php");
+    header("location:adminDataEntry.php");
 
 }
 
@@ -140,7 +140,7 @@ table.center {
               <input type="text" id="ADEmail" name="ADEmail" maxlength="30">   
               <!--Used to separate inputs-->
               <br>
-              <button type="submit" class="btn btn-primary" name="SubmitADm">Submit</button>
+              <button type="submit" class="btn btn-primary" name="SubmitAD">Submit</button>
               </form>
 </section>
 

@@ -85,6 +85,7 @@ CREATE TABLE PATIENT (
     Email                VARCHAR(254) UNIQUE,
     Age                  INT,
     Medical_allergy      BOOLEAN NOT NULL DEFAULT false,
+    Medical_Al_Description VARCHAR(100),
     PRIMARY KEY (Patient_id),
     FOREIGN KEY (Primary_physician_id) REFERENCES DOCTOR(Doctor_id)
 );

@@ -24,7 +24,7 @@ if ($result->num_rows > 0) {
 if (isset($_POST['SubmitP']))
 {
   //Store input values
-    $PID =  $_POST['PID'];
+   
     $PName = $_POST['Pname'];
     $PPWord = $_POST['PPWord'];
     $PPhoneNum = $_POST['PPhoneNum'];
