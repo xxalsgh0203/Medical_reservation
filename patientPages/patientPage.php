@@ -36,7 +36,11 @@ $tableResult = "";
 if ($result->num_rows > 0) {
   $tableResult = "<tr>";
   while($row = $result-> fetch_assoc()) {
-    $tableResult .= "<td>" . $row["Doctor_name"] . "</td><td>" . $row["Name"] . "</td><td>" . $row["Phone_number"] . "</td><td>" . $row["Email"] . "</td><td>" . $row["Age"] . "</td><td>" . $row["Specialist_approved"] . "</td><td>" . $row["Medical_allergy"] . "</td>";
+    $approved = 'No';
+    if ($row['Specialist_approved'] == 1) {
+      $approved = 'Yes';
+    }
+    $tableResult .= "<td>" . $row["Doctor_name"] . "</td><td>" . $row["Name"] . "</td><td>" . $row["Phone_number"] . "</td><td>" . $row["Email"] . "</td><td>" . $row["Age"] . "</td><td>" . $approved . "</td><td>" . $row["Medical_allergy"] . "</td>";
   }
   $tableResult .= "</tr>";
 }
@@ -48,22 +52,24 @@ $result = mysqli_query($db, $sql);
 
 $PtableResult = "";
 if ($result->num_rows > 0) {
-  $PtableResult = "<tr>";
   while($row = $result-> fetch_assoc()) {
-    $PtableResult .= "<td>" . $row["Patient_id"] . "</td><td>"  . $row["Medication"] . "</td><td>" . $row["Test"] . "</td><td>" . $row["Prescription_date"] . "</td>";
+    $PtableResult .= "<tr>" ."<td>" . $row["Patient_id"] . "</td><td>"  . $row["Medication"] . "</td><td>" . $row["Test"] . "</td><td>" . $row["Prescription_date"] . "</td>". "<tr>";
   }
-  $PtableResult .= "</tr>"; 
 }
 
-$sql = "SELECT Patient_id, Office_id, Appointment_id, Appointment_status_id, Date, Slotted_time, Specialist_status FROM APPOINTMENT WHERE Patient_id = '$id'";
+$sql = "SELECT Patient_id, Office_id, Appointment_id, Appointment_status, Date, Slotted_time, Specialist_status FROM APPOINTMENT WHERE Patient_id = '$id'";
 $result = mysqli_query($db, $sql);
 
 //table results for appointments
 $APtableResult = "";
 if ($result->num_rows > 0) {
   while($row = $result-> fetch_assoc()) {
+    $approved = 'No';
+    if ($row['Specialist_status'] == 1) {
+      $approved = 'Yes';
+    }
     $APtableResult .= "<tr>";
-    $APtableResult .= "<td>" . $row["Patient_id"] . "</td><td>"  . $row["Office_id"] . "</td><td>" . $row["Appointment_status_id"] . "</td><td>" . $row["Date"] . "</td><td>" . $row["Slotted_time"] . "</td><td>" . $row["Specialist_status"] . "</td><td> 
+    $APtableResult .= "<td>" . $row["Patient_id"] . "</td><td>"  . $row["Office_id"] . "</td><td>" . $row["Appointment_status"] . "</td><td>" . $row["Date"] . "</td><td>" . $row["Slotted_time"] . "</td><td>" . $approved . "</td><td> 
     <a href='../patientPages/patientPage.php?delete_id=" . $row["Appointment_id"] . "'>X</a>
     </td>";
     $APtableResult .= "</tr>";
@@ -136,7 +142,7 @@ if (isset($_GET['delete_id'])) {
                   <th>Appointment status</th>
                   <th>Date</th>
                   <th>Slotted Time</th>
-                  <th>Specialist Status</th>
+                  <th>Specialist Appointment</th>
                   <th>Cancel Appointment</th>
                 </tr>
                 <?php echo $APtableResult;?>

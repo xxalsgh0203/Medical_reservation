@@ -23,9 +23,12 @@
         $data = mysqli_fetch_assoc($result);
 
         $specialistStatus = 0;
+        $specialistKey = "NA";
         if (!is_null($data['Speciality'])) {
             $specialistStatus = 1;
+            $specialistKey = "Specialist";
         }
+
 
         /*$query = "Select * from DOCTOR;";
         $result = mysqli_query($db, $query);
@@ -41,7 +44,7 @@
 
             }
         }*/
-
+          
         //if ($doctorID == 2) {
           //$error = "You do not have permission to schedule an appointment with a specialist";
         //} else {
@@ -57,7 +60,7 @@
           } elseif (strcmp($triggerVal, '88888') == 0 ){
             $error = "WARNING! An appointment with these details already exists! Please try changing your doctor, time, and/or date!";
           } else{
-            $error = "Unaccounted for error";
+            $error = "Unaccounted for error $triggerVal";
           }
 
             //$errortxt = mysqli_error();

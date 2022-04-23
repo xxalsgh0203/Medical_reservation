@@ -79,7 +79,7 @@ table.center {
 </style>
 </head>
 <body>
-    <nav class="floating-menu">
+<nav class="floating-menu">
         <a href="doctorDataEntry.php">
             <div>
                 Doctor Data Entry Page
@@ -95,6 +95,12 @@ table.center {
         <a href="patientDataEntry.php">
             <div>
                 Patient Data Entry Page
+            </div>
+        </a>
+        </a>
+        <a href="AdminPage.php">
+            <div>
+                Admin Page
             </div>
         </a>
     </nav>

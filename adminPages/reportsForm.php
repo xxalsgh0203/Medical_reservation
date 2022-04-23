@@ -226,7 +226,14 @@ while($row = mysqli_fetch_array($dbres))
 
 <?php include_once("../php/header.php"); ?>
 
-
+<nav class="floating-menu">
+    </a>
+        <a href="AdminPage.php">
+            <div>
+                Admin Page
+            </div>
+        </a>
+</nav>
 
 
 <!-- End Header -->

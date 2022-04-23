@@ -141,6 +141,12 @@ table.center {
             Patient Data Entry Page
         </div>
     </a>
+    </a>
+        <a href="AdminPage.php">
+            <div>
+                Admin Page
+            </div>
+        </a>
 </nav>
 
 
