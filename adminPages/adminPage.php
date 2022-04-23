@@ -26,8 +26,12 @@ $result = mysqli_query($db, $sql);
 $APtableResult = "";
 if ($result->num_rows > 0) {
   while($row = $result-> fetch_assoc()) {
+    $approved = 'No';
+    if ($row['Specialist_status'] == 1) {
+      $approved = 'Yes';
+    }
     $APtableResult .= "<tr>". "<td>" . $row["Patient_id"] . "</td><td>"  . $row["Office_id"] . "</td><td>" .
-                       $row["Appointment_status"] . "</td><td>" . $row["Slotted_time"] . "</td><td>" . $row["Specialist_status"] . "</td>";
+                       $row["Appointment_status"] . "</td><td>" . $row["Slotted_time"] . "</td><td>" . $approved . "</td>";
                        
     if ($row["Appointment_status"] === 'pending') {
       $APtableResult .= "<td><a href='../adminPages/adminPage.php?approve_id=" . $row["Appointment_id"] . "'>X</a></td>";
@@ -76,7 +80,11 @@ $result = mysqli_query($db, $sql);
 $DtableResult = "";
 if ($result->num_rows > 0) {
   while($row = $result-> fetch_assoc()) {
-    $DtableResult .= "</tr>" . "<td>" . $row["Office_id"] . "</td><td>" . $row["Name"] . "</td><td>" . $row["Speciality"] .  "</td><td>" . $row["Phone_number"] . "</td>" . "</tr>";
+    $spec = $row['Speciality'];
+    if (is_null($row['Speciality'])) {
+      $spec = "Regular";
+    }
+    $DtableResult .= "</tr>" . "<td>" . $row["Office_id"] . "</td><td>" . $row["Name"] . "</td><td>" . $spec .  "</td><td>" . $row["Phone_number"] . "</td>" . "</tr>";
   }
   
 }
@@ -119,23 +127,26 @@ if ($result->num_rows > 0) {
                 Doctor Data Entry Page
             </div>
         </a>
+        <br>
         <a href="adminDataEntry.php">
             <div>
                 Admin Data Entry Page
             </div>
         </a>
+        <br>
         <a href="patientDataEntry.php">
             <div>
                 Patient Data Entry Page
             </div>
-        </a> 
+        </a>
+        <br> 
         </a>
         <a href="SpecialistApproval.php">
             <div>
                 Specialist Approval Page
             </div>
         </a> 
-        </a>
+        <br>
         <a href="reportsForm.php">
             <div>
                 ReportsForm Page
@@ -179,7 +190,7 @@ if ($result->num_rows > 0) {
                   <th>Office ID</th>
                   <th>Appointment status</th>
                   <th>Slotted Time</th>
-                  <th>Specialist Status</th>
+                  <th>Specialist Appointment</th>
                   <th>Approve</th>
                   <th>Reject</th>
                 </tr>
