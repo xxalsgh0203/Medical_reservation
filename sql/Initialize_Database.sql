@@ -165,7 +165,8 @@ BEGIN
         SELECT COUNT(*)
         FROM PATIENT
         INNER JOIN APPOINTMENT ON PATIENT.Patient_id = APPOINTMENT.Patient_id
-        WHERE PATIENT.Specialist_approved = FALSE
+        WHERE PATIENT.Patient_id = NEW.Patient_id
+        AND PATIENT.Specialist_approved = FALSE
         AND APPOINTMENT.Specialist_status = TRUE
         ) >= 1 THEN
         /*
