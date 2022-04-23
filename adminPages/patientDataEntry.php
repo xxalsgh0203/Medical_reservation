@@ -102,7 +102,23 @@ table.center {
                 Admin Page
             </div>
         </a>
+<<<<<<< HEAD
+        <br>
+        <a href="adminDataEntry.php">
+            <div>
+                Admin Data Entry Page
+            </div>
+        </a>
+        <br>
+        <a href="patientDataEntry.php">
+            <div>
+                Patient Data Entry Page
+            </div>
+        </a>
+    </nav>
+=======
 </nav>
+>>>>>>> ae60910623195742a60f0b3c10db44e0081c1af4
 <?php include_once("../php/header.php"); ?>
 
   <!-- Header of the page-->
@@ -135,6 +151,7 @@ table.center {
               </tbody>
             </table>
               <!-- Input taken for Patient -->
+              
               <h2> Patient info:  </h2>
               <label for="Pname">Name:</label>
               <input type="text" id="Pname" name="Pname" maxlength="20">
@@ -150,6 +167,7 @@ table.center {
               <!--Used to separate inputs-->
               <br>
               <button type="submit" class="btn btn-primary" name="SubmitP" id="dataentrysubmitbtn">Submit</button>
+              
               </form>
   
 </section>
