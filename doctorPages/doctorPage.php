@@ -58,7 +58,11 @@ if ($result->num_rows > 0) {
 }
 
 //Query to retrieve appointments for doctor
-$sql = "SELECT Patient_id, Office_id, Appointment_id, Appointment_status, Slotted_time, Specialist_status FROM APPOINTMENT WHERE Doctor_id = '$id'";
+$sql = "SELECT P.Name AS Patient_name, A.Appointment_id, A.Date, A.Slotted_time, O.Address, A.Appointment_status, Specialist_status FROM APPOINTMENT AS A
+LEFt JOIN OFFICE AS O ON A.Office_id = O.Office_id
+LEFT JOIN PATIENT AS P ON P.Patient_id = A.Patient_id
+LEFT JOIN DOCTOR AS D ON D.Doctor_id = A.Doctor_id
+WHERE A.Doctor_id = '$id';";
 $result = mysqli_query($db, $sql);
 
 //table results for appointments
@@ -69,7 +73,7 @@ if ($result->num_rows > 0) {
     if ($row['Specialist_status'] == 1) {
       $approved = 'Yes';
     }
-    $APtableResult .= "<tr>". "<td>" . $row["Patient_id"] . "</td><td>"  . $row["Office_id"] . "</td><td>" . $row["Appointment_status"] . "</td><td>" . $row["Slotted_time"] . "</td><td>" . $approved . "</td><td> 
+    $APtableResult .= "<tr>". "<td>" . $row["Patient_name"] . "</td><td>"  . $row["Date"] . "</td><td>" . $row["Slotted_time"] . "</td><td>" . $row["Address"] . "</td><td>" . $row["Appointment_status"] . "</td><td>" . $approved . "</td><td> 
     <a href='../doctorPages/doctorPage.php?delete_id=" . $row["Appointment_id"] . "'>X</a>
     </td>". "</tr>";
   }
@@ -182,10 +186,11 @@ if (isset($_GET['delete_id'])) {
             <table class="table table-bordered">
               <thead class="thead">
                 <tr>
-                  <th>Patient ID</th>
-                  <th>Office ID</th>
+                  <th>Patient Name</th>
+                  <th>Date</th>
+                  <th>Time</th>
+                  <th>Address</th>
                   <th>Appointment status</th>
-                  <th>Slotted Time</th>
                   <th>Specialist Appointment</th>
                   <th>Cancel Appointment</th>
                 </tr>
