@@ -33,7 +33,11 @@ $tableResult = "";
 if ($result->num_rows > 0) {
   $tableResult = "<tr>";
   while($row = $result-> fetch_assoc()) {
-    $tableResult .= "<td>" . $row["Office_id"] . "</td><td>" . $row["Name"] . "</td><td>" . $row["Speciality"] .  "</td><td>" . $row["Phone_number"] . "</td>";
+    $spec = $row['Speciality'];
+    if (is_null($row['Speciality'])) {
+      $spec = "Regular";
+    }
+    $tableResult .= "<td>" . $row["Office_id"] . "</td><td>" . $row["Name"] . "</td><td>" . $spec .  "</td><td>" . $row["Phone_number"] . "</td>";
   }
   $tableResult .= "</tr>";
 }
@@ -52,14 +56,18 @@ if ($result->num_rows > 0) {
 }
 
 //Query to retrieve appointments for doctor
-$sql = "SELECT Patient_id, Office_id, Appointment_id, Appointment_status_id, Slotted_time, Specialist_status FROM APPOINTMENT WHERE Doctor_id = '$id'";
+$sql = "SELECT Patient_id, Office_id, Appointment_id, Appointment_status, Slotted_time, Specialist_status FROM APPOINTMENT WHERE Doctor_id = '$id'";
 $result = mysqli_query($db, $sql);
 
 //table results for appointments
 $APtableResult = "";
 if ($result->num_rows > 0) {
   while($row = $result-> fetch_assoc()) {
-    $APtableResult .= "<tr>". "<td>" . $row["Patient_id"] . "</td><td>"  . $row["Office_id"] . "</td><td>" . $row["Appointment_status_id"] . "</td><td>" . $row["Slotted_time"] . "</td><td>" . $row["Specialist_status"] . "</td><td> 
+    $approved = 'No';
+    if ($row['Specialist_status'] == 1) {
+      $approved = 'Yes';
+    }
+    $APtableResult .= "<tr>". "<td>" . $row["Patient_id"] . "</td><td>"  . $row["Office_id"] . "</td><td>" . $row["Appointment_status"] . "</td><td>" . $row["Slotted_time"] . "</td><td>" . $approved . "</td><td> 
     <a href='../doctorPages/doctorPage.php?delete_id=" . $row["Appointment_id"] . "'>X</a>
     </td>". "</tr>";
   }
