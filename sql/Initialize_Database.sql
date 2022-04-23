@@ -188,7 +188,7 @@ BEGIN
 END; $$
 DELIMITER ;
 */
- /*
+ 
  DELIMITER $$
 CREATE TRIGGER SAPPROVE
 BEFORE INSERT
@@ -203,13 +203,13 @@ BEGIN
         AND PATIENT.Specialist_approved = FALSE) >=1 ) THEN
         /*
         SET NEW.Error_code = 1;
-        
+        */
         SIGNAL SQLSTATE '77777'
         SET MESSAGE_TEXT = 'Warning, You do NOT have Specialist approval!';
     END IF;
 END; $$
 DELIMITER ;
- */
+ 
 
 /*
 DELIMITER $$
@@ -232,7 +232,6 @@ END;$$
 DELIMITER ;
 */
  
- /*
 DELIMITER $$
 CREATE TRIGGER CONFLICT
 BEFORE INSERT
@@ -249,18 +248,15 @@ BEGIN
         /*
         SET NEW.Error_Code = 2;
         */
-        /*
         SIGNAL SQLSTATE '88888'
         SET MESSAGE_TEXT = 'Warning: An appointment with this time and doctor already exists!';
         /*
         DELETE FROM APPOINTMENT
             WHERE Appointment_id = NEW.Appointment_id;
         */
- /*
     END IF;
 END;$$
 DELIMITER ;
-*/
  
  
 CREATE TABLE PRESCRIPTION (
