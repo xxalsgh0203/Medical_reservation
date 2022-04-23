@@ -26,7 +26,7 @@ require_once "../php/config.php";
 // }
 
 $id = $_SESSION["id"];
-$sql = "SELECT Office_id, Name, Speciality, Phone_number FROM DOCTOR WHERE Doctor_id = '$id'";
+$sql = "SELECT O.Address, O.City, O.State, D.Name, D.Speciality, D.Phone_number FROM DOCTOR AS D LEFT JOIN OFFICE AS O ON D.Office_id = O.Office_id WHERE Doctor_id = '$id'";
 $result = mysqli_query($db, $sql);
 
 $tableResult = "";
@@ -37,20 +37,22 @@ if ($result->num_rows > 0) {
     if (is_null($row['Speciality'])) {
       $spec = "Regular";
     }
-    $tableResult .= "<td>" . $row["Office_id"] . "</td><td>" . $row["Name"] . "</td><td>" . $spec .  "</td><td>" . $row["Phone_number"] . "</td>";
+    $tableResult .= "<td>" . $row["Address"] . "</td><td>" . $row["City"] . "</td><td>" . $row["State"] . "</td><td>" . $row["Name"] . "</td><td>" . $spec .  "</td><td>" . $row["Phone_number"] . "</td>";
   }
   $tableResult .= "</tr>";
 }
 
 //Querie to retrieve patients for said id
-$sql = "SELECT Patient_id, Name, Phone_number, Email, Age, Medical_allergy FROM PATIENT WHERE Primary_physician_id = '$id'";
+$sql = "SELECT P.Name, P.Age, P.Medical_allergy, P.Email, P.Phone_number, D.Name AS Doctor_name, P.Specialist_approved FROM PATIENT AS P
+LEFT JOIN DOCTOR AS D
+ON P.Primary_physician_id = D.Doctor_id;";
 $result = mysqli_query($db, $sql);
 
 $PtableResult = "";
 if ($result->num_rows > 0) {
  
   while($row = $result-> fetch_assoc()) {
-    $PtableResult .= "<tr>". "<td>" . $row["Patient_id"] . "</td><td>"  . $row["Name"] . "</td><td>" . $row["Phone_number"] . "</td><td>" . $row["Email"] . "</td><td>" . $row["Age"] . "</td><td>" . $row["Medical_allergy"] . "</td>". "<tr>";
+    $PtableResult .= "<tr>". "<td>" . $row["Name"] . "</td><td>"  . $row["Age"] . "</td><td>" . $row["Medical_allergy"] . "</td><td>" . $row["Email"] . "</td><td>" . $row["Phone_number"] . "</td><td>" . $row["Doctor_name"] . "</td><td>" . $row["Specialist_approved"] . "</td>". "<tr>";
   }
   
 }
@@ -137,7 +139,13 @@ if (isset($_GET['delete_id'])) {
             <table class="table table-bordered">
               <thead class="thead">
                 <tr>
-                  <th>Office ID</th>
+                  <th colspan='3'>Office Information</th>
+                  <th colspan='3'>Personal Information</th>
+                </tr>
+                <tr>
+                  <th>Address</th>
+                  <th>City</th>
+                  <th>State</th>
                   <th>Name</th>
                   <th>Specialty</th>
                   <th>Phone Number</th>
@@ -154,12 +162,13 @@ if (isset($_GET['delete_id'])) {
             <table class="table table-bordered">
               <thead class="thead">
                 <tr>
-                  <th>Patient ID</th>
                   <th>Name</th>
-                  <th>Phone number</th>
-                  <th>Email</th>
                   <th>Age</th>
                   <th>Medical_allergy</th>
+                  <th>Email</th>
+                  <th>Phone number</th>
+                  <th>Primary physician</th>
+                  <th>Approved by specialist?</th>
                 </tr>
                 <?php echo $PtableResult;?>
               </thead>
