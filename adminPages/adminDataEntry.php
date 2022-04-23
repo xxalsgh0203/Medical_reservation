@@ -134,6 +134,7 @@ table.center {
               <tbody>
               </tbody>
             </table>
+            <form action="" method="POST">
             <!--input taken for admin -->
               <h2>  Admin info:  </h2>
               <label for="ADOFFID">Office ID:</label>

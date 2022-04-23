@@ -14,10 +14,11 @@ if(count($_POST) > 0)
   $ADPWord = $_POST['ADPWord'];
   $ADPhoneNum = $_POST['ADPhoneNum'];
   $ADEmail = $_POST['ADEmail'];
-    mysqli_query($db, "UPDATE ADMIN SET Offire_id='$ADOFFID' , Name='$ADName' , Password = '$ADPWord', Phone_number = '$ADPhoneNum',
-                 Email = '$ADEmail' WHERE Patient_id= '".$_GET['update_Did'] . "'");
+  $id =$_GET['update_ADid'];
+    mysqli_query($db, "UPDATE ADMIN SET Office_id='$ADOFFID' , Name='$ADName' , Password = '$ADPWord', Phone_number = '$ADPhoneNum',
+                 Email = '$ADEmail' WHERE Admin_id= '$id'");
 }
-$id =$_GET['update_Did'];
+$id =$_GET['update_ADid'];
 $result = mysqli_query($db, "SELECT * FROM ADMIN WHERE Admin_id = '$id'");
 $row = mysqli_fetch_array($result);
 ?> 
@@ -63,18 +64,18 @@ $row = mysqli_fetch_array($result);
 <section id="dataEntry">
 <form action="" method="POST">
             <!--input taken for doctor-->
-              <input type = "hidden" name = "id" class = "txtField" value = "<?php echo $row['Admin_id']; ?>">
+              
               <label for="ADOFFID">Office ID:</label>
-              <input type="number" id="ADOFFID" name="ADOFFID">
+              <input type="number" id="ADOFFID" name="ADOFFID" value = "<?php echo $row['Office_id']; ?>">
               <label for="ADname">Name:</label>
-              <input type="text" id="ADname" name="ADname" maxlength="20">
+              <input type="text" id="ADname" name="ADname" maxlength="20" value = "<?php echo $row['Name']; ?>">
               <label for="ADPWord">create password:</label>
-              <input type="text" id="ADPWord" name="ADPWord">
+              <input type="text" id="ADPWord" name="ADPWord" value = "<?php echo $row['Password']; ?>">
               <br>
               <label for="ADPhoneNum">Phone Number:</label>
-              <input type="text" id="ADPhoneNum" name="ADPhoneNum" maxlength="10"> 
+              <input type="text" id="ADPhoneNum" name="ADPhoneNum" maxlength="10" value = "<?php echo $row['Phone_number']; ?>"> 
               <label for="ADEmail">Email:</label>
-              <input type="text" id="ADEmail" name="ADEmail" maxlength="30">   
+              <input type="text" id="ADEmail" name="ADEmail" maxlength="30" value = "<?php echo $row['Email']; ?>">   
               <!--Used to separate inputs-->
               <br>
               <button type="submit" class="btn btn-primary" name="SubmitAD">Submit</button>
