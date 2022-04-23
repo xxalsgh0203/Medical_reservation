@@ -48,11 +48,9 @@ $result = mysqli_query($db, $sql);
 
 $PtableResult = "";
 if ($result->num_rows > 0) {
-  $PtableResult = "<tr>";
   while($row = $result-> fetch_assoc()) {
-    $PtableResult .= "<td>" . $row["Patient_id"] . "</td><td>"  . $row["Medication"] . "</td><td>" . $row["Test"] . "</td><td>" . $row["Prescription_date"] . "</td>";
+    $PtableResult .= "<tr>" ."<td>" . $row["Patient_id"] . "</td><td>"  . $row["Medication"] . "</td><td>" . $row["Test"] . "</td><td>" . $row["Prescription_date"] . "</td>". "<tr>";
   }
-  $PtableResult .= "</tr>"; 
 }
 
 $sql = "SELECT Patient_id, Office_id, Appointment_id, Appointment_status_id, Date, Slotted_time, Specialist_status FROM APPOINTMENT WHERE Patient_id = '$id'";

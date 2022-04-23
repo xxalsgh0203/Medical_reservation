@@ -45,17 +45,7 @@
             }
         }*/
 
-<<<<<<< HEAD
-        if ($doctorID == 2) {
-          $error = "You do not have permission to schedule an appointment with a specialist";
-        } else {
-          try {
-            $query = "INSERT INTO `APPOINTMENT`(Patient_id, Doctor_id, Office_id, Appointment_status, Slotted_time, Specialist_status, Specialist_key, Date) VALUES
-            ('$patientID', '$doctorID', '$officeID', '$appointmentStatus', '$time', '$specialistStatus', '$specialistKey', '$date');";
-            $result = mysqli_query($db, $query);
-          } catch  (Exception $e) {
-=======
-        //if ($doctorID == 2) {
+        /*if ($doctorID == 2) {
           //$error = "You do not have permission to schedule an appointment with a specialist";
         //} else {
         try {
@@ -73,12 +63,11 @@
             $error = "Unaccounted for error";
           }
 
->>>>>>> 89af519af9e6bb66956727c9d51d8cfc161e63b0
             //$errortxt = mysqli_error();
             //echo "$errortext";
             //$error = $e;
           }
-        //}
+        //}*/
         
     }
 
