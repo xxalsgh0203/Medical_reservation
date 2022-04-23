@@ -189,24 +189,25 @@ END; $$
 DELIMITER ;
 */
  
- DELIMITER $$
+DELIMITER $$
 CREATE TRIGGER SAPPROVE
 BEFORE INSERT
 ON APPOINTMENT
 FOR EACH ROW
 BEGIN
-    IF (NEW.Appointment_status = 1 && (
+/*
+    IF  (
         SELECT COUNT(*)
         FROM PATIENT
         INNER JOIN APPOINTMENT ON PATIENT.Patient_id = APPOINTMENT.Patient_id
         WHERE PATIENT.Patient_id = NEW.Patient_id
-        AND PATIENT.Specialist_approved = FALSE) >=1 ) THEN
+        AND PATIENT.Specialist_approved = 0) >=1 THEN
         /*
         SET NEW.Error_code = 1;
         */
-        SIGNAL SQLSTATE '77777'
-        SET MESSAGE_TEXT = 'Warning, You do NOT have Specialist approval!';
-    END IF;
+    SIGNAL SQLSTATE '77777'
+    SET MESSAGE_TEXT = 'Warning, You do NOT have Specialist approval!';
+    /*END IF;*/
 END; $$
 DELIMITER ;
  
