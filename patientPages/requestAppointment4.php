@@ -44,7 +44,7 @@
 
             }
         }*/
-
+          
         //if ($doctorID == 2) {
           //$error = "You do not have permission to schedule an appointment with a specialist";
         //} else {
