@@ -79,7 +79,7 @@ CREATE TABLE PATIENT (
     Patient_id           INT AUTO_INCREMENT,
     Primary_physician_id INT,
     Specialist_approved  BOOLEAN,
-    Specialist_check VARCHAR(8) NOT NULL,
+    Specialist_check VARCHAR(8) NOT NULL DEFAULT "NA",
     Name                 VARCHAR(20) NOT NULL,
     Password             VARCHAR(255) NOT NULL,
     Phone_number         CHAR(10) UNIQUE NOT NULL,
@@ -154,7 +154,7 @@ END;$$
 DELIMITER ;
 */
  
- 
+ /*
 DELIMITER $$
 CREATE TRIGGER SAPPROVE
 BEFORE INSERT
@@ -165,12 +165,14 @@ BEGIN
         SELECT COUNT(*)
         FROM PATIENT
         INNER JOIN APPOINTMENT ON PATIENT.Patient_id = APPOINTMENT.Patient_id
-        WHERE PATIENT.Specialist_approved = FALSE
+        WHERE PATIENT.Patient_id = NEW.Patient_id
+        AND PATIENT.Specialist_approved = FALSE
         AND APPOINTMENT.Specialist_status = TRUE
         ) >= 1 THEN
         /*
         SET NEW.Error_code = 1;
         */
+        /*
         SIGNAL SQLSTATE '77777'
         SET MESSAGE_TEXT = 'Warning, You do NOT have Specialist approval!';
        
@@ -181,12 +183,34 @@ BEGIN
         NEW.Specialist_status = TRUE) THEN
             SET NEW.Appointment_status = "failed";
         */
+/*
     END IF;
 END; $$
 DELIMITER ;
- 
- 
- 
+*/
+ /*
+ DELIMITER $$
+CREATE TRIGGER SAPPROVE
+BEFORE INSERT
+ON APPOINTMENT
+FOR EACH ROW
+BEGIN
+    IF (NEW.Appointment_status = 1 && (
+        SELECT COUNT(*)
+        FROM PATIENT
+        INNER JOIN APPOINTMENT ON PATIENT.Patient_id = APPOINTMENT.Patient_id
+        WHERE PATIENT.Patient_id = NEW.Patient_id
+        AND PATIENT.Specialist_approved = FALSE) >=1 ) THEN
+        /*
+        SET NEW.Error_code = 1;
+        
+        SIGNAL SQLSTATE '77777'
+        SET MESSAGE_TEXT = 'Warning, You do NOT have Specialist approval!';
+    END IF;
+END; $$
+DELIMITER ;
+ */
+
 /*
 DELIMITER $$
 CREATE TRIGGER CONFLICT
@@ -208,7 +232,7 @@ END;$$
 DELIMITER ;
 */
  
- 
+ /*
 DELIMITER $$
 CREATE TRIGGER CONFLICT
 BEFORE INSERT
@@ -225,16 +249,18 @@ BEGIN
         /*
         SET NEW.Error_Code = 2;
         */
+        /*
         SIGNAL SQLSTATE '88888'
         SET MESSAGE_TEXT = 'Warning: An appointment with this time and doctor already exists!';
         /*
         DELETE FROM APPOINTMENT
             WHERE Appointment_id = NEW.Appointment_id;
         */
- 
+ /*
     END IF;
 END;$$
 DELIMITER ;
+*/
  
  
 CREATE TABLE PRESCRIPTION (
