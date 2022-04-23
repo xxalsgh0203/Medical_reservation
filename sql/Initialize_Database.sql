@@ -98,6 +98,10 @@ INSERT INTO PATIENT(Primary_physician_id, Specialist_approved, Name, Password, P
 (5, NA, "Patient", "Password", 6666666666, "Patient@medical.com", 100, false),
 (1, NA, "Andy", "password", 9999999999, "Andy@gmail.com", 36, true);
 
+INSERT INTO PATIENT(Primary_physician_id, Specialist_approved, Name, Password, Phone_number, Email, Age, Medical_allergy) VALUES
+(1, NA, "Pat", "password", 1234567890, "Pat@gmail.com", 25, true),
+(1, NA, "James", "password", 1234567899, "James@gmail.com", 25, true);
+
 
 CREATE TABLE APPOINTMENT (
 	Appointment_id        INT AUTO_INCREMENT,
