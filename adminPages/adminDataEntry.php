@@ -98,6 +98,7 @@ table.center {
             </div>
         </a>
         </a>
+        <br>
         <a href="AdminPage.php">
             <div>
                 Admin Page
