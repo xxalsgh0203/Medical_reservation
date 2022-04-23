@@ -80,23 +80,29 @@ table.center {
 </style>
 </head>
 <body>
-    <nav class="floating-menu">
-        <a href="doctorDataEntry.php">
+<nav class="floating-menu">
+    <a href="doctorDataEntry.php">
+        <div>
+            Doctor Data Entry Page
+        </div>
+    </a>
+    <a href="adminDataEntry.php">
+        <div>
+            Admin Data Entry Page
+        </div>
+    </a>
+    <a href="patientDataEntry.php">
+        <div>
+            Patient Data Entry Page
+        </div>
+    </a>
+    </a>
+        <a href="AdminPage.php">
             <div>
-                Doctor Data Entry Page
+                Admin Page
             </div>
         </a>
-        <a href="adminDataEntry.php">
-            <div>
-                Admin Data Entry Page
-            </div>
-        </a>
-        <a href="patientDataEntry.php">
-            <div>
-                Patient Data Entry Page
-            </div>
-        </a>
-    </nav>
+</nav>
 <?php include_once("../php/header.php"); ?>
 
   <!-- Header of the page-->

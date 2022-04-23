@@ -99,17 +99,7 @@ if ($result->num_rows > 0) {
 
     <!--style for buttons --> 
    <style>
-     button
-     {
-       font-size: 20px;
-       padding:10px;
-       border-radius:10px;
-       margin:20px;
-     }
-     #container
-     {
-       text-align: center;
-     }
+  
      h2
      {
        text-align: center;
@@ -120,6 +110,38 @@ if ($result->num_rows > 0) {
      }
    </style>
 </head>
+
+
+<body>
+    <nav class="floating-menu">
+        <a href="doctorDataEntry.php">
+            <div>
+                Doctor Data Entry Page
+            </div>
+        </a>
+        <a href="adminDataEntry.php">
+            <div>
+                Admin Data Entry Page
+            </div>
+        </a>
+        <a href="patientDataEntry.php">
+            <div>
+                Patient Data Entry Page
+            </div>
+        </a> 
+        </a>
+        <a href="SpecialistApproval.php">
+            <div>
+                Specialist Approval Page
+            </div>
+        </a> 
+        </a>
+        <a href="reportsForm.php">
+            <div>
+                ReportsForm Page
+            </div>
+        </a> 
+    </nav>
 
 <?php include_once("../php/header.php"); ?>
 
@@ -204,24 +226,10 @@ if ($result->num_rows > 0) {
 
             <br> <br>
 
+            
 
-              <!-- Used to center container -->
-         <div id = "container">
-        <!--Used to redirect to data entry page -->
-        <a href="doctorDataEntry.php"> 
-          <button id = "Redi1">Enter Data</button>
-        </a>
-        <!--Used to redirect to report page -->
-        <a href="reportsForm.php"> 
-          <button id = "Redi2">Reports</button>
-        </a>
-         <!--Used to redirect to Specialist Approval page -->
-         <a href="SpecialistApproval.php"> 
-          <button id = "Redi2">Specialist approval</button>
-        </a>
 
-     </div>
-
+    
 
           </div>
         </div>
