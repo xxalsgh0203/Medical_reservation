@@ -67,14 +67,8 @@
             //$errortxt = mysqli_error();
             //echo "$errortext";
             //$error = $e;
-<<<<<<< HEAD
           }
         //}*/
-=======
-            */
-          //}
-        //}
->>>>>>> 510adbaa7b69e646d6a0ffeab004332bc98040eb
         
     }
 
