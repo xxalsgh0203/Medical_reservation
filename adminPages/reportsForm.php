@@ -78,6 +78,7 @@ else if (isset($_POST['Appointments'])) {
                     <th>Age</th>
                     <th>Has Allergies?</th>
                   </tr>";
+  
   $sql = "SELECT O.Address, O.City, O.State, A.Date, A.Slotted_time, P.name, P.Age, P.Medical_allergy, A.Appointment_status FROM APPOINTMENT
           as A
           LEFT JOIN PATIENT as P
@@ -85,7 +86,14 @@ else if (isset($_POST['Appointments'])) {
           LEFT JOIN DOCTOR as D
           ON A.Doctor_id = D.Doctor_id
           LEFT JOIN OFFICE as O
-          ON A.Office_id = O.Office_id;";
+          ON A.Office_id = O.Office_id";
+  if ($_POST["start"] != "" && $_POST["end"] != "") {
+    $start = $_POST["start"];
+    $end = $_POST["end"];
+    $sql .= "\n WHERE Date BETWEEN '$start' AND '$end';";
+  } else {
+    $sql .= ";";
+  }
   $result = mysqli_query($db, $sql);
 
   if ($result->num_rows > 0) {
@@ -304,10 +312,10 @@ while($row = mysqli_fetch_array($dbres))
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
       <div class="input-group">
         <label for="starting_date">Begin:</label>
-        <input type="datetime-local" id="StartDateid">
+        <input type="datetime-local" id="StartDateid" name="start">
         <br>
         <label for="ending_date">End:</label>
-        <input type="datetime-local" id="EndDateid">
+        <input type="datetime-local" id="EndDateid" name="end">
       </div>
       <div class="sidebyside">
         <button type="submit" class="navitem" id="Presid" name="Prescriptions">Prescriptions</a>
