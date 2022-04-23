@@ -7,14 +7,22 @@ require_once "../php/config.php";
 
 if(count($_POST) > 0)
 {
+   //Store input values
+    $id =$_GET['update_Did'];
+    $DOffice_id = $_POST['OFFID'];
+    $SpecialistType = $_POST['SPType'];
+    $DName = $_POST['Dname'];
+    $DPassword = $_POST['DPWord'];
+    $DPhoneNum =$_POST['DPhoneNum'];
 
-
-    mysqli_query($db, "UPDATE DOCTOR SET Office_id= '".$_POST['Office_id'] . "' ,Name='".$_POST['Name'] . "' 
-    , Speciality='".$_POST['Speciality'] . "' , Phone_number = '".$_POST['Phone_number'] . "'  WHERE Doctor_id= '".$_GET['update_Did'] . "'");
+    mysqli_query($db, "UPDATE DOCTOR SET Office_id= '$DOffice_id' ,Name='$DName' 
+    , Speciality='$SpecialistType' , Phone_number = '$DPhoneNum', Password = '$DPassword'  WHERE Doctor_id= '$id'");
 }
 $id =$_GET['update_Did'];
 $result = mysqli_query($db, "SELECT * FROM DOCTOR WHERE Doctor_id = '$id'");
 $row = mysqli_fetch_array($result);
+
+
 ?> 
 
 <!doctype html>
@@ -60,20 +68,20 @@ $row = mysqli_fetch_array($result);
             <!--input taken for doctor-->
               <input type = "hidden" name = "id" class = "txtField" value = "<?php echo $row['Doctor_id']; ?>">
               <label for="OFFID">Office ID:</label>
-              <input type="number" id="OFFID" name="OFFID">
+              <input type="number" id="OFFID" name="OFFID" value = "<?php echo $row['Office_id']; ?>">
               <label for="SPType">Speciality:</label>
-              <input type="text" id="SPType" name="SPType" maxlength = "30" > 
+              <input type="text" id="SPType" name="SPType" maxlength = "30" value = "<?php echo $row['Speciality']; ?>"> 
               <label for="Dname">Name:</label>
-              <input type="text" id="Dname" name="Dname" maxlength="20" >
+              <input type="text" id="Dname" name="Dname" maxlength="20" value = "<?php echo $row['Name']; ?>">
               <br>
-              <label for="DPWord">create password:</label>
-              <input type="Password" id="DPWord" name="DPWord">
+              <label for="DPWord">Update password:</label>
+              <input type="Password" id="DPWord" name="DPWord" value = "<?php echo $row['Password']; ?>">
               <label for="DPhoneNum">Phone Number:</label>
-              <input type="text" id="DPhoneNum" name="DPhoneNum" maxlength="10" >    
+              <input type="text" id="DPhoneNum" name="DPhoneNum" maxlength="10" value = "<?php echo $row['Phone_number']; ?>">    
               <!--Used to separate inputs-->
               <br>
               <button type="submit" class="btn btn-primary" name="SubmitD" value ="SubmitD">Submit</button>
-            
+  </form>
   
 </section>
 
