@@ -119,23 +119,26 @@ if ($result->num_rows > 0) {
                 Doctor Data Entry Page
             </div>
         </a>
+        <br>
         <a href="adminDataEntry.php">
             <div>
                 Admin Data Entry Page
             </div>
         </a>
+        <br>
         <a href="patientDataEntry.php">
             <div>
                 Patient Data Entry Page
             </div>
-        </a> 
+        </a>
+        <br> 
         </a>
         <a href="SpecialistApproval.php">
             <div>
                 Specialist Approval Page
             </div>
         </a> 
-        </a>
+        <br>
         <a href="reportsForm.php">
             <div>
                 ReportsForm Page
