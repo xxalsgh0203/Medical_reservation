@@ -64,9 +64,9 @@ $result = mysqli_query($db, $sql);
 $APtableResult = "";
 if ($result->num_rows > 0) {
   while($row = $result-> fetch_assoc()) {
-    $approved = 'NA';
+    $approved = 'No';
     if ($row['Specialist_status'] == 1) {
-      $approved = 'Specialist';
+      $approved = 'Yes';
     }
     $APtableResult .= "<tr>";
     $APtableResult .= "<td>" . $row["Patient_id"] . "</td><td>"  . $row["Office_id"] . "</td><td>" . $row["Appointment_status"] . "</td><td>" . $row["Date"] . "</td><td>" . $row["Slotted_time"] . "</td><td>" . $approved . "</td><td> 
@@ -142,7 +142,7 @@ if (isset($_GET['delete_id'])) {
                   <th>Appointment status</th>
                   <th>Date</th>
                   <th>Slotted Time</th>
-                  <th>Specialist Status</th>
+                  <th>Specialist Appointment</th>
                   <th>Cancel Appointment</th>
                 </tr>
                 <?php echo $APtableResult;?>
