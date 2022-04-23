@@ -78,6 +78,15 @@ if (isset($_GET['approve_Pid'])) {
    </style>
 </head>
 
+<nav class="floating-menu">
+    </a>
+        <a href="AdminPage.php">
+            <div>
+                Admin Page
+            </div>
+        </a>
+</nav>
+
 <?php include_once("../php/header.php"); ?>
 
 <section id = "Admin user">
