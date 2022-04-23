@@ -45,6 +45,15 @@ $row = mysqli_fetch_array($result);
 
 </head>
 
+<nav class="floating-menu">
+        <a href="doctorDataEntry.php">
+            <div>
+                Doctor Data Entry Page
+            </div>
+        </a>
+    </nav>
+
+
 <?php include_once("../php/header.php"); ?>
 
 <!-- End Header -->

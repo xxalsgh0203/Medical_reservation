@@ -9,6 +9,7 @@ require_once "../php/config.php";
 if(count($_POST) > 0)
 {
       //Store input values
+      $id =$_GET['update_Pid'];
       $PName = $_POST['Pname'];
       $PPWord = $_POST['PPWord'];
       $PPhoneNum = $_POST['PPhoneNum'];
@@ -16,9 +17,9 @@ if(count($_POST) > 0)
       $PAge = $_POST['PAge'];
 
     mysqli_query($db, "UPDATE PATIENT SET Name='$PID' , Password='$PPWord' , Phone_number = '$PPhoneNum', Email = '$PEmail',
-                 Age = '$PAge' WHERE Patient_id= '".$_GET['update_Pid'] . "'");
+                 Age = '$PAge' WHERE Patient_id= '$id'");
 }
-$id =$_GET['update_Did'];
+$id =$_GET['update_Pid'];
 $result = mysqli_query($db, "SELECT * FROM PATIENT WHERE Patient_id = '$id'");
 $row = mysqli_fetch_array($result);
 ?> 
@@ -43,6 +44,15 @@ $row = mysqli_fetch_array($result);
 
 </head>
 
+<nav class="floating-menu">
+        <a href="patientDataEntry.php">
+            <div>
+                Patient Data Entry Page
+            </div>
+        </a>
+       
+    </nav>
+
 <?php include_once("../php/header.php"); ?>
 
 <!-- End Header -->
@@ -62,22 +72,21 @@ $row = mysqli_fetch_array($result);
 
 <section id="dataEntry">
 <form action="" method="POST">
-            <!--input taken for doctor-->
-              <input type = "hidden" name = "id" class = "txtField" value = "<?php echo $row['Patient_id']; ?>">
+            <!--input taken for Patient-->
               <label for="Pname">Name:</label>
-              <input type="text" id="Pname" name="Pname" maxlength="20">
-              <label for="PPWord">create password:</label>
-              <input type="text" id="PPWord" name="PPWord">
+              <input type="text" id="Pname" name="Pname" maxlength="20" value = "<?php echo $row['Name']; ?>">
+              <label for="PPWord">Update password:</label>
+              <input type="Password" id="PPWord" name="PPWord" value = "<?php echo $row['Password']; ?>">
               <label for="PAge">Age:</label>
-              <input type="number" id="PAge" name="PAge">
+              <input type="number" id="PAge" name="PAge" value = "<?php echo $row['Age']; ?>">
               <br>
               <label for="PPhoneNum">Phone Number:</label>
-              <input type="text" id="PPhoneNum" name="PPhoneNum" maxlength="10"> 
+              <input type="text" id="PPhoneNum" name="PPhoneNum" maxlength="10" value = "<?php echo $row['Phone_number']; ?>"> 
               <label for="PEmail">Email:</label>
-              <input type="text" id="PEmail" name="PEmail" maxlength="30">   
+              <input type="text" id="PEmail" name="PEmail" maxlength="30" value = "<?php echo $row['Email']; ?>">   
               <!--Used to separate inputs-->
               <br>
-              <button type="submit" class="btn btn-primary" name="SubmitP" id="dataentrysubmitbtn">Submit</button>
+              <button type="submit" class="btn btn-primary" name="SubmitP" id="SubButton">Submit</button>
               </form>
             
   
