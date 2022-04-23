@@ -92,6 +92,7 @@ CREATE TABLE PATIENT (
 );
 
 INSERT INTO PATIENT(Primary_physician_id, Specialist_approved, Name, Password, Phone_number, Email, Age, Medical_allergy) VALUES
+<<<<<<< HEAD
 (1,0, 'NA', "Wade", "password", 2222222222, "Wade@gmail.com", 5, true),
 (2,0, 'NA', "Loren", "password", 3333333333, "Loren@yahoo.com", 10, true),
 (3,0, 'NA', "Elsa", "password", 4444444444, "Elsa@hotmail.com", 20, false),
@@ -99,6 +100,14 @@ INSERT INTO PATIENT(Primary_physician_id, Specialist_approved, Name, Password, P
 (5,0, 'NA', "Patient", "Password", 6666666666, "Patient@medical.com", 100, false),
 (1,0,'NA', "Andy", "password", 9999999999, "Andy@gmail.com", 36, true);
 
+=======
+(1, "NA", "Wade", "password", 2222222222, "Wade@gmail.com", 5, true),
+(2, "NA", "Loren", "password", 3333333333, "Loren@yahoo.com", 10, true),
+(3, "NA", "Elsa", "password", 4444444444, "Elsa@hotmail.com", 20, false),
+(4, "NA", "Richard", "password", 5555555555, "Richard@yahoo.com", 50, true),
+(5, "NA", "Patient", "Password", 6666666666, "Patient@medical.com", 100, false),
+(1, "NA", "Andy", "password", 9999999999, "Andy@gmail.com", 36, true);
+>>>>>>> 308fc77c3ce77b3feb5d48835317e60203a6bae0
 
 CREATE TABLE APPOINTMENT (
 	Appointment_id        INT AUTO_INCREMENT,
@@ -130,7 +139,6 @@ INSERT INTO APPOINTMENT(Patient_id, Doctor_id, Office_id, Appointment_status, Da
 (5, 1, 1, "approved", "2022-04-25", "12:00", 0);
 
 /*
-
 DELIMITER $$
 CREATE TRIGGER SAPPROVE
 AFTER INSERT
@@ -154,7 +162,6 @@ BEGIN
 	END IF;
 END;$$
 DELIMITER ;
-
 */
 
 
@@ -168,7 +175,7 @@ BEGIN
  		SELECT COUNT(*)
  		FROM PATIENT
  		INNER JOIN APPOINTMENT ON PATIENT.Patient_id = APPOINTMENT.Patient_id
- 		WHERE PATIENT.Specialist_approved = FALSE
+        WHERE PATIENT.Specialist_approved = FALSE
  		AND APPOINTMENT.Specialist_status = TRUE
  		) >= 1 THEN
         /*
@@ -191,7 +198,6 @@ DELIMITER ;
 
 
 /*
-
 DELIMITER $$
 CREATE TRIGGER CONFLICT
 AFTER INSERT
@@ -210,7 +216,6 @@ BEGIN
 	END IF;
 END;$$
 DELIMITER ;
-
 */
 
 
@@ -313,3 +318,15 @@ CREATE TABLE MANAGES (
     FOREIGN KEY (Admin_id) REFERENCES ADMIN(Admin_id),
     FOREIGN KEY (Office_id) REFERENCES OFFICE(Office_id)
 );
+© 2022 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Docs
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About
