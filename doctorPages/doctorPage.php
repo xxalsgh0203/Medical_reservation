@@ -177,7 +177,7 @@ if (isset($_GET['delete_id'])) {
                   <th>Office ID</th>
                   <th>Appointment status</th>
                   <th>Slotted Time</th>
-                  <th>Specialist Status</th>
+                  <th>Specialist Appointment</th>
                   <th>Cancel Appointment</th>
                 </tr>
                 <?php echo $APtableResult;?>
