@@ -117,8 +117,17 @@ if (isset($_GET['report'])) {
   }
 
   if ($reportType == 'Specialist') {
-    $ReportResults = "<tr></tr>";
-    $ReportResults .= "<tr></tr>";
+    $ReportResults = "<tr>
+                        <th colspan='3'>Office Information</th>
+                        <th colspan='2'>Specialist Information</th>
+                      </tr>";
+    $ReportResults .= "<tr>
+                        <th>Address</th>
+                        <th>City</th>
+                        <th>State</th>
+                        <th>Num Of Specialist</th>
+                        <th>Speciality</th>
+                      </tr>";
     $sql = "SELECT COUNT(D.Doctor_id), O.Address, O.City, O.State, D.Speciality
             FROM DOCTOR AS D
             LEFT JOIN OFFICE AS O ON D.Office_id = O.Office_id
@@ -127,12 +136,15 @@ if (isset($_GET['report'])) {
 
     if ($result->num_rows > 0) {
       while($row = $result-> fetch_assoc()) {
+        $speciality = $row["Speciality"];
+        if ($speciality == "")
+          $speciality = "none";
         $ReportResults .= "<tr>" . 
-                          "<td>" . $row["COUNT(D.Doctor_id)"] . "</td>" .
                           "<td>" . $row["Address"] . "</td>" .
                           "<td>" . $row["City"] . "</td>" .
                           "<td>" . $row["State"] . "</td>" .
-                          "<td>" . $row["Speciality"] . "</td>" . "<tr>";
+                          "<td>" . $row["COUNT(D.Doctor_id)"] . "</td>" .
+                          "<td>" . $speciality . "</td>" . "<tr>";
       }
     }
   }
