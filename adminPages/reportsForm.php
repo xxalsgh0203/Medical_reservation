@@ -117,8 +117,17 @@ if (isset($_GET['report'])) {
   }
 
   if ($reportType == 'Specialist') {
-    $ReportResults = "<tr></tr>";
-    $ReportResults .= "<tr></tr>";
+    $ReportResults = "<tr>
+                        <th colspan='3'>Office Information</th>
+                        <th colspan='2'>Specialist Information</th>
+                      </tr>";
+    $ReportResults .= "<tr>
+                        <th>Address</th>
+                        <th>City</th>
+                        <th>State</th>
+                        <th>Num Of Specialist</th>
+                        <th>Speciality</th>
+                      </tr>";
     $sql = "SELECT COUNT(D.Doctor_id), O.Address, O.City, O.State, D.Speciality
             FROM DOCTOR AS D
             LEFT JOIN OFFICE AS O ON D.Office_id = O.Office_id
@@ -127,12 +136,39 @@ if (isset($_GET['report'])) {
 
     if ($result->num_rows > 0) {
       while($row = $result-> fetch_assoc()) {
+        $speciality = $row["Speciality"];
+        if ($speciality == "")
+          $speciality = "none";
         $ReportResults .= "<tr>" . 
-                          "<td>" . $row["COUNT(D.Doctor_id)"] . "</td>" .
                           "<td>" . $row["Address"] . "</td>" .
                           "<td>" . $row["City"] . "</td>" .
                           "<td>" . $row["State"] . "</td>" .
-                          "<td>" . $row["Speciality"] . "</td>" . "<tr>";
+                          "<td>" . $row["COUNT(D.Doctor_id)"] . "</td>" .
+                          "<td>" . $speciality . "</td>" . "<tr>";
+      }
+    }
+  }
+
+  if ($reportType == 'Employees') {
+    $ReportResults .= "<tr>
+                        <th>Name</th>
+                        <th>Phone Number</th>
+                        <th>Office Address</th>
+                      </tr>";
+    $sql = "SELECT * FROM
+            (SELECT Office_id, Name, Phone_number FROM DOCTOR
+            UNION
+            SELECT Office_id, Name, Phone_number FROM ADMIN) AS Employees
+            LEFT JOIN (SELECT Office_id, Address FROM OFFICE) AS OF
+            ON Employees.Office_id = OF.Office_id;";
+    $result = mysqli_query($db, $sql);
+
+    if ($result->num_rows > 0) {
+      while($row = $result-> fetch_assoc()) {
+        $ReportResults .= "<tr>" . 
+                          "<td>" . $row["Name"] . "</td>" .
+                          "<td>" . $row["Phone_number"] . "</td>" .
+                          "<td>" . $row["Address"] . "</td>" . "<tr>";
       }
     }
   }
@@ -261,10 +297,10 @@ while($row = mysqli_fetch_array($dbres))
 
 
     <div class="sidebyside">
-      <a class="navitem" id="Presid" href="./reportsForm.php?report=Prescriptions">Prescriptions(draft)</a>
-      <a class="navitem" id="DocSpecialid" href="./reportsForm.php?report=Specialist">Specialist(todo)</a>
-      <a class="navitem" id="Appid" href="./reportsForm.php?report=Appointments">Appointments(draft)</a>
-
+      <a class="navitem" id="Presid" href="./reportsForm.php?report=Prescriptions">Prescriptions</a>
+      <a class="navitem" id="DocSpecialid" href="./reportsForm.php?report=Specialist">Specialist</a>
+      <a class="navitem" id="Appid" href="./reportsForm.php?report=Appointments">Appointments</a>
+      <a class="navitem" id="Empid" href="./reportsForm.php?report=Employees">Employees</a>
     </div>
 
     <br><br>
