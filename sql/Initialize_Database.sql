@@ -92,22 +92,12 @@ CREATE TABLE PATIENT (
 );
 
 INSERT INTO PATIENT(Primary_physician_id, Specialist_approved, Name, Password, Phone_number, Email, Age, Medical_allergy) VALUES
-<<<<<<< HEAD
-(1,0, 'NA', "Wade", "password", 2222222222, "Wade@gmail.com", 5, true),
-(2,0, 'NA', "Loren", "password", 3333333333, "Loren@yahoo.com", 10, true),
-(3,0, 'NA', "Elsa", "password", 4444444444, "Elsa@hotmail.com", 20, false),
-(4,1, 'NA', "Richard", "password", 5555555555, "Richard@yahoo.com", 50, true),
-(5,0, 'NA', "Patient", "Password", 6666666666, "Patient@medical.com", 100, false),
-(1,0,'NA', "Andy", "password", 9999999999, "Andy@gmail.com", 36, true);
-
-=======
 (1, "NA", "Wade", "password", 2222222222, "Wade@gmail.com", 5, true),
 (2, "NA", "Loren", "password", 3333333333, "Loren@yahoo.com", 10, true),
 (3, "NA", "Elsa", "password", 4444444444, "Elsa@hotmail.com", 20, false),
 (4, "NA", "Richard", "password", 5555555555, "Richard@yahoo.com", 50, true),
 (5, "NA", "Patient", "Password", 6666666666, "Patient@medical.com", 100, false),
 (1, "NA", "Andy", "password", 9999999999, "Andy@gmail.com", 36, true);
->>>>>>> 308fc77c3ce77b3feb5d48835317e60203a6bae0
 
 CREATE TABLE APPOINTMENT (
 	Appointment_id        INT AUTO_INCREMENT,
@@ -257,10 +247,10 @@ CREATE TABLE PRESCRIPTION (
 );
 
 INSERT INTO PRESCRIPTION(Patient_id, Medication, Test, Prescription_date) VALUES
-(5, "Medication string", "Test string", "2020/01/02");
-(5, "Medication string", "Test string", "2020/01/01");
-(5, "Medication string", "Test string", "2020/01/03");
-(5, "Medication string", "Test string", "2020/01/04");
+(5, "Medication string", "Test string", "2020/01/02"),
+(5, "Medication string", "Test string", "2020/01/01"),
+(5, "Medication string", "Test string", "2020/01/03"),
+(5, "Medication string", "Test string", "2020/01/04"),
 (5, "Medication string", "Test string", "2020/01/05");
 
 CREATE TABLE PATIENT_APPOINTMENTS (
