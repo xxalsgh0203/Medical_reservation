@@ -94,14 +94,22 @@ if (isset($_GET['approve_id'])) {
 
 
   /*to retrieve other admins*/
-$sql = "SELECT * FROM ADMIN";
+$sql = "SELECT Name, A.Phone_number AS Admin_number, Email, Address, O.Phone_number AS Office_number FROM ADMIN AS A
+LEFT JOIN OFFICE AS O ON A.Office_id = O.Office_id;";
 $result = mysqli_query($db, $sql);
 
 $OtADtableResult = "";
 if ($result->num_rows > 0) {
+  $OtADtableResult = "<tr>
+                        <th>Name</th>
+                        <th>Number</th>
+                        <th>Email</th>
+                        <th>Work Address</th>
+                        <th>Work Number</th>
+                      </tr>";
   while($row = $result-> fetch_assoc()) {
-    $OtADtableResult .= "<tr>". "<td>" . $row["Office_id"] . "</td><td>" . $row["Name"] . "</td><td>" . 
-                          $row["Phone_number"] . "</td><td>" . $row["Email"] . "</td>" . "<tr>";
+    $OtADtableResult .= "<tr>". "<td>" . $row["Name"] . "</td><td>" . 
+                          $row["Admin_number"] . "</td><td>" . $row["Email"] . "</td><td>" . $row["Address"] . "</td><td>" . $row["Office_number"] . "</td>" . "<tr>";
   }
  
 }
@@ -223,12 +231,6 @@ if ($result->num_rows > 0) {
             <h2>Other Admins</h2>
             <table class="table table-bordered">
               <thead class="thead">
-                <tr>
-                  <th scope="col">Office ID</th>
-                  <th scope="col">Name</th>
-                  <th scope="col">Phone number</th>
-                  <th scope="col">Email</th>
-                </tr>
                 <?php echo $OtADtableResult;?>
               </thead>
               <tbody>
@@ -241,12 +243,6 @@ if ($result->num_rows > 0) {
             <h2>Doctors</h2>
             <table class="table table-bordered">
               <thead class="thead">
-                <tr>
-                  <th>Office ID</th>
-                  <th>Name</th>
-                  <th>Specialty</th>
-                  <th>Phone Number</th>
-                </tr>
                 <?php echo $DtableResult;?>
               </thead>
               <tbody>
