@@ -53,11 +53,16 @@ $result = mysqli_query($db, $sql);
 $PtableResult = "";
 if ($result->num_rows > 0) {
   while($row = $result-> fetch_assoc()) {
-    $PtableResult .= "<tr>" ."<td>" . $row["Patient_id"] . "</td><td>"  . $row["Medication"] . "</td><td>" . $row["Test"] . "</td><td>" . $row["Prescription_date"] . "</td>". "<tr>";
+    $PtableResult .= "<tr>" ."<td>" . $row["Prescription_date"] . "</td><td>"  . $row["Medication"] . "</td><td>" . $row["Test"] . "</td>". "<tr>";
   }
 }
 
-$sql = "SELECT Patient_id, Office_id, Appointment_id, Appointment_status, Date, Slotted_time, Specialist_status FROM APPOINTMENT WHERE Patient_id = '$id'";
+$sql = "SELECT D.Name AS Doctor_name, A.Date, A.Slotted_time, O.Address, O.City, O.State, A.Appointment_id, A.Appointment_status, Specialist_status FROM APPOINTMENT AS A
+LEFT JOIN OFFICE AS O ON A.Office_id = O.Office_id
+LEFT JOIN PATIENT AS P ON P.Patient_id = A.Patient_id
+LEFT JOIN DOCTOR AS D ON D.Doctor_id = A.Doctor_id
+WHERE P.Patient_id = '$id'
+ORDER BY Date;";
 $result = mysqli_query($db, $sql);
 
 //table results for appointments
@@ -69,7 +74,7 @@ if ($result->num_rows > 0) {
       $approved = 'Yes';
     }
     $APtableResult .= "<tr>";
-    $APtableResult .= "<td>" . $row["Patient_id"] . "</td><td>"  . $row["Office_id"] . "</td><td>" . $row["Appointment_status"] . "</td><td>" . $row["Date"] . "</td><td>" . $row["Slotted_time"] . "</td><td>" . $approved . "</td><td> 
+    $APtableResult .= "<td>" . $row["Doctor_name"] . "</td><td>"  . $row["Date"] . "</td><td>" . $row["Slotted_time"] . "</td><td>" . $row["Address"] . "</td><td>" . $row["City"] . "</td><td>" . $row["State"] . "</td><td>" . $row["Appointment_status"] . "</td><td>" . $approved . "</td><td> 
     <a href='../patientPages/patientPage.php?delete_id=" . $row["Appointment_id"] . "'>X</a>
     </td>";
     $APtableResult .= "</tr>";
@@ -137,11 +142,13 @@ if (isset($_GET['delete_id'])) {
             <table class="table table-bordered">
               <thead class="thead">
                 <tr>
-                  <th>Patient ID</th>
-                  <th>Office ID</th>
-                  <th>Appointment status</th>
+                  <th>Doctor</th>
                   <th>Date</th>
                   <th>Slotted Time</th>
+                  <th>Address</th>
+                  <th>City</th>
+                  <th>State</th>
+                  <th>Appointment status</th>
                   <th>Specialist Appointment</th>
                   <th>Cancel Appointment</th>
                 </tr>
@@ -157,10 +164,9 @@ if (isset($_GET['delete_id'])) {
             <table class="table table-bordered">
               <thead class="thead">
                 <tr>
-                  <th scope="col">Patient_id</th>
+                  <th scope="col">Prescription_date</th>
                   <th scope="col">Medication</th>
                   <th scope="col">Test</th>
-                  <th scope="col">Prescription_date</th>
                 </tr>
                 <?php echo $PtableResult;?>
               </thead>

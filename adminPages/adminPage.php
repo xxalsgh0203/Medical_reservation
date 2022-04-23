@@ -32,7 +32,7 @@ if ($result->num_rows > 0) {
 }
 
 //Query to retrieve appointments for doctors
-$sql = " SELECT P.Name AS Patient_name, D.Name AS Doctor_name, A.Appointment_id, A.Date, A.Slotted_time, O.City, O.State, A.Appointment_status, Specialist_status FROM APPOINTMENT AS A
+$sql = "SELECT P.Name AS Patient_name, D.Name AS Doctor_name, A.Appointment_id, A.Date, A.Slotted_time, O.City, O.State, A.Appointment_status, Specialist_status FROM APPOINTMENT AS A
 LEFt JOIN OFFICE AS O ON A.Office_id = O.Office_id
 LEFT JOIN PATIENT AS P ON P.Patient_id = A.Patient_id
 LEFT JOIN DOCTOR AS D ON D.Doctor_id = A.Doctor_id
