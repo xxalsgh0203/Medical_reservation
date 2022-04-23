@@ -96,6 +96,7 @@ INSERT INTO PATIENT(Primary_physician_id, Specialist_approved, Name, Password, P
 (3, "NA", "Elsa", "password", 4444444444, "Elsa@hotmail.com", 20, false),
 (4, "NA", "Richard", "password", 5555555555, "Richard@yahoo.com", 50, true),
 (5, "NA", "Patient", "Password", 6666666666, "Patient@medical.com", 100, false),
+(5, "NA", "foxpaws", "Password", 7777777777, "Pat@medical.com", 10, false),
 (1, "NA", "Andy", "password", 9999999999, "Andy@gmail.com", 36, true);
 
 CREATE TABLE APPOINTMENT (
