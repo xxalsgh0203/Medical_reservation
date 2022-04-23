@@ -85,6 +85,7 @@ CREATE TABLE PATIENT (
     Email                VARCHAR(254) UNIQUE,
     Age                  INT,
     Medical_allergy      BOOLEAN NOT NULL DEFAULT false,
+    Medical_Al_Description VARCHAR(100),
     PRIMARY KEY (Patient_id),
     FOREIGN KEY (Primary_physician_id) REFERENCES DOCTOR(Doctor_id)
 );
@@ -128,7 +129,6 @@ INSERT INTO APPOINTMENT(Patient_id, Doctor_id, Office_id, Appointment_status, Da
 (5, 1, 1, "approved", "2022-04-25", "12:00", 0);
 
 /*
-
 DELIMITER $$
 CREATE TRIGGER SAPPROVE
 AFTER INSERT
@@ -152,7 +152,6 @@ BEGIN
 	END IF;
 END;$$
 DELIMITER ;
-
 */
 
 
@@ -189,7 +188,6 @@ DELIMITER ;
 
 
 /*
-
 DELIMITER $$
 CREATE TRIGGER CONFLICT
 AFTER INSERT
@@ -208,7 +206,6 @@ BEGIN
 	END IF;
 END;$$
 DELIMITER ;
-
 */
 
 
@@ -311,3 +308,15 @@ CREATE TABLE MANAGES (
     FOREIGN KEY (Admin_id) REFERENCES ADMIN(Admin_id),
     FOREIGN KEY (Office_id) REFERENCES OFFICE(Office_id)
 );
+© 2022 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Docs
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About
