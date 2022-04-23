@@ -86,11 +86,13 @@ table.center {
             Doctor Data Entry Page
         </div>
     </a>
+    <br>
     <a href="adminDataEntry.php">
         <div>
             Admin Data Entry Page
         </div>
     </a>
+    <br>
     <a href="patientDataEntry.php">
         <div>
             Patient Data Entry Page
@@ -102,23 +104,9 @@ table.center {
                 Admin Page
             </div>
         </a>
-<<<<<<< HEAD
-        <br>
-        <a href="adminDataEntry.php">
-            <div>
-                Admin Data Entry Page
-            </div>
-        </a>
-        <br>
-        <a href="patientDataEntry.php">
-            <div>
-                Patient Data Entry Page
-            </div>
-        </a>
-    </nav>
-=======
 </nav>
->>>>>>> ae60910623195742a60f0b3c10db44e0081c1af4
+
+
 <?php include_once("../php/header.php"); ?>
 
   <!-- Header of the page-->
