@@ -159,7 +159,8 @@ if ($result->num_rows > 0) {
   
      h2
      {
-       text-align: center;
+       margin-bottom: 20px;
+       font-family: Arial, Helvetica, sans-serif;
      }
      h1
      {
@@ -218,10 +219,10 @@ if ($result->num_rows > 0) {
   <div class="main-container">
     <div class="main-wrap">
 
-      <div class="text-center" id="Admin-header">Current Admin</div>
+      <div id="Admin-header">Current Admin</div>
       <div class="container-fluid">
-        <div class="row justify-content-center my-5">
-          <div class="col-10">
+        <div class="row">
+          <div>
             <table class="table table-bordered">
               <thead class="thead">
                 <?php echo $tableResult;?>
@@ -277,14 +278,6 @@ if ($result->num_rows > 0) {
       </div>
     </div>
   </div>
-
-  
-
-
-
-
-
-  
 
      <!-- Footer-->
 
