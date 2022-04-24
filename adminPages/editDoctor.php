@@ -99,22 +99,22 @@ $row = mysqli_fetch_array($result);
 <section id="dataEntry">
 <form action="" method="POST">
             <!--input taken for doctor-->
-              <input type = "hidden" name = "id" class = "txtField" value = "<?php echo $row['Doctor_id']; ?>">
               <label for="OFFID">Office ID:</label>
-              <input type="number" id="OFFID" name="OFFID" value = "<?php echo $row['Office_id']; ?>">
+              <input type="number" id="OFFID" name="OFFID" value = "<?php echo $row['Office_id']; ?>" required>
               <label for="SPType">Speciality:</label>
               <input type="text" id="SPType" name="SPType" maxlength = "30" value = "<?php echo $row['Speciality']; ?>"> 
               <label for="Dname">Name:</label>
-              <input type="text" id="Dname" name="Dname" maxlength="20" value = "<?php echo $row['Name']; ?>">
+              <input type="text" id="Dname" name="Dname" maxlength="20" value = "<?php echo $row['Name']; ?>" required>
               <br>
               <label for="DPWord">Update password:</label>
-              <input type="Password" id="DPWord" name="DPWord" value = "<?php echo $row['Password']; ?>">
+              <input type="Password" id="DPWord" name="DPWord" value = "<?php echo $row['Password']; ?>" required>
               <label for="DPhoneNum">Phone Number:</label>
-              <input type="text" id="DPhoneNum" name="DPhoneNum" maxlength="10" value = "<?php echo $row['Phone_number']; ?>">    
+              <input type="text" id="DPhoneNum" name="DPhoneNum" maxlength="10" value = "<?php echo $row['Phone_number']; ?>" required>    
               <!--Used to separate inputs-->
               <br>
               <button type="submit" class="btn btn-primary" name="SubmitD" value ="SubmitD">Submit</button>
   </form>
+   <!---------------------Displays current offices available--------------------->
   <br><br>
   <h1>Current Offices</h1>
               <table  class = "center" border="6">

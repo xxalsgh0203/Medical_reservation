@@ -155,18 +155,18 @@ table.center {
               
               <h2> Office info:  </h2>
               <label for="OAddress">Address:</label>
-              <input type="text" id="OAddress" name="OAddress" maxlength="20">
+              <input type="text" id="OAddress" name="OAddress" maxlength="20" required>
               <label for="OState">State:</label>
-              <input type="text" id="OState" name="OState">
+              <input type="text" id="OState" name="OState" maxlength="15" required>
               <label for="OCity">City:</label>
-              <input type="text" id="OCity" name="OCity">
+              <input type="text" id="OCity" name="OCity" maxlength="15" required>
               <br><!-- still editing right here--------------------------------------->
               <label for="OPhone_num">Phone Number:</label>
-              <input type="text" id="OPhone_num" name="OPhone_num" maxlength="10">
+              <input type="text" id="OPhone_num" name="OPhone_num" maxlength="10" required>
               <label for="startTime">Start time: </label>
-              <input type="time" id="startTime" name= "startTime">   
+              <input type="time" id="startTime" name= "startTime" required>   
               <label for="endTime">End time: </label>
-              <input type="time" id="endTime" name= "endTime">  
+              <input type="time" id="endTime" name= "endTime" required>  
               <!--Used to separate inputs-->
               <br>
               <button type="submit" class="btn btn-primary" name="SubmitO" id="SubmitO">Submit</button>

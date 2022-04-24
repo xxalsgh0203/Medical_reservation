@@ -100,14 +100,14 @@ $row = mysqli_fetch_array($result);
             <!--input taken for doctor-->
               
               <label for="ADOFFID">Office ID:</label>
-              <input type="number" id="ADOFFID" name="ADOFFID" value = "<?php echo $row['Office_id']; ?>">
+              <input type="number" id="ADOFFID" name="ADOFFID" value = "<?php echo $row['Office_id']; ?>" required>
               <label for="ADname">Name:</label>
-              <input type="text" id="ADname" name="ADname" maxlength="20" value = "<?php echo $row['Name']; ?>">
+              <input type="text" id="ADname" name="ADname" maxlength="20" value = "<?php echo $row['Name']; ?>" required>
               <label for="ADPWord">create password:</label>
-              <input type="text" id="ADPWord" name="ADPWord" value = "<?php echo $row['Password']; ?>">
+              <input type="text" id="ADPWord" name="ADPWord" value = "<?php echo $row['Password']; ?>" required>
               <br>
               <label for="ADPhoneNum">Phone Number:</label>
-              <input type="text" id="ADPhoneNum" name="ADPhoneNum" maxlength="10" value = "<?php echo $row['Phone_number']; ?>"> 
+              <input type="text" id="ADPhoneNum" name="ADPhoneNum" maxlength="10" value = "<?php echo $row['Phone_number']; ?>" required> 
               <label for="ADEmail">Email:</label>
               <input type="text" id="ADEmail" name="ADEmail" maxlength="30" value = "<?php echo $row['Email']; ?>">   
               <!--Used to separate inputs-->
@@ -115,6 +115,7 @@ $row = mysqli_fetch_array($result);
               <button type="submit" class="btn btn-primary" name="SubmitAD">Submit</button>
               </form>
               <br><br>
+              <!---------------------Displays current offices available--------------------->
               <h1>Current Offices</h1>
               <table  class = "center" border="6">
               <thead class="thead">

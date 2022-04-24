@@ -191,18 +191,17 @@ table.center {
         <form action="" method="POST">
             <!--input taken for doctor-->
               <h2>  Doctor info:  </h2>
-              <input type = "hidden" name = "id" value = "<?php echo $id; ?>">
               <label for="OFFID">Office ID:</label>
-              <input type="number" id="OFFID" name="OFFID">
+              <input type="number" id="OFFID" name="OFFID" required>
               <label for="SPType">Speciality:</label>
-              <input type="text" id="SPType" name="SPType" maxlength = "30"> 
+              <input type="text" id="SPType" name="SPType" maxlength = "30" > 
               <label for="Dname">Name:</label>
-              <input type="text" id="Dname" name="Dname" maxlength="20">
+              <input type="text" id="Dname" name="Dname" maxlength="20" required>
               <br>
               <label for="DPWord">create password:</label>
-              <input type="Password" id="DPWord" name="DPWord">
+              <input type="Password" id="DPWord" name="DPWord" required>
               <label for="DPhoneNum">Phone Number:</label>
-              <input type="text" id="DPhoneNum" name="DPhoneNum" maxlength="10">    
+              <input type="text" id="DPhoneNum" name="DPhoneNum" maxlength="10" required>    
               <!--Used to separate inputs-->
               <br>
               <button type="submit" class="btn btn-primary" name="SubmitD">Submit</button>

@@ -78,18 +78,18 @@ $row = mysqli_fetch_array($result);
 <form action="" method="POST">
             <!--input taken for doctor-->
               <label for="OAddress">Address:</label>
-              <input type="text" id="OAddress" name="OAddress" maxlength="20" value = "<?php echo $row['Address']; ?>">
+              <input type="text" id="OAddress" name="OAddress" maxlength="20" value = "<?php echo $row['Address']; ?>" required>
               <label for="OState">State:</label>
-              <input type="text" id="OState" name="OState" value = "<?php echo $row['State']; ?>">
+              <input type="text" id="OState" name="OState" maxlength="15" value = "<?php echo $row['State']; ?>" required>
               <label for="OCity">City:</label>
-              <input type="text" id="OCity" name="OCity" value = "<?php echo $row['City']; ?>">
+              <input type="text" id="OCity" name="OCity"  maxlength="15" value = "<?php echo $row['City']; ?>" required>
               <br><!-- still editing right here--------------------------------------->
               <label for="OPhone_num">Phone Number:</label>
-              <input type="text" id="OPhone_num" name="OPhone_num" maxlength="10" value = "<?php echo $row['Phone_number']; ?>">
+              <input type="text" id="OPhone_num" name="OPhone_num" maxlength="10" value = "<?php echo $row['Phone_number']; ?>" required>
               <label for="startTime">Start time: </label>
-              <input type="time" id="startTime" name= "startTime" value = "<?php echo $row['Open_time']; ?>">   
+              <input type="time" id="startTime" name= "startTime" value = "<?php echo $row['Open_time']; ?>" required>   
               <label for="endTime">End time: </label>
-              <input type="time" id="endTime" name= "endTime" value = "<?php echo $row['Close_time']; ?>">  
+              <input type="time" id="endTime" name= "endTime" value = "<?php echo $row['Close_time']; ?>" required>  
               <!--Used to separate inputs-->
               <br>
               <button type="submit" class="btn btn-primary" name="SubmitO" id="SubmitO">Submit</button>

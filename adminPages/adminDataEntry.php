@@ -148,12 +148,12 @@ table.center {
               <label for="ADOFFID">Office ID:</label>
               <input type="number" id="ADOFFID" name="ADOFFID">
               <label for="ADname">Name:</label>
-              <input type="text" id="ADname" name="ADname" maxlength="20">
+              <input type="text" id="ADname" name="ADname" maxlength="20" required>
               <label for="ADPWord">create password:</label>
-              <input type="Password" id="ADPWord" name="ADPWord">
+              <input type="Password" id="ADPWord" name="ADPWord" required>
               <br>
               <label for="ADPhoneNum">Phone Number:</label>
-              <input type="text" id="ADPhoneNum" name="ADPhoneNum" maxlength="10"> 
+              <input type="text" id="ADPhoneNum" name="ADPhoneNum" maxlength="10" required> 
               <label for="ADEmail">Email:</label>
               <input type="text" id="ADEmail" name="ADEmail" maxlength="30">   
               <!--Used to separate inputs-->
