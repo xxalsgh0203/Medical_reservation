@@ -33,7 +33,7 @@
 
 
   <!-- Footer-->
-  <?php include_once("./php/footer.php"); ?>
+  <!-- <?php include_once("./php/footer.php"); ?> -->
 
 </body>
 

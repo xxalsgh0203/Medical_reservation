@@ -3,12 +3,12 @@
   # Navigation Menu
   --------------------------------------------------------------*/
   .nav-back {
-    background: #a6e3a2;
+    background: #34568B;
     color: #fff;
   }
   
   .navbar-brand {
-    color: rgb(9, 31, 31);
+    color: rgb(203, 219, 219);
     font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     font: bold;
   }
@@ -18,7 +18,7 @@
   }
   
   .nav-link {
-    color: rgb(9, 31, 31);
+    color: rgb(203, 219, 219);
   }
   
   .nav-link:hover {
@@ -88,7 +88,7 @@
     font-family: "Open Sans", sans-serif;
     margin-top: 20px;
     font-size: 24px;
-    color: rgb(220, 110, 110);
+    color: #FF6F61;
   }
   
   #hero h2 {
@@ -146,7 +146,7 @@
     bottom: 0;
     text-align: center;
     font-size: 0.9rem;
-    background: #a6e3a2;
+    background: #34568B;
     display: hidden;
   }
   
