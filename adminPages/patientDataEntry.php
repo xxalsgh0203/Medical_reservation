@@ -105,10 +105,6 @@ table.center {
                 Office Data Entry
             </div>
         </a>
-<<<<<<< HEAD
-</nav>
-
-=======
         <br>
         </a>
         <a href="AdminPage.php">
@@ -117,10 +113,6 @@ table.center {
             </div>
         </a>
 </nav>
-
-
-
->>>>>>> 7b9ac633ac6ca1cfcbea7364b02e1a6449db909e
 <?php include_once("../php/header.php"); ?>
 
   <!-- Header of the page-->
