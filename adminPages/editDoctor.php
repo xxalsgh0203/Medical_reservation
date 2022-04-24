@@ -5,6 +5,21 @@ session_start();
 require_once "../php/config.php";
 
 
+
+//----------------------------------------Retrieve Office Table----------------------------------
+$sql = "SELECT * FROM OFFICE";
+$result = mysqli_query($db, $sql);
+
+$OtableResult = "";
+if ($result->num_rows > 0) {
+  while($row = $result-> fetch_assoc()) {
+    $OtableResult .= "<tr>" . "<td>" . $row["Office_id"] . "</td><td>" .  $row["Address"]. "</td><td>" . $row["State"] . "</td><td>" 
+                    . $row["City"] . "</td><td>" . $row["Phone_number"] . "</td>" . "</td><td>" . $row["Open_time"] . "</td>" 
+                    . "</td><td>" . $row["Close_time"] . "</td>" . "<tr>";
+  }
+}
+
+//record edits
 if(count($_POST) > 0)
 {
    //Store input values
@@ -18,6 +33,8 @@ if(count($_POST) > 0)
     mysqli_query($db, "UPDATE DOCTOR SET Office_id= '$DOffice_id' ,Name='$DName' 
     , Speciality='$SpecialistType' , Phone_number = '$DPhoneNum', Password = '$DPassword'  WHERE Doctor_id= '$id'");
 }
+
+//gets the row of items to modify
 $id =$_GET['update_Did'];
 $result = mysqli_query($db, "SELECT * FROM DOCTOR WHERE Doctor_id = '$id'");
 $row = mysqli_fetch_array($result);
@@ -38,11 +55,18 @@ $row = mysqli_fetch_array($result);
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+    table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+    }
 
- 
+    table.center {
+      margin-left: auto; 
+      margin-right: auto;
+    }
 
-
-
+    </style>
 </head>
 
 <nav class="floating-menu">
@@ -91,6 +115,27 @@ $row = mysqli_fetch_array($result);
               <br>
               <button type="submit" class="btn btn-primary" name="SubmitD" value ="SubmitD">Submit</button>
   </form>
+  <br><br>
+  <h1>Current Offices</h1>
+              <table  class = "center" border="6">
+              <thead class="thead">
+                <tr>
+                  <th>Office id</th>
+                  <th>Address</th> 
+                  <th>State</th>
+                  <th>City</th> 
+                  <th>Phone Number</th>
+                   <th>Opening Time</th>
+                    <th>Closing Time</th>
+                </tr>
+                <?php echo $OtableResult;?>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+
+
+
   
 </section>
 
