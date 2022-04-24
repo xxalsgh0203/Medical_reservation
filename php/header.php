@@ -4,6 +4,7 @@ require_once "config.php";
 $href = "";
 if (isset($_SESSION["href"])) {
   $href = $_SESSION["href"];
+  $typ = $_SESSION["type"];
 }
 ?>
 
@@ -21,6 +22,9 @@ if (isset($_SESSION["href"])) {
           if (!isset($_SESSION['loggedin'])) {
             echo '<li class="nav-item"><a class="nav-link" href="//localhost/cosc3380/auth/login.php" id="login">Log in / Sign up</a></li>';
           } else {
+            $typ = $_SESSION["type"];
+            $name = $_SESSION["username"];
+            echo '<li class="nav-item"> Hello ' . $typ . ' ' . $name . '<li>';
             echo '<li class="nav-item"><a class="nav-link" href="//localhost/cosc3380/auth/logout.php" id="logout">Log out</a></li>';
           }
         ?>
