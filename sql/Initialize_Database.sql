@@ -32,7 +32,7 @@ CREATE TABLE ADMIN (
     Email                VARCHAR(30) UNIQUE,
     Appointment_Approval BOOLEAN,
     PRIMARY KEY (Admin_id),
-    FOREIGN KEY (Office_id) REFERENCES OFFICE(Office_id)
+    FOREIGN KEY (Office_id) REFERENCES OFFICE(Office_id) ON DELETE SET NULL
 );
  
 INSERT INTO ADMIN(Office_id, Name, Password, Phone_number, Email) VALUES
@@ -49,7 +49,7 @@ CREATE TABLE DOCTOR (
     Password       VARCHAR(255) NOT NULL,
     Phone_number   CHAR(10) UNIQUE,
     PRIMARY KEY (Doctor_id),
-    FOREIGN KEY (Office_id) REFERENCES OFFICE(Office_id)
+    FOREIGN KEY (Office_id) REFERENCES OFFICE(Office_id) ON DELETE SET NULL
 );
  
 INSERT INTO DOCTOR(Office_id, Speciality, Name, Password, Phone_number) VALUES
@@ -66,7 +66,7 @@ CREATE TABLE WORK_INFO (
     Start_time TIME NOT NULL,
     End_time   TIME NOT NULL,
     PRIMARY    KEY (Doctor_id, Weekday),
-    FOREIGN    KEY (Doctor_id) REFERENCES DOCTOR(Doctor_id)
+    FOREIGN    KEY (Doctor_id) REFERENCES DOCTOR(Doctor_id) ON DELETE CASCADE
 );
  
 INSERT INTO WORK_INFO(Doctor_id, Office_id, Weekday, Start_time, End_time) VALUES
@@ -89,7 +89,7 @@ CREATE TABLE PATIENT (
     Medical_allergy      BOOLEAN NOT NULL DEFAULT false,
     Medical_Al_Description VARCHAR(100),
     PRIMARY KEY (Patient_id),
-    FOREIGN KEY (Primary_physician_id) REFERENCES DOCTOR(Doctor_id)
+    FOREIGN KEY (Primary_physician_id) REFERENCES DOCTOR(Doctor_id) ON DELETE SET NULL
 );
  
 INSERT INTO PATIENT(Primary_physician_id, Specialist_approved, Name, Password, Phone_number, Email, Age, Medical_allergy) VALUES
@@ -112,9 +112,9 @@ CREATE TABLE APPOINTMENT (
     Specialist_status     BOOLEAN NOT NULL, /*If it is a specialist appointment */
     /*Error_code            INT DEFAULT 0,*/
     PRIMARY KEY (Appointment_id),
-    FOREIGN KEY (Patient_id) REFERENCES PATIENT(Patient_id),
-    FOREIGN KEY (Doctor_id) REFERENCES DOCTOR(Doctor_id),
-    FOREIGN KEY (Office_id) REFERENCES OFFICE(Office_id)
+    FOREIGN KEY (Patient_id) REFERENCES PATIENT(Patient_id) ON DELETE CASCADE,
+    FOREIGN KEY (Doctor_id) REFERENCES DOCTOR(Doctor_id) ON DELETE CASCADE,
+    FOREIGN KEY (Office_id) REFERENCES OFFICE(Office_id) ON DELETE CASCADE
 );
  
 INSERT INTO APPOINTMENT(Patient_id, Doctor_id, Office_id, Appointment_status, Date, Slotted_time, Specialist_status) VALUES
@@ -266,7 +266,7 @@ CREATE TABLE PRESCRIPTION (
     Test              VARCHAR(64),
     Prescription_date DATE NOT NULL,
     PRIMARY KEY (Patient_id, Medication, Prescription_date),
-    FOREIGN KEY (Patient_id) REFERENCES PATIENT(Patient_id)
+    FOREIGN KEY (Patient_id) REFERENCES PATIENT(Patient_id) ON DELETE CASCADE
 );
  
 INSERT INTO PRESCRIPTION(Patient_id, Medication, Test, Prescription_date) VALUES

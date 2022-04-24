@@ -95,6 +95,8 @@ $weekdays = [
 foreach ($weekdays as $weekday) {
   $sql = "SELECT * FROM WORK_INFO WHERE Doctor_id = '$id' AND Weekday = '$weekday'";
   $result = mysqli_query($db, $sql);
+  if ($result->num_rows == 0)
+    continue;
   $row = $result -> fetch_assoc();
 
   $SPtableResult .= "<tr>";
