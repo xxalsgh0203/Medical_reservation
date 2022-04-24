@@ -20,7 +20,8 @@ CREATE TABLE OFFICE (
  
 INSERT INTO OFFICE(Address, City, State, Phone_number, Open_time, Close_time) VALUES
 ('123 Main st.', 'Houston', 'Texas', 1234567890, '9:00', '17:00'),
-('456 UH st.', 'Houston', 'Texas', 0987654321, '9:00', '17:00');
+('456 UH st.', 'Houston', 'Texas', 0987654321, '9:00', '17:00'),
+('423 UH Avenue.', 'Houston', 'Texas', 0987654440, '9:00', '17:00');
  
 CREATE TABLE ADMIN (
     Admin_id             INT AUTO_INCREMENT,

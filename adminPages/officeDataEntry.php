@@ -36,7 +36,7 @@ if (isset($_POST['SubmitO']))
 
     //Used to insert data into Office
     $db->query("INSERT INTO OFFICE (Address, State, City, Phone_number, Open_time, Close_time) 
-                    VALUES ('$OAddress', '$State', '$OCity',  ' $OPhone_num', ' $Open_time', ' $Close_time')")  or die($db->error); 
+                    VALUES ('$OAddress', '$State', '$OCity', ' $OPhone_num', ' $Open_time', ' $Close_time')")  or die($db->error); 
 
    
     header("location:officeDataEntry.php");
@@ -162,7 +162,7 @@ table.center {
               <input type="text" id="OCity" name="OCity" maxlength="15" required>
               <br><!-- still editing right here--------------------------------------->
               <label for="OPhone_num">Phone Number:</label>
-              <input type="text" id="OPhone_num" name="OPhone_num" maxlength="10" required>
+              <input type="text" id="OPhone_num" name="OPhone_num"  maxlength="11" required>
               <label for="startTime">Start time: </label>
               <input type="time" id="startTime" name= "startTime" required>   
               <label for="endTime">End time: </label>
