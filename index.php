@@ -3,7 +3,6 @@
 <?php
   session_start();
 ?>
-
 <head>
   <title>GROUP 5</title>
   <!-- Required meta tags -->
