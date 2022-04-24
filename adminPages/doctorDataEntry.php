@@ -108,6 +108,11 @@ if (isset($_POST['SubmitD']))
 
  
     <style>
+
+      #dataEntry{
+        border: 1px solid black;
+      }
+
 table, th, td {
   border: 1px solid black;
   border-collapse: collapse;
@@ -116,6 +121,33 @@ table, th, td {
 table.center {
   margin-left: auto; 
   margin-right: auto;
+}
+
+label {
+  color: #B4886B;
+  font-weight: bold;
+  width: 130px;
+  /* float: left; */
+}
+label:after { content: ": " }
+
+
+.ct1{
+  margin-top: 100px;
+}
+
+h1{
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  margin-bottom: 25px;
+}
+
+h2{
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  margin-bottom: 25px;
+}
+
+fieldset{
+  margin-top: 80px;
 }
 
 </style>
@@ -190,20 +222,32 @@ table.center {
 
         <form action="" method="POST">
             <!--input taken for doctor-->
+            <fieldset id="ct1">
               <h2>  Doctor info:  </h2>
+              <p>
               <label for="OFFID">Office ID:</label>
               <input type="number" id="OFFID" name="OFFID" required>
+</p>
+<p>
               <label for="SPType">Speciality:</label>
               <input type="text" id="SPType" name="SPType" maxlength = "30" > 
+</p>
+<p>
               <label for="Dname">Name:</label>
               <input type="text" id="Dname" name="Dname" maxlength="20" required>
+</p>
               <br>
+              <p>
               <label for="DPWord">create password:</label>
               <input type="Password" id="DPWord" name="DPWord" required>
+</p>
+<p>
               <label for="DPhoneNum">Phone Number:</label>
-              <input type="text" id="DPhoneNum" name="DPhoneNum" maxlength="10" required>    
+              <input type="text" id="DPhoneNum" name="DPhoneNum" maxlength="10" required> 
+</p>   
               <!--Used to separate inputs-->
               <br>
+              </fieldset>
               <button type="submit" class="btn btn-primary" name="SubmitD">Submit</button>
         </form>
 </section>

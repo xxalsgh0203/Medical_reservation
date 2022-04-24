@@ -534,25 +534,27 @@
 }
 
 #dataEntry{
-  width: 100%;
-  background: center center;
+  width: 780px;
+  /* background: center center; */
   background-size: cover;
   position: relative;
   margin-top: 100px;
-  height: 130%;
+  height: 780px;
   text-align: center;
+  margin: 0 auto; 
 }
 
 #dateEntry h1 {
   text-align: center;
+  
 }
 
-#dataEntry form { 
+/* #dataEntry form { 
   margin: 0 auto; 
   width:1000px;
-}
+} */ */
 
-#dataEntry div{
+/* #dataEntry div{
   margin: 0px auto;
   width:300px;
 }
