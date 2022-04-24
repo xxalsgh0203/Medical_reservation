@@ -13,7 +13,7 @@ $result = mysqli_query($db, $sql);
 $OtableResult = "";
 if ($result->num_rows > 0) {
   while($row = $result-> fetch_assoc()) {
-    $OtableResult .= "<tr>" . "<td>" . $row["Office_id"] . "</td><td>" .  $row["Address"]. "</td><td>" . $row["State"] . "</td><td>" 
+    $OtableResult .= "<tr>" . "<td>" . $row["Office_number"] . "</td><td>" .  $row["Address"]. "</td><td>" . $row["State"] . "</td><td>" 
                     . $row["City"] . "</td><td>" . $row["Phone_number"] . "</td>" . "</td><td>" . $row["Open_time"] . "</td>" 
                     . "</td><td>" . $row["Close_time"] . "</td>" . "<tr>";
   }
@@ -120,7 +120,7 @@ $row = mysqli_fetch_array($result);
               <table  class = "center" border="6">
               <thead class="thead">
                 <tr>
-                  <th>Office id</th>
+                  <th>Office number</th>
                   <th>Address</th> 
                   <th>State</th>
                   <th>City</th> 
