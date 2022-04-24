@@ -723,6 +723,7 @@ div.horizontalgap {
   width: 130px;
   z-index: 100;
   position: fixed;
+  font-family: "Lucida Console", "Courier New", monospace;
 }
 .floating-menu a, 
 .floating-menu h3 {
@@ -730,6 +731,7 @@ div.horizontalgap {
   display: block;
   margin: 0 0.5em;
   color: white;
+  font-family: "Lucida Console", "Courier New", monospace;
 }
 
 .input-group{
@@ -738,6 +740,7 @@ div.horizontalgap {
 
 .foating-menu a{
   margin: 50px;
+  font-family: "Lucida Console", "Courier New", monospace;
 }
 
 
@@ -747,10 +750,12 @@ div.horizontalgap {
   flex-direction: column;
   align-items: start;
   list-style-type: none;
+  font-family: "Lucida Console", "Courier New", monospace;
 }
 
 .floating-menu li {
   padding: 6px 0;
+  font-family: "Lucida Console", "Courier New", monospace;
 }
 
 .floating-menu a {
@@ -762,7 +767,7 @@ div.horizontalgap {
   text-decoration: none;
   text-transform: uppercase;
   transition: 0.5s;
-
+  font-family: "Lucida Console", "Courier New", monospace;
 }
 
 .floating-menu ::after {
@@ -776,6 +781,7 @@ div.horizontalgap {
   transform: scaleX(0);
   transform-origin: right;
   transition: transform 0.5s;
+  font-family: "Lucida Console", "Courier New", monospace;
 }
 
 .floating-menu :hover {
