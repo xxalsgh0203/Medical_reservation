@@ -264,7 +264,7 @@ while($row = mysqli_fetch_array($dbres))
     }
 
     .sidebyside {
-      left:-16%;
+      left:-21.5%;
       width: 900px;
       padding: 10px;
       position: relative;
@@ -274,7 +274,7 @@ while($row = mysqli_fetch_array($dbres))
 
     .navitem {
       display: inline-block;
-      width: 220px;
+      width: 200px;
       height: 70px;
       text-align: center;
       border: 1px red;
