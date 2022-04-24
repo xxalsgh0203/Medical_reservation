@@ -75,6 +75,11 @@ header('location:officeDataEntry.php');
         border: 1px solid black;
       }
 
+      table{
+        width:auto;
+        height:auto;
+      }
+
 table, th, td {
   border: 1px solid black;
   border-collapse: collapse;
@@ -166,7 +171,7 @@ fieldset{
 
 <form action="" method="POST">
               <h1>Office</h1>
-              <table  class = "center" border="6">
+              <table  class = "center">
               <thead class="thead">
                 <tr>
                   <th>Office id</th>
@@ -185,7 +190,7 @@ fieldset{
               </tbody>
             </table>
               <!-- Input taken for Patient -->
-              
+              <fieldset id="ct1">
               <h2> Office info:  </h2>
               <p>
               <label for="OAddress">Address:</label>
@@ -215,7 +220,7 @@ fieldset{
               <!--Used to separate inputs-->
               <br>
               <button type="submit" class="btn btn-primary" name="SubmitO" id="SubmitO">Submit</button>
-              
+              <fieldset>
               </form>
   
 </section>

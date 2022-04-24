@@ -534,7 +534,8 @@
 }
 
 #dataEntry{
-  width: 780px;
+  /* display: flex; */
+  width: 850px;
   /* background: center center; */
   background-size: cover;
   position: relative;
@@ -542,6 +543,7 @@
   height: 780px;
   text-align: center;
   margin: 0 auto; 
+  margin-bottom: 400px;
 }
 
 #dateEntry h1 {

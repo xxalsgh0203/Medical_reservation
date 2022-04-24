@@ -177,7 +177,7 @@ fieldset{
               </tbody>
             </table>
               <!-- Input taken for Patient -->
-              
+              <fieldset id="ct1">
               <h2> Patient info:  </h2>
               <p>
               <label for="Pname">Name:</label>
@@ -204,7 +204,7 @@ fieldset{
               <!--Used to separate inputs-->
               <br>
               <button type="submit" class="btn btn-primary" name="SubmitP" id="dataentrysubmitbtn">Submit</button>
-              
+              <fieldset>
               </form>
   
 </section>

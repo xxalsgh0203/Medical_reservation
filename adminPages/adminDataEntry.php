@@ -175,6 +175,7 @@ fieldset{
             </table>
             <form action="" method="POST">
             <!--input taken for admin -->
+            <fieldset id="ct1">
               <h2>  Admin info:  </h2>
               <p>
               <label for="ADOFFID">Office ID:</label>
@@ -200,6 +201,7 @@ fieldset{
               <!--Used to separate inputs-->
               <br>
               <button type="submit" class="btn btn-primary" name="SubmitAD">Submit</button>
+              <fieldset>
               </form>
 </section>
 
