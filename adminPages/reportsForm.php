@@ -22,118 +22,177 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 }
 
 $ReportResults = "";
-if (isset($_GET['report'])) {
-  $reportType = $_GET['report'];
+if (isset($_POST['Employees'])) {
+  $ReportResults .= "<tr>
+                      <th>Name</th>
+                      <th>Phone Number</th>
+                      <th>Office Address</th>
+                    </tr>";
+  $sql = "SELECT * FROM
+          (SELECT Office_id, Name, Phone_number FROM DOCTOR
+          UNION
+          SELECT Office_id, Name, Phone_number FROM ADMIN) AS Employees
+          LEFT JOIN (SELECT Office_id, Address FROM OFFICE) AS OF
+          ON Employees.Office_id = OF.Office_id;";
+  $result = mysqli_query($db, $sql);
 
-  if ($reportType == 'test') {
-    $ReportResults = "<tr>
-                        <th>Office id</th>
-                        <th>Amount of appointments</th>
-                        <th>specialits Visits</th>
-                        <th>Total</th>
-                      </tr>";
-    $sql = "SELECT  ofic.Office_id, COUNT(*) FROM OFFICE ofic LEFT JOIN APPOINTMENT aptment ON ofic.Office_id = aptment.Office_id GROUP BY ofic.Office_id";
-    $result = mysqli_query($db, $sql);
-  
-    if ($result->num_rows > 0) {
-      while($row = $result-> fetch_assoc()) {
-        $ReportResults .= "<tr>" ."<td>" . $row["Office_id"] . "</td>" . "<td>" . $row["COUNT(*)"] . "</td>" ."<tr>";
-      }
+  if ($result->num_rows > 0) {
+    while($row = $result-> fetch_assoc()) {
+      $ReportResults .= "<tr>" . 
+                        "<td>" . $row["Name"] . "</td>" .
+                        "<td>" . $row["Phone_number"] . "</td>" .
+                        "<td>" . $row["Address"] . "</td>" . "<tr>";
     }
   }
-
-  if ($reportType == 'Appointments') {
-    $ReportResults = "<tr>
-                      <th colspan='3'>Office Information</th>
-                      <th colspan='3'>Appointment Information</th>
-                      <th colspan='3'>Patient Information</th>
+}
+else if (isset($_POST['test'])) {
+  $ReportResults = "<tr>
+                      <th>Office id</th>
+                      <th>Amount of appointments</th>
+                      <th>specialits Visits</th>
+                      <th>Total</th>
                     </tr>";
-    $ReportResults .= "<tr>
+  $sql = "SELECT  ofic.Office_id, COUNT(*) FROM OFFICE ofic LEFT JOIN APPOINTMENT aptment ON ofic.Office_id = aptment.Office_id GROUP BY ofic.Office_id";
+  $result = mysqli_query($db, $sql);
+
+  if ($result->num_rows > 0) {
+    while($row = $result-> fetch_assoc()) {
+      $ReportResults .= "<tr>" ."<td>" . $row["Office_id"] . "</td>" . "<td>" . $row["COUNT(*)"] . "</td>" ."<tr>";
+    }
+  }
+}
+else if (isset($_POST['Appointments'])) {
+  $ReportResults = "<tr>
+                    <th colspan='3'>Office Information</th>
+                    <th colspan='3'>Appointment Information</th>
+                    <th colspan='3'>Patient Information</th>
+                  </tr>";
+  $ReportResults .= "<tr>
+                    <th>Address</th>
+                    <th>City</th>
+                    <th>State</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Status</th>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Has Allergies?</th>
+                  </tr>";
+  
+  $sql = "SELECT O.Address, O.City, O.State, A.Date, A.Slotted_time, P.name, P.Age, P.Medical_allergy, A.Appointment_status FROM APPOINTMENT
+          as A
+          LEFT JOIN PATIENT as P
+          ON A.Patient_id = P.Patient_id
+          LEFT JOIN DOCTOR as D
+          ON A.Doctor_id = D.Doctor_id
+          LEFT JOIN OFFICE as O
+          ON A.Office_id = O.Office_id";
+  if ($_POST["start"] != "" && $_POST["end"] != "") {
+    $start = $_POST["start"];
+    $end = $_POST["end"];
+    $sql .= "\n WHERE Date BETWEEN '$start' AND '$end';";
+  } else {
+    $sql .= ";";
+  }
+  $result = mysqli_query($db, $sql);
+
+  if ($result->num_rows > 0) {
+    while($row = $result-> fetch_assoc()) {
+      $ReportResults .= "<tr>" . 
+                        "<td>" . $row["Address"] . "</td>" .
+                        "<td>" . $row["City"] . "</td>" .
+                        "<td>" . $row["State"] . "</td>" .
+                        "<td>" . $row["Date"] . "</td>" .
+                        "<td>" . $row["Slotted_time"] . "</td>" .
+                        "<td>" . $row["Appointment_status"] . "</td>" .
+                        "<td>" . $row["name"] . "</td>" .
+                        "<td>" . $row["Age"] . "</td>" .
+                        "<td>" . $row["Medical_allergy"] . "</td>" . "<tr>";
+    }
+  }
+}
+else if (isset($_POST['Prescriptions'])) {
+  $ReportResults = "<tr>
+                    <th colspan='3'>Patient Information</th>
+                    <th colspan='3'>Prescription Information</th>
+                  </tr>";
+  $ReportResults .= "<tr>
+                    <th>Name</th>
+                    <th>Phone number</th>
+                    <th>Email</th>
+                    <th>Medication</th>
+                    <th>Test</th>
+                    <th>Prescription Date</th>
+                  </tr>";
+  $sql = "SELECT Name, Phone_number, Email, Medication, Test, Prescription_date FROM PATIENT as PAT
+          RIGHT JOIN PRESCRIPTION as PRE
+          ON PAT.Patient_id = PRE.Patient_id;";
+  $result = mysqli_query($db, $sql);
+
+  if ($result->num_rows > 0) {
+    while($row = $result-> fetch_assoc()) {
+      $ReportResults .= "<tr>" . 
+                        "<td>" . $row["Name"] . "</td>" .
+                        "<td>" . $row["Phone_number"] . "</td>" .
+                        "<td>" . $row["Email"] . "</td>" .
+                        "<td>" . $row["Medication"] . "</td>" .
+                        "<td>" . $row["Test"] . "</td>" .
+                        "<td>" . $row["Prescription_date"] . "</td>" . "<tr>";
+    }
+  }
+}
+else if (isset($_POST['Specialist'])) {
+  $ReportResults = "<tr>
+                      <th colspan='3'>Office Information</th>
+                      <th colspan='2'>Specialist Information</th>
+                    </tr>";
+  $ReportResults .= "<tr>
                       <th>Address</th>
                       <th>City</th>
                       <th>State</th>
-                      <th>Date</th>
-                      <th>Time</th>
-                      <th>Status</th>
-                      <th>Name</th>
-                      <th>Age</th>
-                      <th>Has Allergies?</th>
+                      <th>Num Of Specialist</th>
+                      <th>Speciality</th>
                     </tr>";
-    $sql = "SELECT O.Address, O.City, O.State, A.Date, A.Slotted_time, P.name, P.Age, P.Medical_allergy, A.Appointment_status FROM APPOINTMENT
-            as A
-            LEFT JOIN PATIENT as P
-            ON A.Patient_id = P.Patient_id
-            LEFT JOIN DOCTOR as D
-            ON A.Doctor_id = D.Doctor_id
-            LEFT JOIN OFFICE as O
-            ON A.Office_id = O.Office_id;";
-    $result = mysqli_query($db, $sql);
+  $sql = "SELECT COUNT(D.Doctor_id), O.Address, O.City, O.State, D.Speciality
+          FROM DOCTOR AS D
+          LEFT JOIN OFFICE AS O ON D.Office_id = O.Office_id
+          GROUP BY O.Address, O.City, O.State, D.Speciality;";
+  $result = mysqli_query($db, $sql);
 
-    if ($result->num_rows > 0) {
-      while($row = $result-> fetch_assoc()) {
-        $ReportResults .= "<tr>" . 
-                          "<td>" . $row["Address"] . "</td>" .
-                          "<td>" . $row["City"] . "</td>" .
-                          "<td>" . $row["State"] . "</td>" .
-                          "<td>" . $row["Date"] . "</td>" .
-                          "<td>" . $row["Slotted_time"] . "</td>" .
-                          "<td>" . $row["Appointment_status"] . "</td>" .
-                          "<td>" . $row["name"] . "</td>" .
-                          "<td>" . $row["Age"] . "</td>" .
-                          "<td>" . $row["Medical_allergy"] . "</td>" . "<tr>";
-      }
+  if ($result->num_rows > 0) {
+    while($row = $result-> fetch_assoc()) {
+      $speciality = $row["Speciality"];
+      if ($speciality == "")
+        $speciality = "none";
+      $ReportResults .= "<tr>" . 
+                        "<td>" . $row["Address"] . "</td>" .
+                        "<td>" . $row["City"] . "</td>" .
+                        "<td>" . $row["State"] . "</td>" .
+                        "<td>" . $row["COUNT(D.Doctor_id)"] . "</td>" .
+                        "<td>" . $speciality . "</td>" . "<tr>";
     }
   }
-  
-  if ($reportType == 'Prescriptions') {
-    $ReportResults = "<tr>
-                      <th colspan='3'>Patient Information</th>
-                      <th colspan='3'>Prescription Information</th>
-                    </tr>";
-    $ReportResults .= "<tr>
+}
+else if (isset($_POST['Employees'])) {
+  $ReportResults .= "<tr>
                       <th>Name</th>
-                      <th>Phone number</th>
-                      <th>Email</th>
-                      <th>Medication</th>
-                      <th>Test</th>
-                      <th>Prescription Date</th>
+                      <th>Phone Number</th>
+                      <th>Office Address</th>
                     </tr>";
-    $sql = "SELECT Name, Phone_number, Email, Medication, Test, Prescription_date FROM PATIENT as PAT
-            RIGHT JOIN PRESCRIPTION as PRE
-            ON PAT.Patient_id = PRE.Patient_id;";
-    $result = mysqli_query($db, $sql);
+  $sql = "SELECT * FROM
+          (SELECT Office_id, Name, Phone_number FROM DOCTOR
+          UNION
+          SELECT Office_id, Name, Phone_number FROM ADMIN) AS Employees
+          LEFT JOIN (SELECT Office_id, Address FROM OFFICE) AS OF
+          ON Employees.Office_id = OF.Office_id;";
+  $result = mysqli_query($db, $sql);
 
-    if ($result->num_rows > 0) {
-      while($row = $result-> fetch_assoc()) {
-        $ReportResults .= "<tr>" . 
-                          "<td>" . $row["Name"] . "</td>" .
-                          "<td>" . $row["Phone_number"] . "</td>" .
-                          "<td>" . $row["Email"] . "</td>" .
-                          "<td>" . $row["Medication"] . "</td>" .
-                          "<td>" . $row["Test"] . "</td>" .
-                          "<td>" . $row["Prescription_date"] . "</td>" . "<tr>";
-      }
-    }
-  }
-
-  if ($reportType == 'Specialist') {
-    $ReportResults = "<tr></tr>";
-    $ReportResults .= "<tr></tr>";
-    $sql = "SELECT COUNT(D.Doctor_id), O.Address, O.City, O.State, D.Speciality
-            FROM DOCTOR AS D
-            LEFT JOIN OFFICE AS O ON D.Office_id = O.Office_id
-            GROUP BY O.Address, O.City, O.State, D.Speciality;";
-    $result = mysqli_query($db, $sql);
-
-    if ($result->num_rows > 0) {
-      while($row = $result-> fetch_assoc()) {
-        $ReportResults .= "<tr>" . 
-                          "<td>" . $row["COUNT(D.Doctor_id)"] . "</td>" .
-                          "<td>" . $row["Address"] . "</td>" .
-                          "<td>" . $row["City"] . "</td>" .
-                          "<td>" . $row["State"] . "</td>" .
-                          "<td>" . $row["Speciality"] . "</td>" . "<tr>";
-      }
+  if ($result->num_rows > 0) {
+    while($row = $result-> fetch_assoc()) {
+      $ReportResults .= "<tr>" . 
+                        "<td>" . $row["Name"] . "</td>" .
+                        "<td>" . $row["Phone_number"] . "</td>" .
+                        "<td>" . $row["Address"] . "</td>" . "<tr>";
     }
   }
 }
@@ -164,6 +223,8 @@ if ($result->num_rows > 0) {
   }
   $APtableResult .= "</tr>"; 
 }
+
+$start="2022-01-01T00:00";
 /*
 $sql = "SHOW COLUMNS FROM OFFICE";
 $dbres = mysqli_query($db, $sql);
@@ -211,7 +272,7 @@ while($row = mysqli_fetch_array($dbres))
 
     .navitem {
       display: inline-block;
-      width: 150px;
+      width: 120px;
       height: 30px;
       text-align: center;
       border: gray;
@@ -235,7 +296,6 @@ while($row = mysqli_fetch_array($dbres))
         </a>
 </nav>
 
-
 <!-- End Header -->
 <!-- ======= reports Page ======= -->
 <section id="reportsForm">
@@ -249,23 +309,21 @@ while($row = mysqli_fetch_array($dbres))
 
   <div class="data">
 
-    <div class="input-group">
-      <label for="starting_date">Begin:</label>
-      <input type="datetime-local" id="StartDateid">
-      <br>
-      <label for="ending_date">End:</label>
-      <input type="datetime-local" id="EndDateid">
-    </div>
-
-
-
-
-    <div class="sidebyside">
-      <a class="navitem" id="Presid" href="./reportsForm.php?report=Prescriptions">Prescriptions(draft)</a>
-      <a class="navitem" id="DocSpecialid" href="./reportsForm.php?report=Specialist">Specialist(todo)</a>
-      <a class="navitem" id="Appid" href="./reportsForm.php?report=Appointments">Appointments(draft)</a>
-
-    </div>
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+      <div class="input-group">
+        <label for="starting_date">Begin:</label>
+        <input type="datetime-local" id="StartDateid" name="start">
+        <br>
+        <label for="ending_date">End:</label>
+        <input type="datetime-local" id="EndDateid" name="end">
+      </div>
+      <div class="sidebyside">
+        <button type="submit" class="navitem" id="Presid" name="Prescriptions">Prescriptions</a>
+        <button type="submit" class="navitem" id="DocSpecialid" name="Specialist">Specialist</a>
+        <button type="submit" class="navitem" id="Appid" name="Appointments">Appointments</a>
+        <button type="submit" class="navitem" id="Empid" name="Employees">Employees</a>
+      </div>
+    </form>
 
     <br><br>
 

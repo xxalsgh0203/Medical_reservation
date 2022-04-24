@@ -18,9 +18,10 @@ CREATE TABLE OFFICE (
     PRIMARY KEY  (Office_id)
 );
  
-INSERT INTO OFFICE(Address, City, State, Phone_number, Open_time, Close_time) VALUES
-('123 Main st.', 'Houston', 'Texas', 1234567890, '9:00', '17:00'),
-('456 UH st.', 'Houston', 'Texas', 0987654321, '9:00', '17:00');
+INSERT INTO OFFICE(Office_id, Address, City, State, Phone_number, Open_time, Close_time) VALUES
+(1, '123 Main st.', 'Houston', 'Texas', 1234567890, '9:00', '17:00'),
+(2, '456 UH st.', 'Houston', 'Texas', 0987654321, '9:00', '17:00'),
+(3, '423 UH Avenue.', 'Houston', 'Texas', 0987654440, '9:00', '17:00');
  
 CREATE TABLE ADMIN (
     Admin_id             INT AUTO_INCREMENT,
@@ -189,23 +190,23 @@ END; $$
 DELIMITER ;
 */
  
- DELIMITER $$
+DELIMITER $$
 CREATE TRIGGER SAPPROVE
 BEFORE INSERT
 ON APPOINTMENT
 FOR EACH ROW
 BEGIN
-    IF (NEW.Appointment_status = 1 && (
+    IF  ((
         SELECT COUNT(*)
         FROM PATIENT
         INNER JOIN APPOINTMENT ON PATIENT.Patient_id = APPOINTMENT.Patient_id
         WHERE PATIENT.Patient_id = NEW.Patient_id
-        AND PATIENT.Specialist_approved = FALSE) >=1 ) THEN
+        AND PATIENT.Specialist_approved = 0) >=1 && NEW.Specialist_status = 1 ) THEN
         /*
         SET NEW.Error_code = 1;
         */
-        SIGNAL SQLSTATE '77777'
-        SET MESSAGE_TEXT = 'Warning, You do NOT have Specialist approval!';
+		SIGNAL SQLSTATE '77777'
+		SET MESSAGE_TEXT = 'Warning, You do NOT have Specialist approval!';
     END IF;
 END; $$
 DELIMITER ;

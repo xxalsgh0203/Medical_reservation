@@ -27,6 +27,7 @@ if (isset($_GET['approve_Pid'])) {
     $id = $_GET['approve_Pid'];
   
     mysqli_query($db, "UPDATE PATIENT SET Specialist_Check = 'Approved' WHERE Patient_id = " . $id);
+    mysqli_query($db, "UPDATE PATIENT SET Specialist_approved = 1 WHERE Patient_id = " . $id);
     header('location:SpecialistApproval.php');
   }
   
@@ -34,6 +35,7 @@ if (isset($_GET['approve_Pid'])) {
     $id = $_GET['remove_Pid'];
   
     mysqli_query($db, "UPDATE PATIENT SET Specialist_Check ='NA' WHERE  Patient_id  = " . $id);
+    mysqli_query($db, "UPDATE PATIENT SET Specialist_approved = 0 WHERE Patient_id = " . $id);
     header('location:SpecialistApproval.php');
   }
 

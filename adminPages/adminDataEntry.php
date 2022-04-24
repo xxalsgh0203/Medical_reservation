@@ -80,31 +80,39 @@ table.center {
 </head>
 <body>
 <nav class="floating-menu">
-        <a href="doctorDataEntry.php">
+    <a href="doctorDataEntry.php">
+        <div>
+            Doctor Data Entry Page
+        </div>
+    </a>
+    <br>
+    <a href="adminDataEntry.php">
+        <div>
+            Admin Data Entry Page
+        </div>
+    </a>
+    <br>
+    <a href="patientDataEntry.php">
+        <div>
+            Patient Data Entry Page
+        </div>
+    </a>
+    <br>
+    </a>
+        <a href="officeDataEntry.php">
             <div>
-                Doctor Data Entry Page
+                Office Data Entry
             </div>
         </a>
         <br>
-        <a href="adminDataEntry.php">
-            <div>
-                Admin Data Entry Page
-            </div>
         </a>
-        <br>
-        <a href="patientDataEntry.php">
-            <div>
-                Patient Data Entry Page
-            </div>
-        </a>
-        </a>
-        <br>
         <a href="AdminPage.php">
             <div>
                 Admin Page
             </div>
         </a>
-    </nav>
+</nav>
+
 
 <?php include_once("../php/header.php"); ?>
 
@@ -134,17 +142,18 @@ table.center {
               <tbody>
               </tbody>
             </table>
+            <form action="" method="POST">
             <!--input taken for admin -->
               <h2>  Admin info:  </h2>
               <label for="ADOFFID">Office ID:</label>
               <input type="number" id="ADOFFID" name="ADOFFID">
               <label for="ADname">Name:</label>
-              <input type="text" id="ADname" name="ADname" maxlength="20">
+              <input type="text" id="ADname" name="ADname" maxlength="20" required>
               <label for="ADPWord">create password:</label>
-              <input type="Password" id="ADPWord" name="ADPWord">
+              <input type="Password" id="ADPWord" name="ADPWord" required>
               <br>
               <label for="ADPhoneNum">Phone Number:</label>
-              <input type="text" id="ADPhoneNum" name="ADPhoneNum" maxlength="10"> 
+              <input type="text" id="ADPhoneNum" name="ADPhoneNum" maxlength="10" required> 
               <label for="ADEmail">Email:</label>
               <input type="text" id="ADEmail" name="ADEmail" maxlength="30">   
               <!--Used to separate inputs-->
