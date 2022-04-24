@@ -190,9 +190,9 @@ if ($result->num_rows > 0) {
         </a>
         <br> 
         </a>
-        <a href="SpecialistApproval.php">
+        <a href="officeDataEntry.php">
             <div>
-                Specialist Approval Page
+                Office Data Entry
             </div>
         </a> 
         <br>
@@ -201,6 +201,13 @@ if ($result->num_rows > 0) {
                 ReportsForm Page
             </div>
         </a> 
+        <br>
+        </a>
+        <a href="SpecialistApproval.php">
+            <div>
+                Specialist Approval Page
+            </div>
+        </a>
     </nav>
 
 <?php include_once("../php/header.php"); ?>

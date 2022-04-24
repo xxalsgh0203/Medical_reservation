@@ -122,7 +122,6 @@ table.center {
 </head>
 <body>
 
-
 <nav class="floating-menu">
     <a href="doctorDataEntry.php">
         <div>
@@ -143,6 +142,13 @@ table.center {
     </a>
     <br>
     </a>
+        <a href="officeDataEntry.php">
+            <div>
+                Office Data Entry
+            </div>
+        </a>
+        <br>
+        </a>
         <a href="AdminPage.php">
             <div>
                 Admin Page

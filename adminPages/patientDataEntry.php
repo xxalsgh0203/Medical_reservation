@@ -100,12 +100,20 @@ table.center {
     </a>
     <br>
     </a>
+        <a href="officeDataEntry.php">
+            <div>
+                Office Data Entry
+            </div>
+        </a>
+        <br>
+        </a>
         <a href="AdminPage.php">
             <div>
                 Admin Page
             </div>
         </a>
 </nav>
+
 
 
 <?php include_once("../php/header.php"); ?>

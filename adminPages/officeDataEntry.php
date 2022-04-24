@@ -11,7 +11,7 @@ $result = mysqli_query($db, $sql);
 $OtableResult = "";
 if ($result->num_rows > 0) {
   while($row = $result-> fetch_assoc()) {
-    $OtableResult .= "<tr>" . "<td>" . $row["Office_id"] . "</td><td>" . "<td>" . $row["Address"].  $row["State"] . "</td><td>" . "</td><td>" 
+    $OtableResult .= "<tr>" . "<td>" . $row["Office_id"] . "</td><td>" .  $row["Address"]. "</td><td>" . $row["State"] . "</td><td>" 
                     . $row["City"] . "</td><td>" . $row["Phone_number"] . "</td>" . "</td><td>" . $row["Open_time"] . "</td>" 
                     . "</td><td>" . $row["Close_time"] . "</td>" .
                      "</td><td> <a href='../adminPages/editOffice.php?update_Oid=" . $row["Office_id"]  . "'>edit</a> </td>" 
@@ -30,9 +30,9 @@ if (isset($_POST['SubmitO']))
     $OAddress = $_POST['OAddress'];
     $OCity = $_POST['OCity'];
     $State = $_POST['OState'];
-    $OPhone_num = $_POST['OPhone_number'];
-    $Open_time = $_POST['O_Open_time'];
-    $Close_time = $_POST['O_Close_time'];
+    $OPhone_num = $_POST['OPhone_num'];
+    $Open_time = $_POST['startTime'];
+    $Close_time = $_POST['endTime'];
 
     //Used to insert data into Office
     $db->query("INSERT INTO OFFICE (Address, State, City, Phone_number, Open_time, Close_time) 
@@ -44,8 +44,8 @@ if (isset($_POST['SubmitO']))
 }
 
 //used when the delete hyperlink is pressed
-if (isset($_GET['delete_Pid'])) {
-  $id = $_GET['delete_Pid'];
+if (isset($_GET['delete_Oid'])) {
+  $id = $_GET['delete_Oid'];
 
  mysqli_query($db, "DELETE FROM OFFICE WHERE Office_id = " . $id);
 header('location:officeDataEntry.php');
@@ -101,7 +101,15 @@ table.center {
             Patient Data Entry Page
         </div>
     </a>
+    <br>
     </a>
+        <a href="officeDataEntry.php">
+            <div>
+                Office Data Entry
+            </div>
+        </a>
+        <br>
+        </a>
         <a href="AdminPage.php">
             <div>
                 Admin Page
@@ -128,6 +136,7 @@ table.center {
               <table  class = "center" border="6">
               <thead class="thead">
                 <tr>
+                  <th>Office id</th>
                   <th>Address</th> 
                   <th>State</th>
                   <th>City</th> 
@@ -144,7 +153,7 @@ table.center {
             </table>
               <!-- Input taken for Patient -->
               
-              <h2> Patient info:  </h2>
+              <h2> Office info:  </h2>
               <label for="OAddress">Address:</label>
               <input type="text" id="OAddress" name="OAddress" maxlength="20">
               <label for="OState">State:</label>
@@ -152,13 +161,15 @@ table.center {
               <label for="OCity">City:</label>
               <input type="text" id="OCity" name="OCity">
               <br><!-- still editing right here--------------------------------------->
-              <label for="PPhoneNum">Phone Number:</label>
-              <input type="text" id="PPhoneNum" name="PPhoneNum" maxlength="10"> 
-              <label for="PEmail">Email:</label>
-              <input type="text" id="PEmail" name="PEmail" maxlength="30">   
+              <label for="OPhone_num">Phone Number:</label>
+              <input type="text" id="OPhone_num" name="OPhone_num" maxlength="10">
+              <label for="startTime">Start time: </label>
+              <input type="time" id="startTime" name= "startTime">   
+              <label for="endTime">End time: </label>
+              <input type="time" id="endTime" name= "endTime">  
               <!--Used to separate inputs-->
               <br>
-              <button type="submit" class="btn btn-primary" name="Submit0" id="dataentrysubmitbtn">Submit</button>
+              <button type="submit" class="btn btn-primary" name="SubmitO" id="SubmitO">Submit</button>
               
               </form>
   
