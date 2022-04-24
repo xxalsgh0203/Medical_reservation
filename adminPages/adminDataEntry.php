@@ -66,6 +66,11 @@ header('location:adminDataEntry.php');
 
  
     <style>
+
+#dataEntry{
+        border: 1px solid black;
+      }
+
 table, th, td {
   border: 1px solid black;
   border-collapse: collapse;
@@ -76,6 +81,32 @@ table.center {
   margin-right: auto;
 }
 
+label {
+  color: #B4886B;
+  font-weight: bold;
+  width: 130px;
+  /* float: left; */
+}
+label:after { content: ": " }
+
+
+.ct1{
+  margin-top: 100px;
+}
+
+h1{
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  margin-bottom: 25px;
+}
+
+h2{
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  margin-bottom: 25px;
+}
+
+fieldset{
+  margin-top: 80px;
+}
 </style>
 </head>
 <body>
@@ -145,17 +176,27 @@ table.center {
             <form action="" method="POST">
             <!--input taken for admin -->
               <h2>  Admin info:  </h2>
+              <p>
               <label for="ADOFFID">Office ID:</label>
               <input type="number" id="ADOFFID" name="ADOFFID">
+</p>
+<p>
               <label for="ADname">Name:</label>
               <input type="text" id="ADname" name="ADname" maxlength="20" required>
+</p>
+<p>
               <label for="ADPWord">create password:</label>
               <input type="Password" id="ADPWord" name="ADPWord" required>
+</p>
               <br>
+              <p>
               <label for="ADPhoneNum">Phone Number:</label>
               <input type="text" id="ADPhoneNum" name="ADPhoneNum" maxlength="10" required> 
+</p>
+<p>
               <label for="ADEmail">Email:</label>
-              <input type="text" id="ADEmail" name="ADEmail" maxlength="30">   
+              <input type="text" id="ADEmail" name="ADEmail" maxlength="30">
+</p>   
               <!--Used to separate inputs-->
               <br>
               <button type="submit" class="btn btn-primary" name="SubmitAD">Submit</button>

@@ -67,6 +67,11 @@ header('location:patientDataEntry.php');
 
  
     <style>
+
+#dataEntry{
+        border: 1px solid black;
+      }
+
 table, th, td {
   border: 1px solid black;
   border-collapse: collapse;
@@ -75,6 +80,33 @@ table, th, td {
 table.center {
   margin-left: auto; 
   margin-right: auto;
+}
+
+label {
+  color: #B4886B;
+  font-weight: bold;
+  width: 130px;
+  /* float: left; */
+}
+label:after { content: ": " }
+
+
+.ct1{
+  margin-top: 100px;
+}
+
+h1{
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  margin-bottom: 25px;
+}
+
+h2{
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  margin-bottom: 25px;
+}
+
+fieldset{
+  margin-top: 80px;
 }
 
 </style>
@@ -147,17 +179,28 @@ table.center {
               <!-- Input taken for Patient -->
               
               <h2> Patient info:  </h2>
+              <p>
               <label for="Pname">Name:</label>
               <input type="text" id="Pname" name="Pname" maxlength="20">
+</p>
+<p>
               <label for="PPWord">create password:</label>
               <input type="Password" id="PPWord" name="PPWord">
+</p>
+<p>
               <label for="PAge">Age:</label>
               <input type="number" id="PAge" name="PAge">
+</p>
+
               <br>
+              <p>
               <label for="PPhoneNum">Phone Number:</label>
               <input type="text" id="PPhoneNum" name="PPhoneNum" maxlength="10"> 
+</p>
+<p>
               <label for="PEmail">Email:</label>
               <input type="text" id="PEmail" name="PEmail" maxlength="30">   
+</p>
               <!--Used to separate inputs-->
               <br>
               <button type="submit" class="btn btn-primary" name="SubmitP" id="dataentrysubmitbtn">Submit</button>

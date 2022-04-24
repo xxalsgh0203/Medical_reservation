@@ -70,6 +70,11 @@ header('location:officeDataEntry.php');
 
  
     <style>
+
+#dataEntry{
+        border: 1px solid black;
+      }
+
 table, th, td {
   border: 1px solid black;
   border-collapse: collapse;
@@ -78,6 +83,34 @@ table, th, td {
 table.center {
   margin-left: auto; 
   margin-right: auto;
+}
+
+label {
+  color: #B4886B;
+  font-weight: bold;
+  width: 130px;
+  /* float: left; */
+}
+label:after { content: ": " }
+
+
+.ct1{
+  margin-top: 100px;
+}
+
+h1{
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  margin-bottom: 25px;
+}
+
+h2{
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  margin-bottom: 25px;
+}
+
+fieldset{
+  margin-top: 80px;
+}
 }
 
 </style>
@@ -154,19 +187,31 @@ table.center {
               <!-- Input taken for Patient -->
               
               <h2> Office info:  </h2>
+              <p>
               <label for="OAddress">Address:</label>
               <input type="text" id="OAddress" name="OAddress" maxlength="20" required>
+</p>
+<p>
               <label for="OState">State:</label>
               <input type="text" id="OState" name="OState" maxlength="15" required>
+</p>
+<p>
               <label for="OCity">City:</label>
               <input type="text" id="OCity" name="OCity" maxlength="15" required>
+</p>
               <br><!-- still editing right here--------------------------------------->
+              <p>
               <label for="OPhone_num">Phone Number:</label>
               <input type="text" id="OPhone_num" name="OPhone_num" maxlength="10" required>
+</p>
+<p>
               <label for="startTime">Start time: </label>
               <input type="time" id="startTime" name= "startTime" required>   
+</p>
+<p>
               <label for="endTime">End time: </label>
               <input type="time" id="endTime" name= "endTime" required>  
+</p>
               <!--Used to separate inputs-->
               <br>
               <button type="submit" class="btn btn-primary" name="SubmitO" id="SubmitO">Submit</button>
