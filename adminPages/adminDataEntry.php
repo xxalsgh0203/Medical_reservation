@@ -31,8 +31,10 @@ if (isset($_POST['SubmitAD']))
     $ADEmail = $_POST['ADEmail'];
 
     //Used to insert data into admin
+    try {
     $db->query("INSERT INTO ADMIN (Office_id,  Name, Password, Phone_number, Email) 
-                    VALUES ('$ADOFFID', '$ADName', '$ADPWord', '$ADPhoneNum', '$ADEmail')")  or die($db->error); 
+                    VALUES ('$ADOFFID', '$ADName', '$ADPWord', '$ADPhoneNum', '$ADEmail')")  or die($db->error);
+    } catch (\Throwable $th) {}
 
    
     header("location:adminDataEntry.php");
@@ -43,7 +45,9 @@ if (isset($_POST['SubmitAD']))
 if (isset($_GET['delete_ADid'])) {
   $id = $_GET['delete_ADid'];
 
+  try {
  mysqli_query($db, "DELETE FROM ADMIN WHERE Admin_id = " . $id);
+  } catch (\Throwable $th) {}
 header('location:adminDataEntry.php');
 
 }

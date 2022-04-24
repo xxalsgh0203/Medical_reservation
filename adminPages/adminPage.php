@@ -80,14 +80,18 @@ if ($result->num_rows > 0) {
 if (isset($_GET['approve_id'])) {
     $id = $_GET['approve_id'];
   
+    try {
     mysqli_query($db, "UPDATE APPOINTMENT SET Appointment_status='approved' WHERE Appointment_id = " . $id);
+  } catch (\Throwable $th) {}
     header('location: adminPage.php');
   }
   
   if (isset($_GET['reject_id'])) {
     $id = $_GET['reject_id'];
   
+    try {
     mysqli_query($db, "UPDATE APPOINTMENT SET Appointment_status='rejected' WHERE Appointment_id = " . $id);
+  } catch (\Throwable $th) {}
     header('location: adminPage.php');
   }
 

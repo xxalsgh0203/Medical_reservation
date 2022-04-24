@@ -24,7 +24,7 @@ if (isset($_SESSION["href"])) {
           } else {
             $typ = $_SESSION["type"];
             $name = $_SESSION["username"];
-            echo '<li class="nav-item"> Welcome! ' . $typ . ' ' . $name . '<li>';
+            echo '<li class="nav-item nav-link" style="color: #fff;"> Welcome! ' . $typ . ' ' . $name . '<li>';
             echo '<li class="nav-item"><a class="nav-link" href="//localhost/cosc3380/auth/logout.php" id="logout">Log out</a></li>';
           }
         ?>

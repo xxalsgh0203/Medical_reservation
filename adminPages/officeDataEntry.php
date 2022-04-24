@@ -35,8 +35,10 @@ if (isset($_POST['SubmitO']))
     $Close_time = $_POST['endTime'];
 
     //Used to insert data into Office
+    try {
     $db->query("INSERT INTO OFFICE (Address, State, City, Phone_number, Open_time, Close_time) 
-                    VALUES ('$OAddress', '$State', '$OCity',  ' $OPhone_num', ' $Open_time', ' $Close_time')")  or die($db->error); 
+                    VALUES ('$OAddress', '$State', '$OCity',  ' $OPhone_num', ' $Open_time', ' $Close_time')")  or die($db->error);
+    } catch (\Throwable $th) {}
 
    
     header("location:officeDataEntry.php");
@@ -46,8 +48,9 @@ if (isset($_POST['SubmitO']))
 //used when the delete hyperlink is pressed
 if (isset($_GET['delete_Oid'])) {
   $id = $_GET['delete_Oid'];
-
+  try {
  mysqli_query($db, "DELETE FROM OFFICE WHERE Office_id = " . $id);
+} catch (\Throwable $th) {}
 header('location:officeDataEntry.php');
 
 }

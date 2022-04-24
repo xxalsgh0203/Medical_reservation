@@ -16,8 +16,10 @@ if(count($_POST) > 0)
       $PEmail = $_POST['PEmail'];
       $PAge = $_POST['PAge'];
 
+    try {
     mysqli_query($db, "UPDATE PATIENT SET Name='$PID' , Password='$PPWord' , Phone_number = '$PPhoneNum', Email = '$PEmail',
                  Age = '$PAge' WHERE Patient_id= '$id'");
+    } catch (\Throwable $th) {}
 }
 $id =$_GET['update_Pid'];
 $result = mysqli_query($db, "SELECT * FROM PATIENT WHERE Patient_id = '$id'");

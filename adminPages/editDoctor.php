@@ -30,8 +30,10 @@ if(count($_POST) > 0)
     $DPassword = $_POST['DPWord'];
     $DPhoneNum =$_POST['DPhoneNum'];
 
+    try {
     mysqli_query($db, "UPDATE DOCTOR SET Office_id= '$DOffice_id' ,Name='$DName' 
     , Speciality='$SpecialistType' , Phone_number = '$DPhoneNum', Password = '$DPassword'  WHERE Doctor_id= '$id'");
+    } catch (\Throwable $th) {}
 }
 
 //gets the row of items to modify

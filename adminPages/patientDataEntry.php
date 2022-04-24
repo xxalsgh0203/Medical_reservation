@@ -32,8 +32,10 @@ if (isset($_POST['SubmitP']))
     $PAge = $_POST['PAge'];
 
     //Used to insert data into admin
-    $db->query("INSERT INTO PATIENT (Name, Password, Phone_number, Email, Age) 
-                    VALUES ('$PName', '$PPWord', '$PPhoneNum', '$PEmail', '$PAge')")  or die($db->error); 
+    try {
+      $db->query("INSERT INTO PATIENT (Name, Password, Phone_number, Email, Age) 
+                      VALUES ('$PName', '$PPWord', '$PPhoneNum', '$PEmail', '$PAge')")  or die($db->error); 
+    } catch (\Throwable $th) {}
 
    
     header("location:patientDataEntry.php");
@@ -44,12 +46,14 @@ if (isset($_POST['SubmitP']))
 if (isset($_GET['delete_Pid'])) {
   $id = $_GET['delete_Pid'];
 
+  try {
  mysqli_query($db, "DELETE FROM PATIENT WHERE Patient_id = " . $id);
+} catch (\Throwable $th) {}
 header('location:patientDataEntry.php');
 
 }
 
-?> 
+?>
 
 <!doctype html>
 <html lang="en">
@@ -65,160 +69,164 @@ header('location:patientDataEntry.php');
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
- 
-    <style>
 
-#dataEntry{
-        border: 1px solid black;
-      }
+  <style>
+    #dataEntry {
+      border: 1px solid black;
+    }
 
-table, th, td {
-  border: 1px solid black;
-  border-collapse: collapse;
-}
+    table,
+    th,
+    td {
+      border: 1px solid black;
+      border-collapse: collapse;
+    }
 
-table.center {
-  margin-left: auto; 
-  margin-right: auto;
-}
+    table.center {
+      margin-left: auto;
+      margin-right: auto;
+    }
 
-label {
-  color: #B4886B;
-  font-weight: bold;
-  width: 130px;
-  /* float: left; */
-}
-label:after { content: ": " }
+    label {
+      color: #B4886B;
+      font-weight: bold;
+      width: 130px;
+      /* float: left; */
+    }
+
+    label:after {
+      content: ": "
+    }
 
 
-.ct1{
-  margin-top: 100px;
-}
+    .ct1 {
+      margin-top: 100px;
+    }
 
-h1{
-  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  margin-bottom: 25px;
-}
+    h1 {
+      font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+      margin-bottom: 25px;
+    }
 
-h2{
-  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  margin-bottom: 25px;
-}
+    h2 {
+      font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+      margin-bottom: 25px;
+    }
 
-fieldset{
-  margin-top: 80px;
-}
-
-</style>
+    fieldset {
+      margin-top: 80px;
+    }
+  </style>
 </head>
+
 <body>
-<nav class="floating-menu">
+  <nav class="floating-menu">
     <a href="doctorDataEntry.php">
-        <div>
-            Doctor Data Entry Page
-        </div>
+      <div>
+        Doctor Data Entry Page
+      </div>
     </a>
     <br>
     <a href="adminDataEntry.php">
-        <div>
-            Admin Data Entry Page
-        </div>
+      <div>
+        Admin Data Entry Page
+      </div>
     </a>
     <br>
     <a href="patientDataEntry.php">
-        <div>
-            Patient Data Entry Page
-        </div>
+      <div>
+        Patient Data Entry Page
+      </div>
     </a>
     <br>
     </a>
-        <a href="officeDataEntry.php">
-            <div>
-                Office Data Entry
-            </div>
-        </a>
-        <br>
-        </a>
-        <a href="AdminPage.php">
-            <div>
-                Admin Page
-            </div>
-        </a>
-</nav>
-<?php include_once("../php/header.php"); ?>
+    <a href="officeDataEntry.php">
+      <div>
+        Office Data Entry
+      </div>
+    </a>
+    <br>
+    </a>
+    <a href="AdminPage.php">
+      <div>
+        Admin Page
+      </div>
+    </a>
+  </nav>
+  <?php include_once("../php/header.php"); ?>
 
   <!-- Header of the page-->
   <section>
     <br><br>
     <h1 class="text-center" id="data-entry-header">Data Entry Form</h1>
   </section>
-  
-
-<!-- ======= Doctor Section ======= -->
-
-<section id="dataEntry">
-
-<form action="" method="POST">
-              <h1>Patient</h1>
-              <table  class = "center" border="6">
-              <thead class="thead">
-                <tr>
-                  <th>Name</th>
-                  <th>Phone Number</th>
-                  <th>Email</th>
-                  <th>Age</th>
-                  <th>Medical Allergy</th>
-                  <th>edit</th>
-                  <th>delete</th>
-                </tr>
-                <?php echo $PtableResult;?>
-              </thead>
-              <tbody>
-              </tbody>
-            </table>
-              <!-- Input taken for Patient -->
-              <fieldset id="ct1">
-              <h2> Patient info:  </h2>
-              <p>
-              <label for="Pname">Name:</label>
-              <input type="text" id="Pname" name="Pname" maxlength="20">
-</p>
-<p>
-              <label for="PPWord">create password:</label>
-              <input type="Password" id="PPWord" name="PPWord">
-</p>
-<p>
-              <label for="PAge">Age:</label>
-              <input type="number" id="PAge" name="PAge">
-</p>
-
-              <br>
-              <p>
-              <label for="PPhoneNum">Phone Number:</label>
-              <input type="text" id="PPhoneNum" name="PPhoneNum" maxlength="10"> 
-</p>
-<p>
-              <label for="PEmail">Email:</label>
-              <input type="text" id="PEmail" name="PEmail" maxlength="30">   
-</p>
-              <!--Used to separate inputs-->
-              <br>
-              <button type="submit" class="btn btn-primary" name="SubmitP" id="dataentrysubmitbtn">Submit</button>
-              <fieldset>
-              </form>
-  
-</section>
 
 
+  <!-- ======= Doctor Section ======= -->
 
-<!-- End Of Data Entry -->
+  <section id="dataEntry">
+
+    <form action="" method="POST">
+      <h1>Patient</h1>
+      <table class="center" border="6">
+        <thead class="thead">
+          <tr>
+            <th>Name</th>
+            <th>Phone Number</th>
+            <th>Email</th>
+            <th>Age</th>
+            <th>Medical Allergy</th>
+            <th>edit</th>
+            <th>delete</th>
+          </tr>
+          <?php echo $PtableResult;?>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+      <!-- Input taken for Patient -->
+      <fieldset id="ct1">
+        <h2> Patient info: </h2>
+        <p>
+          <label for="Pname">Name:</label>
+          <input type="text" id="Pname" name="Pname" maxlength="20">
+        </p>
+        <p>
+          <label for="PPWord">create password:</label>
+          <input type="Password" id="PPWord" name="PPWord">
+        </p>
+        <p>
+          <label for="PAge">Age:</label>
+          <input type="number" id="PAge" name="PAge">
+        </p>
+
+        <br>
+        <p>
+          <label for="PPhoneNum">Phone Number:</label>
+          <input type="text" id="PPhoneNum" name="PPhoneNum" maxlength="10">
+        </p>
+        <p>
+          <label for="PEmail">Email:</label>
+          <input type="text" id="PEmail" name="PEmail" maxlength="30">
+        </p>
+        <!--Used to separate inputs-->
+        <br>
+        <button type="submit" class="btn btn-primary" name="SubmitP" id="dataentrysubmitbtn">Submit</button>
+        <fieldset>
+    </form>
+
+  </section>
 
 
 
-<!-- Footer-->
+  <!-- End Of Data Entry -->
 
 
-<script src="main.js"></script>
+
+  <!-- Footer-->
+
+
+  <script src="main.js"></script>
 </body>
 
 </html>

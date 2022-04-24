@@ -84,7 +84,9 @@ if ($result->num_rows > 0) {
 if (isset($_GET['delete_id'])) {
 	$id = $_GET['delete_id'];
 
+  try {
 	mysqli_query($db, "DELETE FROM APPOINTMENT WHERE Appointment_id = " . $id);
+} catch (\Throwable $th) {}
   header('location: patientPage.php');
 }
 ?>

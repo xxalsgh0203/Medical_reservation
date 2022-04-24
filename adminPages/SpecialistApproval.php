@@ -25,17 +25,19 @@ if ($result->num_rows > 0) {
 
 if (isset($_GET['approve_Pid'])) {
     $id = $_GET['approve_Pid'];
-  
+    try {
     mysqli_query($db, "UPDATE PATIENT SET Specialist_Check = 'Approved' WHERE Patient_id = " . $id);
     mysqli_query($db, "UPDATE PATIENT SET Specialist_approved = 1 WHERE Patient_id = " . $id);
+  } catch (\Throwable $th) {}
     header('location:SpecialistApproval.php');
   }
   
   if (isset($_GET['remove_Pid'])) {
     $id = $_GET['remove_Pid'];
-  
+    try {
     mysqli_query($db, "UPDATE PATIENT SET Specialist_Check ='NA' WHERE  Patient_id  = " . $id);
     mysqli_query($db, "UPDATE PATIENT SET Specialist_approved = 0 WHERE Patient_id = " . $id);
+  } catch (\Throwable $th) {}
     header('location:SpecialistApproval.php');
   }
 

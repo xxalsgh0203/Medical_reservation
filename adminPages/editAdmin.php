@@ -28,8 +28,10 @@ if(count($_POST) > 0)
   $ADPhoneNum = $_POST['ADPhoneNum'];
   $ADEmail = $_POST['ADEmail'];
   $id =$_GET['update_ADid'];
+  try {
     mysqli_query($db, "UPDATE ADMIN SET Office_id='$ADOFFID' , Name='$ADName' , Password = '$ADPWord', Phone_number = '$ADPhoneNum',
                  Email = '$ADEmail' WHERE Admin_id= '$id'");
+  } catch (\Throwable $th) {}
 }
 $id =$_GET['update_ADid'];
 $result = mysqli_query($db, "SELECT * FROM ADMIN WHERE Admin_id = '$id'");

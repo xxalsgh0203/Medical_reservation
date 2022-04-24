@@ -13,9 +13,10 @@ if(count($_POST) > 0)
     $Open_time = $_POST['startTime'];
     $Close_time = $_POST['endTime'];
 
-
+    try {
     mysqli_query($db, "UPDATE OFFICE SET Address= '$OAddress' , State='$State' , Phone_number = '$OPhone_num', City = '$OCity',
                  Open_time = '$Open_time', Close_time ='$Close_time' WHERE Office_id= '$id'");
+    } catch (\Throwable $th) {}
 
 
 

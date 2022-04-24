@@ -22,7 +22,9 @@ if ($result->num_rows > 0) {
 if (isset($_GET['delete_Did'])) {
   $id = $_GET['delete_Did'];
 
+  try {
  mysqli_query($db, "DELETE FROM DOCTOR WHERE Doctor_id = " . $id);
+} catch (\Throwable $th) {}
 header('location:doctorDataEntry.php');
 
 }
@@ -59,8 +61,9 @@ if (isset($_POST['USubmitD']))
   $dname = $_POST['Dname'];
   $Speciality = $_POST[''];
 
+  try {
   $db->query("UPDATE DOCTOR SET Office_id='$Off_id',Name='$dname', Speciality='$Speciality' , Phone_number = '$PhoneNum' WHERE Doctor_id=$id");
-
+} catch (\Throwable $th) {}
 
 
 header('location:doctorDataEntry.php');
@@ -80,8 +83,10 @@ if (isset($_POST['SubmitD']))
     $DPhoneNum = $_POST['DPhoneNum'];
 
     //Used to insert data into doctor
+    try {} {
     $db->query("INSERT INTO DOCTOR (Office_id,  Name, Speciality, Password, Phone_number) 
-                    VALUES ('$OFFID', '$DName', '$SPType', '$DPWord', '$DPhoneNum')")  or die($db->error); 
+                    VALUES ('$OFFID', '$DName', '$SPType', '$DPWord', '$DPhoneNum')")  or die($db->error);
+    } catch (\Throwable $th) {}
 
   
     header("location:doctorDataEntry.php");
