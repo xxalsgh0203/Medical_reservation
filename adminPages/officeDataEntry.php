@@ -11,7 +11,7 @@ $result = mysqli_query($db, $sql);
 $OtableResult = "";
 if ($result->num_rows > 0) {
   while($row = $result-> fetch_assoc()) {
-    $OtableResult .= "<tr>" . "<td>" . $row["Office_number"] . "</td><td>" .  $row["Address"]. "</td><td>" . $row["State"] . "</td><td>" 
+    $OtableResult .= "<tr>" . "<td>" . $row["Office_id"] . "</td><td>" .  $row["Address"]. "</td><td>" . $row["State"] . "</td><td>" 
                     . $row["City"] . "</td><td>" . $row["Phone_number"] . "</td>" . "</td><td>" . $row["Open_time"] . "</td>" 
                     . "</td><td>" . $row["Close_time"] . "</td>" .
                      "</td><td> <a href='../adminPages/editOffice.php?update_Oid=" . $row["Office_id"]  . "'>edit</a> </td>" 
@@ -36,7 +36,7 @@ if (isset($_POST['SubmitO']))
 
     //Used to insert data into Office
     $db->query("INSERT INTO OFFICE (Address, State, City, Phone_number, Open_time, Close_time) 
-                    VALUES ('$OAddress', '$State', '$OCity', ' $OPhone_num', ' $Open_time', ' $Close_time')")  or die($db->error); 
+                    VALUES ('$OAddress', '$State', '$OCity',  ' $OPhone_num', ' $Open_time', ' $Close_time')")  or die($db->error); 
 
    
     header("location:officeDataEntry.php");
@@ -136,7 +136,7 @@ table.center {
               <table  class = "center" border="6">
               <thead class="thead">
                 <tr>
-                  <th>Office number</th>
+                  <th>Office id</th>
                   <th>Address</th> 
                   <th>State</th>
                   <th>City</th> 
@@ -162,7 +162,7 @@ table.center {
               <input type="text" id="OCity" name="OCity" maxlength="15" required>
               <br><!-- still editing right here--------------------------------------->
               <label for="OPhone_num">Phone Number:</label>
-              <input type="text" id="OPhone_num" name="OPhone_num"  maxlength="11" required>
+              <input type="text" id="OPhone_num" name="OPhone_num" maxlength="10" required>
               <label for="startTime">Start time: </label>
               <input type="time" id="startTime" name= "startTime" required>   
               <label for="endTime">End time: </label>

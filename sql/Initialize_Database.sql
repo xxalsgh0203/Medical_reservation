@@ -9,7 +9,6 @@ USE medical_clinic;
  
 CREATE TABLE OFFICE (
     Office_id    INT AUTO_INCREMENT,
-	Office_number    INT UNIQUE,
     Address      VARCHAR(30),
     City         VARCHAR(15),
     State        VARCHAR(15),
@@ -19,7 +18,7 @@ CREATE TABLE OFFICE (
     PRIMARY KEY  (Office_id)
 );
  
-INSERT INTO OFFICE(Office_number, Address, City, State, Phone_number, Open_time, Close_time) VALUES
+INSERT INTO OFFICE(Office_id, Address, City, State, Phone_number, Open_time, Close_time) VALUES
 (1, '123 Main st.', 'Houston', 'Texas', 1234567890, '9:00', '17:00'),
 (2, '456 UH st.', 'Houston', 'Texas', 0987654321, '9:00', '17:00'),
 (3, '423 UH Avenue.', 'Houston', 'Texas', 0987654440, '9:00', '17:00');

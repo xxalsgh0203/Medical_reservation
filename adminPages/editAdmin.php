@@ -120,7 +120,7 @@ $row = mysqli_fetch_array($result);
               <table  class = "center" border="6">
               <thead class="thead">
                 <tr>
-                  <th>Office number</th>
+                  <th>Office id</th>
                   <th>Address</th> 
                   <th>State</th>
                   <th>City</th> 
