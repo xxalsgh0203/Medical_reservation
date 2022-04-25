@@ -3,7 +3,7 @@ $servername = "34.133.173.227";
 $username = "root";
 $password = "rootPassword";
 $database = "medical_clinic";
-// $baseURL = "//localhost/COSC3380/";
+//  $baseURL = "//localhost/COSC3380/";
 $baseURL = "//medical-service.infinityfreeapp.com/";
 
 // Create connection

@@ -8,5 +8,6 @@
     session_destroy();
     session_unset();
 
-    header("Location: medical-service.infinityfreeapp.com/index.php");
+    header("Location: //medical-service.infinityfreeapp.com/index.php");
+    // header("Location: medical-service.infinityfreeapp.com/index.php");
 ?>
