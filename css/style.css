@@ -574,7 +574,7 @@
   position: relative;
   margin-top: 100px;
   height: 130%;
-  text-align: center;
+  /* text-align: center; */
 }
 
 .ra {
@@ -735,8 +735,17 @@ div.horizontalgap {
 }
 
 .input-group{
-  vertical-align: middle;
+  /* vertical-align: middle; */
+  position: relative;
+  color: #B4886B;
+  font-weight: bold;
+  width: 130px;
+  left:-10%;
+  border:#11dbcf 1px;
+  font-family: "Lucida Console", "Courier New", monospace;
 }
+
+input-group:after { content: ": " }
 
 .foating-menu a{
   margin: 50px;

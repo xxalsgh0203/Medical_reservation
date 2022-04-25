@@ -264,6 +264,8 @@ while($row = mysqli_fetch_array($dbres))
     }
 
     .sidebyside {
+      left:-21.5%;
+      width: 900px;
       padding: 10px;
       position: relative;
       background-color: #fff;
@@ -272,15 +274,35 @@ while($row = mysqli_fetch_array($dbres))
 
     .navitem {
       display: inline-block;
-      width: 120px;
-      height: 30px;
+      width: 200px;
+      height: 70px;
       text-align: center;
-      border: gray;
-      background-color: #E8562A;
-      color: #fff;
+      border: 1px red;
+      background-color: #34568B;
+      color: white;
       cursor: pointer;
       font-weight: bold;
+      font-family: "Lucida Console", "Courier New", monospace;
     }
+
+    .navitem :hover {
+      color: #95a5a6;
+    }
+
+    .ct2{
+      vertical-align: middle;
+    }
+
+    fieldset{
+      vertical-align: middle;
+    }
+
+    table{
+      left: 4%;
+      width: 1200px; !important
+    }
+
+
   </style>
 
 </head>
@@ -311,23 +333,31 @@ while($row = mysqli_fetch_array($dbres))
 
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
       <div class="input-group">
+        <fieldset>
+        <p class="ct2">
         <label for="starting_date">Begin:</label>
         <input type="datetime-local" id="StartDateid" name="start">
+        </p>
         <br>
+        <p class = "ct2">
         <label for="ending_date">End:</label>
         <input type="datetime-local" id="EndDateid" name="end">
+        </p>
+        </fieldset>
       </div>
       <div class="sidebyside">
+        <fieldset>
         <button type="submit" class="navitem" id="Presid" name="Prescriptions">Prescriptions</a>
         <button type="submit" class="navitem" id="DocSpecialid" name="Specialist">Specialist</a>
         <button type="submit" class="navitem" id="Appid" name="Appointments">Appointments</a>
         <button type="submit" class="navitem" id="Empid" name="Employees">Employees</a>
+        <fieldset>
       </div>
     </form>
 
     <br><br>
 
-    <table border="2" class="table">
+    <table class="table">
       <?php echo $ReportResults;?>
     </table>
 
