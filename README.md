@@ -30,6 +30,6 @@ Next there is the Report Form page. This page contains all of the data reports f
 
 
 ## Installing/running the project
-To view the hosted project: go here: ___.
+To view the hosted project: go here: www.medical-service.infinityfreeapp.com
 
 To run the project locally (with XAMPP): first download all the files into the C:\xampp\htdocs folder. Then open the XAMPP controll panel, start the Apache server, and open 'http://localhost/cosc3380/' in a web browser.
