@@ -8,5 +8,5 @@
     session_destroy();
     session_unset();
 
-    header("Location: //localhost/cosc3380/index.php");
+    header("Location: medical-clinic.epizy.com/index.php");
 ?>

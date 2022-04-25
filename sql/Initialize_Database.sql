@@ -1,10 +1,6 @@
 DROP DATABASE IF EXISTS medical_clinic;
 CREATE DATABASE medical_clinic;
-/*
-SET GLOBAL log_bin_trust_function_creators = 1;
-testing testing testing
-*/
- 
+
 USE medical_clinic;
  
 CREATE TABLE OFFICE (
@@ -19,9 +15,9 @@ CREATE TABLE OFFICE (
 );
  
 INSERT INTO OFFICE(Office_id, Address, City, State, Phone_number, Open_time, Close_time) VALUES
-(1, '123 Main st.', 'Houston', 'Texas', 1234567890, '9:00', '17:00'),
-(2, '456 UH st.', 'Houston', 'Texas', 0987654321, '9:00', '17:00'),
-(3, '423 UH Avenue.', 'Houston', 'Texas', 0987654440, '9:00', '17:00');
+(1, '123 Main st.', 'Houston', 'Texas', 3867295732, '9:00', '17:00'),
+(2, '456 UH st.', 'Houston', 'Texas', 1025968745, '9:00', '17:00'),
+(3, '423 UH Avenue.', 'Austin', 'Texas', 4658972048, '9:00', '17:00');
  
 CREATE TABLE ADMIN (
     Admin_id             INT AUTO_INCREMENT,
@@ -36,10 +32,14 @@ CREATE TABLE ADMIN (
 );
  
 INSERT INTO ADMIN(Office_id, Name, Password, Phone_number, Email) VALUES
-(1, "Alice", "Password", 1111111111, "alice@yahoo.com"),
-(1, "Bob", "Password", 2222222222, "bob@ygoogle.com"),
-(1, "Charlie", "Password", 3333333333, "charlie@uh.edu"),
-(1, "Admin", "Password", 4444444444, "admin@medical.com");
+(1, "Alice", "Password", 3053024627, "alice@yahoo.com"),
+(1, "Bob", "Password", 4169462054, "bob@ygoogle.com"),
+(1, "Charlie", "Password", 4984514871, "charlie@uh.edu"),
+(2, "Admin", "Password", 8481610612, "admin@medical.com"),
+(2, "Marianne", "Password", 3404540459, "Marianne@yahoo.com"),
+(3, "Lindsey", "Password", 4221010530, "Lindsey@ygoogle.com"),
+(3, "Tiffany", "Password", 2344703282, "Tiffany@uh.edu"),
+(3, "Bridget", "Password", 1554544861, "Bridget@medical.com");
  
 CREATE TABLE DOCTOR (
     Doctor_id      INT AUTO_INCREMENT,
@@ -53,11 +53,32 @@ CREATE TABLE DOCTOR (
 );
  
 INSERT INTO DOCTOR(Office_id, Speciality, Name, Password, Phone_number) VALUES
-(1, null, "Greg", "Password", 1111111111),
-(1, "Anesthesiology", "Miranda", "Password", 2222222222),
-(1, "Oncology", "Noah", "Password", 3333333333),
-(2, null, "Marshall", "Password", 4444444444),
-(2, null, "Doctor", "Password", 5555555555);
+(1, null, "Greg", "Password", 708931280),
+(1, null, "Doctor", "Password", 9834553805),
+(2, null, "Samual", "Password", 8737868610),
+(1, "Anesthesiology", "Lucy", "Password", 6167134561),
+(1, "Anesthesiology", "Faye", "Password", 5182329656),
+(1, "Anesthesiology", "Jesus", "Password", 5334299670),
+(2, "Anesthesiology", "Darrin", "Password", 2669082899),
+(2, "Anesthesiology", "Debra", "Password", 1720352865),
+(2, "Anesthesiology", "Geraldine", "Password", 0097366468),
+(2, "Anesthesiology", "Cody", "Password", 3390998394),
+(3, "Anesthesiology", "Carolyn", "Password", 6032973490),
+(1, "Eye Doctor", "Nettie", "Password", 2603591341), 
+(2, "Eye Doctor", "Ian", "Password", 4469566959), 
+(3, "Eye Doctor", "Malcolm", "Password", 4659913080), 
+(2, "Orthodontist", "Kanet", "Password", 2935098364), 
+(2, "Orthodontist", "Lynne", "Password", 1795469519),
+(1, "Dermatologist", "Raymond", "Password", 5009979186), 
+(2, "Dermatologist", "Taylor", "Password", 1719474661), 
+(2, "Gynecologist", "Jodi", "Password", 4935152982), 
+(2, "Cardiologist", "Garret", "Password", 2601269476), 
+(1, "Oncology", "Randolph", "Password", 5317207202), 
+(2, "Oncology", "Elbert", "Password", 0724180264), 
+(2, "Oncology", "Preston", "Password", 1066260096), 
+(3, "Oncology", "Lynn", "Password", 2589763169), 
+(1, "Gastroenterologist", "Claudia", "Password", 1832256952);
+
  
 CREATE TABLE WORK_INFO (
     Doctor_id  INT NOT NULL,
@@ -109,8 +130,7 @@ CREATE TABLE APPOINTMENT (
     Appointment_status    VARCHAR(12) NOT NULL,
     Date                  DATE NOT NULL,
     Slotted_time          TIME NOT NULL,
-    Specialist_status     BOOLEAN NOT NULL, /*If it is a specialist appointment */
-    /*Error_code            INT DEFAULT 0,*/
+    Specialist_status     BOOLEAN NOT NULL,
     PRIMARY KEY (Appointment_id),
     FOREIGN KEY (Patient_id) REFERENCES PATIENT(Patient_id) ON DELETE CASCADE,
     FOREIGN KEY (Doctor_id) REFERENCES DOCTOR(Doctor_id) ON DELETE CASCADE,
@@ -129,67 +149,6 @@ INSERT INTO APPOINTMENT(Patient_id, Doctor_id, Office_id, Appointment_status, Da
 (5, 5, 2, "pending", "2022-04-20", "2:00", 0),
 (5, 1, 1, "approved", "2022-04-25", "12:00", 0);
  
-/*
-DELIMITER $$
-CREATE TRIGGER SAPPROVE
-AFTER INSERT
-ON APPOINTMENT
-FOR EACH ROW
-BEGIN
-    IF EXISTS (
-        SELECT *
-        FROM PATIENT
-        INNER JOIN APPOINTMENT ON PATIENT.Patient_id = APPOINTMENT.Patient_id
-        WHERE PATIENT.Specialist_approved = FALSE
-        AND APPOINTMENT.Specialist_status = TRUE
-    )
-    THEN (
-        PRINT 'You do NOT have Approval'
-        Declare @Msg varchar(8000)
-        set @Msg = 'MESSAGE'
-        raiserror(50005, @Msg)
-        DELETE NEW
-    )
-    END IF;
-END;$$
-DELIMITER ;
-*/
- 
- /*
-DELIMITER $$
-CREATE TRIGGER SAPPROVE
-BEFORE INSERT
-ON APPOINTMENT
-FOR EACH ROW
-BEGIN
-    IF (
-        SELECT COUNT(*)
-        FROM PATIENT
-        INNER JOIN APPOINTMENT ON PATIENT.Patient_id = APPOINTMENT.Patient_id
-        WHERE PATIENT.Patient_id = NEW.Patient_id
-        AND PATIENT.Specialist_approved = FALSE
-        AND APPOINTMENT.Specialist_status = TRUE
-        ) >= 1 THEN
-        /*
-        SET NEW.Error_code = 1;
-        */
-        /*
-        SIGNAL SQLSTATE '77777'
-        SET MESSAGE_TEXT = 'Warning, You do NOT have Specialist approval!';
-       
---         DELETE FROM APPOINTMENT
---             WHERE Appointment_id = NEW.Appointment_id;
---             -- SET NEW.Appointment_status = "failed"
-        /*
-        NEW.Specialist_status = TRUE) THEN
-            SET NEW.Appointment_status = "failed";
-        */
-/*
-    END IF;
-END; $$
-DELIMITER ;
-*/
- 
 DELIMITER $$
 CREATE TRIGGER SAPPROVE
 BEFORE INSERT
@@ -202,36 +161,11 @@ BEGIN
         INNER JOIN APPOINTMENT ON PATIENT.Patient_id = APPOINTMENT.Patient_id
         WHERE PATIENT.Patient_id = NEW.Patient_id
         AND PATIENT.Specialist_approved = 0) >=1 && NEW.Specialist_status = 1 ) THEN
-        /*
-        SET NEW.Error_code = 1;
-        */
 		SIGNAL SQLSTATE '77777'
 		SET MESSAGE_TEXT = 'Warning, You do NOT have Specialist approval!';
     END IF;
 END; $$
 DELIMITER ;
- 
-
-/*
-DELIMITER $$
-CREATE TRIGGER CONFLICT
-AFTER INSERT
-ON APPOINTMENT
-FOR EACH ROW
-BEGIN
-    IF EXISTS (
-        SELECT *
-        FROM APPOINTMENTS
-        WHERE Doctor_id = NEW.Doctor_id
-        AND Slotted_time = NEW.Slotted_time
-    )
-    THEN
-        PRINT 'Time is Taken'
-        DELETE NEW
-    END IF;
-END;$$
-DELIMITER ;
-*/
  
 DELIMITER $$
 CREATE TRIGGER CONFLICT
@@ -246,15 +180,8 @@ BEGIN
         AND Slotted_time = NEW.Slotted_time
         AND APPOINTMENT.Date = NEW.Date
     ) >= 1 THEN
-        /*
-        SET NEW.Error_Code = 2;
-        */
         SIGNAL SQLSTATE '88888'
         SET MESSAGE_TEXT = 'Warning: An appointment with this time and doctor already exists!';
-        /*
-        DELETE FROM APPOINTMENT
-            WHERE Appointment_id = NEW.Appointment_id;
-        */
     END IF;
 END;$$
 DELIMITER ;
@@ -270,64 +197,8 @@ CREATE TABLE PRESCRIPTION (
 );
  
 INSERT INTO PRESCRIPTION(Patient_id, Medication, Test, Prescription_date) VALUES
-(5, "Medication string", "Test string", "2020/01/02"),
-(5, "Medication string", "Test string", "2020/01/01"),
-(5, "Medication string", "Test string", "2020/01/03"),
-(5, "Medication string", "Test string", "2020/01/04"),
-(5, "Medication string", "Test string", "2020/01/05");
- 
-CREATE TABLE PATIENT_APPOINTMENTS (
-    Patient_id     INT NOT NULL,
-    Appointment_id INT NOT NULL,
-    PRIMARY KEY (Patient_id, Appointment_id),
-    FOREIGN KEY (Patient_id) REFERENCES PATIENT(Patient_id),
-    FOREIGN KEY (Appointment_id) REFERENCES APPOINTMENT(Appointment_id)
-);
- 
-CREATE TABLE TREATS (
-    Doctor_id  INT NOT NULL,
-    Patient_id INT NOT NULL,
-    PRIMARY KEY (Doctor_id, Patient_id),
-    FOREIGN KEY (Doctor_id) REFERENCES DOCTOR(Doctor_id),
-    FOREIGN KEY (Patient_id) REFERENCES PATIENT(Patient_id)
-);
- 
-CREATE TABLE DOCTOR_APPOINTMENTS (
-    Doctor_id      INT NOT NULL,
-    Appointment_id INT NOT NULL,
-    PRIMARY KEY (Doctor_id, Appointment_id),
-    FOREIGN KEY (Doctor_id) REFERENCES DOCTOR(Doctor_id),
-    FOREIGN KEY (Appointment_id) REFERENCES APPOINTMENT(Appointment_id)
-);
- 
-CREATE TABLE OFFER (
-    Office_id      INT NOT NULL,
-    Appointment_id INT NOT NULL,
-    PRIMARY KEY (Office_id, Appointment_id),
-    FOREIGN KEY (Office_id) REFERENCES OFFICE(Office_id),
-    FOREIGN KEY (Appointment_id) REFERENCES APPOINTMENT(Appointment_id)
-);
- 
-CREATE TABLE WORKS_IN (
-    Doctor_id INT NOT NULL,
-    Office_id INT NOT NULL,
-    PRIMARY KEY (Doctor_id, Office_id),
-    FOREIGN KEY (Doctor_id) REFERENCES DOCTOR(Doctor_id),
-    FOREIGN KEY (Office_id) REFERENCES OFFICE(Office_id)
-);
- 
-CREATE TABLE APPROVES (
-    Admin_id       INT NOT NULL,
-    Appointment_id INT NOT NULL,
-    PRIMARY KEY (Admin_id, Appointment_id),
-    FOREIGN KEY (Admin_id) REFERENCES ADMIN(Admin_id),
-    FOREIGN KEY (Appointment_id) REFERENCES APPOINTMENT(Appointment_id)
-);
- 
-CREATE TABLE MANAGES (
-    Admin_id  INT NOT NULL,
-    Office_id INT NOT NULL,
-    PRIMARY KEY (Admin_id, Office_id),
-    FOREIGN KEY (Admin_id) REFERENCES ADMIN(Admin_id),
-    FOREIGN KEY (Office_id) REFERENCES OFFICE(Office_id)
-);
+(2, "Medication string", "Test string", "2020/01/02"),
+(2, "Medication string", "Test string", "2020/01/01"),
+(2, "Medication string", "Test string", "2020/01/03"),
+(2, "Medication string", "Test string", "2020/01/04"),
+(2, "Medication string", "Test string", "2020/01/05");
