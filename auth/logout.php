@@ -8,5 +8,5 @@
     session_destroy();
     session_unset();
 
-    header("Location: medical-clinic.epizy.com/index.php");
+    header("Location: medical-service.infinityfreeapp.com/index.php");
 ?>

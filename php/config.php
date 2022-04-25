@@ -3,7 +3,7 @@ $servername = "34.133.173.227";
 $username = "root";
 $password = "rootPassword";
 $database = "medical_clinic";
-$baseURL = "medical-clinic.epizy.com/";
+$baseURL = "//medical-service.infinityfreeapp.com/";
 
 // Create connection
 $db = mysqli_connect($servername, $username, $password, $database);
