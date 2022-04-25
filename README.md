@@ -1,17 +1,19 @@
 # Medical-Clinic-Database
 
 ## About the project
-This website was created as a group project for COSC3380, and is meant to be used by a small medical clinic to further help them execute several of their operations. There are three different user types that can use this website: Patients, Doctors, and Administratos. Each user type has the ability to login in, but only Patients are allowed to use the sign up. Once logged in, each user is automatically redirected to the main page for their user type. For each user type, the first information is the personal information of the logged in user. Then, we display other relevant information and features to each user type depending. Also, all users have access to the navbar at the top of the page, which easily allowsthem to access the main page for the medical clinic, presents a welcome message, allowed them to logout, and then allows them to manage their appointments. This last buttons takes each user to its main page.
+This website was created as a group project for COSC3380, and is meant to be used by a small medical clinic further help them execute necessary business operations. There are three different user types that can use this website: Patients, Doctors, and Administratos. Each user type has the ability to login in, but only Patients are allowed to use the sign up. Once logged in, each user is automatically redirected to the main page for their user type. Each user type is presented with different relevent information and features to help them execute their intended tasks. Also, all users have access to the navbar at the top of the page, which easily allows them to navigate to the main page, authentication pages, main user type page. The main user type page is accessible through the "Manage Appointments button"
 
 ## File structure
 
 ### Patient Pages
-The key information displayed is: Personal information, appointments, then prescriptions. Patients are also given the option to Make an Appointment, which redirects them to the requestAppointment pages, and they are also able to cancel their appointments. This is a series of pages that prompts the logged in user with questions needed to schedule their appointment. The information from some pages determines the display of others. For example, depending on the doctor type chosen, different doctors will be available on the next page. Once a patient reaches the last page and presses the "Submit" button, their appointment request will either pass or fail. If passed, they will see a message stating that their appointment was requested. If failed, they will a message specifying why the appointment request page. In either case, the logged in user will be presented with a link to take them back to their main user page.
+The key information displayed is: Personal information, appointments, then prescriptions. Patients are given the option to cancel existing appointments, and can also request new appointments with the "Make an Appointment" button. This button redirects users to the requestAppointment pages. This is a series of pages that prompts the logged in user with questions needed to schedule their appointment. The information from some pages determines the display of others. For example, depending on the doctor type chosen, different doctors will be available on the next page. Once a patient reaches the last page and presses the "Submit" button, their appointment request will either pass or fail. If passed, they will see a message stating that their appointment was requested. If failed, they will a message specifying why the appointment request page. In either case, the logged in user will be presented with a link to take them back to their main user page.
 
 The appointment request can fail for one of two reasons:
 
 1. The doctor is unavailable becuase they have a conflicting appointment
 2. A Patient which has not been authorized to schedule with a specialist attempted to schedule an appointment with a specialist.
+
+Each of these are implemented with the use of triggers in our SQL database running in google cloud.
 
 ### Doctor Pages
 The key information displayed is: Personal information, assigned patients, appointments, and their schedule. The only feature given to the doctor user is the ability to cancel their appointments.
