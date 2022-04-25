@@ -299,7 +299,7 @@ while($row = mysqli_fetch_array($dbres))
 
     table{
       left: 4%;
-      width: 1200px; !important
+      width: 1200px; 
     }
 
 
@@ -311,7 +311,7 @@ while($row = mysqli_fetch_array($dbres))
 
 <nav class="floating-menu">
     </a>
-        <a href="AdminPage.php">
+        <a href="adminPage.php">
             <div>
                 Admin Page
             </div>

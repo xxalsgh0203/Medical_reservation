@@ -141,7 +141,7 @@ fieldset{
         </a>
         <br>
         </a>
-        <a href="AdminPage.php">
+        <a href="adminPage.php">
             <div>
                 Admin Page
             </div>

@@ -84,7 +84,7 @@ if (isset($_GET['approve_Pid'])) {
 
 <nav class="floating-menu">
     </a>
-        <a href="AdminPage.php">
+        <a href="adminPage.php">
             <div>
                 Admin Page
             </div>

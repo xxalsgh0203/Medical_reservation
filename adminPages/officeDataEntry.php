@@ -119,7 +119,7 @@ h2{
 fieldset{
   margin-top: 80px;
 }
-}
+
 
 </style>
 </head>
@@ -151,7 +151,7 @@ fieldset{
         </a>
         <br>
         </a>
-        <a href="AdminPage.php">
+        <a href="adminPage.php">
             <div>
                 Admin Page
             </div>
