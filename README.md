@@ -13,7 +13,7 @@ The appointment request can fail for one of two reasons:
 1. The doctor is unavailable becuase they have a conflicting appointment
 2. A Patient which has not been authorized to schedule with a specialist attempted to schedule an appointment with a specialist.
 
-Each of these are implemented with the use of triggers in our SQL database running in google cloud.
+Each of these are implemented with the use of **triggers** in our SQL database running in google cloud.
 
 ### Doctor Pages
 The key information displayed is: personal information, assigned patients, appointments, and their schedule. The only feature given to the doctors is the ability to cancel appointments.

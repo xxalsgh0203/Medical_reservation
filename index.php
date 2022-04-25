@@ -22,7 +22,7 @@
   <section id="hero" class="d-flex align-items-center">
     <div class="container text-center position-relative">
       <h2>"This is a Medical reservation app made by group 5"</h2>
-      <h1>Customoers want to use an app to<br/>schedule appointments with you online</h1>
+      <h1>Customers want to use an app to<br/>schedule appointments with you online</h1>
       <img id="mainimg" src="./img/mainimage.jpeg" width="50%" height="50%">
       <p>Allow clients to book appointments directly from app <br/> All From One Place</p>
       <a href="./patientPages/requestAppointment.php" class="main-btn">Make your Appointment!</a>
