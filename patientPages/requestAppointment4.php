@@ -52,6 +52,10 @@
           $query = "INSERT INTO `APPOINTMENT`(Patient_id, Doctor_id, Office_id, Appointment_status, Slotted_time, Specialist_status, Date) VALUES
           ('$patientID', '$doctorID', '$officeID', '$appointmentStatus', '$time', '$specialistStatus', '$date');";
           $result = mysqli_query($db, $query);
+          if (empty($result)) {
+            Exception $e;
+            throw new Exception('');
+          }
         } catch  (Exception $e) {
           $triggerVal = mysqli_sqlstate($db);
           $error = "";
@@ -122,12 +126,11 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true)
     <div class="container">
         <div class="ra-final">
 
-          <?php if((isset($error) && !empty($error)) || (empty($result))) { ?>
+          <?php if(isset($error) && !empty($error)) { ?>
             <h1 class="ra-h"><?php echo $error; ?>
           <?php } else { ?>
             <h1 id="result" class="ra-h"> Appointment has been Requested </h1>
           <?php } ?>
-          <h1><?php echo empty($result); ?></h1>
 
 
             <br>
