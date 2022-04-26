@@ -158,7 +158,7 @@ BEGIN
     IF  ((
         SELECT COUNT(*)
         FROM PATIENT
-        INNER JOIN APPOINTMENT ON PATIENT.Patient_id = APPOINTMENT.Patient_id
+        /*INNER JOIN APPOINTMENT ON PATIENT.Patient_id = APPOINTMENT.Patient_id*/
         WHERE PATIENT.Patient_id = NEW.Patient_id
         AND PATIENT.Specialist_approved = 0) >=1 && NEW.Specialist_status = 1 ) THEN
 		SIGNAL SQLSTATE '77777'
