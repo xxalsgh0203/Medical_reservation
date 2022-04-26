@@ -53,7 +53,6 @@
           ('$patientID', '$doctorID', '$officeID', '$appointmentStatus', '$time', '$specialistStatus', '$date');";
           $result = mysqli_query($db, $query);
           if (empty($result)) {
-            Exception $e;
             throw new Exception('');
           }
         } catch  (Exception $e) {
