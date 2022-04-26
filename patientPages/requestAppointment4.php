@@ -122,12 +122,12 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true)
     <div class="container">
         <div class="ra-final">
 
-          <?php if(isset($error) && !empty($error)) { ?>
+          <?php if((isset($error) && !empty($error)) || (empty($result))) { ?>
             <h1 class="ra-h"><?php echo $error; ?>
           <?php } else { ?>
             <h1 id="result" class="ra-h"> Appointment has been Requested </h1>
           <?php } ?>
-          <h1><?php echo $result; ?></h1>
+          <h1><?php echo empty($result); ?></h1>
 
 
             <br>
